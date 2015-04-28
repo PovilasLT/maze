@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: maze
+        psr4_prefix: maze
+        src_path: app
