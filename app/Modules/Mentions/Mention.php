@@ -15,6 +15,6 @@ class Mention {
 	}
 
 	public function boot() {
-		//visa pagrindinė modulio logika turi eiti į šitą failą.
+		//visa pagrindinė modulio logika turi eiti į šitą funkciją.
 	}
 }
