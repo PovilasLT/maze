@@ -1,6 +1,7 @@
 <?php namespace maze\Http\Requests;
 
 use maze\Http\Requests\Request;
+use maze\Auth;
 
 class CreateTopic extends Request {
 
@@ -11,7 +12,13 @@ class CreateTopic extends Request {
 	 */
 	public function authorize()
 	{
-		return false;
+		if(Auth::check())
+		{
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	/**
@@ -21,9 +28,29 @@ class CreateTopic extends Request {
 	 */
 	public function rules()
 	{
-		return [
-			//
-		];
+		protected $rules = [
+		'title'   => 'required|min:2',
+		'body'    => 'required|min:2',
+		'node_id' => 'required|numeric'
+    	];
 	}
+
+	public function attributes()
+	{
+		$nice_names = [
+            'username'  => 'vartotojo vardas',
+            'password'  => 'slaptažodis',
+            'email'     => 'el-paštas',
+            'legal'		=> 'taisyklėmis',
+            'sex'       => 'lytis',
+            'dob'       => 'gimimo data',
+        ];
+        return $nice_names;
+	}
+
+	public function forbiddenResponse()
+    {
+    	abort(403, 'Permission denied!');
+    }
 
 }
