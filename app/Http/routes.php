@@ -1,30 +1,72 @@
 <?php
 
 //Bendriniai puslapiai
-Route::get('/', function() {
-	$mention = new \maze\Modules\Mentions\Mention();
-	Eloquent::unguard();
-	maze\Reply::create([
-		'topic_id' => 1,
-		'user_id'  => 1,
-		'body'     => 'test',
-	]);
-	return null;
-});
+Route::get('/', 'PageController@index');
 
 //Autentikavimas
 
-Route::get('/registruotis', 'AuthController@register');
-Route::get('/prisijungti', 'AuthController@login');
-Route::get('/atsijungti', 'AuthController@logout');
+Route::get('/registruotis', [
+	'as'	=> 'auth.register',
+	'uses'	=> 'AuthController@register'
+]);
 
-Route::get('/reply/delete', 'RepliesController@delete');
+Route::get('/prisijungti', [
+	'as'	=> 'auth.login',
+	'uses'	=> 'AuthController@login'
+]);
+
+Route::get('/atsijungti', [
+	'as'	=> 'auth.logout',
+	'uses'	=> 'AuthController@logout'
+]);
+
+Route::post('/registruotis', [
+	'as'	=> 'auth.register.post',
+	'uses'	=> 'AuthController@postRegister'
+]);
+
+Route::post('/prisijungti', [
+	'as'	=> 'auth.login.post',
+	'uses'	=> 'AuthController@postLogin'
+]);
 
 //Vartotojai
 
 //Nustatymai
 
 //Temos
+
+Route::get('/tema/{slug}', [
+	'as' 	=> 'topic.show',
+	'uses'	=> 'TopicsController@show' 
+]);
+
+Route::get('/tema/{slug}/istrinti', [
+	'as'	=> 'topic.delete',
+	'uses'	=> 'TopicsController@delete'
+]);
+
+Route::get('/tema/{slug}/redaguoti', [
+	'as'	=> 'topic.edit',
+	'uses'	=> 'TopicsController@edit'
+]);
+
+
+Route::get('/tema/{slug}/kurti', [
+	'as'	=> 'topic.create',
+	'uses'	=> 'TopicsController@create'
+]);
+
+
+Route::post('/tema/{slug}/irasyti', [
+	'as'	=> 'topic.store',
+	'uses'	=> 'TopicsController@store'
+]);
+
+Route::post('/tema/{slug}/issaugoti', [
+	'as'	=> 'topic.update',
+	'uses'	=> 'TopicsController@update'
+]);
 
 //Skiltys
 

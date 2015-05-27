@@ -1,6 +1,7 @@
 <?php namespace maze\Http\Requests;
 
 use maze\Http\Requests\Request;
+use Auth;
 
 class CreateUser extends Request {
 
@@ -53,6 +54,7 @@ class CreateUser extends Request {
             'username'  => 'vartotojo vardas',
             'password'  => 'slaptažodis',
             'email'     => 'el-paštas',
+            'legal'		=> 'taisyklėmis',
             'sex'       => 'lytis',
             'dob'       => 'gimimo data',
         ];

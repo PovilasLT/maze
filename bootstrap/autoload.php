@@ -35,3 +35,18 @@ elseif (file_exists($compiledPath = __DIR__.'/../storage/framework/compiled.php'
 {
 	require $compiledPath;
 }
+
+
+// $modules_dir = '../app/Modules';
+// $modules_list = scandir($modules_dir);
+// $modules = [];
+
+// foreach ($modules_list as $module)
+// {
+// 	$loader = $modules_dir.'/'.$module.'/load.php';
+// 	if(!str_contains('..', $module) && file_exists($loader))
+// 	{
+// 		require_once($loader);
+// 		$modules[strtolower($module)] = call_user_func('module_'.strtolower($module));
+// 	}
+// }

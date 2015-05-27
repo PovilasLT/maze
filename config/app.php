@@ -204,11 +204,12 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 
-		'Flash' => 'Laracasts\Flash\Flash',
-		'Entrust' => 'Zizaco\Entrust\EntrustFacade',
-		'Image' => 'Intervention\Image\Facades\Image',
-		'Breadcrumbs' => 'DaveJamesMiller\Breadcrumbs\Facade',
-		'Markdown' => 'GrahamCampbell\Markdown\Facades\Markdown',
+		'User'			=> 'maze\User',
+		'Flash' 		=> 'Laracasts\Flash\Flash',
+		'Entrust' 		=> 'Zizaco\Entrust\EntrustFacade',
+		'Image' 		=> 'Intervention\Image\Facades\Image',
+		'Breadcrumbs' 	=> 'DaveJamesMiller\Breadcrumbs\Facade',
+		'Markdown' 		=> 'GrahamCampbell\Markdown\Facades\Markdown',
 
 	],
 

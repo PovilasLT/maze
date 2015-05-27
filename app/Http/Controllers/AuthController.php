@@ -1,7 +1,9 @@
 <?php namespace maze\Http\Controllers;
 
 use maze\Http\Requests;
-use Auth;
+use maze\Http\Requests\CreateUser;
+use Illuminate\Http\Request;
+use Auth, Hash;
 
 class AuthController extends Controller {
 
@@ -27,26 +29,39 @@ class AuthController extends Controller {
 		return view('auth.login');
 	}
 
-	public function postLogin()
+	public function postLogin(Request $request)
 	{
-		$username = Input::get('username');
-		$password = Input::get('password');
+		$username = $request->input('username');
+		$password = $request->input('password');
 
 		if (Auth::attempt(array('username' => $username, 'password' => $password), true))
 		{
-			Flash::success('Tu sėkmingai prisijungei!');
+			flash()->success('Tu sėkmingai prisijungei!');
 			return redirect('/');
 		}
 		else
 		{
-			Flash::error('Blogas vartotojo vardas arba slaptažodis!');
+			flash()->error('Blogas vartotojo vardas arba slaptažodis!');
 			return redirect('/');
 		}
+	}
+
+	public function postRegister(CreateUser $request)
+	{
+		User::create([
+			'username'		=> $request->input('username'),
+			'email'			=> $request->input('email'),
+			'password'		=> Hash::make($request->input('password'))
+		]);
+
+		flash()->success('Tu sėkmingai užsiregistravai! Dabar gali prisijungti!');
+		return redirect('/');
 	}
 
 	public function logout()
 	{
 		Auth::logout();
+		flash()->success('Tu sėkmingai atsijungei!');
 		return redirect('/');
 	}
 

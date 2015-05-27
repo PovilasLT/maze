@@ -2,6 +2,8 @@
 
 use maze\Http\Requests;
 use maze\Http\Controllers\Controller;
+use maze\Topic;
+use maze\Node;
 
 use Illuminate\Http\Request;
 
@@ -24,7 +26,8 @@ class TopicsController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		$nodes = Node::lists('name', 'id');
+		return view('topic.create');
 	}
 
 	/**
@@ -32,9 +35,10 @@ class TopicsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(CreateTopic $request)
 	{
-		//
+		Topic::create($request->all());
+		return redirect()->back();
 	}
 
 	/**
@@ -43,9 +47,11 @@ class TopicsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($slug)
 	{
-		//
+		$topic = Topic::where('slug', $slug)->firstOrFail();
+
+		return view('topic.show', compact('topic'));
 	}
 
 	/**
