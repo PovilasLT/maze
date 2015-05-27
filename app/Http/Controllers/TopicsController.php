@@ -4,6 +4,7 @@ use maze\Http\Requests;
 use maze\Http\Controllers\Controller;
 use maze\Topic;
 use maze\Node;
+use maze\Http\Requests\CreateTopic;
 
 use Illuminate\Http\Request;
 
@@ -26,8 +27,8 @@ class TopicsController extends Controller {
 	 */
 	public function create()
 	{
-		$nodes = Node::lists('name', 'id');
-		return view('topic.create');
+		$nodes = Node::parents();
+		return view('topic.create', compact('nodes'));
 	}
 
 	/**
@@ -37,8 +38,15 @@ class TopicsController extends Controller {
 	 */
 	public function store(CreateTopic $request)
 	{
-		Topic::create($request->all());
-		return redirect()->back();
+		$topic = Topic::create($request->all());
+
+		//TODO: Slug generavimas.
+		$topic->slug = '123';
+		$topic->save();
+
+		flash()->success('Tema sėkmingai sukurta!');
+		//grazinam useri i sukurta topic'a
+		return redirect()->route('topic.show', ['slug' => $topic->slug]);
 	}
 
 	/**
@@ -50,6 +58,9 @@ class TopicsController extends Controller {
 	public function show($slug)
 	{
 		$topic = Topic::where('slug', $slug)->firstOrFail();
+		
+		//padidina view counteri.
+		$topic->increments('view_count');
 
 		return view('topic.show', compact('topic'));
 	}
@@ -60,7 +71,7 @@ class TopicsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(EditTopic $id)
 	{
 		//
 	}
@@ -71,7 +82,7 @@ class TopicsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(UpdateTopic $id)
 	{
 		//
 	}
@@ -82,9 +93,14 @@ class TopicsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(DeleteTopic $request, $slug)
 	{
-		//
+		$topic = Topic::where('slug', $slug)->first();
+		$topic->delete();
+
+		flash()->success('Tema sėkmingai ištrinta');
+
+		return redirect()->route('node.show', ['slug' => $topic->node->slug])
 	}
 
 }
