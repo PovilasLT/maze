@@ -15,10 +15,11 @@ class RepliesController extends Controller {
 	public function store(CreateReply $request)
 	{
 		Reply::create($request->all());
+		flash()->success('Pranešimas sėkmingai išsaugotas!');
 		return redirect()->back();
 	}
 
-	public function edit($id)
+	public function edit(EditReply $request, $id)
 	{
 		$reply = Reply::findOrFail($id);
 		return view('reply.edit', compact('reply'));

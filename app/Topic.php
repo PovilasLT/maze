@@ -5,7 +5,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Topic extends Model {
 
-	//TODO Fillable
+	protected $fillable = [
+		'node_id',
+		'title',
+		'body'
+	];
 
 	use SoftDeletes;
 

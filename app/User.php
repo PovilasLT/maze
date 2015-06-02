@@ -6,6 +6,7 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
+use maze\Vote;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
@@ -35,6 +36,43 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	public function topics() {
 		return $this->hasMany('Topic');
+	}
+
+	//Patikrina ar User jau balsavo uz tam tikra turini.
+	//Jei balsavo - grazina Vote objekta
+	//Jei nebalsavo - grazina false
+
+	public function hasVoted($id, $votable) {
+		$vote = Vote::where('votable_type', $votable)
+		->where('votable_id', $id)
+		->where('user_id', $this->id)
+		->first();
+		return $vote;
+	}
+
+	//User gali balsuoti uz temas ir pranesimus per User->vote();
+
+	public function vote($id, $votable, $type) {
+		//patikrinti ar gali balsuoti
+		if($this->can_vote)
+		{
+			$vote = $this->hasVoted($id, $votable);
+
+			//patikrinti ar zmogus jau balsavo
+			if($vote)
+			{
+				//pasalina pries tai buvusi balsa
+				$vote->delete();
+			}
+
+			//balsuoja is naujo
+			Vote::create([
+				'votable_type' 	=> $votable,
+				'votable_id'	=> $id,
+				'user_id'		=> $this->id,
+				'is'			=> $type
+			]);
+		}
 	}
 
 }

@@ -36,9 +36,14 @@ Route::post('/prisijungti', [
 
 //Temos
 
-Route::get('/tema/{slug}', [
-	'as' 	=> 'topic.show',
-	'uses'	=> 'TopicsController@show' 
+Route::get('/tema/kurti', [
+	'as'	=> 'topic.create',
+	'uses'	=> 'TopicsController@create'
+]);
+
+Route::post('/tema/irasyti', [
+	'as'	=> 'topic.store',
+	'uses'	=> 'TopicsController@store'
 ]);
 
 Route::get('/tema/{slug}/istrinti', [
@@ -51,21 +56,14 @@ Route::get('/tema/{slug}/redaguoti', [
 	'uses'	=> 'TopicsController@edit'
 ]);
 
-
-Route::get('/tema/{slug}/kurti', [
-	'as'	=> 'topic.create',
-	'uses'	=> 'TopicsController@create'
-]);
-
-
-Route::post('/tema/{slug}/irasyti', [
-	'as'	=> 'topic.store',
-	'uses'	=> 'TopicsController@store'
-]);
-
-Route::post('/tema/{slug}/issaugoti', [
+Route::post('/tema/{slug}/atnaujinti', [
 	'as'	=> 'topic.update',
 	'uses'	=> 'TopicsController@update'
+]);
+
+Route::get('/tema/{slug}', [
+	'as' 	=> 'topic.show',
+	'uses'	=> 'TopicsController@show' 
 ]);
 
 //Skiltys
