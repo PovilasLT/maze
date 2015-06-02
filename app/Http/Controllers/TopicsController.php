@@ -60,7 +60,7 @@ class TopicsController extends Controller {
 		$topic = Topic::where('slug', $slug)->firstOrFail();
 		
 		//padidina view counteri.
-		$topic->increments('view_count');
+		$topic->increment('view_count');
 
 		return view('topic.show', compact('topic'));
 	}
@@ -100,7 +100,7 @@ class TopicsController extends Controller {
 
 		flash()->success('Tema sėkmingai ištrinta');
 
-		return redirect()->route('node.show', ['slug' => $topic->node->slug])
+		return redirect()->route('node.show', ['slug' => $topic->node->slug]);
 	}
 
 }
