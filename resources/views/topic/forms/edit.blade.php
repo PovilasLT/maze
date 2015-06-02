@@ -1,4 +1,4 @@
-<form action="{{ route('topic.store') }}" method="POST" role="form">
+<form action="{{ route('topic.update', [$topic->id]) }}" method="POST" role="form">
 @include('includes.csrf')
 	<div class="form-group">
 		<label for="node">Diskusijų Skiltis</label>

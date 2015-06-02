@@ -5,6 +5,7 @@ use maze\Http\Controllers\Controller;
 use maze\Topic;
 use maze\Node;
 use maze\Http\Requests\CreateTopic;
+use maze\Http\Requests\EditTopic;
 use maze\Http\Requests\AdminTopic;
 
 use Illuminate\Http\Request;
@@ -74,8 +75,9 @@ class TopicsController extends Controller {
 	 */
 	public function edit(EditTopic $request, $id)
 	{
+		$nodes = Node::parents();
 		$topic = $request->topic;
-		return view('topic.edit', compact('topic'));
+		return view('topic.edit', compact('topic', 'nodes'));
 	}
 
 	/**
@@ -86,7 +88,7 @@ class TopicsController extends Controller {
 	 */
 	public function update(UpdateTopic $request, $id)
 	{
-		$topic = $request->topic;	
+		
 	}
 
 	/**
@@ -107,7 +109,7 @@ class TopicsController extends Controller {
 
 	public function bump(AdminTopic $request, $id)
 	{
-		$topic = Topic::findOrFail($id);
+		$topic = $request->topic;
 		$topic->touch();
 		$topic->save();
 
@@ -118,7 +120,7 @@ class TopicsController extends Controller {
 
 	public function pinGlobal(AdminTopic $request, $id)
 	{
-		$topic = Topic::findOrFail($id);
+		$topic = $request->topic;
 		$topic->order = 1;
 		$topic->save();
 
@@ -129,7 +131,7 @@ class TopicsController extends Controller {
 
 	public function pinLocal(AdminTopic $request, $id)
 	{
-		$topic = Topic::findOrFail($id);
+		$topic = $request->topic;
 		$topic->pin_local = 1;
 		$topic->save();
 
@@ -140,7 +142,7 @@ class TopicsController extends Controller {
 
 	public function unpin(AdminTopic $request, $id)
 	{
-		$topic = Topic::findOrFail($id);
+		$topic = $request->topic;
 		$topic->pin_local = 0;
 		$topic->order = 0;
 		$topic->save();
@@ -153,7 +155,7 @@ class TopicsController extends Controller {
 	public function sink(AdminTopic $request, $id)
 	{
 
-		$topic = Topic::findOrFail($id);
+		$topic = $request->topic;
 		$topic->order = -1;
 		$topic->save();
 		flash()->success('Tema sėkmingai nuskandinta!');
@@ -163,7 +165,7 @@ class TopicsController extends Controller {
 
 	public function lock(AdminTopic $request, $id)
 	{
-		$topic = Topic::findOrFail($id);
+		$topic = $request->topic;
 		if($topic->is_blocked)
 		{
 			$topic->is_blocked = 0;

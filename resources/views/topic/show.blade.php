@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-	<h1>{{ $topic->title }}</h1>
+	<h1>{{ $topic->title }} <small>{{ $topic->id }}</small></h1>
 	
 	<div class="row">
 		<div class="col-lg-12">

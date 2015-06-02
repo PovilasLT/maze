@@ -1,6 +1,5 @@
 <form action="{{ route('topic.store', ["slug" => $topic->slug]) }}" method="POST" role="form">
-<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+@include('includes.csrf')
 	<legend>Rašyti naują pranešimą</legend>
 
 	<div class="form-group">
