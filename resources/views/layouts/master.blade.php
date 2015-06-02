@@ -8,6 +8,7 @@
 
 		<!-- Bootstrap CSS -->
 		<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -17,15 +18,17 @@
 		<![endif]-->
 	</head>
 	<body>
-		<h1 class="text-center">Maze</h1>
-		@include('includes.messages')
-		@if(Auth::check())
-		<h4>Vartotojas: {{ Auth::user()->username }} | <a href="{{ route('auth.logout') }}">Atsijungti</a></h4>
-		@else
-		<h4><a href="{{ route('auth.login') }}">Prisijungti</a> | <a href="{{ route('auth.register') }}">Registruotis</a></h4>
-		@endif
-		@yield('content')
 
+		<div class="container">
+			<h1 class="text-center">Maze</h1>
+			@include('includes.messages')
+			@if(Auth::check())
+			<h4>Vartotojas: {{ Auth::user()->username }} | <a href="{{ route('auth.logout') }}">Atsijungti</a></h4>
+			@else
+			<h4><a href="{{ route('auth.login') }}">Prisijungti</a> | <a href="{{ route('auth.register') }}">Registruotis</a></h4>
+			@endif
+			@yield('content')
+		</div>
 		<!-- jQuery -->
 		<script src="//code.jquery.com/jquery.js"></script>
 		<!-- Bootstrap JavaScript -->
