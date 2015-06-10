@@ -12,5 +12,24 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.less('app.less');
+    mix
+    
+    //Kopijuojam font'us iš resources į public
+    //.copy('../font-awesome/fonts', 'public/fonts')
+    //.copy('../bootstrap/fonts', 'public/fonts')
+
+    //Kompiliuojam LESS stilius
+    .less([
+    	'../bootstrap/less/bootstrap.less',
+    	'../font-awesome/less/font-awesome.less'
+	], 'public/css/style.css');
+
+    mix.scripts([
+        '../jquery/dist/jquery.js',
+        '../bootstrap/dist/js/bootstrap.js',
+        '../moment/min/moment-with-locales.min.js',
+        '../moment-timezone/builds/moment-timezone-with-data.min.js',
+        'date_format.js',
+        'node_expand.js'
+    ], 'public/js/scripts.js');
 });

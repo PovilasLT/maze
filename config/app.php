@@ -155,6 +155,7 @@ return [
 		'DaveJamesMiller\Breadcrumbs\ServiceProvider',
 		'GrahamCampbell\Markdown\MarkdownServiceProvider',
 		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+		'DaveJamesMiller\Breadcrumbs\ServiceProvider',
 
 	],
 
@@ -210,6 +211,7 @@ return [
 		'Image' 		=> 'Intervention\Image\Facades\Image',
 		'Breadcrumbs' 	=> 'DaveJamesMiller\Breadcrumbs\Facade',
 		'Markdown' 		=> 'GrahamCampbell\Markdown\Facades\Markdown',
+		'Breadcrumbs' => 'DaveJamesMiller\Breadcrumbs\Facade',
 
 	],
 

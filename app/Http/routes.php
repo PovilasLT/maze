@@ -32,6 +32,11 @@ Route::post('/prisijungti', [
 
 //Vartotojai
 
+Route::get('/vartotojas/{slug}', [
+	'as'	=> 'user.show',
+	'uses'	=> 'UsersController@show'
+]);
+
 //Nustatymai
 
 //Temos
@@ -103,6 +108,11 @@ Route::get('/tema/{slug}', [
 ]);
 
 //Skiltys
+
+Route::get('/skiltis/{slug}', [
+	'as' 	=> 'node.show',
+	// 'uses'	=> 'TopicsController@show' 
+]);
 
 //Pranesimai
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d571036b903ef3f3035c39e1add6a8ef",
+    "hash": "ed7da7f9510ea93e97212ec7020a4610",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -187,16 +187,16 @@
         },
         {
             "name": "davejamesmiller/laravel-breadcrumbs",
-            "version": "dev-master",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/davejamesmiller/laravel-breadcrumbs.git",
-                "reference": "4b6f787219af471581c67e6a1f33bb82a34b4fef"
+                "reference": "5a5d5d1b1f5780359604f7fde11bbf810ff3e9e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/davejamesmiller/laravel-breadcrumbs/zipball/4b6f787219af471581c67e6a1f33bb82a34b4fef",
-                "reference": "4b6f787219af471581c67e6a1f33bb82a34b4fef",
+                "url": "https://api.github.com/repos/davejamesmiller/laravel-breadcrumbs/zipball/5a5d5d1b1f5780359604f7fde11bbf810ff3e9e4",
+                "reference": "5a5d5d1b1f5780359604f7fde11bbf810ff3e9e4",
                 "shasum": ""
             },
             "require": {
@@ -228,11 +228,11 @@
                 }
             ],
             "description": "A simple Laravel-style way to create breadcrumbs in Laravel 4+.",
-            "homepage": "http://laravel-breadcrumbs.davejamesmiller.com",
+            "homepage": "https://github.com/davejamesmiller/laravel-breadcrumbs",
             "keywords": [
                 "laravel"
             ],
-            "time": "2015-04-05 03:26:53"
+            "time": "2015-02-08 21:44:39"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2711,7 +2711,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Zizaco/entrust/zipball/305916c40ed35dd6ebb81379db51ec582df19623",
+                "url": "https://api.github.com/repos/Zizaco/entrust/zipball/804000c1c535221792b4e173ecdcc02b5681f5ec",
                 "reference": "305916c40ed35dd6ebb81379db51ec582df19623",
                 "shasum": ""
             },
@@ -3794,8 +3794,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "zizaco/entrust": 20,
-        "davejamesmiller/laravel-breadcrumbs": 20
+        "zizaco/entrust": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

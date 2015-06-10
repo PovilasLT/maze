@@ -9,6 +9,10 @@ class Node extends Model {
 		return $this->hasMany('maze\Topic');
 	}
 
+	public function parent() {
+		return $this->belongsTo('maze\Node', 'parent_node');
+	}
+
 	public function children() {
 		return $this->hasMany('maze\Node', 'parent_node')->orderBy('order', 'ASC');
 	}

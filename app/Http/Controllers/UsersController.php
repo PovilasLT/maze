@@ -21,17 +21,8 @@ class UsersController extends Controller {
 	}
 
 	//Profilis
-	public function show($slug, $id) {
-		$user = User::find($id);
-		if(!$user || !$user->slug == $slug)
-		{
-			abort(404);
-			return false;
-		}
-		else
-		{
-			return view('users.profile', compact($user));
-		}
+	public function show($slug) {
+		return 0;
 	}
 
 }

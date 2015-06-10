@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('breadcrumbs')
+	{!! Breadcrumbs::render('topic.show', $topic) !!}
+@stop
 @section('content')
 	<h1>{{ $topic->title }} <small>{{ $topic->id }}</small></h1>
 	

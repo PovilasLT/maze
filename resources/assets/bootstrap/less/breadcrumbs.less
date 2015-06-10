@@ -1,0 +1,23 @@
+//
+// Breadcrumbs
+// --------------------------------------------------
+
+
+.breadcrumb {
+  padding: 28px 15px 28px 15px;
+  list-style: none;
+  border-bottom: 1px solid @maze-border-faded;
+
+  > li {
+    display: inline-block;
+
+    + li:before {
+      content: "@{breadcrumb-separator}\00a0"; // Unicode space added since inline-block means non-collapsing white-space
+      padding: 0 5px;
+    }
+  }
+
+  > .active {
+    color: @breadcrumb-active-color;
+  }
+}

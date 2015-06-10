@@ -11,7 +11,17 @@ class UpdateTopic extends Request {
 	 */
 	public function authorize()
 	{
-		return false;
+		$this->topic = Topic::findOrFail($this->route('id'));
+
+		//patikrinam ar useris turi teise redaguoti tema.
+		if(Auth::check() && (Auth::user()->id == $this->topic->user_id) || Auth::user()->can('manage_topics') )
+		{
+			return true;
+		}
+		else 
+		{
+			return false;
+		}
 	}
 
 	/**
@@ -21,9 +31,34 @@ class UpdateTopic extends Request {
 	 */
 	public function rules()
 	{
-		return [
-			//
-		];
+		$rules = array(
+            'title'      	=> 'required|min:4|max:',
+            'email'         => 'required|email|unique:users',
+            'password'      => 'required|confirmed|min:8',
+            'legal'			=> 'accepted',
+            'sex'           => 'boolean',
+            'dob'           => 'date',
+        );
+		return $rules;
 	}
+
+	//Gražina custom atributų pavadinimus.
+	public function attributes()
+	{
+		$nice_names = [
+            'username'  => 'vartotojo vardas',
+            'password'  => 'slaptažodis',
+            'email'     => 'el-paštas',
+            'legal'		=> 'taisyklėmis',
+            'sex'       => 'lytis',
+            'dob'       => 'gimimo data',
+        ];
+        return $nice_names;
+	}
+
+	public function forbiddenResponse()
+    {
+    	abort(403, 'Permission denied!');
+    }
 
 }
