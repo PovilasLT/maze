@@ -45,7 +45,10 @@
 							<a href=""><i class="fa fa-envelope-o"></i></a>
 							<a href="{{ route('auth.logout') }}"><i class="fa fa-sign-out"></i></a>
 						@else
-						<a href="{{ route('auth.register') }}">Registruotis</a> | <a href="{{ route('auth.login') }}">Prisijungti</a>
+							<div class="logged-out-wrapper">
+								<a href="{{ route('auth.register') }}"><button type="button" class="btn btn-primary"><i class="fa fa-user-plus"></i>Registruotis</button></a>
+								<a href="{{ route('auth.login') }}"><button type="button" class="btn btn-primary"><i class="fa fa-sign-in"></i>Prisijungti</button></a>
+							</div>
 						@endif
 					</div>
 				</div>
@@ -67,6 +70,45 @@
 					</div>
 			</div>
 		</main>
+
+		<footer>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6">
+						<h4>Apie maze</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi feugiat orci id augue aliquet, id pellentesque nisl imperdiet. Quisque nec accumsan velit, et placerat ligula. Integer at aliquet est. Donec interdum lorem eu purus pulvinar faucibus. Nullam magna erat, facilisis vitae risus vel, elementum varius neque. Suspendisse feugiat faucibus lorem ut congue. Suspendisse tincidunt viverra porttitor. Proin tristique vehicula arcu, eu consequat libero. Morbi placerat dolor justo, vel maximus eros aliquam in. Mauris fermentum dui at nisl viverra, sit amet feugiat mi sollicitudin. Vivamus felis dolor, hendrerit in dictum quis, ullamcorper sed quam.</p>
+					</div>
+					<div class="col-lg-3">
+						<h4>Nuorodos</h4>
+						<ul>
+							<li>
+								<a href="#">Komanda</a>
+							</li>
+							<li>
+								<a href="#">Apie</a>
+							</li>
+							<li>
+								<a href="#">Naujienos</a>
+							</li>
+							<li>
+								<a href="#">Susisiekti</a>
+							</li>
+							<li>
+								<a href="#">Žinynas</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-lg-3">
+						<h4>Kontaktai</h4>
+						<ul>
+							<li>Informacija: </li>
+							<li>Reklama</li>
+							<li>Bendradarbiavimas</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
 
 		<script src="/js/scripts.js"></script>
 

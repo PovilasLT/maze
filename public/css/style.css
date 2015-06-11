@@ -6393,6 +6393,20 @@ button.close {
     display: none !important;
   }
 }
+footer {
+  background-color: #202227;
+  color: #ffffff;
+  padding: 40px 0;
+}
+footer h4 {
+  padding-bottom: 13px;
+  border-bottom: 1px dashed #0f7255;
+  display: inline-block;
+  padding-right: 10px;
+}
+footer a:hover {
+  color: #ffffff;
+}
 ul {
   padding-left: 20px;
 }
@@ -6414,6 +6428,10 @@ ul {
 .navbar-user-info img.avatar {
   border-radius: 90px;
   margin: 0 20px;
+}
+.navbar-user-info .logged-out-wrapper {
+  padding-top: 5px;
+  margin-left: 15px;
 }
 .main-content {
   border-right: 1px solid #f2f3f2;
