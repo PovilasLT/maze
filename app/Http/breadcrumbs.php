@@ -25,6 +25,12 @@ Breadcrumbs::register('topic.show', function($breadcrumbs, $topic)
     $breadcrumbs->push($topic->title, route('topic.show', $topic->id));
 });
 
+Breadcrumbs::register('topic.create', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Naujos temos kūrimas', route('topic.create'));
+});
+
 //Vartotojo routes
 
 //Profilis

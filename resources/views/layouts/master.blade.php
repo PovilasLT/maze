@@ -108,8 +108,8 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-lg-12">
-						
+					<div class="col-lg-12 copyright">
+						&copy; Maze 2014-2015. Visos teisės saugomos.
 					</div>
 				</div>
 			</div>
