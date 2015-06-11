@@ -5,6 +5,7 @@ use maze\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use maze\Node;
+use maze\Topic;
 
 class NodesController extends Controller {
 	/**
@@ -24,17 +25,18 @@ class NodesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($slug, $id) {
-		$user = Node::find($id);
-		if(!$user || !$user->slug == $slug)
+	public function show($slug) {
+		$node = Node::where('slug', $slug)->firstOrFail();
+		if($node->parent_node)
 		{
-			abort(404);
-			return false;
+			$topics = $node->topics()->paginate(20);
 		}
 		else
 		{
-			return view('nodes.show', compact($user));
+			$nodes = Node::where('parent_node', $node->id)->lists('id');
+			$topics = Topic::whereIn('node_id', $nodes)->paginate(20);
 		}
+		return view('node.show', compact('node', 'topics'));
 	}
 
 	/**
