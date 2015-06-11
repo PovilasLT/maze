@@ -1,12 +1,5 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Eddie
- * Date: 26/04/15
- * Time: 19:30
- */
+<?php namespace maze\Modules\Mentions;
 
-namespace maze\Modules\Mentions;
 use maze\Reply;
 
 class Mention {

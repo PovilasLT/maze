@@ -7,7 +7,8 @@ class Reply extends Model {
 	protected $fillable = [
 		'user_id',
 		'topic_id',
-		'body'
+		'body',
+		'body_original'
 	];
 
 	public function user() {

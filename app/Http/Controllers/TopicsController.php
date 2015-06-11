@@ -43,7 +43,11 @@ class TopicsController extends Controller {
 	public function store(CreateTopic $request)
 	{
 		$data = $request->all();
-		$data['user_id'] = Auth::user()->id;
+
+		//Susitvarkom su Markdown
+		$data['body_original']	= $data['body'];
+		$data['body']			= Markdown::convertToHtml($request->input('body'));
+		$data['user_id'] 		= Auth::user()->id;
 
 		$topic = Topic::create($data);
 
