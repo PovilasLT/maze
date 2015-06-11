@@ -9,6 +9,7 @@ use maze\Http\Requests\EditTopic;
 use maze\Http\Requests\AdminTopic;
 use maze\Http\Requests\DeleteTopic;
 use Auth;
+use Markdown;
 
 use Illuminate\Http\Request;
 
