@@ -7,9 +7,9 @@
 			<option value="" disabled>{{ $node->name }}</option>
 			@foreach($node->children as $child)
 				@if(old('node_id') == $child->id)
-				<option value="{{ $child->id }}" selected>{{ $child->name }}</option>
+				<option value="{{ $child->id }}" selected>-- {{ $child->name }}</option>
 				@else
-				<option value="{{ $child->id }}">{{ $child->name }}</option>
+				<option value="{{ $child->id }}">-- {{ $child->name }}</option>
 				@endif
 			@endforeach
 		@endforeach

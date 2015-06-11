@@ -27,7 +27,7 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 							</button>
-							<a class="navbar-brand" href="#">Maze</a>
+							<a class="navbar-brand" href="/">Maze</a>
 						</div>
 				
 						<div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -102,9 +102,14 @@
 						<h4>Kontaktai</h4>
 						<ul>
 							<li>Informacija: </li>
-							<li>Reklama</li>
-							<li>Bendradarbiavimas</li>
+							<li>Reklama: </li>
+							<li>Bendradarbiavimas: </li>
 						</ul>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						
 					</div>
 				</div>
 			</div>
