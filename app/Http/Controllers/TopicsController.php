@@ -7,6 +7,7 @@ use maze\Node;
 use maze\Http\Requests\CreateTopic;
 use maze\Http\Requests\EditTopic;
 use maze\Http\Requests\AdminTopic;
+use Auth;
 
 use Illuminate\Http\Request;
 
@@ -40,7 +41,10 @@ class TopicsController extends Controller {
 	 */
 	public function store(CreateTopic $request)
 	{
-		$topic = Topic::create($request->all());
+		$data = $request->all();
+		$data['user_id'] = Auth::user()->id;
+
+		$topic = Topic::create($data);
 
 		flash()->success('Tema sėkmingai sukurta!');
 		//grazinam useri i sukurta topic'a

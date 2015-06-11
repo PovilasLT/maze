@@ -28,3 +28,7 @@
 	@endforeach
 
 @stop
+
+@section('sidebar')
+	@include('includes.sidebar_topic')
+@stop

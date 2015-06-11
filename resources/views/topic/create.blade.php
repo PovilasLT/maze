@@ -9,3 +9,7 @@
 @include('topic.forms.create')
 
 @stop
+
+@section('sidebar')
+	@include('includes.sidebar')
+@stop

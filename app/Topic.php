@@ -9,7 +9,8 @@ class Topic extends Model {
 	protected $fillable = [
 		'node_id',
 		'title',
-		'body'
+		'body',
+		'user_id'
 	];
 
 	use SoftDeletes;
@@ -30,6 +31,11 @@ class Topic extends Model {
 
 	public static function frontPage() {
 		$topics = Topic::orderBy('updated_at', 'DESC')->whereNull('deleted_at')->paginate(20);
+		return $topics;
+	}
+
+	public function sameNodeTopics() {
+		$topics = Topic::where('node_id', $this->node_id)->where('id', '<>', $this->id)->take('10')->get();
 		return $topics;
 	}
 
