@@ -1,7 +1,9 @@
 <div class="col-lg-12">
+	@if(Auth::check() && (Auth::user()->can('manage_topics') || Auth::user()->id == $topic->user_id))
 	<a href="{{ route('topic.edit', $topic->id) }}"><button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i> Redaguoti</button></a>
 	<a href="{{ route('topic.delete', $topic->id) }}"><button type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Ištrinti</button></a>
-	<!-- Split button -->
+	@endif
+	@if(Auth::check() && Auth::user()->can('manage_topics'))
 	<div class="btn-group">
 	  <button type="button" class="btn btn-success"><i class="fa fa-cogs"></i> Moderavimas</button>
 	  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -19,4 +21,5 @@
 	    <li><a href="{{ route('topic.lock', [$topic->id]) }}"><i class="fa fa-lock"></i> Užrakinti</a></li>
 	  </ul>
 	</div>
+	@endif
 </div>

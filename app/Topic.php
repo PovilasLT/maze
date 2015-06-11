@@ -10,7 +10,8 @@ class Topic extends Model {
 		'node_id',
 		'title',
 		'body',
-		'user_id'
+		'user_id',
+		'type'
 	];
 
 	use SoftDeletes;
@@ -68,11 +69,11 @@ class Topic extends Model {
 
 	public function getTypeAttribute($value)
 	{
-		$type = rand(0,3);
+		$type = $value;
 
 		if($type == 0)
 			return '<span class="maze-label label-diskusija media-meta-element"><i class="fa fa-comments-o"></i> Diskusija</span>';
-		elseif($type == 1)
+		elseif($type == 215)
 			return '<span class="maze-label label-pranesimas media-meta-element"><i class="fa fa-bullhorn"></i> Pranešimas</span>';
 		elseif($type == 2)
 			return '<span class="maze-label label-klausimas media-meta-element"><i class="fa fa-question"></i> Klausimas</span>';

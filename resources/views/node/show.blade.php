@@ -4,8 +4,6 @@
 	{!! Breadcrumbs::render('node.show', $node) !!}
 @stop
 @section('content')
-
-@section('content')
 	<ul class="nav nav-tabs">
 	  <li role="presentation" class="active"><a href="#">Naujausi</a></li>
 	  <li role="presentation"><a href="#">Populiariausi</a></li>
@@ -17,5 +15,6 @@
 		{!! $topics->render() !!}
 	</div>
 @stop
-
+@section('sidebar')
+	@include('includes.sidebar')
 @stop

@@ -6,13 +6,25 @@
 		@foreach($nodes as $node)
 			<option value="" disabled>{{ $node->name }}</option>
 			@foreach($node->children as $child)
+			@if(($child->id != 15) || ($child->id == 15 && Auth::user()->can('manage_topics')))
 				@if(old('node_id') == $child->id)
 				<option value="{{ $child->id }}" selected>-- {{ $child->name }}</option>
 				@else
 				<option value="{{ $child->id }}">-- {{ $child->name }}</option>
 				@endif
+			@endif
 			@endforeach
 		@endforeach
+		</select>
+		<label for="type">Temos Tipas</label>
+		<p class="helpblock">Temų tipai padeda kitiems lankytojams atskirti kokia tai tema. Kiekvienas temos tipas suteikia jūsų temai papildomas galimybes. <a href="#" target="_blank">[Skaityti Daugiau]</a></p>
+		<select name="type" id="type" class="form-control" required="required">
+			<option value="0">Diskusija</option>
+			@if(Auth::user()->can('manage_topics'))
+			<option value="215">Pranešimas</option>
+			@endif
+			<option value="2">Klausimas</option>
+			<option value="3">Apklausa</option>
 		</select>
 	</div>
 	<label for="title">Temos pavadinimas</label>
