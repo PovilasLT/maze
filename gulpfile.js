@@ -21,7 +21,8 @@ elixir(function(mix) {
     //Kompiliuojam LESS stilius
     .less([
     	'../bootstrap/less/bootstrap.less',
-    	'../font-awesome/less/font-awesome.less'
+    	'../font-awesome/less/font-awesome.less',
+        '../css/markdown.css'
 	], 'public/css/style.css');
 
     mix.scripts([
@@ -29,6 +30,8 @@ elixir(function(mix) {
         '../bootstrap/dist/js/bootstrap.js',
         '../moment/min/moment-with-locales.min.js',
         '../moment-timezone/builds/moment-timezone-with-data.min.js',
+        'markdown_parser.js',
+        'markdown.js',
         'date_format.js',
         'node_expand.js'
     ], 'public/js/scripts.js');

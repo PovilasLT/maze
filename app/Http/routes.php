@@ -1,5 +1,10 @@
 <?php
 
+Route::post('/markdown', function()
+{
+	return Markdown::convertToHtml(Request::input('body'));	
+});
+
 //Bendriniai puslapiai
 Route::get('/', 'PageController@index');
 
@@ -115,6 +120,11 @@ Route::get('/skiltis/{slug}', [
 ]);
 
 //Pranesimai
+
+Route::post('/pranesimas/rasyti', [
+	'as'	=> 'reply.store',
+	'uses'	=> 'RepliesController@store'
+]);
 
 //TV
 

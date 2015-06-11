@@ -5,6 +5,8 @@ use maze\Http\Requests\DeleteReply;
 use maze\Reply;
 use maze\Http\Requests\SaveReply;
 use maze\Http\Requests\CreateReply;
+use Auth;
+use maze\Topic;
 
 class RepliesController extends Controller {
 
@@ -14,7 +16,11 @@ class RepliesController extends Controller {
 
 	public function store(CreateReply $request)
 	{
-		Reply::create($request->all());
+		$data = $request->all();
+		$data['user_id'] = Auth::user()->id;
+		$topic = Topic::findOrFail($data['topic_id']);
+		Reply::create($data);
+		$topic->increment('reply_count');
 		flash()->success('Pranešimas sėkmingai išsaugotas!');
 		return redirect()->back();
 	}

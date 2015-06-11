@@ -1,6 +1,7 @@
 <?php namespace maze\Http\Requests;
 
 use maze\Http\Requests\Request;
+use Auth;
 
 class CreateReply extends Request {
 
@@ -11,7 +12,14 @@ class CreateReply extends Request {
 	 */
 	public function authorize()
 	{
-		return true;
+		if (Auth::check())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	/**
@@ -22,8 +30,16 @@ class CreateReply extends Request {
 	public function rules()
 	{
 		return [
-			//
+			'body' => 'required|min:10'
 		];
+	}
+
+	public function attributes()
+	{
+		$nice_names = [
+            'body'  => 'turinys',
+        ];
+        return $nice_names;
 	}
 
 }

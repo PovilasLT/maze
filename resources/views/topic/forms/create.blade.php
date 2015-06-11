@@ -32,7 +32,7 @@
 		<input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}" required="required">
 	</div>
 	<div class="form-group">
-		<textarea class="form-control" name="body" required>{{ old('body') }}</textarea>
+		<textarea data-provide="markdown" class="form-control" name="body" rows="10" required>{{ old('body') }}</textarea>
 	</div>
 	<button type="submit" class="btn btn-primary">Submit</button>
 </form>

@@ -57,6 +57,7 @@
 
 		<main>
 			<div class="container">
+			@include('includes.messages')
 					<div class="row">
 						<div class="col-lg-9 main-content">
 							@yield('breadcrumbs')
