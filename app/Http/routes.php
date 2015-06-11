@@ -53,7 +53,7 @@ Route::post('/tema/irasyti', [
 
 Route::get('/tema/{id}/istrinti', [
 	'as'	=> 'topic.delete',
-	'uses'	=> 'TopicsController@delete'
+	'uses'	=> 'TopicsController@destroy'
 ]);
 
 Route::get('/tema/{id}/redaguoti', [
@@ -111,7 +111,7 @@ Route::get('/tema/{slug}', [
 
 Route::get('/skiltis/{slug}', [
 	'as' 	=> 'node.show',
-	// 'uses'	=> 'TopicsController@show' 
+	'uses'	=> 'NodesController@show' 
 ]);
 
 //Pranesimai

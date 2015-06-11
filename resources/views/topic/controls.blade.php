@@ -1,6 +1,6 @@
 <div class="col-lg-12">
-	<button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i> Redaguoti</button>
-	<button type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Ištrinti</button>
+	<a href="{{ route('topic.edit', $topic->id) }}"><button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i> Redaguoti</button></a>
+	<a href="{{ route('topic.delete', $topic->id) }}"><button type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Ištrinti</button></a>
 	<!-- Split button -->
 	<div class="btn-group">
 	  <button type="button" class="btn btn-success"><i class="fa fa-cogs"></i> Moderavimas</button>

@@ -7,6 +7,7 @@ use maze\Node;
 use maze\Http\Requests\CreateTopic;
 use maze\Http\Requests\EditTopic;
 use maze\Http\Requests\AdminTopic;
+use maze\Http\Requests\DeleteTopic;
 use Auth;
 
 use Illuminate\Http\Request;
@@ -97,9 +98,9 @@ class TopicsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy(DeleteTopic $request, $id)
+	public function destroy(DeleteTopic $request)
 	{
-		$topic = Topic::where('slug', $slug)->first();
+		$topic = $request->topic;
 		$topic->delete();
 
 		flash()->success('Tema sėkmingai ištrinta!');

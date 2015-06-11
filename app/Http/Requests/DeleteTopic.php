@@ -14,7 +14,7 @@ class DeleteTopic extends Request {
 	public function authorize()
 	{
 		$user = Auth::user();
-		$topic = Topic::findOrFail($this->input('id'));
+		$topic = Topic::findOrFail($this->route('id'));
 		$this->topic = $topic;
 
 		if($user && ($topic->user_id == $user->id || $user->can('manage_topics')))
@@ -24,6 +24,11 @@ class DeleteTopic extends Request {
 		else {
 			return false;
 		}
+	}
+
+	public function rules()
+	{
+		return [];
 	}
 
 }
