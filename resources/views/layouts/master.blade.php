@@ -55,7 +55,7 @@
 			</div>
 		</nav>
 
-		<main>
+		<main id="content">
 			<div class="container">
 			@include('includes.messages')
 					<div class="row">
