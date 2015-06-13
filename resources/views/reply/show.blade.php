@@ -1,8 +1,12 @@
+@if(!$reply->is_answer)
 <div class="panel panel-default">
+@else
+<div class="panel panel-success post-answer">
+@endif
 	  <div class="panel-heading">
 			<h3 class="panel-title">
 			{{ $reply->user->username }} 
-			@if($topic->type == 2)
+			@if($topic->type == 2 && !$topic->is_answered)
 			<small class="pull-right"><a href="{{ route('reply.answer', $reply->id) }}">Atsakymas</a></small>
 			@endif
 			</h3>

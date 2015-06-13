@@ -76,6 +76,7 @@ class RepliesController extends Controller {
 		//Užrakinam temą.
 		$topic = Topic::findOrFail($reply->topic_id);
 		$topic->is_blocked = 1;
+		$topic->is_answered = 1;
 		$topic->save();
 
 		flash()->success('Pranešimas pažymėtas kaip atsakymas!');
