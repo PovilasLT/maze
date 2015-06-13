@@ -1,6 +1,8 @@
 <?php namespace maze\Http\Requests;
 
 use maze\Http\Requests\Request;
+use maze\Topic;
+use Auth;
 
 class UpdateTopic extends Request {
 
@@ -32,12 +34,9 @@ class UpdateTopic extends Request {
 	public function rules()
 	{
 		$rules = array(
-            'title'      	=> 'required|min:4|max:',
-            'email'         => 'required|email|unique:users',
-            'password'      => 'required|confirmed|min:8',
-            'legal'			=> 'accepted',
-            'sex'           => 'boolean',
-            'dob'           => 'date',
+            'title'   => 'required|min:2',
+			'body'    => 'required|min:2',
+			'node_id' => 'required|numeric'
         );
 		return $rules;
 	}
@@ -46,12 +45,8 @@ class UpdateTopic extends Request {
 	public function attributes()
 	{
 		$nice_names = [
-            'username'  => 'vartotojo vardas',
-            'password'  => 'slaptažodis',
-            'email'     => 'el-paštas',
-            'legal'		=> 'taisyklėmis',
-            'sex'       => 'lytis',
-            'dob'       => 'gimimo data',
+            'title'  => 'temos pavadinimas',
+            'body'  => 'temos turinys'
         ];
         return $nice_names;
 	}

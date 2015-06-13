@@ -10,6 +10,7 @@ class Topic extends Model {
 		'node_id',
 		'title',
 		'body',
+		'body_original',
 		'user_id',
 		'type'
 	];
@@ -67,9 +68,9 @@ class Topic extends Model {
 		}
 	}
 
-	public function getTypeAttribute($value)
+	public function getFullTypeAttribute($value)
 	{
-		$type = $value;
+		$type = $this->type;
 
 		if($type == 0)
 			return '<span class="maze-label label-diskusija media-meta-element"><i class="fa fa-comments-o"></i> Diskusija</span>';

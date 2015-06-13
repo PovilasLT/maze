@@ -8,6 +8,7 @@ use maze\Http\Requests\CreateTopic;
 use maze\Http\Requests\EditTopic;
 use maze\Http\Requests\AdminTopic;
 use maze\Http\Requests\DeleteTopic;
+use maze\Http\Requests\UpdateTopic;
 use Auth;
 use Markdown;
 
@@ -94,7 +95,19 @@ class TopicsController extends Controller {
 	 */
 	public function update(UpdateTopic $request, $id)
 	{
-		
+		$data = $request->all();
+
+		//Susitvarkom su Markdown
+		$topic = $request->topic;
+
+		$topic->body_original	= $data['body'];
+		$topic->body			= Markdown::convertToHtml($request->input('body'));
+
+		$topic->save();
+
+		flash()->success('Tema sėkmingai atnaujinta!');
+		//grazinam useri i sukurta topic'a
+		return redirect()->route('topic.show', ['slug' => $topic->slug]);
 	}
 
 	/**
