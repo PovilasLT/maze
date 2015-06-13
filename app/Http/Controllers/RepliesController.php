@@ -5,6 +5,7 @@ use maze\Http\Requests\DeleteReply;
 use maze\Reply;
 use maze\Http\Requests\SaveReply;
 use maze\Http\Requests\CreateReply;
+use maze\Http\Requests\AnswerReply;
 use Auth;
 use maze\Topic;
 use Markdown;
@@ -27,6 +28,10 @@ class RepliesController extends Controller {
 		$topic = Topic::findOrFail($data['topic_id']);
 		Reply::create($data);
 		$topic->increment('reply_count');
+
+		$user = Auth::user();
+		$user->increment('reply_count');
+
 		flash()->success('Pranešimas sėkmingai išsaugotas!');
 		return redirect()->back();
 	}
@@ -44,7 +49,7 @@ class RepliesController extends Controller {
 		$reply->body = Markdown::convertToHtml($request->input('body'));
 		$reply->save();
 
-		return redirect('topic.show', [$reply->topic->slug]);
+		return redirect()->route('topic.show', [$reply->topic->slug]);
 	}
 
 	public function delete(DeleteReply $request)
@@ -52,9 +57,30 @@ class RepliesController extends Controller {
 		$reply = $request->reply;
 		$topic = $reply->topic;
 
+		$reply->user->decrement('reply_count');
+
 		$reply->delete();
+		$topic->decrement('reply_count');
 		flash()->success('Pranešimas sėkmingai ištrintas!');
-		return redirect('topic.show', [$topic->slug]);
+		return redirect()->route('topic.show', [$topic->slug]);
+	}
+
+	public function markAnswer(AnswerReply $request, $id)
+	{
+		//Pažymim atsakymą.
+		$reply = Reply::findOrFail($id);
+		$reply->is_answer = 1;
+		$reply->save();
+
+
+		//Užrakinam temą.
+		$topic = Topic::findOrFail($reply->topic_id);
+		$topic->is_blocked = 1;
+		$topic->save();
+
+		flash()->success('Pranešimas pažymėtas kaip atsakymas!');
+
+		return redirect()->route('topic.show', [$topic->slug]);
 	}
 
 }

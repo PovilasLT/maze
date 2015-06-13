@@ -1,6 +1,11 @@
 <div class="panel panel-default">
 	  <div class="panel-heading">
-			<h3 class="panel-title">{{ $reply->user->username }} <small class="pull-right"><a href="#">Atsakymas</a></small></h3>
+			<h3 class="panel-title">
+			{{ $reply->user->username }} 
+			@if($topic->type == 2)
+			<small class="pull-right"><a href="{{ route('reply.answer', $reply->id) }}">Atsakymas</a></small>
+			@endif
+			</h3>
 	  </div>
 	  <div class="panel-body">
 			{!! $reply->body !!}

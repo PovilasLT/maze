@@ -34,10 +34,16 @@
 	    <img class="media-object topic-avatar" src="https://placekitten.com/g/65/65" alt="Image">
 	</div>
 	<div class="media-body">
-		<h4 class="media-heading"><a href="{{ route('topic.show', [$topic->slug]) }}">{{ $topic->title }}</a></h4>
+		<h4 class="media-heading"><a href="{{ route('topic.show', [$topic->slug]) }}">
+		@if($topic->is_blocked)
+		<i class="fa fa-lock"></i>
+		@endif
+		{{ $topic->title }}
+		</a></h4>
 
 		<p><span class="media-meta-element">Parašyta: <strong><span class="date-when">{{ $topic->created_at }}</span></strong></span><span class="media-meta-element">Pranešimų: <strong>{{ $topic->reply_count }}</strong></span> <span class="media-meta-element">Peržiūrų: <strong>{{ $topic->view_count }}</strong></span></p>
 
-		<p>{!! $topic->full_type !!} <span class="media-meta-element">{!! $topic->nodePath() !!}</span> <span class="media-meta-element">Autorius: <a href="/vartotojas/{{ $topic->user->slug }}">{{ $topic->user->username }}</a> </span></p>
+		<p>
+		{!! $topic->full_type !!} <span class="media-meta-element">{!! $topic->nodePath() !!}</span> <span class="media-meta-element">Autorius: <a href="/vartotojas/{{ $topic->user->slug }}">{{ $topic->user->username }}</a> </span></p>
 	</div>
 </div>

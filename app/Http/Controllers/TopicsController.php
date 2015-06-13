@@ -53,6 +53,9 @@ class TopicsController extends Controller {
 
 		$topic = Topic::create($data);
 
+		$user = Auth::user();
+		$user->increment('topic_count');
+
 		flash()->success('Tema sėkmingai sukurta!');
 		//grazinam useri i sukurta topic'a
 		return redirect()->route('topic.show', ['slug' => $topic->slug]);

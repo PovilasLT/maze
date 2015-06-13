@@ -97,7 +97,6 @@ Route::get('/tema/{id}/prisegti/globaliai', [
 	'uses'	=> 'TopicsController@pinGlobal'
 ]);
 
-
 Route::get('/tema/{id}/atsegti', [
 	'as'	=> 'topic.unpin',
 	'uses'	=> 'TopicsController@unpin'
@@ -125,6 +124,11 @@ Route::get('/skiltis/{slug}', [
 Route::post('/pranesimas/rasyti', [
 	'as'	=> 'reply.store',
 	'uses'	=> 'RepliesController@store'
+]);
+
+Route::get('/pranesimas/{id}/atsakymas', [
+	'as'	=> 'reply.answer',
+	'uses'	=> 'RepliesController@markAnswer'
 ]);
 
 //TV

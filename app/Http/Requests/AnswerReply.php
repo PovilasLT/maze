@@ -2,9 +2,10 @@
 
 use maze\Http\Requests\Request;
 use Auth;
+use maze\Reply;
 use maze\Topic;
 
-class CreateReply extends Request {
+class AnswerReply extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -13,20 +14,22 @@ class CreateReply extends Request {
 	 */
 	public function authorize()
 	{
-		if (Auth::check())
+		if(Auth::check())
 		{
-			$topic = Topic::findOrFail($this->input('topic_id'));
-			if($topic->is_blocked)
-			{
-				return false;
-			}
-			else
+			//if user owns the topic or if user is admin
+			$reply = Reply::findOrFail($this->route('id'));
+			$topic = $reply->topic;
+			$this->reply = $reply;
+			if(($topic->user_id == Auth::user()->id) || Auth::user()->can('manage_topics'))
 			{
 				return true;
 			}
+			else 
+			{
+				return false;
+			}
 		}
-		else
-		{
+		else {
 			return false;
 		}
 	}
@@ -39,16 +42,8 @@ class CreateReply extends Request {
 	public function rules()
 	{
 		return [
-			'body' => 'required|min:10'
+			//
 		];
-	}
-
-	public function attributes()
-	{
-		$nice_names = [
-            'body'  => 'turinys',
-        ];
-        return $nice_names;
 	}
 
 }

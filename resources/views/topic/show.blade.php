@@ -21,7 +21,11 @@
 		@include('topic.controls')
 	</div>
 	
-	@include('reply.forms.create')
+	@if(!$topic->is_blocked)
+		@include('reply.forms.create')
+	@else
+		<p class="text-danger">Tema užrakinta!</p>
+	@endif
 
 	@foreach($topic->replies as $reply)
 		@include('reply.show')
