@@ -6,6 +6,7 @@ use maze\Reply;
 use maze\Http\Requests\SaveReply;
 use maze\Http\Requests\CreateReply;
 use maze\Http\Requests\AnswerReply;
+use maze\Http\Requests\EditReply;
 use Auth;
 use maze\Topic;
 use Markdown;
