@@ -74,5 +74,28 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 			]);
 		}
 	}
+
+	public function getAvatarAttribute($value)
+	{
+		$value = $this->image_url;
+		if($value)
+		{
+			$url = '/images/avatars/'.$this->id.'/'.$value;
+			if(file_exists('../public/images/avatars/'.$this->id.'/'.$value))
+			{
+				return $url;
+			}
+			else 
+			{
+				return '/images/avatars/no_avatar.png';
+			}
+		}
+		else
+		{
+			$url = '/images/avatars/no_avatar.png';
+		}
+
+		return $url;
+	}
 	
 }

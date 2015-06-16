@@ -12,6 +12,7 @@ class Kernel extends ConsoleKernel {
 	 */
 	protected $commands = [
 		'maze\Console\Commands\Inspire',
+		'maze\Console\Commands\ConvertAvatarUploads'
 	];
 
 	/**

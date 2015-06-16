@@ -5,16 +5,18 @@
 <div class="media post-show post-answer" id="pranesimas-{{ $reply->id }}">
 @endif
   <div class="media-left media-top">
-    <a href="#">
-    	<img class="media-object topic-avatar" src="https://placekitten.com/g/65/65" alt="Image">
+    <a href="{{ route('user.show', $reply->user->slug) }}">
+    	<img class="media-object topic-avatar" src="{{ $reply->user->avatar }}" alt="{{ $reply->user->username }} Profilis">
     </a>
   </div>
   <div class="media-body">
     <h4 class="media-heading">
-    	<a href="#">{{ $reply->user->username }}</a>
+    	<a href="{{ route('user.show', $reply->user->slug) }}">{{ $reply->user->username }}</a>
     	<small class="date-when">{{ $reply->created_at }}</small>
 		@if($topic->type == 2 && !$topic->is_answered)
 			<small class="pull-right"><a href="{{ route('reply.answer', $reply->id) }}">Atsakymas</a></small>
+    @elseif($topic->type == 2 && $topic->is_answered && $reply->is_answer)
+      <span class="pull-right label label-success"><i class="fa fa-check-circle"></i> Atsakymas</span>
 		@endif
     </h4>
     {!! $reply->body !!}

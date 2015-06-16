@@ -31,7 +31,7 @@
 		</div>
 	</div>
 	<div class="media-left media-top">
-	    <img class="media-object topic-avatar" src="https://placekitten.com/g/65/65" alt="Image">
+	    <img class="media-object topic-avatar" src="{{ $topic->user->avatar }}" alt="{{ $topic->user->username }}">
 	</div>
 	<div class="media-body">
 		<h4 class="media-heading">

@@ -36,7 +36,9 @@
 			</div>
 		</div>
 		<div class="media-left media-top">
-	    	<img class="media-object topic-avatar" src="https://placekitten.com/g/65/65" alt="Image">
+			<a href="{{ route('user.show', $topic->user->slug) }}">
+		    	<img class="media-object topic-avatar" src="{{ $topic->user->avatar }}" alt="{{ $topic->user->username }}">
+	    	</a>
 		</div>
 		<div class="media-body">
 		<h1 class="media-heading">{{ $topic->title }}</h1>
@@ -62,7 +64,7 @@
 			</span>
 			@endif
 			<span class="media-meta-element">{!! $topic->nodePath() !!}</span>
-			<span class="media-meta-element">Autorius: <a href="/vartotojas/{{ $topic->user->slug }}">{{ $topic->user->username }}</a> </span>
+			<span class="media-meta-element">Autorius: <a href="{{ route('user.show', $topic->user->slug) }}">{{ $topic->user->username }}</a> </span>
 		</p>
 	</div>
 	</div>

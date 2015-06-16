@@ -14,7 +14,7 @@ class DeleteReply extends Request {
 	public function authorize()
 	{
 		$user = Auth::user();
-		$reply = Reply::findOrFail($this->input('id'));
+		$reply = Reply::findOrFail($this->route('id'));
 		$this->reply = $reply;
 
 		if($user && ($reply->user_id == $user->id || $user->can('manage_posts')))
@@ -24,6 +24,10 @@ class DeleteReply extends Request {
 		else {
 			return false;
 		}
+	}
+
+	public function rules() {
+		return [];
 	}
 
 }

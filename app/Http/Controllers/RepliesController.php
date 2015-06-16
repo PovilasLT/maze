@@ -1,12 +1,12 @@
 <?php namespace maze\Http\Controllers;
 
 use maze\Http\Requests;
-use maze\Http\Requests\DeleteReply;
 use maze\Reply;
 use maze\Http\Requests\SaveReply;
 use maze\Http\Requests\CreateReply;
 use maze\Http\Requests\AnswerReply;
 use maze\Http\Requests\EditReply;
+use maze\Http\Requests\DeleteReply;
 use Auth;
 use maze\Topic;
 use Markdown;
@@ -55,7 +55,7 @@ class RepliesController extends Controller {
 		return redirect()->route('topic.show', [$reply->topic->slug]);
 	}
 
-	public function delete(DeleteReply $request)
+	public function destroy(DeleteReply $request)
 	{
 		$reply = $request->reply;
 		$topic = $reply->topic;
