@@ -36,5 +36,5 @@
 	<div class="form-group">
 		<textarea data-provide="markdown" class="form-control" name="body" rows="10" required>{{ old('body') }}</textarea>
 	</div>
-	<button type="submit" class="btn btn-primary">Submit</button>
+	<button type="submit" class="btn btn-primary">Rašyti</button>
 </form>

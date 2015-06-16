@@ -1,5 +1,5 @@
 @if(!$reply->is_answer)
-<div class="panel panel-default">
+<div class="panel panel-default" id="pranesimas-{{ $reply->id }}">
 @else
 <div class="panel panel-success post-answer">
 @endif

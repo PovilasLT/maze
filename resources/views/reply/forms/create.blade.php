@@ -7,5 +7,5 @@
 		<textarea data-provide="markdown" class="form-control" name="body" rows="5"></textarea>
 	</div>
 
-	<button type="submit" class="btn btn-primary">Submit</button>
+	<button type="submit" class="btn btn-primary">Rašyti</button>
 </form>

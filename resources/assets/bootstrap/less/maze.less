@@ -96,8 +96,8 @@ ul {
 //maze labeliai
 
 .maze-label {
-	padding: 3px 7px;
-	border-radius: 4px;
+	padding: 1px 7px;
+	border-radius: 3px;
 	color: @maze-negative-text;
 }
 
@@ -117,8 +117,12 @@ ul {
 	background: #ae2727;
 }
 
+.label-misc {
+	background: #95a5a6;
+}
+
 .media-meta-element {
-	margin-right: 20px;
+	margin-right: 5px;
 }
 
 h4.media-heading a {
@@ -193,4 +197,28 @@ h4.media-heading a {
 
 .node-list li {
   margin: 10px 0;
+}
+
+//Temos responsive images
+
+.topic-content {
+	padding: 15px;
+	color: @maze-text;
+	img {
+		max-width:100% !important;
+	    max-height:100% !important;
+	    display:block;
+	}
+	h1, h2, h3, h4 {
+		padding: 10px 0;
+		border-bottom: 1px dashed @maze-border;
+	}
+}
+
+.topic-meta {
+	padding-top: 10px;
+}
+
+.alert-generic {
+	margin: 10px 0;
 }

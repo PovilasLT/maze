@@ -103,8 +103,10 @@ class TopicsController extends Controller {
 		//Susitvarkom su Markdown
 		$topic = $request->topic;
 
+		$topic->title 			= $data['title'];
 		$topic->body_original	= $data['body'];
 		$topic->body			= Markdown::convertToHtml($request->input('body'));
+		$topic->type 			= $data['type'];
 
 		$topic->save();
 

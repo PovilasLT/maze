@@ -11,9 +11,8 @@
 	    <span class="sr-only">Toggle Dropdown</span>
 	  </button>
 	  <ul class="dropdown-menu" role="menu">
-	    <li><a href="{{ route('topic.bump', [$topic->id]) }}"><i class="fa fa-arrow-up"></i> Pakelti</a></li>
 	    <li><a href="{{ route('topic.pinLocal', [$topic->id]) }}"><i class="fa fa-thumb-tack"></i> Prisegti skiltyje</a></li>
-	    <li><a href="{{ route('topic.pinGlobal', [$topic->id]) }}"><i class="fa fa-thumb-tack"></i> Prisegti globaliai</a></li>
+	    <li><a href="{{ route('topic.pinGlobal', [$topic->id]) }}"><i class="fa fa-bullhorn"></i> Prisegti globaliai</a></li>
 	    <li><a href="{{ route('topic.unpin', [$topic->id]) }}"><i class="fa fa-undo"></i> Atsegti</a></li>	    
 	    <li><a href="{{ route('topic.sink', [$topic->id]) }}"><i class="fa fa-anchor"></i> Nuskandinti</a></li>
 	    <li class="divider"></li>

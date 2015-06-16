@@ -25,6 +25,12 @@ Breadcrumbs::register('topic.show', function($breadcrumbs, $topic)
     $breadcrumbs->push($topic->title, route('topic.show', $topic->id));
 });
 
+Breadcrumbs::register('topic.edit', function($breadcrumbs, $topic)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Temos redagavimas', route('topic.edit', [$topic->id]));
+});
+
 Breadcrumbs::register('topic.create', function($breadcrumbs)
 {
     $breadcrumbs->parent('home');

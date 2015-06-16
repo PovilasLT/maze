@@ -27,14 +27,16 @@ class RepliesController extends Controller {
 		$data['body'] 			= Markdown::convertToHtml($request->input('body'));
 
 		$topic = Topic::findOrFail($data['topic_id']);
-		Reply::create($data);
+		$reply = Reply::create($data);
 		$topic->increment('reply_count');
 
 		$user = Auth::user();
 		$user->increment('reply_count');
 
 		flash()->success('Pranešimas sėkmingai išsaugotas!');
-		return redirect()->back();
+		
+		//redirectina tiesiai i ten, kur yra pranesimas
+		return redirect()->route('topic.show', [$topic->slug, '#pranesimas-'.$reply->id]);
 	}
 
 	public function edit(EditReply $request, $id)
