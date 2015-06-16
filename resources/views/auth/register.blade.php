@@ -6,3 +6,8 @@
 @include('auth.forms.register')
 
 @stop
+
+
+@section('sidebar')
+	@include('includes.sidebar')
+@stop

@@ -3,7 +3,7 @@
 	{!! Breadcrumbs::render('topic.show', $topic) !!}
 @stop
 @section('content')
-	<div class="media">
+	<div class="media topic-show">
 		<div class="votes pull-left">
 			<div class="upvote-container">
 				@if(!$topic->voted('up'))
@@ -40,25 +40,29 @@
 		</div>
 		<div class="media-body">
 		<h1 class="media-heading">{{ $topic->title }}</h1>
-		<p class="topic-meta">
-		{!! $topic->full_type !!}
-		@if($topic->is_blocked || $topic->order == 1 || $topic->pin_local)
-		<span class="media-meta-element maze-label label-misc">
-			@if($topic->is_blocked)
-			<i class="fa fa-fw fa-lock"></i>
+		<p>
+			<span class="media-meta-element">Parašyta: <strong>
+			<span class="date-when">{{ $topic->created_at }}</span></strong></span>
+			<span class="media-meta-element">Pranešimų: <strong>{{ $topic->reply_count }}</strong></span>
+			<span class="media-meta-element">Peržiūrų: <strong>{{ $topic->view_count }}</strong></span>
+		</p>
+		<p>
+			{!! $topic->full_type !!}
+			@if($topic->is_blocked || $topic->order == 1 || $topic->pin_local)
+			<span class="media-meta-element maze-label label-misc">
+				@if($topic->is_blocked)
+				<i class="fa fa-fw fa-lock"></i>
+				@endif
+				@if($topic->order == 1)
+				<i class="fa fa-fw fa-bullhorn"></i>
+				@endif
+				@if($topic->pin_local)
+				<i class="fa fa-fw fa-thumb-tack"></i>
+				@endif
+			</span>
 			@endif
-			@if($topic->order == 1)
-			<i class="fa fa-fw fa-bullhorn"></i>
-			@endif
-			@if($topic->pin_local)
-			<i class="fa fa-fw fa-thumb-tack"></i>
-			@endif
-		</span>
-		@endif
-		<span class="media-meta-element">Autorius: <a href="/vartotojas/{{ $topic->user->slug }}">{{ $topic->user->username }}</a></span>
-		<span class="media-meta-element">Parašyta: <strong><span class="date-when">{{ $topic->created_at }}</span></strong></span>
-		<span class="media-meta-element">Pranešimų: <strong>{{ $topic->reply_count }}</strong></span>
-		<span class="media-meta-element">Peržiūrų: <strong>{{ $topic->view_count }}</strong></span>
+			<span class="media-meta-element">{!! $topic->nodePath() !!}</span>
+			<span class="media-meta-element">Autorius: <a href="/vartotojas/{{ $topic->user->slug }}">{{ $topic->user->username }}</a> </span>
 		</p>
 	</div>
 	</div>
@@ -66,22 +70,29 @@
 	<div class="row">
 		<div class="col-lg-12 topic-content">
 			{!! $topic->body !!}
+			@include('topic.controls')
 		</div>
 	</div>
 	
 	@if(!$topic->is_blocked)
-		@include('reply.forms.create')
+		@if(Auth::check())
+			@include('reply.forms.create')
+		@else
+			<div class="alert alert-warning alert-generic" role="alert">Norėdamas rašyti pranešimą privalai <a href="{{ route('auth.login') }}">prisijungti</a> arba <a href="{{ route('auth.register') }}">užsiregistruoti</a>!</div>
+		@endif
 	@else
 		<div class="alert alert-danger alert-generic" role="alert">Ši tema yra užrakinta!</div>
 	@endif
-
-	<div class="row">
-		@include('topic.controls')
+	
+	<div class="replies-wrapper">
+		@if($topic->replies->count())
+			@foreach($topic->replies as $reply)
+				@include('reply.show')
+			@endforeach
+		@else
+			<p class="text-center">Šita tema neturi atsakymų! Būk pirmas!</p>
+		@endif
 	</div>
-
-	@foreach($topic->replies as $reply)
-		@include('reply.show')
-	@endforeach
 
 @stop
 

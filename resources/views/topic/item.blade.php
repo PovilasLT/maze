@@ -34,27 +34,34 @@
 	    <img class="media-object topic-avatar" src="https://placekitten.com/g/65/65" alt="Image">
 	</div>
 	<div class="media-body">
-		<h4 class="media-heading"><a href="{{ route('topic.show', [$topic->slug]) }}">
-		{{ $topic->title }}
-		</a></h4>
-		<p><span class="media-meta-element">Parašyta: <strong><span class="date-when">{{ $topic->created_at }}</span></strong></span><span class="media-meta-element">Pranešimų: <strong>{{ $topic->reply_count }}</strong></span> <span class="media-meta-element">Peržiūrų: <strong>{{ $topic->view_count }}</strong></span></p>
+		<h4 class="media-heading">
+			<a href="{{ route('topic.show', [$topic->slug]) }}">
+				{{ $topic->title }}
+			</a>
+		</h4>
 		<p>
-		{!! $topic->full_type !!}
-		@if($topic->is_blocked || $topic->order == 1 || $topic->pin_local)
-		<span class="media-meta-element maze-label label-misc">
-			@if($topic->is_blocked)
-			<i class="fa fa-fw fa-lock"></i>
+			<span class="media-meta-element">Parašyta: <strong>
+			<span class="date-when">{{ $topic->created_at }}</span></strong></span>
+			<span class="media-meta-element">Pranešimų: <strong>{{ $topic->reply_count }}</strong></span>
+			<span class="media-meta-element">Peržiūrų: <strong>{{ $topic->view_count }}</strong></span>
+		</p>
+		<p>
+			{!! $topic->full_type !!}
+			@if($topic->is_blocked || $topic->order == 1 || $topic->pin_local)
+			<span class="media-meta-element maze-label label-misc">
+				@if($topic->is_blocked)
+				<i class="fa fa-fw fa-lock"></i>
+				@endif
+				@if($topic->order == 1)
+				<i class="fa fa-fw fa-bullhorn"></i>
+				@endif
+				@if($topic->pin_local)
+				<i class="fa fa-fw fa-thumb-tack"></i>
+				@endif
+			</span>
 			@endif
-			@if($topic->order == 1)
-			<i class="fa fa-fw fa-bullhorn"></i>
-			@endif
-			@if($topic->pin_local)
-			<i class="fa fa-fw fa-thumb-tack"></i>
-			@endif
-		</span>
-		@endif
-		<span class="media-meta-element">{!! $topic->nodePath() !!}</span>
-		<span class="media-meta-element">Autorius: <a href="/vartotojas/{{ $topic->user->slug }}">{{ $topic->user->username }}</a> </span>
+			<span class="media-meta-element">{!! $topic->nodePath() !!}</span>
+			<span class="media-meta-element">Autorius: <a href="/vartotojas/{{ $topic->user->slug }}">{{ $topic->user->username }}</a> </span>
 		</p>
 	</div>
 </div>

@@ -13418,15 +13418,15 @@ $(function() {
 		{
 			$('.parent-node-collection-'+id).slideDown('fast');
 			current.addClass('expanded')
-			.removeClass('fa-circle-o')
-			.addClass('fa-dot-circle-o');
+			.removeClass('fa-plus')
+			.addClass('fa-minus');
 		}
 		else 
 		{
 			$('.parent-node-collection-'+id).slideUp('fast');
 			current.removeClass('expanded')
-			.removeClass('fa-dot-circle-o')
-			.addClass('fa-circle-o');
+			.removeClass('fa-minus')
+			.addClass('fa-plus');
 		}
 	});
 });

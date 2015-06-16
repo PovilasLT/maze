@@ -6,3 +6,7 @@
 @include('auth.forms.login')
 
 @stop
+
+@section('sidebar')
+	@include('includes.sidebar')
+@stop
