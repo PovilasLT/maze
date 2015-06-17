@@ -36,6 +36,8 @@ elixir(function(mix) {
         'lightbox_call.js',
         'textcomplete.js',
         'autocomplete.js',
+        'jquery.autosize.min.js',
+        'autosize.js',
         'node_expand.js'
     ], 'public/js/scripts.js');
 });
