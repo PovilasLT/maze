@@ -34,6 +34,8 @@ elixir(function(mix) {
         'date_format.js',
         'lightbox.js',
         'lightbox_call.js',
+        'textcomplete.js',
+        'autocomplete.js',
         'node_expand.js'
     ], 'public/js/scripts.js');
 });

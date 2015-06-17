@@ -11,7 +11,7 @@
   </div>
   <div class="media-body">
     <h4 class="media-heading">
-    	<a href="{{ route('user.show', $reply->user->slug) }}">{{ $reply->user->username }}</a>
+    	<a href="{{ route('user.show', $reply->user->slug) }}" class="author">{{ $reply->user->username }}</a>
     	<small class="date-when">{{ $reply->created_at }}</small>
 		@if($topic->type == 2 && !$topic->is_answered)
 			<small class="pull-right"><a href="{{ route('reply.answer', $reply->id) }}">Atsakymas</a></small>
@@ -23,7 +23,7 @@
       {!! $reply->body !!}
     </div>
     @if(Auth::check() && (Auth::user()->can('manage_replies') || Auth::user()->id == $reply->user_id))
-	  <div class="panel-footer">
+	  <div class="panel-footer text-right">
 	  	<div class="btn-group" role="group" aria-label="...">
 		  <a href="{{ route('reply.edit', $reply->id) }}"><button type="button" class="btn btn-xs btn-success">Redaguoti</button></a>
 		  <a href="{{ route('reply.delete', $reply->id) }}"><button type="button" class="btn btn-xs btn-danger">Ištrinti</button></a>
