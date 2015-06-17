@@ -25,4 +25,25 @@ $( document ).ready(function() {
     }], {
         appendTo: 'body'
     });
+
+    //emoji autocomplete
+    $('textarea').textcomplete([
+    { 
+        match: /\B:([\-+\w]*)$/,
+        search: function (term, callback) {
+            callback($.map(emojies, function (emoji) {
+                return emoji.indexOf(term) === 0 ? emoji : null;
+            }));
+        },
+        template: function (value) {
+            return '<span class="emoji emoji-' + value + '" title=":' + value + ':"></span>' + value;
+        },
+        replace: function (value) {
+            return ':' + value + ': ';
+        },
+        index: 1,
+        maxCount: 5
+    }
+]);
+
 });
