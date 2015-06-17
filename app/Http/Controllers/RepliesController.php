@@ -11,6 +11,7 @@ use maze\Http\Requests\UpdateReply;
 use Auth;
 use maze\Topic;
 use Markdown;
+use maze\Modules\Mentions\Mention;
 
 class RepliesController extends Controller {
 
@@ -20,12 +21,14 @@ class RepliesController extends Controller {
 
 	public function store(CreateReply $request)
 	{
-		$data = $request->all();
-		
+		$data 		= $request->all();
+		$mention 	= new Mention();
+
 		//Susitvarkom su markdown ir data
 		$data['user_id'] 		= Auth::user()->id;
 		$data['body_original']	= $data['body']; 
-		$data['body'] 			= Markdown::convertToHtml($request->input('body'));
+		$data['body']			= $mention->parse($data['body']);
+		$data['body'] 			= Markdown::convertToHtml($data['body']);
 
 		$topic = Topic::findOrFail($data['topic_id']);
 		$reply = Reply::create($data);
@@ -52,7 +55,8 @@ class RepliesController extends Controller {
 
 		$data 					= $request->all();
 		$reply->body_original	= $data['body']; 
-		$reply->body 			= Markdown::convertToHtml($request->input('body'));
+		$data['body']			= $mention->parse($data['body']);
+		$reply->body 			= Markdown::convertToHtml($data['body']);
 
 		$reply->save();
 
