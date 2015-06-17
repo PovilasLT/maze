@@ -11993,19 +11993,21 @@ links:["Africa/Abidjan|Africa/Bamako","Africa/Abidjan|Africa/Banjul","Africa/Abi
     }
 ));
 
-emojify.setConfig({
-    blacklist: {
-                    'ids': [],
-                    'classes': ['no-emojify'],
-                    'elements': ['script', 'textarea', 'pre', 'code']
-                },
-    tag_type: null,
-    only_crawl_id: null,
-    img_dir: '/images/emoji/',
-    ignore_emoticons: false,
-    mode: 'data-uri'
+$( document ).ready(function() {
+    emojify.setConfig({
+        blacklist: {
+                        'ids': [],
+                        'classes': ['no-emojify'],
+                        'elements': ['script', 'textarea', 'pre', 'code']
+                    },
+        tag_type: null,
+        only_crawl_id: null,
+        img_dir: '/images/emoji/',
+        ignore_emoticons: false,
+        mode: 'data-uri'
+    });
+    emojify.run(document.getElementById('content'));
 });
-emojify.run(document.getElementById('content'));
 function getMarkdown(body)
 {
     var markdown_content;
@@ -13806,9 +13808,11 @@ License: https://github.com/ashleydw/lightbox/blob/master/LICENSE
   };
 
 }).call(this);
-$(document).delegate('.lightbox img:not(.emoji)', 'click', function (event) {
-    event.preventDefault();
-    return $(this).ekkoLightbox({type:"image",remote:$(this).attr('src')});
+$( document ).ready(function() {
+	$(document).delegate('.lightbox img:not(.emoji)', 'click', function (event) {
+	    event.preventDefault();
+	    return $(this).ekkoLightbox({type:"image",remote:$(this).attr('src')});
+	});
 });
 /*!
  * jQuery.textcomplete.js
@@ -14553,31 +14557,33 @@ $(document).delegate('.lightbox img:not(.emoji)', 'click', function (event) {
   };
 
 })(window.jQuery || window.Zepto);
-var at_users = [], user;
+$( document ).ready(function() {
+    var at_users = [], user;
 
-$users = $('.media-heading').find('a.author');
-for (var i = 0; i < $users.length; i++) {
-    user = $users.eq(i).text().trim();
-    if ($.inArray(user, at_users) == -1) {
-        at_users.push(user);
+    $users = $('.media-heading').find('a.author');
+    for (var i = 0; i < $users.length; i++) {
+        user = $users.eq(i).text().trim();
+        if ($.inArray(user, at_users) == -1) {
+            at_users.push(user);
+        }
+
     }
 
-}
-
-$('textarea').textcomplete([{
-    mentions: at_users,
-    match: /\B@(\w*)$/,
-    search: function (term, callback) {
-        callback($.map(this.mentions, function (mention) {
-            return mention.indexOf(term) === 0 ? mention : null;
-        }));
-    },
-    index: 1,
-    replace: function (mention) {
-        return '@' + mention + ' ';
-    }
-}], {
-    appendTo: 'body'
+    $('textarea').textcomplete([{
+        mentions: at_users,
+        match: /\B@(\w*)$/,
+        search: function (term, callback) {
+            callback($.map(this.mentions, function (mention) {
+                return mention.indexOf(term) === 0 ? mention : null;
+            }));
+        },
+        index: 1,
+        replace: function (mention) {
+            return '@' + mention + ' ';
+        }
+    }], {
+        appendTo: 'body'
+    });
 });
 $(function() {
 	$('.parent-icon').click(function() {
