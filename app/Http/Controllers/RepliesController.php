@@ -7,6 +7,7 @@ use maze\Http\Requests\CreateReply;
 use maze\Http\Requests\AnswerReply;
 use maze\Http\Requests\EditReply;
 use maze\Http\Requests\DeleteReply;
+use maze\Http\Requests\UpdateReply;
 use Auth;
 use maze\Topic;
 use Markdown;
@@ -45,13 +46,17 @@ class RepliesController extends Controller {
 		return view('reply.edit', compact('reply'));
 	}
 
-	public function save(SaveReply $request)
+	public function update(UpdateReply $request, $id)
 	{
-		$reply = $request->reply;
-		$reply->body_original = $request->input('body');
-		$reply->body = Markdown::convertToHtml($request->input('body'));
+		$reply = Reply::findOrFail($id);
+
+		$data 					= $request->all();
+		$reply->body_original	= $data['body']; 
+		$reply->body 			= Markdown::convertToHtml($request->input('body'));
+
 		$reply->save();
 
+		flash()->success('Pranešimas sėkmingai atnaujintas!');
 		return redirect()->route('topic.show', [$reply->topic->slug]);
 	}
 

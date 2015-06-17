@@ -1,11 +1,11 @@
-@exnteds('layouts.master')
+@extends('layouts.master')
 
 @section('breadcrumbs')
-	{!! Breadcrumbs::render('home') !!}
+	{!! Breadcrumbs::render('reply.edit') !!}
 @stop
 
 @section('content')
-
+	@include('reply.forms.edit')
 @stop
 
 @section('sidebar')

@@ -34,7 +34,15 @@ Breadcrumbs::register('topic.edit', function($breadcrumbs, $topic)
 Breadcrumbs::register('topic.create', function($breadcrumbs)
 {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Naujos temos kūrimas', route('topic.create'));
+    $breadcrumbs->push('Pranešimo redagavimas', route('topic.show'));
+});
+
+//Pranesimas
+
+Breadcrumbs::register('reply.edit', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Pranešimo redagavimas', route('topic.create'));
 });
 
 //Vartotojo routes
