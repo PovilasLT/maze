@@ -19,7 +19,9 @@ elixir(function(mix) {
         '../emojify.js/dist/css/data-uri/emojify.css',
     	'../bootstrap/less/bootstrap.less',
     	'../font-awesome/less/font-awesome.less',
-        '../css/markdown.css'
+        '../css/markdown.css',
+        '../css/lightbox.css',
+        '../css/lightbox.screen.css'
 	], 'public/css/style.css');
     mix.scripts([
         '../jquery/dist/jquery.js',
@@ -28,6 +30,7 @@ elixir(function(mix) {
         '../moment-timezone/builds/moment-timezone-with-data.min.js',
         '../emojify.js/dist/js/emojify.js',
         'emoji.js',
+        'lightbox.js',
         'markdown_parser.js',
         'markdown.js',
         'date_format.js',
