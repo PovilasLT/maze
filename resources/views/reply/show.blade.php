@@ -19,7 +19,9 @@
       <span class="pull-right label label-success"><i class="fa fa-check-circle"></i> Atsakymas</span>
 		@endif
     </h4>
-    {!! $reply->body !!}
+    <div class="lightbox">
+      {!! $reply->body !!}
+    </div>
     @if(Auth::check() && (Auth::user()->can('manage_replies') || Auth::user()->id == $reply->user_id))
 	  <div class="panel-footer">
 	  	<div class="btn-group" role="group" aria-label="...">

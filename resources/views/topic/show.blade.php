@@ -70,7 +70,7 @@
 	</div>
 	
 	<div class="row">
-		<div class="col-lg-12 topic-content">
+		<div class="col-lg-12 topic-content lightbox">
 			{!! $topic->body !!}
 			@include('topic.controls')
 		</div>
