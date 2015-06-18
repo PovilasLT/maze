@@ -24,8 +24,7 @@ class Kernel extends ConsoleKernel {
 	 */
 	protected function schedule(Schedule $schedule)
 	{
-		$schedule->command('topics:decay')
-				 ->hourly();
+		$schedule->command('topics:decay')->hourly();
 	}
 
 }

@@ -8,10 +8,11 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller {
 
-	public function index()
+	public function index(Request $request)
 	{
-		$topics = Topic::frontPage();
-		return view('pages.home', compact('topics'));
+		$sort = $request->input('rodyti');
+		$topics = Topic::frontPage($sort);
+		return view('pages.home', compact('topics', 'sort'));
 	}
 
 	public function team()

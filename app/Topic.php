@@ -3,6 +3,7 @@
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Auth;
+use Config;
 
 class Topic extends Model {
 
@@ -32,7 +33,7 @@ class Topic extends Model {
 	//Scope
 
 	public function scopePopular($query) {
-		return $query->latest()->orderBy('weight', 'DESC');
+		return $query->orderBy('weight', 'DESC')->latest();
 	}
 
 	public function scopeLatest($query) {
@@ -40,12 +41,12 @@ class Topic extends Model {
 	}
 
 	public function scopeGames($query) {
-		return $query->whereIn('node_id', Config::get('app.frontpagenodes'));
+		return $query->whereIn('node_id', Config::get('app.front_page_nodes'));
 	}
 
 	public function scopePinnedLocal($query)
 	{
-
+		return $query->orderBy('pin_local', 'DESC');
 	}
 
 	public function scopePinned($query)
@@ -55,8 +56,15 @@ class Topic extends Model {
 
 	//Pagrindinio puslapio topicai
 
-	public static function frontPage() {
-		$topics = Topic::popular()->whereNull('deleted_at')->paginate(20);
+	public static function frontPage($sort) {
+		if($sort == 'populiariausi' || !$sort)
+		{
+			$topics = Topic::games()->pinned()->popular()->paginate(20);
+		}
+		else
+		{
+			$topics = Topic::games()->pinned()->latest()->paginate(20);
+		}
 		return $topics;
 	}
 

@@ -37,12 +37,12 @@ return [
 
 	//Svorio paskirstymas
 
-	'topics_decay'			=> 50,
+	'topics_decay'			=> 10,
 
-	'reply_gain_weight' 	=> 20,
+	'reply_gain_weight' 	=> 4,
 
-	'upvote_gain_weight'	=> 10,
-	'downvote_lose_weight'	=> 10,
+	'upvote_gain_weight'	=> 7,
+	'downvote_lose_weight'	=> 7,
 
 	/*
 	|--------------------------------------------------------------------------
