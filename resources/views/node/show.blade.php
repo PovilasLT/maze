@@ -12,7 +12,7 @@
 		@include('topic.item')
 	@endforeach
 	<div class="maze-pagination text-right">
-		{!! $topics->render() !!}
+		{!! $topics->appends(['rodyti' => $sort])->render() !!}
 	</div>
 @stop
 @section('sidebar')
