@@ -29,10 +29,34 @@ class Topic extends Model {
 		return $this->belongsTo('maze\Node');
 	}
 
+	//Scope
+
+	public function scopePopular($query) {
+		return $query->latest()->orderBy('weight', 'DESC');
+	}
+
+	public function scopeLatest($query) {
+		return $query->orderBy('created_at', 'DESC');
+	}
+
+	public function scopeGames($query) {
+		return $query->whereIn('node_id', Config::get('app.frontpagenodes'));
+	}
+
+	public function scopePinnedLocal($query)
+	{
+
+	}
+
+	public function scopePinned($query)
+	{
+		return $query->orderBy('order', 'DESC');
+	}
+
 	//Pagrindinio puslapio topicai
 
 	public static function frontPage() {
-		$topics = Topic::orderBy('updated_at', 'DESC')->whereNull('deleted_at')->paginate(20);
+		$topics = Topic::popular()->whereNull('deleted_at')->paginate(20);
 		return $topics;
 	}
 
