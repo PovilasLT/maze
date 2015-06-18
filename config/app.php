@@ -1,8 +1,10 @@
 <?php
 
 return [
+	
+	//Maze config
 
-	'frontpagenodes' => [
+	'front_page_nodes' => [
 		'15',
 		'18',
 		'22',
@@ -32,6 +34,15 @@ return [
 		'79',
 		'80',
 	],
+
+	//Svorio paskirstymas
+
+	'topics_decay'			=> 50,
+
+	'reply_gain_weight' 	=> 20,
+
+	'upvote_gain_weight'	=> 10,
+	'downvote_lose_weight'	=> 10,
 
 	/*
 	|--------------------------------------------------------------------------

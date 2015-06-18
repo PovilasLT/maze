@@ -11,6 +11,7 @@ use maze\Http\Requests\DeleteTopic;
 use maze\Http\Requests\UpdateTopic;
 use Auth;
 use Markdown;
+use maze\Modules\Mentions\Mention;
 
 use Illuminate\Http\Request;
 
@@ -44,11 +45,13 @@ class TopicsController extends Controller {
 	 */
 	public function store(CreateTopic $request)
 	{
-		$data = $request->all();
+		$data 		= $request->all();
+		$mention 	= new Mention();
 
 		//Susitvarkom su Markdown
-		$data['body_original']	= $data['body'];
-		$data['body']			= Markdown::convertToHtml($request->input('body'));
+		$data['body_original']	= $data['body']; 
+		$data['body']			= $mention->parse($data['body']);
+		$data['body'] 			= Markdown::convertToHtml($data['body']);
 		$data['user_id'] 		= Auth::user()->id;
 
 		$topic = Topic::create($data);
@@ -98,14 +101,17 @@ class TopicsController extends Controller {
 	 */
 	public function update(UpdateTopic $request, $id)
 	{
-		$data = $request->all();
+		$data 		= $request->all();
+		$mention 	= new Mention();
+
 
 		//Susitvarkom su Markdown
 		$topic = $request->topic;
 
 		$topic->title 			= $data['title'];
 		$topic->body_original	= $data['body'];
-		$topic->body			= Markdown::convertToHtml($request->input('body'));
+		$data['body']			= $mention->parse($data['body']);
+		$topic->body			= Markdown::convertToHtml($data['body']);
 		$topic->type 			= $data['type'];
 
 		$topic->save();

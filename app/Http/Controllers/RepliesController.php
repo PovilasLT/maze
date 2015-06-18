@@ -51,7 +51,8 @@ class RepliesController extends Controller {
 
 	public function update(UpdateReply $request, $id)
 	{
-		$reply = Reply::findOrFail($id);
+		$reply 		= Reply::findOrFail($id);
+		$mention 	= new Mention();
 
 		$data 					= $request->all();
 		$reply->body_original	= $data['body']; 

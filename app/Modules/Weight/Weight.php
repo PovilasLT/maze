@@ -1,35 +1,20 @@
-<?php namespace maze\Providers;
+<?php namespace maze\Modules\Weight;
 
-use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
-use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use maze\Reply;
 use maze\Vote;
 use Config;
 
-class EventServiceProvider extends ServiceProvider {
+class Weight {
 
-	/**
-	 * The event handler mappings for the application.
-	 *
-	 * @var array
-	 */
-	protected $listen = [
-		'event.name' => [
-			'EventListener',
-		],
-	];
-
-	/**
-	 * Register any other events for your application.
-	 *
-	 * @param  \Illuminate\Contracts\Events\Dispatcher  $events
-	 * @return void
-	 */
-	public function boot(DispatcherContract $events)
+	public function __construct()
 	{
-		parent::boot($events);
+		$this->boot();
+	}
 
+	public function boot()
+	{
 		Reply::created(function($reply){
+			dd('cr');
 			$topic = $reply->topic;
 			$topic->increment('weight', Config::get('app.reply_gain_weight'));
 

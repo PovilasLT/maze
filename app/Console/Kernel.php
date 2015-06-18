@@ -12,7 +12,8 @@ class Kernel extends ConsoleKernel {
 	 */
 	protected $commands = [
 		'maze\Console\Commands\Inspire',
-		'maze\Console\Commands\ConvertAvatarUploads'
+		'maze\Console\Commands\ConvertAvatarUploads',
+		'maze\Console\Commands\TopicsDecay'
 	];
 
 	/**
@@ -23,7 +24,7 @@ class Kernel extends ConsoleKernel {
 	 */
 	protected function schedule(Schedule $schedule)
 	{
-		$schedule->command('inspire')
+		$schedule->command('topics:decay')
 				 ->hourly();
 	}
 
