@@ -83,6 +83,7 @@ class RepliesController extends Controller {
 		//Pažymim atsakymą.
 		$reply = Reply::findOrFail($id);
 		$reply->is_answer = 1;
+		$reply->user->increment('karma_count', 5);
 		$reply->save();
 
 

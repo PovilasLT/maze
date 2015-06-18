@@ -43,6 +43,13 @@ Route::get('/vartotojas/{slug}', [
 	'uses'	=> 'UsersController@show'
 ]);
 
+//Balsavimas
+
+Route::post('/balsuoti/{vote}/{type}/{id}/', [
+	'as'	=> 'vote',
+	'uses'	=> 'VotesController@vote'
+]);
+
 //Nustatymai
 
 //Temos
