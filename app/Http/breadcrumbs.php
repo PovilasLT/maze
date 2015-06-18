@@ -13,7 +13,7 @@ Breadcrumbs::register('node.show', function($breadcrumbs, $node)
     //Jeigu skiltis turi parent skiltį, parodyti ir ją.
     if($node->parent)
     {
-    	$breadcrumbs->push($node->parent->name, route('node.show', $node->parent->name));
+    	$breadcrumbs->push($node->parent->name, route('node.show', $node->parent->slug));
     }
     $breadcrumbs->push($node->name, route('node.show', $node->slug));
 });

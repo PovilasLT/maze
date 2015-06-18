@@ -25,18 +25,33 @@ class NodesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($slug) {
+	public function show(Request $request, $slug) {
+		
+		$sort = $request->input('rodyti');
+
 		$node = Node::where('slug', $slug)->firstOrFail();
 		if($node->parent_node)
 		{
-			$topics = $node->topics()->pinnedLocal()->paginate(20);
+			$topics = $node->topics();
 		}
 		else
 		{
 			$nodes = Node::where('parent_node', $node->id)->lists('id');
-			$topics = Topic::whereIn('node_id', $nodes)->pinnedLocal()->paginate(20);
+			$topics = Topic::whereIn('node_id', $nodes);
 		}
-		return view('node.show', compact('node', 'topics'));
+
+		if($sort == 'populiariausi' || !$sort)
+		{
+			$topics = $topics->pinnedLocal()->popular();
+		}
+		else
+		{
+			$topics->pinnedLocal()->latest();
+		}
+
+		$topics = $topics->paginate(20);
+		
+		return view('node.show', compact('node', 'topics', 'sort'));
 	}
 
 	/**
