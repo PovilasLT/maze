@@ -2,6 +2,7 @@
 
 use Closure;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
+use Illuminate\Session\TokenMismatchException;
 
 class VerifyCsrfToken extends BaseVerifier {
 
@@ -25,7 +26,8 @@ class VerifyCsrfToken extends BaseVerifier {
 	protected function excludedRoutes($request)  
 	{
 	    $routes = [
-	            'markdown'
+	            'markdown/*',
+	            'balsuoti/*'
 	    ];
 
 	    foreach($routes as $route)

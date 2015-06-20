@@ -14,7 +14,7 @@ class AddCanVoteToUsersTable extends Migration {
 	{
 		Schema::table('users', function(Blueprint $table)
 		{
-			//
+			$table->boolean('can_vote')->default(1);
 		});
 	}
 
@@ -27,7 +27,7 @@ class AddCanVoteToUsersTable extends Migration {
 	{
 		Schema::table('users', function(Blueprint $table)
 		{
-			//
+			$table->dropColumn('can_vote');
 		});
 	}
 

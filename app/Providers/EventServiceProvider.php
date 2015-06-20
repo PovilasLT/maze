@@ -4,6 +4,7 @@ use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use maze\Reply;
 use maze\Vote;
+use maze\Topic;
 use Config;
 
 class EventServiceProvider extends ServiceProvider {
