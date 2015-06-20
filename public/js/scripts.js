@@ -14782,7 +14782,6 @@ $( document ).ready(function() {
     $('textarea').autosize();
 });
 $("body").delegate('.vote-action', 'click', function (event) {
-    console.log('click');
     var votable = $(this);
     
     var type = votable.attr('type');
@@ -14797,13 +14796,19 @@ $("body").delegate('.vote-action', 'click', function (event) {
           var err = eval(xhr.responseText);
           $(document).html(err);
         },
-        url: "/balsuoti/" + vote + "/" + id + "/" + type
+        url: "/balsuoti/" + vote + "/" + type + "/" + id
     }).done(function (data) {
+        // console.log("http://maze.app/balsuoti/" + vote + "/" + type + "/" + id);
         if(data == 'success')
         {
+            //Nebelaukiam kol gaus response, nes reikia greitesnio veikimo.
+        }
+    });
+
+    var container = null;
             if(vote == 'upvote')
             {
-                var container = $('#votes-'+id+' .upvote-container .vote');
+                container = $('#votes-'+id+' .upvote-container .vote');
                 if(container.hasClass('upvote-active'))
                 {
                     container.removeClass('upvote-active').addClass('upvote');
@@ -14816,7 +14821,7 @@ $("body").delegate('.vote-action', 'click', function (event) {
             }
             else
             {
-                var container = $('#votes-'+id+' .downvote-container .vote');
+                container = $('#votes-'+id+' .downvote-container .vote');
                 if(container.hasClass('downvote-active'))
                 {
                     container.removeClass('downvote-active').addClass('downvote');
@@ -14827,8 +14832,6 @@ $("body").delegate('.vote-action', 'click', function (event) {
                     $('#votes-'+id+' .upvote-container .vote').removeClass('upvote-active').addClass('upvote');
                 }
             }
-        }
-    });
 
 });
 $(function() {

@@ -1,6 +1,6 @@
 <div class="media">
 	<div class="votes pull-left" id="votes-{{ $topic->id }}">
-		<div class="upvote-container vote-action" type="Topic" vote="upvote" id="{{ $topic->id }}">
+		<div class="upvote-container vote-action" type="tema" vote="upvote" id="{{ $topic->id }}">
 			@if(!$topic->voted('up'))
 			<i class="fa vote upvote"></i>
 			@else
@@ -22,7 +22,7 @@
 			</span>
 			@endif
 		</div>
-		<div class="downvote-container vote-action" type="Topic" vote="downvote" id="{{ $topic->id }}">
+		<div class="downvote-container vote-action" type="tema" vote="downvote" id="{{ $topic->id }}">
 			@if(!$topic->voted('down'))
 			<i class="fa vote downvote"></i>
 			@else

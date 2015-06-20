@@ -6475,6 +6475,9 @@ ul {
   padding: 8px 10px 8px 0;
   width: 30px;
 }
+.vote {
+  cursor: pointer;
+}
 .maze-label {
   padding: 1px 7px;
   border-radius: 3px;

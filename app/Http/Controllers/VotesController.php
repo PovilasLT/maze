@@ -25,22 +25,34 @@ class VotesController extends Controller {
 			$type = 'Reply';
 		}
 
-		$vote = Vote::where('is', $vote)->where('votable_type', $type)->where('votable_id', $id)->first();
+		$_vote = Vote::where('votable_type', $type)
+				->where('votable_id', $id)
+				->where('user_id', $user->id)
+				->first();
 
 		//Ištrinam prieš tai buvusį balsą
-		if($vote)
+		if($_vote)
 		{
-			$vote->delete();
+			$_vote->delete();
 
-			if($vote->is != $vote)
+			if($_vote->is != $vote)
 			{
-				Vote::create([
+				$created_vote = Vote::create([
 					'user_id'		=> $user->id,
 					'votable_type'	=> $type,
 					'votable_id'	=> $id,
 					'is'			=> $vote
 				]);
 			}
+		}
+		else
+		{
+			$created_vote = Vote::create([
+					'user_id'		=> $user->id,
+					'votable_type'	=> $type,
+					'votable_id'	=> $id,
+					'is'			=> $vote
+			]);
 		}
 
 		return response('success', 200);

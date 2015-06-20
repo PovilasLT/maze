@@ -45,7 +45,7 @@ Route::get('/vartotojas/{slug}', [
 
 //Balsavimas
 
-Route::post('/balsuoti/{vote}/{type}/{id}/', [
+Route::any('/balsuoti/{vote}/{type}/{id}/', [
 	'as'	=> 'vote',
 	'uses'	=> 'VotesController@vote'
 ]);
