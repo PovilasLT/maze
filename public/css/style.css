@@ -6584,13 +6584,18 @@ h4.media-heading a {
   margin: 10px 0;
 }
 .post-show {
-  margin-bottom: 20px;
+  margin: 0;
+  padding: 10px;
 }
-.post-show .media-heading {
-  margin-bottom: 10px;
+.post-show:nth-child(odd) {
+  background: #f2f3f2;
 }
 .post-show .media-body {
   border: none;
+  padding: 0;
+}
+.post-show .media-left {
+  padding: 0 10px 0 0;
 }
 .post-show p {
   font-size: 14px;

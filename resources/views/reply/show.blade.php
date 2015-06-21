@@ -1,9 +1,39 @@
-
 @if(!$reply->is_answer)
 <div class="media post-show" id="pranesimas-{{ $reply->id }}">
 @else
 <div class="media post-show post-answer" id="pranesimas-{{ $reply->id }}">
 @endif
+  <div class="votes pull-left" id="votes-{{ $reply->id }}">
+    <div class="upvote-container vote-action" type="pranesimas" vote="upvote" id="{{ $reply->id }}">
+      @if(!$reply->voted('up'))
+      <i class="fa vote upvote"></i>
+      @else
+      <i class="fa vote upvote-active"></i>
+      @endif
+    </div>
+    <div class="vote-count-container">
+      @if($reply->vote_count > 0)
+      <span class="positive">
+        {{ $reply->vote_count }}
+      </span>
+      @elseif($reply->vote_count == 0)
+      <span class="neutral">
+        {{ $reply->vote_count }}
+      </span>
+      @else
+      <span class="negative">
+        {{ $reply->vote_count }}
+      </span>
+      @endif
+    </div>
+    <div class="downvote-container vote-action" type="pranesimas" vote="downvote" id="{{ $reply->id }}">
+      @if(!$reply->voted('down'))
+      <i class="fa vote downvote"></i>
+      @else
+      <i class="fa vote downvote-active"></i>
+      @endif
+    </div>
+  </div>
   <div class="media-left media-top">
     <a href="{{ route('user.show', $reply->user->slug) }}">
     	<img class="media-object topic-avatar" src="{{ $reply->user->avatar }}" alt="{{ $reply->user->username }} Profilis">

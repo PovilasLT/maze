@@ -241,12 +241,17 @@ h4.media-heading a {
 }
 
 .post-show {
-	margin-bottom: 20px;
-	.media-heading {
-		margin-bottom: 10px;
+	margin: 0;
+	padding: 10px;
+	&:nth-child(odd) {
+	  background: @maze-border-faded;
 	}
 	.media-body {
 		border: none;
+		padding: 0;
+	}
+	.media-left {
+		padding: 0 10px 0 0;
 	}
 	p {
 		font-size: 14px;

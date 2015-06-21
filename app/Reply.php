@@ -1,6 +1,7 @@
 <?php namespace maze;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class Reply extends Model {
 
@@ -17,6 +18,26 @@ class Reply extends Model {
 
 	public function topic() {
 		return $this->belongsTo('maze\Topic');
+	}
+
+	public function voted($type) {
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			$vote = Vote::where('votable_id', $this->id)->where('votable_type', 'Reply')->where('user_id', $user->id)->where('is', $type.'vote')->first();
+			if($vote)
+			{
+				return true;
+			}
+			else 
+			{
+				return false;
+			}
+		}
+		else 
+		{
+			return false;
+		}
 	}
 	
 }

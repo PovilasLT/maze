@@ -2,13 +2,15 @@
 
 use maze\Http\Requests;
 use maze\Http\Controllers\Controller;
-use maze\Vote;
 use maze\Http\Requests\VoteRequest;
 
 use Illuminate\Http\Request;
 
+use maze\Reply;
+use maze\Vote;
+use maze\Topic;
+
 use Auth;
-use Topic;
 
 class VotesController extends Controller {
 
@@ -19,10 +21,12 @@ class VotesController extends Controller {
 		if($type == 'tema')
 		{
 			$type = 'Topic';
+			$_votable = Topic::findOrFail($id);
 		}
 		else
 		{
 			$type = 'Reply';
+			$_votable = Reply::findOrFail($id);
 		}
 
 		$_vote = Vote::where('votable_type', $type)
@@ -30,10 +34,13 @@ class VotesController extends Controller {
 				->where('user_id', $user->id)
 				->first();
 
-		//Ištrinam prieš tai buvusį balsą
+		//Ištrinam visus balsus, jei netyčia susibugintų.
 		if($_vote)
 		{
-			$_vote->delete();
+			Vote::where('votable_type', $type)
+				->where('votable_id', $id)
+				->where('user_id', $user->id)
+				->delete();
 
 			if($_vote->is != $vote)
 			{
@@ -43,6 +50,18 @@ class VotesController extends Controller {
 					'votable_id'	=> $id,
 					'is'			=> $vote
 				]);
+
+				if($vote == 'upvote')
+					$_votable->increment('vote_count', 2);
+				else
+					$_votable->decrement('vote_count', 2);
+			}
+			else
+			{
+				if($vote == 'upvote')
+					$_votable->decrement('vote_count', 1);
+				else
+					$_votable->increment('vote_count', 1);
 			}
 		}
 		else
@@ -53,6 +72,11 @@ class VotesController extends Controller {
 					'votable_id'	=> $id,
 					'is'			=> $vote
 			]);
+
+			if($vote == 'upvote')
+				$_votable->increment('vote_count', 1);
+			else
+				$_votable->decrement('vote_count', 1);
 		}
 
 		return response('success', 200);
