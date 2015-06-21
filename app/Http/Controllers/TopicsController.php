@@ -2,16 +2,23 @@
 
 use maze\Http\Requests;
 use maze\Http\Controllers\Controller;
-use maze\Topic;
-use maze\Node;
+
 use maze\Http\Requests\CreateTopic;
 use maze\Http\Requests\EditTopic;
 use maze\Http\Requests\AdminTopic;
 use maze\Http\Requests\DeleteTopic;
 use maze\Http\Requests\UpdateTopic;
+
+use maze\Topic;
+use maze\Node;
+use maze\Poll;
+use maze\Answer;
+
 use Auth;
 use Markdown;
+
 use maze\Modules\Mentions\Mention;
+
 
 use Illuminate\Http\Request;
 
@@ -48,6 +55,8 @@ class TopicsController extends Controller {
 		$data 		= $request->all();
 		$mention 	= new Mention();
 
+		// dd($data);
+
 		//Susitvarkom su Markdown
 		$data['body_original']	= $data['body']; 
 		$data['body']			= $mention->parse($data['body']);
@@ -55,6 +64,26 @@ class TopicsController extends Controller {
 		$data['user_id'] 		= Auth::user()->id;
 
 		$topic = Topic::create($data);
+
+
+		//Jeigu tema yra Apklausa, sukurti apklausą
+		if($data['type'] == 3)
+		{
+			$poll = Poll::create([
+				'topic_id' => $topic->id
+			]);
+
+			foreach($data['answers'] as $answer)
+			{
+				if($answer)
+				{
+					Answer::create([
+						'poll_id'	=> $poll->id,
+						'title'		=> $answer
+					]);
+				}
+			}
+		}
 
 		$user = Auth::user();
 		$user->increment('topic_count');

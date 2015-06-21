@@ -26,15 +26,26 @@
 			<option value="215">Pranešimas</option>
 			@endif
 			<option value="2">Klausimas</option>
-			<option value="3">Apklausa</option>
 		</select>
+	</div>
+	<div class="form-group">
+		<label for="answers">Atsakymų Variantai</label>
+	</div>
+	<div class="form-group">
+		<input type="text" name="answers[]" id="answers" class="form-control" placeholder="Atsakymo variantas" title="Atsakymo variantas">
+	</div>
+	<div class="form-group">
+		<input type="text" name="answers[]" id="answers" class="form-control" placeholder="Atsakymo variantas" title="Atsakymo variantas">
+	</div>
+	<div class="form-group">
+		<input type="text" name="answers[]" id="answers" class="form-control" placeholder="Atsakymo variantas" title="Atsakymo variantas">
 	</div>
 	<label for="title">Temos pavadinimas</label>
 	<div class="form-group">
 		<input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}" required="required">
 	</div>
 	<div class="form-group">
-		<textarea data-provide="markdown" class="form-control" name="body" rows="10" required>{{ old('body') }}</textarea>
+		<textarea data-provide="markdown" class="form-control" name="body" rows="10" placeholder="Čia rašyk savo temos turinį..." required>{{ old('body') }}</textarea>
 	</div>
 	<button type="submit" class="btn btn-primary">Rašyti</button>
 </form>

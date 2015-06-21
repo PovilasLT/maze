@@ -30,6 +30,10 @@ class Topic extends Model {
 		return $this->belongsTo('maze\Node');
 	}
 
+	public function poll() {
+		return $this->hasOne('maze\Poll');
+	}
+
 	//Scope
 
 	public function scopePopular($query) {
