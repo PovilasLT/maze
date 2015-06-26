@@ -35,7 +35,19 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 
 	public function topics() {
-		return $this->hasMany('Topic');
+		return $this->hasMany('maze\Topic');
+	}
+
+	public function replies() {
+		return $this->hasMany('maze\Reply');
+	}
+
+	public function notifications() {
+		return $this->hasMany('maze\Notification');
+	}
+
+	public function statuses() {
+		return $this->hasMany('maze\Notification')->where('object_type', 'status');
 	}
 
 	//Patikrina ar User jau balsavo uz tam tikra turini.

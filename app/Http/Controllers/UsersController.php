@@ -3,7 +3,9 @@
 use maze\Http\Requests;
 use maze\Http\Requests\CreateUser;
 use maze\Http\Requests\UpdateUser;
+use maze\Http\Requests\UserProfile;
 use maze\User;
+use Auth;
 
 class UsersController extends Controller {
 
@@ -21,8 +23,17 @@ class UsersController extends Controller {
 	}
 
 	//Profilis
+
+	public function profile(UserProfile $request) {
+		$user = Auth::user();
+		$items = $user->notifications()->profile()->paginate('20');
+		return view('user.profile', compact('user', 'items'));
+	}
+
 	public function show($slug) {
-		return 0;
+		$user = User::where('slug', $slug)->first();
+		$items = $user->notifications()->profile()->paginate('20');
+		return view('user.show', compact('user', 'items'));
 	}
 
 }

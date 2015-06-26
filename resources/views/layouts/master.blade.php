@@ -27,7 +27,7 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 							</button>
-							<a class="navbar-brand" href="/"><img src="/images/logo.png"></a>
+							<a class="navbar-brand" href="/"><img src="http://maze.lt/assets/images/logo.png"></a>
 						</div>
 				
 						<div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -41,7 +41,7 @@
 					<div class="col-lg-3 navbar-user-info">
 						@if(Auth::check())
 							<a href="#"><img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->username }} Profilis" class="avatar"></a>
-							<a href=""><i class="fa fa-globe"></i></a>
+							<a href="{{ route('user.profile') }}"><i class="fa fa-globe"></i></a>
 							<a href=""><i class="fa fa-envelope-o"></i></a>
 							<a href="{{ route('auth.logout') }}"><i class="fa fa-sign-out"></i></a>
 						@else

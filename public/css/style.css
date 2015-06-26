@@ -6462,7 +6462,8 @@ ul {
   padding-left: 40px;
   padding-top: 40px;
 }
-.topic-avatar {
+.topic-avatar,
+.avatar-object {
   height: 65px;
   width: 65px;
   padding: 2px;

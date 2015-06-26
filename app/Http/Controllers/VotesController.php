@@ -52,16 +52,28 @@ class VotesController extends Controller {
 				]);
 
 				if($vote == 'upvote')
+				{
 					$_votable->increment('vote_count', 2);
+					$_votable->user()->increment('karma_count', 2);
+				}
 				else
+				{
 					$_votable->decrement('vote_count', 2);
+					$_votable->user()->decrement('karma_count', 2);
+				}
 			}
 			else
 			{
 				if($vote == 'upvote')
+				{
 					$_votable->decrement('vote_count', 1);
+					$_votable->user()->decrement('karma_count', 1);
+				}
 				else
+				{
 					$_votable->increment('vote_count', 1);
+					$_votable->user()->increment('karma_count', 1);
+				}
 			}
 		}
 		else
@@ -74,9 +86,15 @@ class VotesController extends Controller {
 			]);
 
 			if($vote == 'upvote')
+			{
 				$_votable->increment('vote_count', 1);
+				$_votable->user()->increment('karma_count', 1);
+			}
 			else
+			{
 				$_votable->decrement('vote_count', 1);
+				$_votable->user()->decrement('karma_count', 1);
+			}
 		}
 
 		return response('success', 200);
