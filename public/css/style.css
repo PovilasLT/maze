@@ -6391,6 +6391,10 @@ button.close {
 * {
   -webkit-font-smoothing: antialiased;
 }
+p {
+  word-wrap: break-word;
+  word-break: break-word;
+}
 .navbar-brand img {
   height: 50px;
 }
@@ -6584,21 +6588,26 @@ h4.media-heading a {
 .alert-generic {
   margin: 10px 0;
 }
-.post-show {
+.post-show,
+.notification-show {
   margin: 0;
   padding: 10px;
 }
-.post-show:nth-child(odd) {
+.post-show:nth-child(odd),
+.notification-show:nth-child(odd) {
   background: #f2f3f2;
 }
-.post-show .media-body {
+.post-show .media-body,
+.notification-show .media-body {
   border: none;
   padding: 0;
 }
-.post-show .media-left {
+.post-show .media-left,
+.notification-show .media-left {
   padding: 0 10px 0 0;
 }
-.post-show p {
+.post-show p,
+.notification-show p {
   font-size: 14px;
 }
 .topic-controls {
@@ -8450,7 +8459,7 @@ h4.media-heading a {
   border: 0;
   border-radius: 0;
   box-shadow: none;
-  background: #eeeeee;
+  background: #ffffff;
 }
 .md-editor > textarea:focus {
   box-shadow: none;

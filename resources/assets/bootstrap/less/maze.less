@@ -4,6 +4,11 @@
 	-webkit-font-smoothing: antialiased;
 }
 
+p {
+	word-wrap: break-word;
+	word-break: break-word;
+}
+
 .navbar-brand {
 	img {
 		height: 50px;
@@ -241,7 +246,8 @@ h4.media-heading a {
 	margin: 10px 0;
 }
 
-.post-show {
+.post-show,
+.notification-show {
 	margin: 0;
 	padding: 10px;
 	&:nth-child(odd) {

@@ -20,6 +20,11 @@ class Reply extends Model {
 		return $this->belongsTo('maze\Topic');
 	}
 
+	public function getUrlAttribute()
+	{
+		
+	}
+
 	public function voted($type) {
 		if(Auth::check())
 		{

@@ -26,7 +26,7 @@ class UsersController extends Controller {
 
 	public function profile(UserProfile $request) {
 		$user = Auth::user();
-		$items = $user->notifications()->profile()->paginate('20');
+		$items = $user->notifications()->profile()->paginate('10');
 		return view('user.profile', compact('user', 'items'));
 	}
 

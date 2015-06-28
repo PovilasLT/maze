@@ -5,5 +5,6 @@
 		<textarea data-provide="markdown" class="form-control" name="body" rows="5" placeholder="Čia rašyk savo išmintingo pranešimo turinį..." required></textarea>
 	</div>
 
-	<button type="submit" class="btn btn-primary">Rašyti</button>
+	<button type="submit" class="btn btn-primary pull-right">Rašyti</button>
+	<div class="clearfix"></div>
 </form>

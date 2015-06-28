@@ -29,9 +29,9 @@
 			</div>
 			<div class="downvote-container vote-action" type="tema" vote="downvote" id="{{ $topic->id }}">
 				@if(!$topic->voted('down'))
-				<i class="fa vote downvote"></i>
+					<i class="fa vote downvote"></i>
 				@else
-				<i class="fa vote downvote-active"></i>
+					<i class="fa vote downvote-active"></i>
 				@endif
 			</div>
 		</div>

@@ -30,6 +30,22 @@ class Notification extends Model {
 		return $query->orderBy('created_at', 'DESC')->whereNotIn('object_type', ['follow', 'status_comment']);
 	}
 
+	public function scopeMentions($query) {
+		return $query->where('object_type', 'mention');
+	}
+
+	public function scopeTopics($query) {
+		return $query->where('object_type', 'topic');
+	}
+
+	public function scopeReplies($query) {
+		return $query->where('object_type', 'reply');
+	}
+
+	public function scopeStatus($query) {
+		return $query->where('object_type', 'status');
+	}
+
 	function getObjectAttribute()
 	{
 		$object = $this->object_type;
@@ -139,7 +155,7 @@ class Notification extends Model {
 				else
 					return false;
 			case 'status':
-				return '<a href="' . route('user.show', [$this->fromUser->slug, $this->fromUser->id]) . '">' . $this->fromUser->username . '</a>: '.$this->body;
+				return $this->body;
 			case 'status_comment':
 				if ($this->object->status)
 					//rodyti tik komentarus i savo busenas.
