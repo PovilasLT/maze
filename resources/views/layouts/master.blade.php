@@ -40,7 +40,7 @@
 					</div>
 					<div class="col-lg-3 navbar-user-info">
 						@if(Auth::check())
-							<a href="#"><img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->username }} Profilis" class="avatar"></a>
+							<a href="{{ route('user.profile') }}"><img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->username }} Profilis" class="avatar"></a>
 							<a href="{{ route('user.profile') }}"><i class="fa fa-globe"></i></a>
 							<a href=""><i class="fa fa-envelope-o"></i></a>
 							<a href="{{ route('auth.logout') }}"><i class="fa fa-sign-out"></i></a>

@@ -1,4 +1,4 @@
-<form action="" method="POST" role="form">
+<form action="{{ route('status.create') }}" method="POST" role="form">
 @include('includes.csrf')
 	<div class="form-group">
 		<textarea data-provide="markdown" name="body" id="inputBody" class="form-control" rows="3" required="required" placeholder="Kas naujo?"></textarea>

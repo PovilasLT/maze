@@ -48,6 +48,13 @@ Breadcrumbs::register('reply.edit', function($breadcrumbs)
 //Vartotojo routes
 
 //Profilis
+
+Breadcrumbs::register('user.profile', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Profilis');
+});
+
 Breadcrumbs::register('user.show', function($breadcrumbs, $topic)
 {
     $breadcrumbs->parent('node', $topic->node);

@@ -5,6 +5,7 @@ use maze\Http\Requests\CreateUser;
 use maze\Http\Requests\UpdateUser;
 use maze\Http\Requests\UserProfile;
 use maze\User;
+use maze\Notification;
 use Auth;
 
 class UsersController extends Controller {
@@ -26,8 +27,36 @@ class UsersController extends Controller {
 
 	public function profile(UserProfile $request) {
 		$user = Auth::user();
-		$items = $user->notifications()->profile()->paginate('10');
-		return view('user.profile', compact('user', 'items'));
+
+		$sort = $request->input('rodyti');
+		$subsort = $request->input('sub');
+
+		if(!$sort || $sort == 'sekamieji')
+		{
+			switch ($subsort) {
+				case 'temos':
+					$items = $user->notifications()->profile()->topics()->paginate('20');
+					break;
+				case 'paminejimai':
+					$items = $user->notifications()->profile()->mentions()->paginate('20');
+					break;
+				case 'pranesimai':
+					$items = $user->notifications()->profile()->replies()->paginate('20');
+					break;
+				case 'busenos':
+					$items = $user->notifications()->profile()->statuses()->paginate('20');
+					break;
+				default:
+					$items = $user->notifications()->profile()->paginate('20');
+					break;
+			}
+		}
+		else
+		{
+			$items = Notification::latest()->statuses()->groupBy('object_id')->paginate('20');
+		}
+
+		return view('user.profile', compact('user', 'items', 'sort', 'subsort'));
 	}
 
 	public function show($slug) {

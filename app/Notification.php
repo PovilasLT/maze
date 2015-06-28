@@ -27,7 +27,11 @@ class Notification extends Model {
 	}
 
 	public function scopeProfile($query) {
-		return $query->orderBy('created_at', 'DESC')->whereNotIn('object_type', ['follow', 'status_comment']);
+		return $query->latest()->whereNotIn('object_type', ['follow', 'status_comment']);
+	}
+
+	public function scopeLatest($query) {
+		return $query->orderBy('created_at', 'DESC');
 	}
 
 	public function scopeMentions($query) {
@@ -42,7 +46,7 @@ class Notification extends Model {
 		return $query->where('object_type', 'reply');
 	}
 
-	public function scopeStatus($query) {
+	public function scopeStatuses($query) {
 		return $query->where('object_type', 'status');
 	}
 

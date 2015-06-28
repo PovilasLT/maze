@@ -6626,6 +6626,9 @@ h4.media-heading a {
 .topic-answer {
   margin-left: 10px;
 }
+.notification-list {
+  margin-top: 40px;
+}
 
 /*!
  *  Font Awesome 4.3.0 by @davegandy - http://fontawesome.io - @fontawesome
@@ -8459,7 +8462,7 @@ h4.media-heading a {
   border: 0;
   border-radius: 0;
   box-shadow: none;
-  background: #ffffff;
+  background: #eeeeee;
 }
 .md-editor > textarea:focus {
   box-shadow: none;

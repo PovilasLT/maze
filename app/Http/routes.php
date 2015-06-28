@@ -1,191 +1,39 @@
 <?php
 
-//Markdown parseris JavaScriptui
-Route::post('/markdown', function()
-{
-	return Markdown::convertToHtml(Request::input('body'));	
-});
+require_once('Routes/api.routes.php');
 
 //Bendriniai puslapiai
-Route::get('/', 'PageController@index');
+require_once('Routes/page.routes.php');
 
 //Autentikavimas
-
-Route::get('/registruotis', [
-	'as'	=> 'auth.register',
-	'uses'	=> 'AuthController@register'
-]);
-
-Route::get('/prisijungti', [
-	'as'	=> 'auth.login',
-	'uses'	=> 'AuthController@login'
-]);
-
-Route::get('/atsijungti', [
-	'as'	=> 'auth.logout',
-	'uses'	=> 'AuthController@logout'
-]);
-
-Route::post('/registruotis', [
-	'as'	=> 'auth.register.post',
-	'uses'	=> 'AuthController@postRegister'
-]);
-
-Route::post('/prisijungti', [
-	'as'	=> 'auth.login.post',
-	'uses'	=> 'AuthController@postLogin'
-]);
+require_once('Routes/auth.routes.php');
 
 //Vartotojai
-
-Route::get('/profilis', [
-	'as'	=> 'user.profile',
-	'uses'	=> 'UsersController@profile'
-]);
-
-Route::get('/vartotojas/{slug}', [
-	'as'	=> 'user.show',
-	'uses'	=> 'UsersController@show'
-]);
-
-Route::get('/profilis', [
-	'as'	=> 'user.profile',
-	'uses'	=> 'UsersController@profile'
-]);
+require_once('Routes/user.routes.php');
 
 //Balsavimas
-
-Route::any('/balsuoti/{vote}/{type}/{id}/', [
-	'as'	=> 'vote',
-	'uses'	=> 'VotesController@vote'
-]);
+require_once('Routes/vote.routes.php');
 
 //Nustatymai
+require_once('Routes/settings.routes.php');
 
 //Temos
-
-Route::get('/tema/kurti', [
-	'as'	=> 'topic.create',
-	'uses'	=> 'TopicsController@create'
-]);
-
-Route::post('/tema/irasyti', [
-	'as'	=> 'topic.store',
-	'uses'	=> 'TopicsController@store'
-]);
-
-Route::get('/tema/{id}/istrinti', [
-	'as'	=> 'topic.delete',
-	'uses'	=> 'TopicsController@destroy'
-]);
-
-Route::get('/tema/{id}/redaguoti', [
-	'as'	=> 'topic.edit',
-	'uses'	=> 'TopicsController@edit'
-]);
-
-Route::post('/tema/{id}/atnaujinti', [
-	'as'	=> 'topic.update',
-	'uses'	=> 'TopicsController@update'
-]);
-
-Route::get('/tema/{id}/pakelti', [
-	'as'	=> 'topic.bump',
-	'uses'	=> 'TopicsController@bump'
-]);
-
-Route::get('/tema/{id}/uzrakinti', [
-	'as'	=> 'topic.lock',
-	'uses'	=> 'TopicsController@lock'
-]);
-
-Route::get('/tema/{id}/prisegti/skiltyje', [
-	'as'	=> 'topic.pinLocal',
-	'uses'	=> 'TopicsController@pinLocal'
-]);
-
-Route::get('/tema/{id}/prisegti/globaliai', [
-	'as'	=> 'topic.pinGlobal',
-	'uses'	=> 'TopicsController@pinGlobal'
-]);
-
-Route::get('/tema/{id}/prisegti/globaliai', [
-	'as'	=> 'topic.pinGlobal',
-	'uses'	=> 'TopicsController@pinGlobal'
-]);
-
-Route::get('/tema/{id}/atsegti', [
-	'as'	=> 'topic.unpin',
-	'uses'	=> 'TopicsController@unpin'
-]);
-
-Route::get('/tema/{id}/nuskandinti', [
-	'as'	=> 'topic.sink',
-	'uses'	=> 'TopicsController@sink'
-]);
-
-Route::get('/tema/{slug}', [
-	'as' 	=> 'topic.show',
-	'uses'	=> 'TopicsController@show' 
-]);
+require_once('Routes/topic.routes.php');
 
 //Skiltys
-
-Route::get('/skiltis/{slug}', [
-	'as' 	=> 'node.show',
-	'uses'	=> 'NodesController@show' 
-]);
+require_once('Routes/node.routes.php');
 
 //Pranesimai
+require_once('Routes/reply.routes.php');
 
-Route::post('/pranesimas/rasyti', [
-	'as'	=> 'reply.store',
-	'uses'	=> 'RepliesController@store'
-]);
-
-Route::get('/pranesimas/{id}/atsakymas', [
-	'as'	=> 'reply.answer',
-	'uses'	=> 'RepliesController@markAnswer'
-]);
-
-Route::get('/pranesimas/{id}/redaguoti', [
-	'as'	=> 'reply.edit',
-	'uses'	=> 'RepliesController@edit'
-]);
-
-Route::post('/pranesimas/{id}/issaugoti', [
-	'as'	=> 'reply.update',
-	'uses'	=> 'RepliesController@update'
-]);
-
-Route::get('/pranesimas/{id}/istrinti', [
-	'as'	=> 'reply.delete',
-	'uses'	=> 'RepliesController@destroy'
-]);
+//Busenos
+require_once('Routes/status.routes.php');
 
 //TV
+require_once('Routes/tv.routes.php');
 
 //Blog'ai
+require_once('Routes/blog.routes.php');
 
 //Senų route 301 redirectai.
-
-Route::get('/users/{id}', function($id)
-{
-	$user = maze\User::findOrFail($id);
-	return redirect()->route('user.show', [$user->slug], 301);
-});
-
-Route::get('/vartotojas/{slug}/{id}', function($slug, $id) {
-	$user = maze\User::findOrFail($id);
-	return redirect()->route('user.show', [$user->slug], 301);
-});
-
-Route::get('/topics/{id}', function($id) {
-	$topic = maze\Topic::findOrFail($id);
-	return redirect()->route('topic.show', [$topic->slug], 301);
-});
-
-Route::get('/tema/{slug}/{id}', function($slug, $id) {
-	$topic = maze\Topic::findOrFail($id);
-	return redirect()->route('topic.show', [$topic->slug], 301);
-});
+require_once('Routes/legacy.routes.php');
