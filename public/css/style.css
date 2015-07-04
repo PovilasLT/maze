@@ -6395,8 +6395,14 @@ p {
   word-wrap: break-word;
   word-break: break-word;
 }
+.navbar-brand {
+  height: 80px;
+}
 .navbar-brand img {
   height: 50px;
+}
+.navbar-toggle {
+  margin-top: 25px;
 }
 .md-input {
   padding: 10px !important;
@@ -6405,14 +6411,17 @@ p {
   border: 1px solid #dee0df !important;
   background: #ffffff !important;
 }
+.md-editor textarea:focus {
+  outline: 0;
+  box-shadow: none !important;
+}
 .md-editor.active {
   border: none !important;
   box-shadow: none !important;
 }
-.md-editor.active textarea {
-  border-color: #66afe9;
-  outline: 0;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(84, 255, 177, 0.6);
+.md-editor .md-footer,
+.md-editor > .md-header {
+  padding: 6px 0;
 }
 .emoji {
   width: 1.5em;
@@ -6486,10 +6495,31 @@ ul {
   border-radius: 90px;
   box-sizing: initial;
 }
+.markdown-avatar,
+.reply-avatar {
+  border-radius: 90px;
+  box-sizing: initial;
+  height: 40px;
+  width: 40px;
+}
+.markdown-avatar {
+  margin-top: 40px;
+}
+.markdown-form {
+  margin: 0;
+  padding-left: 30px;
+}
+.markdown-form .media-body {
+  border-bottom: none;
+}
 .media .votes {
   text-align: center;
   padding: 8px 0;
   width: 30px;
+}
+.media .reply-votes {
+  padding: 0;
+  font-size: 11px;
 }
 .vote {
   cursor: pointer;
@@ -6605,11 +6635,7 @@ h1.media-heading {
 .post-show,
 .notification-show {
   margin: 0;
-  padding: 10px;
-}
-.post-show:nth-child(odd),
-.notification-show:nth-child(odd) {
-  background: #f2f3f2;
+  padding: 0 0 10px 0;
 }
 .post-show .media-body,
 .notification-show .media-body {
@@ -6635,9 +6661,6 @@ h1.media-heading {
 .topic-show .media-body {
   border: none;
 }
-.replies-wrapper {
-  padding-top: 40px;
-}
 .topic-answer {
   margin-left: 10px;
 }
@@ -6652,6 +6675,37 @@ h1.media-heading {
 .btn-grey .fa,
 .btn-grey .caret {
   color: #bdc3c7;
+}
+.green-text {
+  color: #0f7255;
+}
+@media (max-width: 1200px) {
+  .main-sidebar {
+    display: none;
+  }
+  .navbar-user-info {
+    display: none;
+  }
+  .main-content {
+    border-right: 0;
+  }
+  .content-box {
+    padding-right: 15px;
+  }
+}
+@media (max-width: 768px) {
+  footer h4 {
+    display: block;
+  }
+  .media .topic-avatar {
+    display: none;
+  }
+  .markdown-form {
+    padding: 0;
+  }
+  .markdown-form .media-object {
+    display: none;
+  }
 }
 
 /*!

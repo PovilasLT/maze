@@ -10,9 +10,14 @@ p {
 }
 
 .navbar-brand {
+	height: 80px;
 	img {
 		height: 50px;
 	}
+}
+
+.navbar-toggle {
+	margin-top: 25px;
 }
 
 .md-input {
@@ -24,16 +29,19 @@ p {
 	textarea {
 		border: 1px solid @maze-border !important;
 		background: @maze-background !important;
+		&:focus {
+			outline: 0;
+			box-shadow: none !important;
+		}
 	}
 	&.active {
 		border: none !important;
 		box-shadow: none !important;
-		textarea {
-			border-color: #66afe9;
-			outline: 0;
-			box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(84, 255, 177, 0.6);
-		}
 	}
+}
+
+.md-editor .md-footer, .md-editor > .md-header {
+	padding: 6px 0;
 }
 
 .emoji {
@@ -120,10 +128,35 @@ ul {
 	box-sizing: initial;
 }
 
+.markdown-avatar,
+.reply-avatar {
+	border-radius: 90px;
+	box-sizing: initial;
+	height: 40px;
+	width: 40px;
+}
+
+.markdown-avatar {
+	margin-top: 40px;
+}
+
+.markdown-form {
+	margin: 0;
+	padding-left: 30px;
+	.media-body {
+		border-bottom: none;
+	}
+}
+
 .media .votes {
 	text-align: center;
 	padding: 8px 0;
 	width: 30px;
+}
+
+.media .reply-votes {
+	padding: 0;
+	font-size: 11px;
 }
 
 .vote {
@@ -268,10 +301,10 @@ h1.media-heading {
 .post-show,
 .notification-show {
 	margin: 0;
-	padding: 10px;
-	&:nth-child(odd) {
-	  background: @maze-border-faded;
-	}
+	padding: 0 0 10px 0;
+	// &:nth-child(odd) {
+	//   background: @maze-border-faded;
+	// }
 	.media-body {
 		border: none;
 		padding: 0;
@@ -297,10 +330,6 @@ h1.media-heading {
 	}
 }
 
-.replies-wrapper {
-	padding-top: 40px;
-}
-
 .topic-answer {
 	margin-left: 10px;
 }
@@ -316,5 +345,47 @@ h1.media-heading {
 	.fa,
 	.caret {
 		color: @maze-grey;
+	}
+}
+
+.green-text {
+	color: @maze-primary;
+}
+
+//Responsiveness
+
+//tablet
+
+@media (max-width: 1200px) {
+	.main-sidebar {
+		display: none;
+	}
+	.navbar-user-info {
+		display: none;
+	}
+	.main-content {
+		border-right: 0;
+	}
+	.content-box {
+		padding-right: 15px;
+	}
+}
+
+//phone
+
+@media (max-width: 768px) {
+	footer h4 {
+		display: block;
+	}
+	.media {
+		.topic-avatar {
+			display: none;
+		}
+	}
+	.markdown-form {
+		padding: 0;
+		.media-object {
+			display: none;
+		}
 	}
 }

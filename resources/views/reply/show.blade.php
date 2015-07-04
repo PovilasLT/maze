@@ -3,7 +3,7 @@
 @else
 <div class="media post-show post-answer" id="pranesimas-{{ $reply->id }}">
 @endif
-  <div class="votes pull-left" id="votes-{{ $reply->id }}">
+  <div class="votes reply-votes pull-left" id="votes-{{ $reply->id }}">
     <div class="upvote-container vote-action" type="pranesimas" vote="upvote" id="{{ $reply->id }}">
       @if(!$reply->voted('up'))
       <i class="fa vote upvote"></i>
@@ -36,7 +36,7 @@
   </div>
   <div class="media-left media-top">
     <a href="{{ route('user.show', $reply->user->slug) }}">
-    	<img class="media-object topic-avatar" src="{{ $reply->user->avatar }}" alt="{{ $reply->user->username }} Profilis">
+    	<img class="media-object reply-avatar" src="{{ $reply->user->avatar }}" alt="{{ $reply->user->username }} Profilis">
     </a>
   </div>
   <div class="media-body">
@@ -53,12 +53,7 @@
       {!! $reply->body !!}
     </div>
     @if(Auth::check() && (Auth::user()->can('manage_replies') || Auth::user()->id == $reply->user_id))
-	  <div class="panel-footer text-right">
-	  	<div class="btn-group" role="group" aria-label="...">
-		  <a href="{{ route('reply.edit', $reply->id) }}"><button type="button" class="btn btn-xs btn-success">Redaguoti</button></a>
-		  <a href="{{ route('reply.delete', $reply->id) }}"><button type="button" class="btn btn-xs btn-danger">Ištrinti</button></a>
-		</div>
-	  </div>
+  	  @include('reply.controls')
     @endif
   </div>
 </div>
