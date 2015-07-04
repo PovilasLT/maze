@@ -1,16 +1,14 @@
 <div class="topic-controls">
 	@if(Auth::check() && (Auth::user()->can('manage_topics') || Auth::user()->id == $topic->user_id))
-	<a href="{{ route('topic.edit', $topic->id) }}"><button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
-	<a href="{{ route('topic.delete', $topic->id) }}"><button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button></a>
+	<a href="{{ route('topic.edit', $topic->id) }}"><button type="button" class="btn btn-grey"><i class="fa fa-pencil"></i></button></a>
+	<a href="{{ route('topic.delete', $topic->id) }}"><button type="button" class="btn btn-grey"><i class="fa fa-trash"></i></button></a>
 	@endif
 	@if(Auth::check() && Auth::user()->can('manage_topics'))
 	<div class="btn-group">
-	  <button type="button" class="btn btn-success"><i class="fa fa-cogs"></i></button>
-	  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-	    <span class="caret"></span>
-	    <span class="sr-only">Toggle Dropdown</span>
+	   <button type="button" class="btn btn-grey dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    <i class="fa fa-cog"></i> <span class="caret"></span>
 	  </button>
-	  <ul class="dropdown-menu" role="menu">
+	  <ul class="dropdown-menu">
 	    <li><a href="{{ route('topic.pinLocal', [$topic->id]) }}"><i class="fa fa-thumb-tack"></i> Prisegti skiltyje</a></li>
 	    <li><a href="{{ route('topic.pinGlobal', [$topic->id]) }}"><i class="fa fa-bullhorn"></i> Prisegti globaliai</a></li>
 	    <li><a href="{{ route('topic.unpin', [$topic->id]) }}"><i class="fa fa-undo"></i> Atsegti</a></li>	    

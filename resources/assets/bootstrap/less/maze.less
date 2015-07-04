@@ -19,6 +19,23 @@ p {
 	padding: 10px !important;
 }
 
+//reikia visur important nes overridina minified style.
+.md-editor {
+	textarea {
+		border: 1px solid @maze-border !important;
+		background: @maze-background !important;
+	}
+	&.active {
+		border: none !important;
+		box-shadow: none !important;
+		textarea {
+			border-color: #66afe9;
+			outline: 0;
+			box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(84, 255, 177, 0.6);
+		}
+	}
+}
+
 .emoji {
     width: 1.5em;
     height: 1.5em;
@@ -99,15 +116,13 @@ ul {
 .avatar-object {
 	height: 65px;
 	width: 65px;
-	padding: 2px;
-	border: 2px solid @maze-border;
 	border-radius: 90px;
 	box-sizing: initial;
 }
 
 .media .votes {
 	text-align: center;
-	padding: 8px 10px 8px 0;
+	padding: 8px 0;
 	width: 30px;
 }
 
@@ -149,6 +164,10 @@ ul {
 
 h4.media-heading a {
 	color: @maze-text;
+}
+
+h1.media-heading {
+	font-size: 18px;
 }
 
 .downvote:before {
@@ -266,8 +285,9 @@ h4.media-heading a {
 }
 
 .topic-controls {
-	border-bottom: 1px solid @maze-border-faded;
+	border-bottom: 1px dashed @maze-border;
 	padding-bottom: 20px;
+	text-align: right;
 }
 
 .topic-show {
@@ -287,4 +307,14 @@ h4.media-heading a {
 
 .notification-list {
 	margin-top: 40px;
+}
+
+.btn-grey {
+	background-color: @maze-background;
+	padding: 0 5px;
+	border: none;
+	.fa,
+	.caret {
+		color: @maze-grey;
+	}
 }
