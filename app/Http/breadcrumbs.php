@@ -34,7 +34,7 @@ Breadcrumbs::register('topic.edit', function($breadcrumbs, $topic)
 Breadcrumbs::register('topic.create', function($breadcrumbs)
 {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Pranešimo redagavimas', route('topic.show'));
+    $breadcrumbs->push('Temos Kūrimas', route('topic.create'));
 });
 
 //Pranesimas
@@ -42,7 +42,7 @@ Breadcrumbs::register('topic.create', function($breadcrumbs)
 Breadcrumbs::register('reply.edit', function($breadcrumbs)
 {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Pranešimo redagavimas', route('topic.create'));
+    $breadcrumbs->push('Pranešimo redagavimas', route('reply.edit'));
 });
 
 //Vartotojo routes

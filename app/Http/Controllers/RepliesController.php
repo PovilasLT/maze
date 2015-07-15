@@ -28,7 +28,7 @@ class RepliesController extends Controller {
 		$data['user_id'] 		= Auth::user()->id;
 		$data['body_original']	= $data['body']; 
 		$data['body']			= $mention->parse($data['body']);
-		$data['body'] 			= Markdown::convertToHtml($data['body']);
+		$data['body'] 			= Markdown::convertToHtml(e($data['body']));
 
 		$topic = Topic::findOrFail($data['topic_id']);
 		$reply = Reply::create($data);
@@ -57,7 +57,7 @@ class RepliesController extends Controller {
 		$data 					= $request->all();
 		$reply->body_original	= $data['body']; 
 		$data['body']			= $mention->parse($data['body']);
-		$reply->body 			= Markdown::convertToHtml($data['body']);
+		$reply->body 			= Markdown::convertToHtml(e($data['body']));
 
 		$reply->save();
 

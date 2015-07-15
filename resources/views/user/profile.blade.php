@@ -21,21 +21,7 @@
 	@endif
 	<div class="notification-list">
 		@foreach($items as $item)
-			<div class="notification-show media">
-				<a class="pull-left" href="#">
-					<img class="media-object avatar-object" src="{{ $item->fromUser->avatar }}" alt="Image">
-				</a>
-				<div class="media-body">
-				<h4 class="media-heading">
-				<a href="{{ route('user.show', $item->fromUser->slug) }}" class="author">{{ $item->fromUser->username }}</a>
-				@if($item->topic)<small>{!! $item->topic->nodePath() !!}</small>
-				@endif
-				</h4>
-				@if($item->object_type != 'status_update')
-					<p class="normal-body">{!! $item->notification !!}</p>
-				@endif
-				</div>
-			</div>
+			@include('notification.item')
 		@endforeach
 	</div>
 	<div class="maze-pagination text-right">

@@ -28,18 +28,6 @@
 			<option value="2">Klausimas</option>
 		</select>
 	</div>
-	<div class="form-group">
-		<label for="answers">Atsakymų Variantai</label>
-	</div>
-	<div class="form-group">
-		<input type="text" name="answers[]" id="answers" class="form-control" placeholder="Atsakymo variantas" title="Atsakymo variantas">
-	</div>
-	<div class="form-group">
-		<input type="text" name="answers[]" id="answers" class="form-control" placeholder="Atsakymo variantas" title="Atsakymo variantas">
-	</div>
-	<div class="form-group">
-		<input type="text" name="answers[]" id="answers" class="form-control" placeholder="Atsakymo variantas" title="Atsakymo variantas">
-	</div>
 	<label for="title">Temos pavadinimas</label>
 	<div class="form-group">
 		<input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}" required="required">

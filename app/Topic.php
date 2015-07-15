@@ -58,6 +58,12 @@ class Topic extends Model {
 		return $query->orderBy('order', 'DESC');
 	}
 
+	public function notifications() {
+		return Notification::where('object_type', 'topic')
+							->where('object_id', $this->id)
+							;
+	}
+
 	//Pagrindinio puslapio topicai
 
 	public static function frontPage($sort) {

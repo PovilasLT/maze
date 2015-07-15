@@ -105,7 +105,7 @@ class Notification extends Model {
 
 	function getTopicAttribute() {
 		$object_type = $this->object_type;
-		if($object_type == 'topic' || $object_type == 'reply' || $object_type == 'mention')
+		if(($object_type == 'topic' || $object_type == 'reply' || $object_type == 'mention') && $this->object)
 		{
 			if($object_type == 'topic')
 			{

@@ -50,6 +50,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->hasMany('maze\Notification')->where('object_type', 'status');
 	}
 
+	public function followers() {
+		return $this->hasMany('maze\Follower');
+	}
+
 	//Patikrina ar User jau balsavo uz tam tikra turini.
 	//Jei balsavo - grazina Vote objekta
 	//Jei nebalsavo - grazina false

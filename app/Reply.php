@@ -25,6 +25,13 @@ class Reply extends Model {
 		
 	}
 
+	public function notifications() {
+		return Notification::where('object_type', 'reply')
+							->orWhere('object_type', 'mention')
+							->where('object_id', $this->id)
+							;
+	}
+
 	public function voted($type) {
 		if(Auth::check())
 		{

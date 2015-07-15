@@ -5,19 +5,19 @@ Route::post('/busena/kurti', [
 	'uses'	=> 'StatusesController@create'
 ]);
 
-Route::post('/busena/{id}/istrinti', [
+Route::get('/busena/{id}/istrinti', [
 	'as'	=> 'status.delete',
 	'uses'	=> 'StatusesController@delete'
 ]);
 
 Route::get('/busena/{id}/redaguot', [
-	'as'	=> 'status.delete',
-	'uses'	=> 'StatusesController@delete'
+	'as'	=> 'status.edit',
+	'uses'	=> 'StatusesController@edit'
 ]);
 
 Route::post('/busena/{id}/issaugoti', [
-	'as'	=> 'status.delete',
-	'uses'	=> 'StatusesController@delete'
+	'as'	=> 'status.save',
+	'uses'	=> 'StatusesController@save'
 ]);
 
 Route::get('/busena/{id}', [

@@ -6495,6 +6495,10 @@ ul {
   border-radius: 90px;
   box-sizing: initial;
 }
+.avatar-object {
+  height: 40px;
+  width: 40px;
+}
 .markdown-avatar,
 .reply-avatar {
   border-radius: 90px;
@@ -6511,6 +6515,9 @@ ul {
 }
 .markdown-form .media-body {
   border-bottom: none;
+}
+.status-update-form {
+  padding: 0;
 }
 .media .votes {
   text-align: center;
@@ -6678,6 +6685,9 @@ h1.media-heading {
 }
 .green-text {
   color: #0f7255;
+}
+.notification-filler {
+  height: 21px;
 }
 @media (max-width: 1200px) {
   .main-sidebar {
