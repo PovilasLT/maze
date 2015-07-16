@@ -10,4 +10,8 @@ class StatusComment extends Model {
 		return $this->belongsTo('maze\Status');
 	}
 
+	public function user() {
+		return $this->belongsTo('maze\User');
+	}
+
 }

@@ -3,7 +3,11 @@
 use Illuminate\Database\Eloquent\Model;
 use Auth;
 
+use \maze\Traits\Notifiable;
+
 class Reply extends Model {
+
+	use \maze\Traits\Notifiable;
 
 	protected $fillable = [
 		'user_id',

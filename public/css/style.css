@@ -1091,7 +1091,7 @@ a:focus {
 }
 a:focus {
   outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
+  outline: none;
   outline-offset: -2px;
 }
 figure {
@@ -2506,7 +2506,7 @@ input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
   outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
+  outline: none;
   outline-offset: -2px;
 }
 output {
@@ -2532,9 +2532,9 @@ output {
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 .form-control:focus {
-  border-color: #66afe9;
+  border-color: #0f7255;
   outline: 0;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(15, 114, 85, 0.6);
 }
 .form-control::-moz-placeholder {
   color: #999999;
@@ -2976,7 +2976,7 @@ select[multiple].form-group-lg .form-control {
 .btn:active.focus,
 .btn.active.focus {
   outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
+  outline: none;
   outline-offset: -2px;
 }
 .btn:hover,
@@ -6676,6 +6676,7 @@ h1.media-heading {
 }
 .btn-grey {
   background-color: #ffffff;
+  color: #bdc3c7;
   padding: 0 5px;
   border: none;
 }
@@ -6683,10 +6684,30 @@ h1.media-heading {
 .btn-grey .caret {
   color: #bdc3c7;
 }
+.btn-grey.active {
+  box-shadow: none;
+  border-top: 1px solid #0f7255;
+}
+.btn-grey:hover .fa,
+.btn-grey:hover .caret {
+  color: #202227;
+}
 .green-text {
   color: #0f7255;
 }
 .notification-filler {
+  height: 21px;
+}
+.status-comments {
+  display: none;
+  padding-left: 20px;
+}
+.status-comment:first-child {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px dashed #dee0df;
+}
+.status-comment .panel-footer {
   height: 21px;
 }
 @media (max-width: 1200px) {

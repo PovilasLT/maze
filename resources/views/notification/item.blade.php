@@ -13,6 +13,16 @@
 	</div>
 	@if($item->object_type == 'status')
 		@include('status.controls', ['status' => $item->object])
+		<div class="status-comments" id="comments-{{ $item->object->id }}">
+			@foreach($item->object->latestComments() as $comment)
+				@include('status.comment')
+			@endforeach
+			@if($item->object->comments->count())
+				<div class="text-center">
+					<a href="{{ route('status.show', $item->id) }}"><button class="btn btn-grey"><i class="fa fa-comments"></i> Visi Komentarai</button></a>
+				</div>
+			@endif
+		</div>
 	@else
 		<div class="notification-filler">
 		</div>

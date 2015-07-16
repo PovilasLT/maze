@@ -25,13 +25,18 @@ Route::get('/busena/{id}', [
 	'uses'	=> 'StatusesController@show'
 ]);
 
+Route::get('/busena/{id}/komentuoti/', [
+	'as'	=> 'status.comment.create',
+	'uses'	=> 'StatusesController@commentCreate'
+]);
+
 Route::get('/busena/komentaras/{id}/istrinti', [
 	'as'	=> 'status.comment.delete',
 	'uses'	=> 'StatusesController@commentDelete'
 ]);
 
 Route::get('/busena/komentaras/{id}/redaguoti', [
-	'as'	=> 'status.comment.delete',
+	'as'	=> 'status.comment.edit',
 	'uses'	=> 'StatusesController@commentEdit'
 ]);
 

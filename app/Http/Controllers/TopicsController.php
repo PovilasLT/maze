@@ -60,7 +60,7 @@ class TopicsController extends Controller {
 		//Susitvarkom su Markdown
 		$data['body_original']	= $data['body']; 
 		$data['body']			= $mention->parse($data['body']);
-		$data['body'] 			= Markdown::convertToHtml($data['body']);
+		$data['body'] 			= Markdown::convertToHtml(e($data['body']));
 		$data['user_id'] 		= Auth::user()->id;
 
 		$topic = Topic::create($data);
@@ -140,7 +140,7 @@ class TopicsController extends Controller {
 		$topic->title 			= $data['title'];
 		$topic->body_original	= $data['body'];
 		$data['body']			= $mention->parse($data['body']);
-		$topic->body			= Markdown::convertToHtml($data['body']);
+		$topic->body			= Markdown::convertToHtml(e($data['body']));
 		$topic->type 			= $data['type'];
 
 		$topic->save();

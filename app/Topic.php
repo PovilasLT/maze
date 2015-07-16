@@ -4,8 +4,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Auth;
 use Config;
+use \maze\Traits\Notifiable;
 
 class Topic extends Model {
+
+	use \maze\Traits\Notifiable;
 
 	protected $fillable = [
 		'node_id',

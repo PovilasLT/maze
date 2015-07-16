@@ -349,11 +349,22 @@ h1.media-heading {
 
 .btn-grey {
 	background-color: @maze-background;
+	color: @maze-grey;
 	padding: 0 5px;
 	border: none;
 	.fa,
 	.caret {
 		color: @maze-grey;
+	}
+	&.active {
+		box-shadow: none;
+		border-top: 1px solid @maze-primary;
+	}
+	&:hover{
+		.fa,
+		.caret {
+			color: @maze-text;
+		}
 	}
 }
 
@@ -363,6 +374,22 @@ h1.media-heading {
 
 .notification-filler {
 	height: 21px;
+}
+
+.status-comments {
+	display: none;
+	padding-left: 20px;
+}
+
+.status-comment {
+	&:first-child {
+		margin-top: 20px;
+		padding-top: 20px;
+		border-top: 1px dashed @maze-border;
+	}
+	.panel-footer {
+		height: 21px;
+	}
 }
 
 //Responsiveness

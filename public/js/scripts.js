@@ -14892,5 +14892,26 @@ $(function() {
 			.addClass('fa-plus');
 		}
 	});
+
+
+	$('.show-status-comments').click(function() {
+
+		var current = $(this);
+		var status_id = current.attr('status-id');
+
+		console.log(status_id);
+
+		if(current.hasClass('active'))
+		{
+			$('#comments-'+status_id).slideUp();
+			current.removeClass('active');
+		}
+		else
+		{
+			$('#comments-'+status_id).slideDown();
+			current.addClass('active');
+		}
+
+	});
 });
 //# sourceMappingURL=scripts.js.map
