@@ -1,6 +1,8 @@
 <?php namespace maze\Http\Requests;
 
 use maze\Http\Requests\Request;
+use maze\Status;
+use Auth;
 
 class EditStatus extends Request {
 
@@ -11,7 +13,15 @@ class EditStatus extends Request {
 	 */
 	public function authorize()
 	{
-		return false;
+		$status = Status::findOrFail($this->route('id'));
+		if((Auth::user()->id == $status->user_id) || Auth::user()->can('manage_statuses'))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	/**

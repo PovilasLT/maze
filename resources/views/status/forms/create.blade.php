@@ -1,5 +1,5 @@
 <div class="media markdown-form status-update-form">
-	<a class="pull-left" href="#">
+	<a class="pull-left" href="{{ route('user.show', Auth::user()->slug) }}">
 		<img class="media-object markdown-avatar" src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->username }} avataras">
 	</a>
 	<div class="media-body">

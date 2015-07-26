@@ -6702,6 +6702,13 @@ h1.media-heading {
   display: none;
   padding-left: 20px;
 }
+.status-comments.display {
+  display: block;
+  padding-left: 0;
+}
+.status-comments.display .media-body {
+  border: 0;
+}
 .status-comment:first-child {
   margin-top: 20px;
   padding-top: 20px;

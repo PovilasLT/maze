@@ -55,8 +55,23 @@ Breadcrumbs::register('user.profile', function($breadcrumbs)
     $breadcrumbs->push('Profilis');
 });
 
-Breadcrumbs::register('user.show', function($breadcrumbs, $topic)
+Breadcrumbs::register('user.show', function($breadcrumbs, $user)
 {
-    $breadcrumbs->parent('node', $topic->node);
-    $breadcrumbs->push($topic->title, route('topic.show', $topic->id));
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push(e($user->username), route('user.show', $user->slug));
 });
+
+//Busenu atnaujinimai
+
+Breadcrumbs::register('status.show', function($breadcrumbs, $status)
+{
+    $breadcrumbs->parent('user.show', $status->user);
+    $breadcrumbs->push('Būsenos Atnaujinimas', route('status.show', $status->id));
+});
+
+Breadcrumbs::register('status.edit', function($breadcrumbs, $status)
+{
+    $breadcrumbs->parent('status.show', $status);
+    $breadcrumbs->push('Redaguoti būsenos atnaujinimą', route('status.edit', $status->id));
+});
+

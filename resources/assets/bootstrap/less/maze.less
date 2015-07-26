@@ -379,6 +379,13 @@ h1.media-heading {
 .status-comments {
 	display: none;
 	padding-left: 20px;
+	&.display {
+		display: block;
+		padding-left: 0;
+		.media-body {
+			border: 0;
+		}
+	}
 }
 
 .status-comment {

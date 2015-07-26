@@ -9,7 +9,11 @@
 	@endif
 	<small class="date-when">{{ $item->created_at }}</small>
 	</h4>
+		@if($item->object_type != 'status')
 		<p class="normal-body">{!! $item->notification !!}</p>
+		@else
+		{!! $item->object->body !!}
+		@endif
 	</div>
 	@if($item->object_type == 'status')
 		@include('status.controls', ['status' => $item->object])
@@ -19,7 +23,7 @@
 			@endforeach
 			@if($item->object->comments->count())
 				<div class="text-center">
-					<a href="{{ route('status.show', $item->id) }}"><button class="btn btn-grey"><i class="fa fa-comments"></i> Visi Komentarai</button></a>
+					<a href="{{ route('status.show', $item->object->id) }}"><button class="btn btn-grey"><i class="fa fa-comments"></i> Visi Komentarai</button></a>
 				</div>
 			@endif
 		</div>

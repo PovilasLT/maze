@@ -1,11 +1,8 @@
 <?php namespace maze\Http\Requests;
 
 use maze\Http\Requests\Request;
-use maze\Status;
 
-use Auth;
-
-class UpdateStatus extends Request {
+class CreateStatusComment extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -14,15 +11,7 @@ class UpdateStatus extends Request {
 	 */
 	public function authorize()
 	{
-		$status = Status::findOrFail($this->input('id'));
-		if((Auth::user()->id == $status->user_id) || Auth::user()->can('manage_statuses'))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return false;
 	}
 
 	/**
@@ -33,7 +22,7 @@ class UpdateStatus extends Request {
 	public function rules()
 	{
 		return [
-			'body'	=> 'required|min:10'
+			//
 		];
 	}
 

@@ -36,7 +36,7 @@ class NodesController extends Controller {
 		}
 		else
 		{
-			$nodes = Node::where('parent_node', $node->id)->lists('id');
+			$nodes = Node::where('parent_node', $node->id)->lists('id')->all();
 			$topics = Topic::whereIn('node_id', $nodes);
 		}
 

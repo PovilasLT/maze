@@ -10,7 +10,7 @@ Route::get('/busena/{id}/istrinti', [
 	'uses'	=> 'StatusesController@delete'
 ]);
 
-Route::get('/busena/{id}/redaguot', [
+Route::get('/busena/{id}/redaguoti', [
 	'as'	=> 'status.edit',
 	'uses'	=> 'StatusesController@edit'
 ]);
