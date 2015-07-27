@@ -12,6 +12,7 @@ use maze\Http\Requests\DeleteStatusComment;
 use maze\Http\Requests\EditStatusComment;
 
 use maze\Status;
+use maze\StatusComment;
 
 use Auth;
 use Markdown;
@@ -68,20 +69,51 @@ class StatusesController extends Controller {
 		return redirect()->route('user.show', $user->slug);
 	}
 
-	public function commentEdit(EditStatusComment $request) {
+	public function commentEdit(EditStatusComment $request, $id) {
+		$comment = StatusComment::findOrFail($id);
+		$user = Auth::user();
 
+		return view('status.comment.edit', compact('comment', 'user'));
 	}
 
 	public function commentCreate(CreateStatusComment $request) {
 
+		$data = $request->all();
+
+		$data['user_id'] 		= Auth::user()->id;
+		$data['body_original']	= $data['body'];
+		$data['body']			= Markdown::convertToHtml($data['body']);
+
+		StatusComment::create($data);
+
+		flash()->success('Komentaras sėkmingai sukurtas!');
+
+		return redirect()->route('status.show', $data['status_id']);
 	}
 
-	public function commentDelete(DeleteStatusComments $request) {
+	public function commentDelete(DeleteStatusComment $request, $id) {
 
+		$comment = StatusComment::findOrFail($id);
+		$comment->delete($id);
+
+		flash()->success('Komentaras sėkmingai ištrintas!');
+
+		return redirect()->route('status.show', $comment->status->id);
 	}
 
 	public function commentSave(UpdateStatusComment $request) {
 
+		$data = $request->all();
+		$comment = StatusComment::findOrFail($data['id']);
+
+		$comment->body_original = $data['body'];
+		$comment->body 			= Markdown::convertToHtml($data['body']);
+
+		$comment->save();
+
+		flash()->success('Komentaras sėkmingai atnaujintas!');
+
+		return redirect()->route('status.show', $comment->status->id);
 	}
 
 }

@@ -3,7 +3,7 @@
 		<img class="media-object markdown-avatar" src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->username }} avataras">
 	</a>
 	<div class="media-body">
-		<form action="{{ route('status.create') }}" method="POST" role="form">
+		<form action="{{ route('status.comment.create') }}" method="POST" role="form">
 		@include('includes.csrf')
 			<input type="hidden" name="status_id" value="{{ $status->id }}">
 			<div class="form-group">

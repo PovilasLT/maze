@@ -75,3 +75,9 @@ Breadcrumbs::register('status.edit', function($breadcrumbs, $status)
     $breadcrumbs->push('Redaguoti būsenos atnaujinimą', route('status.edit', $status->id));
 });
 
+Breadcrumbs::register('status.comment.edit', function($breadcrumbs, $comment)
+{
+    $breadcrumbs->parent('status.show', $comment->status);
+    $breadcrumbs->push('Redaguoti komentarą', route('status.comment.edit', $comment->id));
+});
+

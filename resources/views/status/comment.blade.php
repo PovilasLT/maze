@@ -1,5 +1,5 @@
 <div class="status-comment media">
-	<a class="pull-left" href="#">
+	<a class="pull-left" href="{{ route('user.show', $comment->user->slug) }}">
 		<img class="media-object avatar-object" src="{{ $comment->user->avatar }}" alt="{{ $comment->user->username }} Avataras">
 	</a>
 	<div class="media-body">

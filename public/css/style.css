@@ -6717,6 +6717,9 @@ h1.media-heading {
 .status-comment .panel-footer {
   height: 21px;
 }
+.status-comment .media-body p {
+  font-size: 14px;
+}
 @media (max-width: 1200px) {
   .main-sidebar {
     display: none;

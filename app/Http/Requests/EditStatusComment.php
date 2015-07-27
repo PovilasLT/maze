@@ -1,6 +1,8 @@
 <?php namespace maze\Http\Requests;
 
 use maze\Http\Requests\Request;
+use maze\StatusComment;
+use Auth;
 
 class EditStatusComment extends Request {
 
@@ -11,7 +13,21 @@ class EditStatusComment extends Request {
 	 */
 	public function authorize()
 	{
-		return false;
+		$comment_id = $this->route('id');
+		$comment 	= StatusComment::findOrFail($comment_id);
+
+		$user = Auth::user();
+
+		$is_owner = $comment->user_id == Auth::user()->id;
+
+		if($is_owner || $user->can('manage_comments'))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	/**

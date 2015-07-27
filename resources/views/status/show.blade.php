@@ -20,7 +20,7 @@
 	</div>
 	@include('status.controls')
 	<div class="status-comments display">
-		@include('status.forms.comments.create')
+		@include('status.forms.comment.create')
 		@foreach($status->comments as $comment)
 			@include('status.comment')
 		@endforeach
