@@ -9,7 +9,7 @@ $( document ).ready(function() {
         only_crawl_id: null,
         img_dir: '/images/emoji/',
         ignore_emoticons: false,
-        mode: 'data-uri'
+        mode: 'img'
     });
     emojify.run(document.getElementById('content'));
 });

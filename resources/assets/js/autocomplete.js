@@ -36,7 +36,7 @@ $( document ).ready(function() {
             }));
         },
         template: function (value) {
-            return '<span class="emoji emoji-' + value + '" title=":' + value + ':"></span>' + value;
+            return '<img align="absmiddle" alt=":' + value + ':" class="emoji" src="/images/emoji/' + value + '.png" title=":' + value + ':"></img>'+value;
         },
         replace: function (value) {
             return ':' + value + ': ';

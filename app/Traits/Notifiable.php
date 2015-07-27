@@ -8,6 +8,7 @@ use maze\Follower;
 use maze\Notification;
 use Event;
 use Auth;
+use Mail;
 
 trait Notifiable {
 	protected static function boot() {
@@ -15,6 +16,29 @@ trait Notifiable {
 		parent::boot();
 
 		//Topic
+
+		Topic::created(function($topic)
+		{
+			if($topic->node_id == 15)
+			{
+				$users = User::where('email_news', 1)->get();
+
+				$data = [
+					'title' => $topic->title,
+					'body'  => $topic->body
+				];
+
+				foreach($users as $user)
+				{
+					Mail::queue('emails.news', $data, function($message) use($user, $topic)
+					{
+						$message->to($user->email)->subject('Maze Naujienos: '.utf8_urldecode($topic->title));
+					});
+				}
+			}
+		});
+
+
 
 		Topic::created(function ($topic) {
 			$user = Auth::user();

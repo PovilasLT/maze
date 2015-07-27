@@ -26,7 +26,7 @@ class VerifyCsrfToken extends BaseVerifier {
 	protected function excludedRoutes($request)  
 	{
 	    $routes = [
-	            'markdown/*',
+	            'markdown',
 	            'balsuoti/*'
 	    ];
 
