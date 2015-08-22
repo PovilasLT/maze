@@ -42,7 +42,7 @@ class AuthController extends Controller {
 		else
 		{
 			flash()->error('Blogas vartotojo vardas arba slaptažodis!');
-			return redirect('/');
+			return view('auth.login');
 		}
 	}
 
