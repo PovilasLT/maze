@@ -17,6 +17,8 @@ use maze\StatusComment;
 use Auth;
 use Markdown;
 
+use maze\Modules\Mentions\Mention;
+
 class StatusesController extends Controller {
 
 	public function show($id)
@@ -29,9 +31,11 @@ class StatusesController extends Controller {
 	public function create(CreateStatus $request) 
 	{
 
+		$mention = new Mention();
+
 		Status::create([
 			'user_id' 			=> Auth::user()->id,
-			'body'    			=> Markdown::convertToHtml($request->input('body')),
+			'body'    			=> Markdown::convertToHtml($mention->parse($request->input('body'))),
 			'body_original'		=> $request->input('body'),
 		]);
 
@@ -48,10 +52,13 @@ class StatusesController extends Controller {
 
 	public function save(UpdateStatus $request)
 	{
+
+		$mention = new Mention();
+
 		$status = Status::findOrFail($request->input('id'));
 		$status->body_original  = $request->input('body');
 		$status->edited_by 		= Auth::user()->id;
-		$status->body 			= Markdown::convertToHtml($request->input('body'));
+		$status->body 			= Markdown::convertToHtml($mention->parse($request->input('body')));
 		$status->save();
 
 		flash()->success('Būsenos atnaujinimas sėkmingai išsaugotas');
@@ -79,10 +86,11 @@ class StatusesController extends Controller {
 	public function commentCreate(CreateStatusComment $request) {
 
 		$data = $request->all();
+		$mention = new Mention();
 
 		$data['user_id'] 		= Auth::user()->id;
 		$data['body_original']	= $data['body'];
-		$data['body']			= Markdown::convertToHtml($data['body']);
+		$data['body']			= Markdown::convertToHtml($mention->parse($data['body']));
 
 		StatusComment::create($data);
 
@@ -104,10 +112,12 @@ class StatusesController extends Controller {
 	public function commentSave(UpdateStatusComment $request) {
 
 		$data = $request->all();
+		$mention = new Mention();
+
 		$comment = StatusComment::findOrFail($data['id']);
 
 		$comment->body_original = $data['body'];
-		$comment->body 			= Markdown::convertToHtml($data['body']);
+		$comment->body 			= Markdown::convertToHtml($mention->parse($data['body']));
 
 		$comment->save();
 
