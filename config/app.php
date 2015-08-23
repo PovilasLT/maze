@@ -81,7 +81,7 @@ return [
 	|
 	*/
 
-	'timezone' => 'UTC',
+	'timezone' => 'Europe/Vilnius',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -94,7 +94,7 @@ return [
 	|
 	*/
 
-	'locale' => 'en',
+	'locale' => 'lt',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -178,6 +178,7 @@ return [
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Broadcasting\BroadcastServiceProvider',
+		'Illuminate\Html\HtmlServiceProvider',
 
 		/*
 		 * Application Service Providers...
@@ -199,6 +200,7 @@ return [
 		'GrahamCampbell\Markdown\MarkdownServiceProvider',
 		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 		'DaveJamesMiller\Breadcrumbs\ServiceProvider',
+		'DJB\Confer\ConferServiceProvider',
 
 	],
 
@@ -254,8 +256,9 @@ return [
 		'Image' 		=> 'Intervention\Image\Facades\Image',
 		'Breadcrumbs' 	=> 'DaveJamesMiller\Breadcrumbs\Facade',
 		'Markdown' 		=> 'GrahamCampbell\Markdown\Facades\Markdown',
-		'Breadcrumbs' => 'DaveJamesMiller\Breadcrumbs\Facade',
-
+		'Breadcrumbs'   => 'DaveJamesMiller\Breadcrumbs\Facade',
+		'Form'          => 'Illuminate\Html\FormFacade', 
+		'HTML'          => 'Illuminate\Html\HtmlFacade'
 	],
 
 ];
