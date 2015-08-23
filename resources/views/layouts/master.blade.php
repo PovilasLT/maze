@@ -33,7 +33,6 @@
 							<ul class="nav navbar-nav">
 								<li class="active"><a href="#"><i class="fa fa-film fa-primary"></i> TV</a></li>
 								<li><a href="#"><i class="fa fa-comments-o fa-primary"></i> Forumas</a></li>
-								<li><a href="#"><i class="fa fa-pencil-square-o fa-primary"></i> Blogai</a></li>
 							</ul>
 						</div>
 					</div>
@@ -114,9 +113,7 @@
 				</div>
 			</div>
 		</footer>
-
 		<script src="/js/scripts.js"></script>
-
 		@yield('scripts')
 	</body>
 </html>
