@@ -30,6 +30,10 @@ class Notification extends Model {
 		return $query->latest()->whereNotIn('object_type', ['follow', 'status_comment']);
 	}
 
+	public function scopeUser($query) {
+		return $query->latest()->whereNotIn('object_type', ['follow', 'status_comment']);
+	}
+
 	public function scopeLatest($query) {
 		return $query->orderBy('created_at', 'DESC');
 	}
