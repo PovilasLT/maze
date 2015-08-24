@@ -36,7 +36,7 @@ require_once('Routes/tv.routes.php');
 require_once('Routes/blog.routes.php');
 
 //Confer
-//require_once('Routes/confer.routes.php');
+require_once('Routes/confer.routes.php');
 
 //Senų route 301 redirectai.
 require_once('Routes/legacy.routes.php');
