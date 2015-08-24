@@ -15,7 +15,6 @@
 		"barryvdh/laravel-ide-helper": "~2.0",
         "doctrine/dbal": "~2.3",
 		"pusher/pusher-php-server": "dev-master",
-		"djb/confer": "dev-master",
 		"illuminate/html": "5.*"
 	},
 	"require-dev": {
@@ -27,7 +26,8 @@
 			"database"
 		],
 		"files": [
-        	"app/Helpers/maze_helpers.php"
+        	"app/Helpers/maze_helpers.php",
+        	"app/Helpers/confer_helpers.php",
     	],
 		"psr-4": {
 			"maze\\": "app/"

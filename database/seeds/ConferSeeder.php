@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-use DJB\Confer\Conversation;
+use maze\Modules\Confer\Conversation;
 use maze\User;
 
 class ConferSeeder extends Seeder {

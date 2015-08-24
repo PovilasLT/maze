@@ -188,6 +188,7 @@ return [
 		'maze\Providers\ConfigServiceProvider',
 		'maze\Providers\EventServiceProvider',
 		'maze\Providers\RouteServiceProvider',
+		'maze\Providers\ConferServiceProvider',
 
 		/*
 		 * Papildomi paketai
@@ -200,7 +201,6 @@ return [
 		'GrahamCampbell\Markdown\MarkdownServiceProvider',
 		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 		'DaveJamesMiller\Breadcrumbs\ServiceProvider',
-		'DJB\Confer\ConferServiceProvider',
 
 	],
 

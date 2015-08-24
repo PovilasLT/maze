@@ -7,7 +7,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use maze\Vote;
-use DJB\Confer\Traits\CanConfer;
+use \maze\Traits\CanConfer;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4c34af6d0f070de6078370546c98c4bf",
+    "hash": "57eb153e03e732818a828c20bbf94670",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -227,51 +227,6 @@
                 "laravel"
             ],
             "time": "2015-02-08 21:44:39"
-        },
-        {
-            "name": "djb/confer",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dazzz1er/confer.git",
-                "reference": "4661b77308455573d1c7c1c8325452f4d7eb741a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dazzz1er/confer/zipball/4661b77308455573d1c7c1c8325452f4d7eb741a",
-                "reference": "4661b77308455573d1c7c1c8325452f4d7eb741a",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/html": "~5.0",
-                "illuminate/support": "~5.0",
-                "php": ">=5.4.0",
-                "pusher/pusher-php-server": "dev-master"
-            },
-            "suggest": {
-                "emojione/emojione": "Will allow emoji support within confer"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "DJB\\Confer\\": "src/"
-                },
-                "files": [
-                    "src/Helpers/helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dan James Britchford",
-                    "email": "danbritchford@gmail.com"
-                }
-            ],
-            "description": "Easy chat system for laravel-based sites",
-            "time": "2015-05-29 09:42:17"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -3431,16 +3386,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.5",
+            "version": "4.8.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "9b7417edaf28059ea63d86be941e6004dbfcc0cc"
+                "reference": "2246830f4a1a551c67933e4171bf2126dc29d357"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9b7417edaf28059ea63d86be941e6004dbfcc0cc",
-                "reference": "9b7417edaf28059ea63d86be941e6004dbfcc0cc",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2246830f4a1a551c67933e4171bf2126dc29d357",
+                "reference": "2246830f4a1a551c67933e4171bf2126dc29d357",
                 "shasum": ""
             },
             "require": {
@@ -3499,7 +3454,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-08-19 09:20:57"
+            "time": "2015-08-24 04:09:38"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3982,8 +3937,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "zizaco/entrust": 20,
-        "pusher/pusher-php-server": 20,
-        "djb/confer": 20
+        "pusher/pusher-php-server": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
