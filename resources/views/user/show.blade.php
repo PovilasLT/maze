@@ -25,5 +25,5 @@
 	</div>
 @stop
 @section('sidebar')
-	@include('includes.user_sidebar')
+@include('includes.user_show_sidebar')
 @stop

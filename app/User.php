@@ -34,6 +34,22 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
+	protected $dates = ['created_at', 'updated_at', 'last_login', 'last_action', 'notifications_read', 'dob'];
+
+	public $information = [
+		'city',
+		'sex',
+		'twitter',
+		'facebook',
+		'skype',
+		'steam',
+		'origin',
+		'twitch',
+		'hitbox',
+		'youtube',
+		'deviantart',
+		'website',
+	];
 
 	public function topics() {
 		return $this->hasMany('maze\Topic');
@@ -113,6 +129,74 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		}
 
 		return $url;
+	}
+
+	public function getAgeAttribute() {
+		return 22;
+	}
+
+	public function getSexAttribute() {
+		return 'Vyras';
+	}
+
+	public function getTwitterAttribute($value)
+	{
+		return '@'.$value;
+	}
+
+	public function getSteamAttribute()
+	{
+		return 'Nuoroda';
+	}
+
+	public function getYoutubeAttribute()
+	{
+		return 'Nuoroda';
+	}
+
+	public function getAboutMeAttribute($value)
+	{
+		return str_limit($value, 255, '[...]');
+	}
+
+	public function readableField($field)
+	{
+		switch ($field) {
+			case 'sex':
+				return 'Lytis';
+			case 'city':
+				return 'Miestas';
+			case 'dob':
+				return 'Amžius';
+			default:
+				return ucfirst($field);
+				break;
+		}
+	}
+
+	public function fieldLink($field)
+	{
+		switch ($field) {
+			case 'twitter':
+				return 'http://twitter.com/'.$this->getOriginal($field);
+			case 'steam':
+				return $this->getOriginal($field);
+			case 'youtube':
+				return $this->getOriginal($field);
+			case 'facebook':
+				return 'http://facebook.com/'.$this->getOriginal($field);
+			case 'twitch':
+				return 'http://twitch.tv/'.$this->getOriginal($field);
+			case 'hitbox':
+				return 'http://hitbox.tv/'.$this->getOriginal($field);
+			case 'deviantart':
+				return 'http://'.$this->getOriginal($field).'.deviantart.com/';
+			case 'website':
+				return $this->getOriginal($field);
+			default:
+				return false;
+				break;
+		}
 	}
 	
 }

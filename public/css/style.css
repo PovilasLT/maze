@@ -6737,6 +6737,12 @@ h1.media-heading {
 .user-button .fa {
   margin-right: 5px;
 }
+.banhammer {
+  color: #d9534f;
+}
+.about-me {
+  margin-bottom: 40px;
+}
 .avatar {
   border-radius: 90px;
 }
