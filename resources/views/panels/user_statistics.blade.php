@@ -5,19 +5,19 @@
 	  <div class="panel-body">
 			<ul>
 				<li>
-					Karma: {{ $user->karma_count }}
+					Karma: <strong>{{ $user->karma_count }}</strong>
 				</li>
 				<li>
-					Pranešimai: {{ $user->reply_count }}
+					Pranešimai: <strong>{{ $user->reply_count }}</strong>
 				</li>
 				<li>
-					Temos: {{ $user->topic_count }}
+					Temos: <strong>{{ $user->topic_count }}</strong>
 				</li>
 				<li>
-					Prenumeratoriai: {{ $user->topic_count }}
+					Prenumeratoriai: <strong>{{ $user->topic_count }}</strong>
 				</li>
 				<li>
-					Temos: {{ $user->topic_count }}
+					Temos: <strong>{{ $user->topic_count }}</strong>
 				</li>
 			</ul>
 	  </div>

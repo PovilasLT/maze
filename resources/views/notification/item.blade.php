@@ -16,7 +16,9 @@
 		@endif
 	</div>
 	@if($item->object_type == 'status')
-		@include('status.controls', ['status' => $item->object])
+		@if(Auth::check())
+			@include('status.controls', ['status' => $item->object])
+		@endif
 		<div class="status-comments" id="comments-{{ $item->object->id }}">
 			@foreach($item->object->latestComments() as $comment)
 				@include('status.comment')

@@ -159,6 +159,38 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return str_limit($value, 255, '[...]');
 	}
 
+	public function getRoleAttribute()
+	{
+		return $this->roles->first()->name;
+	}
+
+	public function getIsStaffAttribute()
+	{
+		$role = $this->roles->first();
+
+		if(($role->id ==  1) || ($role->id ==  2) || ($role->id ==  3))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public function getHasAboutAttribute()
+	{
+		foreach($this->information as $field)
+		{
+			if($this->getOriginal($field))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
 	public function readableField($field)
 	{
 		switch ($field) {

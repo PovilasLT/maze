@@ -18,7 +18,9 @@
 			{!! $status->body !!}
 		</div>
 	</div>
-	@include('status.controls')
+	@if(Auth::check())
+		@include('status.controls')
+	@endif
 	<div class="status-comments display">
 		@include('status.forms.comment.create')
 		@foreach($status->comments as $comment)

@@ -9,9 +9,14 @@
 			{{ $user->about_me }}
 		</p>
 	@endif
-	<a href="#" class="btn btn-primary full-width user-button"><i class="fa fa-rss"></i> Prenumeruoti</a>
-	<a href="#" class="btn btn-primary full-width user-button"><i class="fa fa-envelope"></i> Asmeninė Žinutė</a>
+	@if(!$user->is_banned && Auth::check())
+		<a href="#" class="btn btn-primary full-width user-button"><i class="fa fa-rss"></i> Prenumeruoti</a>
+		<a href="#" class="btn btn-primary full-width user-button"><i class="fa fa-envelope"></i> Asmeninė Žinutė</a>
+	@endif
 </div>
+@if(Auth::check() && Auth::user()->is_staff)
+	@include('panels.user_admin')
+@endif
 @include('panels.about')
 @include('panels.followers')
 @include('panels.user_statistics')
