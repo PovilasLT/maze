@@ -14,6 +14,7 @@
 		"graham-campbell/markdown": "~3.1",
 		"barryvdh/laravel-ide-helper": "~2.0",
         "doctrine/dbal": "~2.3",
+        "predis/predis": "~1.0",
 		"pusher/pusher-php-server": "dev-master",
 		"illuminate/html": "5.*"
 	},

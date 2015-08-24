@@ -42,7 +42,7 @@
   <div class="media-body">
     <h4 class="media-heading">
     	<a href="{{ route('user.show', $reply->user->slug) }}" class="author">{{ $reply->user->username }}</a>
-    	<small class="date-when">{{ $reply->created_at }}</small>
+    	<small class="date-when">{{ $reply->created_at }}</small><a href="#pranesimas-{{ $reply->id }}" class="pull-right btn btn-xs btn-grey"><i class="fa fa-link"></i></a>
 		@if($topic->type == 2 && !$topic->is_answered)
 			<small class="pull-right"><a href="{{ route('reply.answer', $reply->id) }}">Atsakymas</a></small>
     @elseif($topic->type == 2 && $topic->is_answered && $reply->is_answer)

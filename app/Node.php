@@ -21,4 +21,20 @@ class Node extends Model {
 		return Node::whereNull('parent_node')->orderBy('order', 'ASC')->get();
 	}
 
+	//grazina slug'a, jei jis neegzistuoja
+	public function getSlugAttribute($value)
+	{
+		if($value)
+		{
+			return $value;
+		}
+		else
+		{
+			$slug = str_slug($this->name, '-');
+			$this->attributes['slug'] = $slug;
+			$this->save();
+			return $slug;
+		}
+	}
+
 }

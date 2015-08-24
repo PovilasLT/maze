@@ -9,7 +9,7 @@
 		</h4>
 		{!! $comment->body !!}
 	</div>
-	@if(Auth::user()->id == $comment->user_id || Auth::user()->can('manage_statuses'))
+	@if(Auth::check() && (Auth::user()->id == $comment->user_id || Auth::user()->can('manage_statuses')))
 		@include('status.comment_controls')
 	@endif
 </div>

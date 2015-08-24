@@ -8,6 +8,8 @@ use maze\User;
 use maze\Notification;
 use Auth;
 
+use Illuminate\Http\Request;
+
 class UsersController extends Controller {
 
 	//Sukuria vartotoją
@@ -59,13 +61,37 @@ class UsersController extends Controller {
 		return view('user.profile', compact('user', 'items', 'sort', 'subsort'));
 	}
 
-	public function show($slug) {
+	public function show(Request $request, $slug) {
+		$user = User::where('slug', $slug)->firstOrFail();
 
-		return $slug;
+		$sort = $request->input('rodyti', 'visi');
 
-		$user = User::where('slug', $slug)->first();
-		$items = $user->notifications()->profile()->paginate('20');
-		return view('user.show', compact('user', 'items'));
+		if($sort)
+		{
+			switch ($sort) {
+				case 'temos':
+					$items = $user->notifications()->profile()->topics()->paginate('10');
+					break;
+				case 'paminejimai':
+					$items = $user->notifications()->profile()->mentions()->paginate('10');
+					break;
+				case 'pranesimai':
+					$items = $user->notifications()->profile()->replies()->paginate('10');
+					break;
+				case 'busenos':
+					$items = $user->notifications()->profile()->statuses()->paginate('10');
+					break;
+				default:
+					$items = $user->notifications()->profile()->paginate('10');
+					break;
+			}
+		}
+		else
+		{
+			$items = $user->notifications()->profile()->paginate('20');
+		}
+
+		return view('user.show', compact('user', 'items', 'sort'));
 	}
 
 }
