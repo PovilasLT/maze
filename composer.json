@@ -28,7 +28,7 @@
 		],
 		"files": [
         	"app/Helpers/maze_helpers.php",
-        	"app/Helpers/confer_helpers.php",
+        	"app/Helpers/confer_helpers.php"
     	],
 		"psr-4": {
 			"maze\\": "app/"
