@@ -6,6 +6,8 @@ use maze\Topic;
 
 use Illuminate\Http\Request;
 
+use Markdown;
+
 class PageController extends Controller {
 
 	public function index(Request $request)

@@ -22,36 +22,21 @@
 		<nav class="navbar navbar-default" role="navigation">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-9 text-right">
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-							<a class="navbar-brand" href="/"><img src="/images/logo.svg"></a>
-						</div>
-				
-						<div class="collapse navbar-collapse navbar-ex1-collapse">
-							<ul class="nav navbar-nav">
-								<li class="active"><a href="#"><i class="fa fa-film fa-primary"></i> TV</a></li>
-								<li><a href="#"><i class="fa fa-comments-o fa-primary"></i> Forumas</a></li>
-							</ul>
-						</div>
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="/"><img src="/images/logo.svg"></a>
 					</div>
-					<div class="col-lg-3 navbar-user-info">
-						@if(Auth::check())
-							<a href="{{ route('user.profile') }}"><img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->username }} Profilis" class="avatar"></a>
-							<a href="{{ route('user.profile') }}"><i class="fa fa-globe"></i></a>
-							<a href=""><i class="fa fa-envelope-o"></i></a>
-							<a href="{{ route('auth.logout') }}"><i class="fa fa-sign-out"></i></a>
-						@else
-							<div class="logged-out-wrapper">
-								<a href="{{ route('auth.register') }}"><button type="button" class="btn btn-primary"><i class="fa fa-user-plus"></i>Registruotis</button></a>
-								<a href="{{ route('auth.login') }}"><button type="button" class="btn btn-primary"><i class="fa fa-sign-in"></i>Prisijungti</button></a>
-							</div>
-						@endif
+			
+					<div class="collapse navbar-collapse navbar-ex1-collapse">
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="#"><i class="fa fa-film fa-primary"></i> TV</a></li>
+							<li><a href="#"><i class="fa fa-comments-o fa-primary"></i> Forumas</a></li>
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -68,6 +53,19 @@
 							</div>
 						</div>
 						<div class="col-lg-3 main-sidebar">
+							<div class="col-lg-12 navbar-user-info">
+								@if(Auth::check())
+									<a href="{{ route('user.profile') }}"><img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->username }} Profilis" class="avatar"></a>
+									<a href="{{ route('user.profile') }}"><i class="fa fa-globe"></i></a>
+									<a href=""><i class="fa fa-envelope-o"></i></a>
+									<a href="{{ route('auth.logout') }}"><i class="fa fa-sign-out"></i></a>
+								@else
+									<div class="logged-out-wrapper">
+										<a href="{{ route('auth.register') }}"><button type="button" class="btn btn-primary"><i class="fa fa-user-plus"></i>Registruotis</button></a>
+										<a href="{{ route('auth.login') }}"><button type="button" class="btn btn-primary"><i class="fa fa-sign-in"></i>Prisijungti</button></a>
+									</div>
+								@endif
+							</div>
 							@yield('sidebar')
 						</div>
 					</div>

@@ -198,7 +198,6 @@ return [
 		'Zizaco\Entrust\EntrustServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
 		'DaveJamesMiller\Breadcrumbs\ServiceProvider',
-		'GrahamCampbell\Markdown\MarkdownServiceProvider',
 		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 		'DaveJamesMiller\Breadcrumbs\ServiceProvider',
 
@@ -255,10 +254,8 @@ return [
 		'Entrust' 		=> 'Zizaco\Entrust\EntrustFacade',
 		'Image' 		=> 'Intervention\Image\Facades\Image',
 		'Breadcrumbs' 	=> 'DaveJamesMiller\Breadcrumbs\Facade',
-		'Markdown' 		=> 'GrahamCampbell\Markdown\Facades\Markdown',
-		'Breadcrumbs'   => 'DaveJamesMiller\Breadcrumbs\Facade',
 		'Form'          => 'Illuminate\Html\FormFacade', 
-		'HTML'          => 'Illuminate\Html\HtmlFacade'
+		'HTML'          => 'Illuminate\Html\HtmlFacade',
 	],
 
 ];

@@ -3,5 +3,5 @@
 //Markdown parseris JavaScriptui
 Route::post('/markdown', function()
 {
-	return Markdown::convertToHtml(Request::input('body'));	
+	return markdown(Request::input('body'));	
 });

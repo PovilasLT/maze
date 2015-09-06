@@ -35,7 +35,7 @@ class StatusesController extends Controller {
 
 		Status::create([
 			'user_id' 			=> Auth::user()->id,
-			'body'    			=> Markdown::convertToHtml($mention->parse($request->input('body'))),
+			'body'    			=> markdown($mention->parse($request->input('body'))),
 			'body_original'		=> $request->input('body'),
 		]);
 
@@ -58,7 +58,7 @@ class StatusesController extends Controller {
 		$status = Status::findOrFail($request->input('id'));
 		$status->body_original  = $request->input('body');
 		$status->edited_by 		= Auth::user()->id;
-		$status->body 			= Markdown::convertToHtml($mention->parse($request->input('body')));
+		$status->body 			= markdown($mention->parse($request->input('body')));
 		$status->save();
 
 		flash()->success('Būsenos atnaujinimas sėkmingai išsaugotas');
@@ -90,7 +90,7 @@ class StatusesController extends Controller {
 
 		$data['user_id'] 		= Auth::user()->id;
 		$data['body_original']	= $data['body'];
-		$data['body']			= Markdown::convertToHtml($mention->parse($data['body']));
+		$data['body']			= markdown($mention->parse($data['body']));
 
 		StatusComment::create($data);
 
@@ -117,7 +117,7 @@ class StatusesController extends Controller {
 		$comment = StatusComment::findOrFail($data['id']);
 
 		$comment->body_original = $data['body'];
-		$comment->body 			= Markdown::convertToHtml($mention->parse($data['body']));
+		$comment->body 			= markdown($mention->parse($data['body']));
 
 		$comment->save();
 
