@@ -14,5 +14,5 @@ function markdown($string) {
 
 function ex($string)
 {
-	return html_entity_decode($string);
+	return html_entity_decode(htmlspecialchars($string));
 }
