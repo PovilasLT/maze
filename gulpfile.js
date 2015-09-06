@@ -27,7 +27,6 @@ elixir(function(mix) {
         '../jquery/dist/jquery.js',
         '../bootstrap/dist/js/bootstrap.js',
         '../moment/min/moment-with-locales.min.js',
-        '../moment-timezone/builds/moment-timezone-with-data.min.js',
         '../emojify.js/dist/js/emojify.js',
         'emoji.js',
         'markdown_parser.js',
@@ -42,6 +41,6 @@ elixir(function(mix) {
         'vote.js',
         'node_expand.js',
         'highlight.js',
-        'main.js',
+        'main.js'
     ], 'public/js/scripts.js');
 });

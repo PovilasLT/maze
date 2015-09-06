@@ -114,6 +114,7 @@
 					</div>
 				</div>
 			</div>
+			<div class="current-date-invisible" style="display: none;">{{ \Carbon\Carbon::now() }}</div>
 		</footer>
 		<script src="/js/scripts.js"></script>
 		<script src="/vendor/pusher/assets/js/pusher.min.js"></script>
