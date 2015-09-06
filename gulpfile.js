@@ -20,7 +20,8 @@ elixir(function(mix) {
     	'../bootstrap/less/bootstrap.less',
     	'../font-awesome/less/font-awesome.less',
         '../css/markdown.css',
-        '../css/lightbox.css'
+        '../css/lightbox.css',
+        '../css/highlight.css'
 	], 'public/css/style.css');
     mix.scripts([
         '../jquery/dist/jquery.js',
@@ -39,6 +40,8 @@ elixir(function(mix) {
         'jquery.autosize.min.js',
         'autosize.js',
         'vote.js',
-        'node_expand.js'
+        'node_expand.js',
+        'highlight.js',
+        'main.js',
     ], 'public/js/scripts.js');
 });
