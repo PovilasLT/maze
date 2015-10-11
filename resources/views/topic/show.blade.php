@@ -2,6 +2,15 @@
 @section('breadcrumbs')
 	{!! Breadcrumbs::render('topic.show', $topic) !!}
 @stop
+
+@section('title')
+{{ $topic->title . ' » ' . $topic->node->parent->name . ' » ' . $topic->node->name . ' | ' }} 
+@stop
+
+@section('description')
+<meta name="description" content="{{ str_limit(str_clean($topic->body), 160, '...') }}">
+@stop
+
 @section('content')
 	<div class="media topic-show">
 		<div class="votes pull-left" id="votes-{{ $topic->id }}">

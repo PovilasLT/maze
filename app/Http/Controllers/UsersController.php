@@ -94,4 +94,30 @@ class UsersController extends Controller {
 		return view('user.show', compact('user', 'items', 'sort'));
 	}
 
+	public function follow($slug) {
+		$user = User::where('slug', $slug)->firstOrFail();
+
+		$following = $user->follow();
+
+		if($following)
+		{
+			flash()->success($user->username.' prenumeruojamas!');
+		}
+		else
+		{
+			flash()->success($user->username.' nebeprenumeruojamas!');
+		}
+
+		return redirect()->back();
+	}
+
+	public function followers($slug)
+	{
+		$user = User::where('slug', $slug)->firstOrFail();
+
+		$followers = $user->followers()->latest()->paginate(100);
+
+		return view('user.followers', compact('user', 'followers'));
+	}
+
 }

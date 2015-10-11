@@ -9,10 +9,11 @@ class AuthController extends Controller {
 
 	function __construct() {
 		$this->middleware('guest', [
-			'only' => [
-			'register',
-			'login'
-			]
+			'only' => 
+				[
+				'register',
+				'login'
+				]
 			]);
 		$this->middleware('auth', ['only' => 'logout']);
 	}

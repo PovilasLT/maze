@@ -61,6 +61,12 @@ Breadcrumbs::register('user.show', function($breadcrumbs, $user)
     $breadcrumbs->push(e($user->username), route('user.show', $user->slug));
 });
 
+Breadcrumbs::register('user.followers', function($breadcrumbs, $user)
+{
+    $breadcrumbs->parent('user.show', $user);
+    $breadcrumbs->push('Prenumeratoriai', route('user.followers', $user->slug));
+});
+
 //Busenu atnaujinimai
 
 Breadcrumbs::register('status.show', function($breadcrumbs, $status)

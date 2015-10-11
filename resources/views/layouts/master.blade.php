@@ -6,6 +6,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>@yield('title')Maze - Žaidimų Bendruomenė | Žaidimų Forumas | Lietuviški Streamai</title>
 
+		@yield('description')
+
 		<link href="/css/style.css" rel="stylesheet">
 
 		<!--[if lt IE 9]>

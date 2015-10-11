@@ -1,12 +1,23 @@
 <div class="panel panel-default">
 	  <div class="panel-heading">
-			<h3 class="panel-title">Apie {{ $user->username }}</h3>
+			<h3 class="panel-title">Prenumeratoriai</h3>
 	  </div>
 	  <div class="panel-body">
-			<ul>
-				<li>
-					Twitter: <a href="http://twitter.com/{{ $user->twitter }}" target="_blank">{{ $user->twitter }}</a>
-				</li>
-			</ul>
+			<div class="row">
+				@if($user->followers()->count() > 0)
+				@foreach($user->followers()->latest()->limited() as $follower)
+					<div class="col-md-4 follower-container">
+						<a href="{{ route('user.show', $follower->follower->slug) }}"><img class="follower-avatar" src="{{ $follower->follower->avatar }}" title="{{ $follower->follower->username }}" alt="{{ $follower->follower->username }}"></a>
+					</div>
+				@endforeach
+				@else
+				<div class="col-md-12 text-center">
+					Prenumeratorių nėra. <a href="{{ route('user.follow', $user->slug) }}">Būk pirmas!</a>
+				</div>
+				@endif
+			</div>
+			<div class="text-center help-block">
+				<p><a href="{{ route('user.followers', $user->slug) }}">Rodyti Visus</a></p>
+			</div>
 	  </div>
 </div>

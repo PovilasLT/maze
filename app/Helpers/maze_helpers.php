@@ -16,3 +16,7 @@ function ex($string)
 {
 	return html_entity_decode(htmlspecialchars($string));
 }
+
+function str_clean($string) {
+	return strip_tags($string);
+}

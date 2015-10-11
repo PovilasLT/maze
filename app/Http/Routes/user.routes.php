@@ -14,3 +14,13 @@ Route::get('/profilis', [
 	'as'	=> 'user.profile',
 	'uses'	=> 'UsersController@profile'
 ]);
+
+Route::get('/vartototojas/{slug}/prenumeruoti', [
+	'as'	=> 'user.follow',
+	'uses'	=> 'UsersController@follow'
+]);
+
+Route::get('/vartotojas/{slug}/prenumeratoriai', [
+	'as'	=> 'user.followers',
+	'uses'	=> 'UsersController@followers'
+]);

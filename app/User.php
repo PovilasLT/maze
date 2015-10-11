@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use maze\Vote;
 use \maze\Traits\CanConfer;
+use Auth;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
@@ -105,6 +106,25 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 				'user_id'		=> $this->id,
 				'is'			=> $type
 			]);
+		}
+	}
+
+	/**
+	 * Patikrina ar prisijungęs vartotojas seka žmogų.
+	 * @return Follower gražina Follower objektą.
+	 */
+	public function getIsFollowingAttribute()
+	{
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			$follower = Follower::where('user_id', $this->id)->where('follower_id', $user->id)->first();
+
+			return $follower;
+		}
+		else
+		{
+			return false;
 		}
 	}
 
@@ -228,6 +248,26 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 			default:
 				return false;
 				break;
+		}
+	}
+
+	public function follow() {
+
+		$follower = $this->is_following;
+
+		if(!$follower)
+		{
+			Follower::create([
+				'user_id' => $this->id,
+				'follower_id' => Auth::user()->id
+			]);
+
+			return true;
+		}
+		else
+		{
+			$follower->delete();
+			return false;
 		}
 	}
 	

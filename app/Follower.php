@@ -28,4 +28,14 @@ class Follower extends Model {
         return $this->belongsTo('maze\User', 'follower_id', 'id');
     }
 
+    public function scopeLatest($query)
+    {
+        return $query->orderBy('created_at', 'DESC');
+    }
+
+    public function scopeLimited($query)
+    {
+        return $query->limit(21)->get();
+    }
+
 }
