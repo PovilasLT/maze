@@ -3,7 +3,27 @@
 @section('breadcrumbs')
 	{!! Breadcrumbs::render('node.show', $node) !!}
 @stop
+
+@section('title')
+@if($node->parent)
+{{ $node->name . ' » ' . $node->parent->name . ' | ' }} 
+@else
+{{ $node->name . ' | ' }} 
+@endif
+@stop
+
+@section('description')
+<meta name="description" content="{{ str_limit(str_clean($node->description), 160, '...') }}">
+@stop
+
 @section('content')
+	
+	@if($node->description)
+	<p class="help-block">
+		{{ $node->description }}
+	</p>
+	@endif
+
 	<ul class="nav nav-tabs">
 	  <li role="presentation" @if($sort == 'populiariausi' || !$sort) class="active" @endif ><a href="?rodyti=populiariausi">Populiariausi</a></li>
 	  <li role="presentation" @if($sort == 'naujausi') class="active" @endif ><a href="?rodyti=naujausi">Naujausi</a></li>
