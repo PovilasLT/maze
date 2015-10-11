@@ -7,7 +7,7 @@
 @section('content')
 	<div class="row">
 	@foreach($followers as $follower)
-		<div class="col-sm-2 text-center">
+		<div class="col-xs-4 col-sm-2 text-center">
 			<img class="followers-avatar" src="{{ $follower->follower->avatar }}">
 			<a href="{{ route('user.show', [$follower->follower->slug]) }}">{{ $follower->follower->username }}</a>
 		</div>

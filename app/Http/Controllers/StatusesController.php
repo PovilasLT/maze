@@ -19,6 +19,8 @@ use Markdown;
 
 use maze\Modules\Mentions\Mention;
 
+use maze\User;
+
 class StatusesController extends Controller {
 
 	public function show($id)
@@ -38,6 +40,8 @@ class StatusesController extends Controller {
 			'body'    			=> markdown($mention->parse($request->input('body'))),
 			'body_original'		=> $request->input('body'),
 		]);
+
+		User::find(Auth::user()->id)->increment('status_count');
 
 		flash()->success('Būsena sėkmingai atnaujinta!');
 		return redirect()->route('user.profile');
@@ -72,6 +76,9 @@ class StatusesController extends Controller {
 		$user = $status->user;
 		//Ištrina būsenos atnaujinimą.
 		$status->delete();
+
+		$user->decrement('status_count');
+
 		flash()->success('Būsenos atnaujinimas sėkmingai ištrintas');
 		return redirect()->route('user.show', $user->slug);
 	}
@@ -97,6 +104,7 @@ class StatusesController extends Controller {
 		flash()->success('Komentaras sėkmingai sukurtas!');
 
 		return redirect()->route('status.show', $data['status_id']);
+
 	}
 
 	public function commentDelete(DeleteStatusComment $request, $id) {
