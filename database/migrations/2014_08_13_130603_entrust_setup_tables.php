@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use maze\Role;
+use maze\Permission;
 
 class EntrustSetupTables extends Migration
 {
@@ -117,6 +119,11 @@ class EntrustSetupTables extends Migration
         $manageUsers = new Permission;
         $manageUsers->name = 'manage_users';
         $manageUsers->display_name = 'Manage Users';
+        $manageUsers->save();
+
+        $manageUsers = new Permission;
+        $manageUsers->name = 'manage_replies';
+        $manageUsers->display_name = 'Manage Posts';
         $manageUsers->save();
 
         // Assign Permission to Role
