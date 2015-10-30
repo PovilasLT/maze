@@ -4,6 +4,7 @@ use maze\Http\Requests;
 use maze\Http\Requests\CreateUser;
 use Illuminate\Http\Request;
 use Auth, Hash;
+use maze\User;
 
 class AuthController extends Controller {
 
