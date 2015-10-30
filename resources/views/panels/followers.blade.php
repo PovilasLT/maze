@@ -12,7 +12,7 @@
 				@endforeach
 				@else
 				<div class="col-md-12 text-center">
-					Prenumeratorių nėra. <a href="{{ route('user.follow', $user->slug) }}">Būk pirmas!</a>
+					Prenumeratorių nėra. @if($user != Auth::user())<a href="{{ route('user.follow', $user->slug) }}">Būk pirmas!</a>@endif
 				</div>
 				@endif
 			</div>
