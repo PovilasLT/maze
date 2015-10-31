@@ -63,8 +63,8 @@
 									<a href="{{ route('auth.logout') }}"><i class="fa fa-sign-out"></i></a>
 								@else
 									<div class="logged-out-wrapper">
-										<a href="{{ route('auth.register') }}"><button type="button" class="btn btn-primary"><i class="fa fa-user-plus"></i>Registruotis</button></a>
 										<a href="{{ route('auth.login') }}"><button type="button" class="btn btn-primary"><i class="fa fa-sign-in"></i>Prisijungti</button></a>
+										<a href="{{ route('auth.register') }}"><button type="button" class="btn btn-primary"><i class="fa fa-user-plus"></i>Registruotis</button></a>
 									</div>
 								@endif
 							</div>
