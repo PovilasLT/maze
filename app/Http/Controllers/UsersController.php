@@ -99,12 +99,15 @@ class UsersController extends Controller {
 
 		$following = $user->follow();
 
+
 		if($following)
 		{
+			$user->increment('follower_count');
 			flash()->success($user->username.' prenumeruojamas!');
 		}
 		else
 		{
+			$user->decrement('follower_count');
 			flash()->success($user->username.' nebeprenumeruojamas!');
 		}
 

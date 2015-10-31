@@ -14,10 +14,7 @@
 					Temos: <strong>{{ $user->topic_count }}</strong>
 				</li>
 				<li>
-					Prenumeratoriai: <strong>{{ $user->topic_count }}</strong>
-				</li>
-				<li>
-					Temos: <strong>{{ $user->topic_count }}</strong>
+					Prenumeratoriai: <strong>{{ $user->follower_count }}</strong>
 				</li>
 			</ul>
 	  </div>
