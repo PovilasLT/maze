@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Auth;
 use Config;
 use \maze\Traits\Notifiable;
+use Stringy\StaticStringy as S;
 
 class Topic extends Model {
 
@@ -88,28 +89,31 @@ class Topic extends Model {
 
 	public function getSlugAttribute($value)
 	{
-		//patikrinti ar slug'as egzistuoja
-		if(!$value)
+		if( ! $value)
 		{
-			//atnaujina slug'ą.
-			$slug = Topic::slugify($this->title).'-'.$this->id;
-			$this->slug = $slug;
-			$this->save();
-			return $slug;
-		}
-		else {
-			//patikrinti ar slug-as neunikalus
-			$topics = Topic::where('slug', $value);
-			if($topics->count() > 1)
+			$value = $this->id . '-' . S::slugify($this->title);
+
+			$nodes = Topic::where('slug', $value);
+
+			if($nodes->count() > 0)
 			{
-				$slug = Topic::slugify($this->title).'-'.$this->id;
-				$this->slug = $slug;
+				$value = $this->id . '-' . $value;
+				$this->slug = $value;
+
 				$this->save();
-				return $slug;
-			}
-			else {
+
 				return $value;
 			}
+			else {
+				$this->slug = $value;
+
+				$this->save();
+
+				return $value;
+			}
+		}
+		else {
+			return $value;
 		}
 	}
 

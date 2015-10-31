@@ -9,6 +9,7 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 use maze\Vote;
 use \maze\Traits\CanConfer;
 use Auth;
+use Stringy\StaticStringy as S;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
@@ -149,6 +150,37 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		}
 
 		return $url;
+	}
+
+
+	public function getSlugAttribute($value)
+	{
+		if( ! $value)
+		{
+			$value = S::slugify($this->username);
+
+			$nodes = User::where('slug', $value);
+
+			if($nodes->count() > 0)
+			{
+				$value = $this->id . '-' . $value;
+				$this->slug = $value;
+
+				$this->save();
+
+				return $value;
+			}
+			else {
+				$this->slug = $value;
+
+				$this->save();
+
+				return $value;
+			}
+		}
+		else {
+			return $value;
+		}
 	}
 
 	public function getAgeAttribute() {
