@@ -453,6 +453,17 @@ h1.media-heading {
 	}
 }
 
+.user-messages-icon > span {
+	font-size: 11px;
+	color: white;
+	background: #0f7255;
+	border-radius: 90%;
+	padding: 0 4px;
+	position: absolute;
+	margin-left: -18px;
+	margin-top: 18px;
+}
+
 //Responsiveness
 
 //tablet
@@ -473,11 +484,31 @@ h1.media-heading {
 	.navbar-user-info {
 		display: none;
 	}
+	.navbar-ex1-offcanvas {
+		.navbar-user-info {
+			display: inherit;
+			margin-top: 15px;
+			> a {
+				font-size: 18px;
+				padding-right: 20px;
+			}
+		}
+		.user-messages-icon > span {
+			font-size: 14px;
+			padding: 0 5px;
+			margin-left: -19px;
+			margin-top: 16px;
+		}
+	}
 	.main-content {
 		border-right: 0;
 	}
 	.content-box {
 		padding-right: 15px;
+		padding-bottom: 15px;
+		> h2 {
+			display: none;
+		}
 	}
 }
 
