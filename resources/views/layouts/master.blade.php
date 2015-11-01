@@ -15,6 +15,7 @@
 			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
 
+		<link href="/vendor/jasny-bootstrap/css/jasny-bootstrap.min.css" rel="stylesheet">
 		<link href="/vendor/confer/css/confer.css" rel="stylesheet">
 		@include('confer::confer')
 
@@ -25,7 +26,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+						<button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navbar-ex1-offcanvas" data-canvas="body">
 							<span class="sr-only">Toggle navigation</span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
@@ -34,7 +35,7 @@
 						<a class="navbar-brand" href="/"><img src="/images/logo.svg"></a>
 					</div>
 			
-					<div class="collapse navbar-collapse navbar-ex1-collapse">
+					<div class="navmenu navmenu-default navmenu-fixed-left offcanvas navbar-ex1-offcanvas">
 						<ul class="nav navbar-nav">
 							<li class="active"><a href="#"><i class="fa fa-film fa-primary"></i> TV</a></li>
 							<li><a href="#"><i class="fa fa-comments-o fa-primary"></i> Forumas</a></li>
@@ -119,6 +120,7 @@
 			<div class="current-date-invisible" style="display: none;">{{ \Carbon\Carbon::now() }}</div>
 		</footer>
 		<script src="/js/scripts.js"></script>
+		<script src="/vendor/jasny-bootstrap/js/jasny-bootstrap.min.js"></script>
 		<script src="/vendor/pusher/assets/js/pusher.min.js"></script>
 		@yield('scripts')
 
