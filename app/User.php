@@ -213,7 +213,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	public function getRoleAttribute()
 	{
-		if($this->roles->empty()) {
+		if($this->roles->isEmpty()) {
 			$this->attachRole(Role::where('name', '=', 'Narys')->get()->first());
 		}
 		return $this->roles->first()->name;
