@@ -18,16 +18,6 @@
 	<ul class="confer-open-conversations-list">
     @if ($confer_conversations)
         {!! $confer_conversations !!}
-    @elseif (config('confer.allow_global'))
-        	<li data-conversationId="1">
-	        	<div class="confer-message confer-message-east" href="#">
-	        		<span class="confer-message-item">
-	        			<img class="confer-open-conversation-avatar" src="{{ url('/') . config('confer.company_avatar') }}"/>
-	        			<span class="confer-open-conversation-name">All</span>
-	        		</span>
-	        		<span class="confer-message-content">New message!</span>
-	        	</div>
-        	</li>
     @endif
 	</ul>
 	<div class="confer-icon-list">
