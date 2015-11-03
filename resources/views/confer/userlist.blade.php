@@ -7,7 +7,7 @@
 	@foreach ($users['online'] as $user)
 		<li data-userId="{{ $user->id }}">
 			<img class="confer-user-avatar" src="{{ url('/') . config('confer.avatar_dir') . $user->avatar }}">
-			<span class="confer-user-name">{{ $user->name }}</span>
+			<span class="confer-user-name">{{ $user->username }}</span>
 		</li>
 	@endforeach
 @else
@@ -21,7 +21,7 @@
 	@foreach ($users['offline'] as $user)
 		<li data-userId="{{ $user->id }}">
 			<img class="confer-user-avatar" src="{{ url('/') . config('confer.avatar_dir') . $user->avatar }}">
-			<span class="confer-user-name">{{ $user->name }}</span>
+			<span class="confer-user-name">{{ $user->username }}</span>
 		</li>
 	@endforeach
 @else
