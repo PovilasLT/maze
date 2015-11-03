@@ -1,8 +1,8 @@
 <h2>Users</h2>
-<small>Find people available to converse with, and those not currently online.</small>
+<small>Visų narių sąrašas, kuriame gali rasti sau pašnekovą.</small>
 
 <ul class="confer-user-list confer-online-list">
-<h3>Active</h3>
+<h3>Prisijungę</h3>
 @if ( ! $users['online']->isEmpty())
 	@foreach ($users['online'] as $user)
 		<li data-userId="{{ $user->id }}">
@@ -11,12 +11,12 @@
 		</li>
 	@endforeach
 @else
-	<p>There are no users online (apart from you!)</p>
+	<p>Esi vienintelis prisijungęs žmogus!</p>
 @endif
 </ul>
 
 <ul class="confer-user-list confer-not-online-list">
-<h3>Offline</h3>
+<h3>Atsijungę</h3>
 @if ( ! $users['offline']->isEmpty())
 	@foreach ($users['offline'] as $user)
 		<li data-userId="{{ $user->id }}">
