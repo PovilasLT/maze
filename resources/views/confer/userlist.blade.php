@@ -25,6 +25,6 @@
 		</li>
 	@endforeach
 @else
-	<p>It looks like everyone is online... that's weird.</p>
+	<p>Visi nariai yra prisijungę :o</p>
 </ul>
 @endif
