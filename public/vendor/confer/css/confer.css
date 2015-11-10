@@ -374,6 +374,7 @@ textarea.confer-new-message-input, textarea.confer-new-message-input:focus  {
 	padding: 5px 0;
 	color: rgb(150, 150, 150);
 	overflow: hidden;
+	resize: none;
 }
 
 input.confer-new-message-submit {
