@@ -302,7 +302,7 @@ ul.confer-conversation-message-list li.confer-received-message {
 span.confer-message-body {
 	border-radius: 7px;
 	padding: 5px 10px;
-	display: inline-block;
+	display: block;
 	clear: both;
 	margin-bottom: 3px;
 }
@@ -312,7 +312,7 @@ span.confer-message-body {
 }
 
 span.confer-message-sender {
-	display: block;
+	display: inline-block;
 	font-size: 13px;
 	color: black;
 	font-weight: bold;
