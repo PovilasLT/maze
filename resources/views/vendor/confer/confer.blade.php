@@ -15,11 +15,6 @@
 
 @if (Auth::check())
 <div class="confer-open-conversations">
-	<ul class="confer-open-conversations-list">
-    @if ($confer_conversations)
-        {!! $confer_conversations !!}
-    @endif
-	</ul>
 	<div class="confer-icon-list">
 		<i class="fa fa-weixin confer-all-conversations-icon"></i>
 		<!--<i class="fa fa-cog confer-settings-icon"></i>-->

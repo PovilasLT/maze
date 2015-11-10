@@ -111,6 +111,7 @@
 		<script src="/js/scripts.js"></script>
 		<script src="/vendor/jasny-bootstrap/js/jasny-bootstrap.min.js"></script>
 		<script src="/vendor/pusher/assets/js/pusher.min.js"></script>
+
 		@yield('scripts')
 
 		@include('confer::js')

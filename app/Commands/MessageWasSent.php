@@ -33,13 +33,9 @@ class MessageWasSent extends Command implements SelfHandling, ShouldBeQueued {
 		if($conversation)
 		{
 			$conversation->touch();
-			if ($conversation->isGlobal())
-			{
-				Push::trigger($this->confer->global, 'NewMessageWasPosted', $this->message->getEventData('global'));
-			} else {
-				Push::trigger($this->message->conversation->getChannel(), 'NewMessageWasPosted', $this->message->getEventData());
-				Push::trigger($this->message->conversation->getChannel(), 'UserStoppedTyping', ['user' => $this->message->sender->id]);
-			}
+
+			Push::trigger($this->message->conversation->getChannel(), 'NewMessageWasPosted', $this->message->getEventData());
+			Push::trigger($this->message->conversation->getChannel(), 'UserStoppedTyping', ['user' => $this->message->sender->id]);
 		}
 	}
 

@@ -19,7 +19,7 @@ class Conversation extends Model {
 	 */
 	public function participants()
 	{
-		return $this->belongsToMany('maze\User', 'confer_conversation_participants', 'user_id', 'conversation_id');
+		return $this->belongsToMany('maze\User', 'confer_conversation_participants', 'conversation_id', 'user_id');
 	}
 
 	/**
@@ -39,7 +39,7 @@ class Conversation extends Model {
 
 	public function isPrivate()
 	{
-		return $this->is_private;
+		return $this->is_private && $this->participants()->count() == 2;
 	}
 
 	public function getChannel()
@@ -66,7 +66,7 @@ class Conversation extends Model {
 			'is_private' => false
 		]);
 
-		$current_participants = $this->participants()->lists('id');
+		$current_participants = $this->participants()->lists('id')->toArray();
 		$conversation->participants()->sync(array_merge($current_participants, $users));
 
 		return $conversation;

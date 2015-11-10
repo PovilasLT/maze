@@ -25,6 +25,15 @@ class UsersController extends Controller {
 		return redirect()->back();
 	}
 
+	// Žinutės
+	public function messages() {
+		$user = Auth::user();
+
+		$conversations = $user->conversations()->has('messages')->get();
+
+		return view('user.messages', compact('user', 'conversations'));
+	}
+
 	//Profilis
 
 	public function profile(UserProfile $request) {

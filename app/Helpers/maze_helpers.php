@@ -20,3 +20,7 @@ function ex($string)
 function str_clean($string) {
 	return strip_tags($string);
 }
+
+function message_html(\maze\Modules\Confer\Message $message) {
+	return view('vendor.confer.message')->with(['message' => $message])->render();
+}

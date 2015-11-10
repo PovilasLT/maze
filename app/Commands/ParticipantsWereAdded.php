@@ -56,10 +56,10 @@ class ParticipantsWereAdded extends Command implements SelfHandling {
 
 	private function makeJoinMessage()
 	{
-		$users = $this->conversation_was_created ? confer_make_list($this->conversation->participants()->ignoreMe()->lists('name')) : confer_make_list(User::whereIn('id', $this->users)->lists('name'));
+		$users = $this->conversation_was_created ? confer_make_list($this->conversation->participants()->ignoreMe()->lists('username')) : confer_make_list(User::whereIn('id', $this->users)->lists('username'));
 		$message = Message::create([
 			'conversation_id' => $this->conversation->id,
-			'body' => '<strong>' . $users . '</strong> joined the conversation on ' . $this->inviter->name . '\'s invitation',
+			'body' => '<strong>' . $users . '</strong> joined the conversation on ' . $this->inviter->username . '\'s invitation',
 			'sender_id' => $this->inviter->id,
 			'type' => 'conversation_message'
 		]);
@@ -70,7 +70,7 @@ class ParticipantsWereAdded extends Command implements SelfHandling {
 	{
 		$message = Message::create([
 			'conversation_id' => $this->conversation->id,
-			'body' => $this->inviter->name . ' created the conversation and called it <strong>' . $this->conversation->name . '</strong>',
+			'body' => $this->inviter->username . ' created the conversation and called it <strong>' . $this->conversation->name . '</strong>',
 			'sender_id' => $this->inviter->id,
 			'type' => 'conversation_message'
 		]);
@@ -81,7 +81,7 @@ class ParticipantsWereAdded extends Command implements SelfHandling {
 	{
 		$message = Message::create([
 			'conversation_id' => $this->conversation->id,
-			'body' => $this->inviter->name . ' set the name to <strong>' . $this->conversation->name . '</strong>',
+			'body' => $this->inviter->username . ' set the name to <strong>' . $this->conversation->name . '</strong>',
 			'sender_id' => $this->inviter->id,
 			'type' => 'conversation_message'
 		]);

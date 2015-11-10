@@ -47,6 +47,14 @@ Breadcrumbs::register('reply.edit', function($breadcrumbs)
 
 //Vartotojo routes
 
+// Žinutės
+
+Breadcrumbs::register('user.messages', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Žinutės');
+});
+
 //Profilis
 
 Breadcrumbs::register('user.profile', function($breadcrumbs)

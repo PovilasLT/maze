@@ -66,7 +66,7 @@ trait CanConfer {
 	 */
 	public function conversations()
 	{
-		return $this->belongsToMany('maze\Modules\Confer\Conversation', 'confer_conversation_participants', 'conversation_id', 'user_id');
+		return $this->belongsToMany('maze\Modules\Confer\Conversation', 'confer_conversation_participants', 'user_id', 'conversation_id');
 	}
 
 	/**

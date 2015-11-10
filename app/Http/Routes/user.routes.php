@@ -24,3 +24,8 @@ Route::get('/vartotojas/{slug}/prenumeratoriai', [
 	'as'	=> 'user.followers',
 	'uses'	=> 'UsersController@followers'
 ]);
+
+Route::get('/zinutes', [
+	'as' => 'user.messages',
+	'uses' => 'UsersController@messages'
+]);
