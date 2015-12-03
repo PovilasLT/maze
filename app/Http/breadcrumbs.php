@@ -75,6 +75,12 @@ Breadcrumbs::register('user.followers', function($breadcrumbs, $user)
     $breadcrumbs->push('Prenumeratoriai', route('user.followers', $user->slug));
 });
 
+Breadcrumbs::register('user.settings', function($breadcrumbs, $user)
+{
+    $breadcrumbs->parent('user.show', $user);
+    $breadcrumbs->push('Nustatymai', route('user.settings', $user->slug));
+});
+
 //Busenu atnaujinimai
 
 Breadcrumbs::register('status.show', function($breadcrumbs, $status)

@@ -132,4 +132,18 @@ class UsersController extends Controller {
 		return view('user.followers', compact('user', 'followers'));
 	}
 
+	public function settings($slug)
+	{
+		$user = User::where('slug', $slug)->firstOrFail();
+		if(Auth::check() && Auth::user()->username == $user->username)
+		{
+			return view('user.settings', compact('user'));
+		}
+		else
+		{
+			flash()->error('Veiksmas negalimas!');
+			return redirect()->back();
+		}
+	}
+
 }

@@ -6,7 +6,7 @@
 			{{ $user->about_me }}
 		</p>
 	@endif
-	<a href="#" class="btn btn-primary full-width user-button"><i class="fa fa-cog"></i> Nustatymai</a>
+	<a href="{{ route('user.settings', $user->slug) }}" class="btn btn-primary full-width user-button"><i class="fa fa-cog"></i> Nustatymai</a>
 </div>
 @include('panels.about')
 @include('panels.user_statistics')

@@ -29,3 +29,8 @@ Route::get('/zinutes', [
 	'as' => 'user.messages',
 	'uses' => 'UsersController@messages'
 ]);
+
+Route::get('/vartotojas/{slug}/nustatymai', [
+	'as'	=> 'user.settings',
+	'uses'	=> 'UsersController@settings'
+]);
