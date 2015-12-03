@@ -9,5 +9,5 @@
 	<a href="#" class="btn btn-primary full-width user-button"><i class="fa fa-cog"></i> Nustatymai</a>
 </div>
 @include('panels.about')
-@include('panels.followers')
 @include('panels.user_statistics')
+@include('panels.followers')

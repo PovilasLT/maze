@@ -4,7 +4,7 @@
 	{
 	    
 	    this.overlay = overlay;
-	    this.overlay_content = overlay.find('div.confer-overlay-content');
+	    this.overlay_content = $('.conversation-messages-list>.media');//overlay.find('div.confer-overlay-content');
 	    this.loader = overlay.find('img.confer-overlay-loader');
 	    this.bar_loader = overlay.find('img.confer-bar-loader');
 	    this.context_menu = $('div.confer-conversation-context-menu');
@@ -128,14 +128,6 @@
 
 		var self = this;
 
-		// Subscribe to the presence channel
-		self.globalchannel = self.pusher.subscribe('presence-global');
-		self.globalchannel.bind('pusher:subscription_error', function(status) {
-			//console.log('pusher error status: ' + status);
-			self.disableConfer();
-			self._initConnectionRetries('presence-global');
-		});
-
 		// Subscribe to private notification channel (for incoming chat requests)
 		self.notifications = self.pusher.subscribe('private-notifications-' + self.current_user);
 		self.notifications.bind('pusher:subscription_error', function(status) {
@@ -152,18 +144,6 @@
 			if ( ! self.userIsStartingConversation(info.requester.id)) {
 				self.beginCheckingForMessages(info.conversation);
 				self.saveRequestedConversationToSession(info.conversation.id);
-			}
-		});
-
-		self.globalchannel.bind('NewMessageWasPosted', function(info) {
-			if (self.options.verbose) console.log('Confer: message received in global');
-			if (parseInt(info.message.sender.id) === parseInt(self.current_user)) return;
-			if (self.userIsLookingAtGlobalConversation())
-			{
-				self.addMessageToConversation(info.message);
-			} else if (self.conversationIsInList(info.conversation.id))
-			{
-				self.showNewMessageForConversation(info.conversation.id);
 			}
 		});
 
@@ -350,7 +330,7 @@
 
 		var self = this;
 
-		self.open_conversation_list.delegate('li', 'click', function() {
+		self.open_conversation_list.delegate('.conversation-wrapper', 'click', function() {
 			self.loadConversation($(this).attr('data-conversationId'));
 		});
 
@@ -441,7 +421,7 @@
 			self.initiateConversationWithUser($(this).attr('data-userId'));
 		});
 
-		self.overlay_content.delegate('div.confer-load-more-messages', 'click', function() {
+		self.overlay_content.delegate('.load-more-messages', 'click', function() {
 			if (self.options.verbose) console.log('Confer: getting previous messages');
 			self.loadMoreMessages();
 		});
@@ -738,7 +718,7 @@
 	Confer.prototype.removeLoadMoreMessagesOption = function ()
 	{
 
-		return this.overlay_content.find('div.confer-load-more-messages').remove();
+		return this.overlay_content.find('.load-more-messages').remove();
 
 	}
 
@@ -746,7 +726,7 @@
 	{
 		var self = this;
 		var list = self.overlay_content.find('ul.confer-conversation-message-list');
-		var current_message_id = self.most_previous_message_id ? self.most_previous_message_id : list.children('li').first().attr('data-messageId');
+		var current_message_id = self.most_previous_message_id ? self.most_previous_message_id : list.children('li').not('.load-more-messages').first().attr('data-messageId');
 		var DOM_messages = $();
 		$.ajax({
 			url: self.options.base_url + '/confer/conversation/' + self.open_conversation + '/messages',
@@ -774,6 +754,9 @@
 					if (body.length && self.options.use_emoji) body.html(emojione.shortnameToImage($body.text()));
 				});
 				if (num_messages < 5) self.removeLoadMoreMessagesOption();
+				else {
+					$('.load-more-messages').insertBefore(list.children('li').not('.load-more-messages').first());
+				}
 				/*setTimeout(function() {
 					list.scrollTop(list.prop("scrollHeight"));
 				}, 150);*/
@@ -947,6 +930,7 @@
 			self.overlay_content.load(self.options.base_url + '/confer/conversation/' + conversation_id, function() {
 				self.finishedLoading();
 				self.conversationLoaded(conversation_id, false);
+				//$('.confer-conversation-message-list').scrollTop(Number.MAX_SAFE_INTEGER);
 			});
 		//}
 		//self.conversationLoaded(conversation_id, true);
@@ -1011,7 +995,7 @@
 	Confer.prototype.showOverlay = function ()
 	{
 
-		if ( ! this.overlay.is(':visible')) this.overlay.fadeIn(100);
+		// if ( ! this.overlay.is(':visible')) this.overlay.fadeIn(100);
 		//this.overlay.fadeIn(100);
 
 	}
@@ -1021,7 +1005,7 @@
 
 		var self = this;
 
-		self.generateConversationInBar({ user : user, conversation : conversation });
+		//self.generateConversationInBar({ user : user, conversation : conversation });
 		self.showNewMessageForConversation(conversation.id);
 
 	}
@@ -1089,6 +1073,10 @@
 	Confer.prototype.constructConversationMessage = function (message, use_timestamp)
 	{
 
+		return $(message.html);
+
+		/*
+
 		var self = this;
 
 		var use_timestamp = (typeof use_timestamp === 'undefined' ? false : use_timestamp);
@@ -1113,7 +1101,7 @@
 				$timestamp = $('<span></span>').addClass('confer-message-timestamp').text(use_timestamp ? message.created_at : 'Prieš akimirką').attr('data-timestamp', message.created_at);
 
 			return $message.append($body).append($timestamp);
-		}
+		}*/
 
 	}
 
@@ -1127,18 +1115,6 @@
 	{
 
 		return parseInt(this.current_user) === parseInt(initiator_id);
-
-	}
-
-	/**
-	 * Identify if the last viewed conversation was the global conversation
-	 * 
-	 * @return boolean
-	 */
-	Confer.prototype.userIsLookingAtGlobalConversation = function ()
-	{
-
-		return parseInt(this.open_conversation) === 1;
 
 	}
 

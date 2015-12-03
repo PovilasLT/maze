@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use maze\Node;
+use Stringy\StaticStringy as S;
 
 class Node extends Model {
 
@@ -21,20 +22,33 @@ class Node extends Model {
 		return Node::whereNull('parent_node')->orderBy('order', 'ASC')->get();
 	}
 
-	//grazina slug'a, jei jis neegzistuoja
 	public function getSlugAttribute($value)
 	{
-		if($value)
+		if( ! $value)
 		{
+			$value = S::slugify($this->name);
+
+			$nodes = Node::where('slug', $value);
+
+			if($nodes->count() > 0)
+			{
+				$value = $this->id . '-' . $value;
+				$this->slug = $value;
+
+				$this->save();
+
+				return $value;
+			}
+			else {
+				$this->slug = $value;
+
+				$this->save();
+
+				return $value;
+			}
+		}
+		else {
 			return $value;
 		}
-		else
-		{
-			$slug = str_slug($this->name, '-');
-			$this->attributes['slug'] = $slug;
-			$this->save();
-			return $slug;
-		}
 	}
-
 }

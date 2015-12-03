@@ -33,7 +33,7 @@ String.prototype.capitalize = function() {
         use_emoji : "{{ config('confer.enable_emoji') }}",
 		grammar_enforcer : "{{ config('confer.grammar_enforcer') }}"
 	};
-	var confer = new window.Confer($('div.confer-overlay'), $('ul.confer-open-conversations-list'), {{ Auth::user()->id }}, options);
+	var confer = new window.Confer($('div.confer-overlay'), $('.conversations-list'), {{ Auth::user()->id }}, options);
 })();
 </script>
 @endif

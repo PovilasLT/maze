@@ -15,6 +15,7 @@
 			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
 
+		<link href="/vendor/jasny-bootstrap/css/jasny-bootstrap.min.css" rel="stylesheet">
 		<link href="/vendor/confer/css/confer.css" rel="stylesheet">
 		@include('confer::confer')
 
@@ -25,7 +26,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+						<button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navbar-ex1-offcanvas" data-canvas="body">
 							<span class="sr-only">Toggle navigation</span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
@@ -34,8 +35,9 @@
 						<a class="navbar-brand" href="/"><img src="/images/logo.svg"></a>
 					</div>
 			
-					<div class="collapse navbar-collapse navbar-ex1-collapse">
+					<div class="navmenu navmenu-default navmenu-fixed-left offcanvas navbar-ex1-offcanvas">
 						<ul class="nav navbar-nav">
+							@include('includes.user_info')
 							<li class="active"><a href="#"><i class="fa fa-film fa-primary"></i> TV</a></li>
 							<li><a href="#"><i class="fa fa-comments-o fa-primary"></i> Forumas</a></li>
 						</ul>
@@ -55,19 +57,7 @@
 							</div>
 						</div>
 						<div class="col-lg-3 main-sidebar">
-							<div class="col-lg-12 navbar-user-info">
-								@if(Auth::check())
-									<a href="{{ route('user.profile') }}"><img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->username }} Profilis" class="avatar"></a>
-									<a href="{{ route('user.profile') }}"><i class="fa fa-globe"></i></a>
-									<a href=""><i class="fa fa-envelope-o"></i></a>
-									<a href="{{ route('auth.logout') }}"><i class="fa fa-sign-out"></i></a>
-								@else
-									<div class="logged-out-wrapper">
-										<a href="{{ route('auth.register') }}"><button type="button" class="btn btn-primary"><i class="fa fa-user-plus"></i>Registruotis</button></a>
-										<a href="{{ route('auth.login') }}"><button type="button" class="btn btn-primary"><i class="fa fa-sign-in"></i>Prisijungti</button></a>
-									</div>
-								@endif
-							</div>
+							@include('includes.user_info')
 							@yield('sidebar')
 						</div>
 					</div>
@@ -119,7 +109,9 @@
 			<div class="current-date-invisible" style="display: none;">{{ \Carbon\Carbon::now() }}</div>
 		</footer>
 		<script src="/js/scripts.js"></script>
+		<script src="/vendor/jasny-bootstrap/js/jasny-bootstrap.min.js"></script>
 		<script src="/vendor/pusher/assets/js/pusher.min.js"></script>
+
 		@yield('scripts')
 
 		@include('confer::js')

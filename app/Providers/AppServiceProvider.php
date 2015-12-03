@@ -1,6 +1,7 @@
 <?php namespace maze\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Blade;
 
 class AppServiceProvider extends ServiceProvider {
 
@@ -11,7 +12,14 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		//
+		/**
+		 * <code>
+		 * {? $old_section = "whatever" ?}
+		 * </code>
+		 */
+		Blade::extend(function($value) {
+		    return preg_replace('/\{\?(.+)\?\}/', '<?php ${1} ?>', $value);
+		});
 	}
 
 	/**

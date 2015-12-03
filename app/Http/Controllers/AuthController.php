@@ -4,6 +4,8 @@ use maze\Http\Requests;
 use maze\Http\Requests\CreateUser;
 use Illuminate\Http\Request;
 use Auth, Hash;
+use maze\User;
+use maze\Role;
 
 class AuthController extends Controller {
 
@@ -53,7 +55,8 @@ class AuthController extends Controller {
 			'username'		=> $request->input('username'),
 			'email'			=> $request->input('email'),
 			'password'		=> Hash::make($request->input('password'))
-		]);
+		])
+		->attachRole(Role::where('name', '=', 'Narys')->get()->first());
 
 		flash()->success('Tu sėkmingai užsiregistravai! Dabar gali prisijungti!');
 		return redirect('/');

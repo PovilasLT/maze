@@ -25,6 +25,15 @@ class UsersController extends Controller {
 		return redirect()->back();
 	}
 
+	// Žinutės
+	public function messages() {
+		$user = Auth::user();
+
+		$conversations = $user->conversations()->has('messages')->get();
+
+		return view('user.messages', compact('user', 'conversations'));
+	}
+
 	//Profilis
 
 	public function profile(UserProfile $request) {
@@ -99,12 +108,15 @@ class UsersController extends Controller {
 
 		$following = $user->follow();
 
+
 		if($following)
 		{
+			$user->increment('follower_count');
 			flash()->success($user->username.' prenumeruojamas!');
 		}
 		else
 		{
+			$user->decrement('follower_count');
 			flash()->success($user->username.' nebeprenumeruojamas!');
 		}
 

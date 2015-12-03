@@ -133,10 +133,20 @@ class ConversationController extends Controller {
 	 * @param  Conversation $conversation
 	 * @return Response
 	 */
-	public function show(Conversation $conversation)
+	public function show(Conversation $conversation = null)
 	{
 		$conversation->load('participants');
 		$messages = $conversation->messages()->with('sender')->latest()->take(5)->get()->sortBy('created_at');
+
+		//dd($messages);
+		//dd($conversation->messages()->with('sender')->latest()->take(5)->where('sender_id', '!=', $this->user->id)->get());
+
+		$messages->each(function ($message, $key) {
+			if($message->sender_id != $this->user->id) {
+				$message->read($this->user);
+			}
+		});
+
 		return view('confer::conversation', compact('conversation', 'messages'));
 	}
 
@@ -144,6 +154,13 @@ class ConversationController extends Controller {
 	{
 		$current_message = $request->input('from_message');
 		$messages = $conversation->messages()->with('sender')->where('id', '<', $current_message)->latest()->take(5)->get()->sortBy('created_at');
+
+		$messages->each(function($message, $key) {
+			if($message->sender_id != $this->user->id) {
+				$message->read($this->user);
+			}
+		});
+
 		return $messages;
 	}
 

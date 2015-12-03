@@ -9,7 +9,7 @@
 			{{ $user->about_me }}
 		</p>
 	@endif
-	@if(!$user->is_banned && Auth::check())
+	@if(!$user->is_banned && Auth::check() && Auth::user()->id != $user->id)
 		<a href="{{ route('user.follow', [$user->slug]) }}" class="btn btn-primary full-width user-button"><i class="fa fa-rss"></i> 
 			@if($user->is_following)
 			Nebeprenumeruoti
