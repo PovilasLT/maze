@@ -42,15 +42,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		'city',
 		'sex',
 		'twitter',
-		'facebook',
-		'skype',
 		'steam',
-		'origin',
 		'twitch',
-		'hitbox',
 		'youtube',
-		'deviantart',
-		'website',
 	];
 
 	public function topics() {
