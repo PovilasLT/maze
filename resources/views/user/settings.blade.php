@@ -39,6 +39,7 @@
 					</div>
 
 					<button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save"></i> Išsaugoti</button>
+					<br class="clearfix">
 				</form>
 		  </div>
 	</div>
@@ -72,6 +73,7 @@
 					</div>
 
 					<button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save"></i> Išsaugoti</button>
+					<br class="clearfix">
 				</form>
 		  </div>
 	</div>
@@ -106,6 +108,7 @@
 					</div>
 
 					<button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save"></i> Išsaugoti</button>
+					<br class="clearfix">
 				</form>
 		  </div>
 	</div>
@@ -139,11 +142,12 @@
 					</div>
 
 					<button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save"></i> Išsaugoti</button>
+					<br class="clearfix">
 				</form>
 		  </div>
 	</div>
 
-	<form class="user-settings" action="" method="POST" role="form">
+	<form class="user-settings margin-bottom" action="" method="POST" role="form">
 		<h3>
 			<i class="fa fa-asterisk"></i>
 			Slaptažodžio Keitimas
@@ -165,6 +169,7 @@
 		</div>		
 	
 		<button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save"></i> Išsaugoti</button>
+		<br class="clearfix">
 	</form>
 @stop
 
