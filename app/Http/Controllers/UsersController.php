@@ -7,6 +7,7 @@ use maze\Http\Requests\UserProfile;
 use maze\User;
 use maze\Notification;
 use Auth;
+use Image;
 
 use Illuminate\Http\Request;
 
@@ -22,6 +23,25 @@ class UsersController extends Controller {
 
 	//Išsaugoja vartotoją.
 	public function update(UpdateUser $request) {
+		$settings = $request->input('settings');
+
+		$user = Auth::user();
+
+		foreach($settings as $key => $setting)
+		{
+			if($key == 'avatar')
+			{
+				$avatar = Image::make($setting)->fit(150,150);
+
+			}
+			else if (array_has($key, $user->information) || $key == 'email' || $key == 'about_me')
+			{
+				if($setting == '' && $setting != 'email')
+					$user->update($key, null);
+				else
+					$user->update($key, $setting);
+			}
+		}
 		return redirect()->back();
 	}
 
@@ -132,18 +152,10 @@ class UsersController extends Controller {
 		return view('user.followers', compact('user', 'followers'));
 	}
 
-	public function settings($slug)
+	public function settings()
 	{
-		$user = User::where('slug', $slug)->firstOrFail();
-		if(Auth::check() && Auth::user()->username == $user->username)
-		{
-			return view('user.settings', compact('user'));
-		}
-		else
-		{
-			flash()->error('Veiksmas negalimas!');
-			return redirect()->back();
-		}
+		$user = Auth::user();
+		return view('user.settings', compact('user'));
 	}
 
 }

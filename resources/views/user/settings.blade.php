@@ -11,7 +11,8 @@
 				<h3 class="panel-title"><i class="fa fa-user"></i> Pagrindiniai Duomenys</h3>
 		  </div>
 		  <div class="panel-body">
-				<form action="" method="POST" role="form">
+				<form action="{{ route('user.settings.save') }}" method="POST" role="form">
+				@include('includes.csrf')
 					<div class="row">					
 						<div class="col-md-6">
 							<div class="form-group">
@@ -49,7 +50,8 @@
 				<h3 class="panel-title"><i class="fa fa-users"></i> Socialiniai Tinklai</h3>
 		  </div>
 		  <div class="panel-body">
-				<form sction="" method="POST">
+				<form sction="{{ route('user.settings.save') }}" method="POST">
+					@include('includes.csrf')
 					<div class="row">
 						<div class="form-group col-sm-6">
 							<label for="">Twitter</label>
@@ -83,13 +85,14 @@
 				<h3 class="panel-title"><i class="fa fa-camera-retro"></i> Avataras</h3>
 		  </div>
 		  <div class="panel-body">
-				<form action="" method="POST">
+				<form action="{{ route('user.settings.save') }}" method="POST">
+					@include('includes.csrf')
 					<div class="row">
 						<div class="col-md-6">
 							<input type="file" name="avatar">
-							<button class="btn btn-danger full-width margin-top">
+<!-- 							<button class="btn btn-danger full-width margin-top">
 								Ištrinti avatarą.
-							</button>
+							</button> -->
 						</div>
 						<div class="col-md-6">
 							Avataro reikalavimai:
@@ -119,23 +122,24 @@
 		  </div>
 		  <div class="panel-body">
 				<form method="POST" action="">
+					@include('includes.csrf')
 					<div class="form-group">
 						<p>Gauti laiškus apie:</p>
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" value="1">
+								<input type="checkbox" name="settings[email_replies]" value="1" @if($user->email_replies) checked @endif>
 								pranešimus į prenumeruojamas temas.
 							</label>
 						</div>
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" value="1">
+								<input type="checkbox" name="settings[email_messages]" value="1" @if($user->email_messages) checked @endif>
 								naujas asmenines žinutes.
 							</label>
 						</div>
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" value="1">
+								<input type="checkbox" name="settings[email_news]" value="1" @if($user->email_news) checked @endif>
 								bendruomenės atnaujinimus.
 							</label>
 						</div>

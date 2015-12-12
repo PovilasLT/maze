@@ -30,7 +30,7 @@ Route::get('/zinutes', [
 	'uses' => 'UsersController@messages'
 ]);
 
-Route::get('/vartotojas/{slug}/nustatymai', [
+Route::get('/profilis/nustatymai', [
 	'as'	=> 'user.settings',
 	'uses'	=> 'UsersController@settings'
 ]);
