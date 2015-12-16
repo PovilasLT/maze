@@ -34,3 +34,9 @@ Route::get('/profilis/nustatymai', [
 	'as'	=> 'user.settings',
 	'uses'	=> 'UsersController@settings'
 ]);
+
+
+Route::post('/profilis/nustatymai/issaugoti', [
+	'as'	=> 'user.settings.save',
+	'uses'	=> 'UsersController@update'
+]);

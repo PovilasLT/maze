@@ -10,6 +10,7 @@ use maze\Vote;
 use \maze\Traits\CanConfer;
 use Auth;
 use Stringy\StaticStringy as S;
+use Cache;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
@@ -27,7 +28,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['username', 'email', 'password', 'sex', 'dob'];
+	protected $fillable = ['username', 'email', 'password', 'sex', 'steam', 'about_me', 'twitter', 'youtube', 'twitch', 'city', 'email_replies', 'email_messages', 'email_news'];
 
 	/**
 	 * The attributes excluded from the model's JSON form.

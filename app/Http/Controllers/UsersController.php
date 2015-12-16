@@ -8,6 +8,7 @@ use maze\User;
 use maze\Notification;
 use Auth;
 use Image;
+use Hash;
 
 use Illuminate\Http\Request;
 
@@ -23,25 +24,54 @@ class UsersController extends Controller {
 
 	//Išsaugoja vartotoją.
 	public function update(UpdateUser $request) {
-		$settings = $request->input('settings');
+		$settings = $request->input();
 
 		$user = Auth::user();
 
+		$_settings = [];
+		$protected = [
+			'username',
+			'password'
+		];
+
 		foreach($settings as $key => $setting)
 		{
-			if($key == 'avatar')
-			{
-				$avatar = Image::make($setting)->fit(150,150);
 
-			}
-			else if (array_has($key, $user->information) || $key == 'email' || $key == 'about_me')
+			if(!array_key_exists($key, $protected))
 			{
-				if($setting == '' && $setting != 'email')
-					$user->update($key, null);
+				$_settings[$key] = $setting;
+			}
+
+			// var_dump($request->file('avatar'));
+			// exit();
+
+			//processinam avatara
+			if($request->file('avatar'))
+			{
+				$filename = str_random(40);
+				Image::make($request->file('avatar'))->fit(150,150)->encode('png')->encode('png', 100)->save(public_path('images/avatars/'.$user->id.'/'.$filename.'.png'));
+				$user->image_url = $filename.'.png';
+			}
+
+			if($key == 'password')
+			{
+				if(Hash::check($setting, $user->password))
+				{
+					$user->password = Hash::make($settings['npassword']);
+				}
 				else
-					$user->update($key, $setting);
+				{
+					flash()->error('Blogas slaptažodis!');
+					return redirect()->back();
+				}
 			}
 		}
+
+		$user->update($_settings);
+		$user->save();
+
+		flash()->success('Pakeitimai išsaugoti!');
+
 		return redirect()->back();
 	}
 

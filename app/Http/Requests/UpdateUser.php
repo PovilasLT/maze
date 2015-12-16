@@ -14,9 +14,8 @@ class UpdateUser extends Request {
 	public function authorize()
 	{
 		$user = Auth::user();
-		$status = Status::findOrFail($this->route('id'));
 
-		if($user && ($status->user_id == $user->id || $user->can('manage_statuses')))
+		if($user)
 		{
 			return true;
 		}
@@ -32,13 +31,15 @@ class UpdateUser extends Request {
 	 */
 	public function rules()
 	{
+
 		return [
 			'email'		=> 'email',
 			'steam'		=> 'url',
 			'youtube'	=> 'url',
 			'twitch'	=> 'alpha_num',
 			'twitter'	=> 'alpha_dash',
-			'avatar'	=> 'mimes:jpeg,png|max:150',
+			'avatar'	=> 'mimes:jpeg,png',
+			'npassword' => 'confirmed|min:8',
 		];
 	}
 
