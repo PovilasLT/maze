@@ -178,12 +178,15 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		}
 	}
 
-	public function getAgeAttribute() {
-		return 22;
-	}
-
-	public function getSexAttribute() {
-		return 'Vyras';
+	public function getSexAttribute($value) {
+		if($value == 0)
+		{
+			return 'Moteris';
+		}
+		else
+		{
+			return 'Vyras';
+		}
 	}
 
 	public function getTwitterAttribute($value)

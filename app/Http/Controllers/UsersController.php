@@ -31,7 +31,8 @@ class UsersController extends Controller {
 		$_settings = [];
 		$protected = [
 			'username',
-			'password'
+			'password',
+			'npassword',
 		];
 
 		foreach($settings as $key => $setting)
@@ -41,10 +42,7 @@ class UsersController extends Controller {
 			{
 				$_settings[$key] = $setting;
 			}
-
-			// var_dump($request->file('avatar'));
-			// exit();
-
+			
 			//processinam avatara
 			if($request->file('avatar'))
 			{
@@ -66,6 +64,11 @@ class UsersController extends Controller {
 				}
 			}
 		}
+
+		//nelabai geras sprendimas
+		//veliau sugalvoti ka nors kito
+		unset($_settings['password']);
+		unset($_settings['npassword']);
 
 		$user->update($_settings);
 		$user->save();
