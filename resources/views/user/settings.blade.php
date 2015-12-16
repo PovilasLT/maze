@@ -128,12 +128,12 @@
 								pranešimus į prenumeruojamas temas.
 							</label>
 						</div>
-						<div class="checkbox">
+						<!-- <div class="checkbox">
 							<label>
 								<input type="checkbox" name="email_messages" value="1" @if($user->email_messages) checked @endif>
 								naujas asmenines žinutes.
 							</label>
-						</div>
+						</div> -->
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="email_news" value="1" @if($user->email_news) checked @endif>
