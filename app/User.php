@@ -178,6 +178,21 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		}
 	}
 
+	public function getNotificationCountAttribute() {
+		$minutes = 3;
+
+		$user = $this;
+
+		$count = Cache::remember($this->id.'_notification_count', $minutes, function() use($user) {
+			$ncount = $user->notifications()->where('created_at', '>', $user->notifications_read)->count('id');
+			return $ncount;
+		});
+
+		// $count = $user->notifications()->where('created_at', '>', $user->notifications_read)->count('id');
+
+		return $count;
+	}
+
 	public function getSexAttribute($value) {
 		if($value == 0)
 		{

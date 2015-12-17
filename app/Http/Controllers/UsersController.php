@@ -106,6 +106,10 @@ class UsersController extends Controller {
 	public function profile(UserProfile $request) {
 		$user = Auth::user();
 
+		//atnaujinam notificationu perskaitymo data
+		$user->notifications_read = new \DateTime();
+		$user->save();
+
 		$sort = $request->input('rodyti');
 		$subsort = $request->input('sub');
 

@@ -1,7 +1,11 @@
 <div class="col-lg-12 navbar-user-info">
 	@if(Auth::check())
 		<a href="{{ route('user.profile') }}"><img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->username }} Profilis" class="avatar"></a>
-		<a href="{{ route('user.profile') }}"><i class="fa fa-globe"></i></a>
+		<a href="{{ route('user.profile') }}" class="user-notifications-icon"><i class="fa fa-globe"></i>
+			@if($notifications = Auth::user()->notification_count)
+				<span>{{ $notifications }}</span>
+			@endif
+		</a>
 		<a href="{{ route('user.messages') }}" class="user-messages-icon"><i class="fa fa-envelope-o"></i>
 			@if ($unread = \Message::unread(Auth::user()))
 				<span>{{ $unread }}</span>
