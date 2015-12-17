@@ -59,7 +59,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	public function notifications() {
 		return $this->hasMany('maze\Notification');
 	}
-
+	
 	public function statuses() {
 		return $this->hasMany('maze\Notification')->where('object_type', 'status');
 	}
@@ -184,7 +184,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		$user = $this;
 
 		$count = Cache::remember($this->id.'_notification_count', $minutes, function() use($user) {
-			$ncount = $user->notifications()->where('created_at', '>', $user->notifications_read)->count('id');
+			$ncount = $user
+			->notifications()
+			->where('updated_at', '>', $user->notifications_read)
+			->where('read_at', '<', $user->notifications_read)
+			->count('id');
 			return $ncount;
 		});
 

@@ -16,6 +16,7 @@ use maze\Answer;
 
 use Auth;
 use Markdown;
+use Cache;
 
 use maze\Modules\Mentions\Mention;
 
@@ -103,6 +104,18 @@ class TopicsController extends Controller {
 	{
 		$topic = Topic::where('slug', $slug)->firstOrFail();
 		
+		if(Auth::check())
+		{
+			$replies = $topic->replies()->lists('id');
+			
+			// dd(Auth::user()->notifications()->whereIn('object_id', $replies)->where('object_type', 'reply')->get());
+
+			Auth::user()->notifications()->whereIn('object_id', $replies)->where('object_type', 'reply')->update(['read_at' => new \DateTime()]);
+
+			//bust da cache
+			Cache::forget(Auth::user()->id.'_notification_count');
+		}
+
 		//padidina view counteri.
 		$topic->increment('view_count');
 

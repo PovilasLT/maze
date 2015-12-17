@@ -6,6 +6,7 @@ use maze\Status;
 use maze\StatusComment;
 use maze\Follower;
 use maze\Notification;
+use maze\User;
 use Event;
 use Auth;
 use Mail;

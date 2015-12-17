@@ -8,7 +8,8 @@ class Notification extends Model {
 		'user_id',
 		'from_id',
 		'object_id',
-		'object_type'
+		'object_type',
+		'updated_at',
 	];
 
 	public static function getCount()

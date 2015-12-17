@@ -17,7 +17,8 @@ class Topic extends Model {
 		'body',
 		'body_original',
 		'user_id',
-		'type'
+		'type',
+		// 'updated_at',
 	];
 
 	use SoftDeletes;

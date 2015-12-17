@@ -5,6 +5,8 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use maze\Reply;
 use maze\Vote;
 use maze\Topic;
+use maze\Modules\News\News as ModuleNews;
+use maze\Modules\CacheBuster\CacheBuster as ModuleCacheBuster;
 use Config;
 
 class EventServiceProvider extends ServiceProvider {
@@ -21,7 +23,7 @@ class EventServiceProvider extends ServiceProvider {
 	];
 
 	/**
-	 * Register any other events for your application.
+	 * Register any other events or modules for your application.
 	 *
 	 * @param  \Illuminate\Contracts\Events\Dispatcher  $events
 	 * @return void
@@ -29,6 +31,11 @@ class EventServiceProvider extends ServiceProvider {
 	public function boot(DispatcherContract $events)
 	{
 		parent::boot($events);
+
+		//modulių registracija
+		$modules = [
+			'cachebuster'	=> new ModuleCacheBuster(),
+		];
 
 		Reply::created(function($reply){
 			$topic = $reply->topic;
