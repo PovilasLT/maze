@@ -9,6 +9,7 @@ use maze\Notification;
 use Auth;
 use Image;
 use Hash;
+use Storage;
 
 use Illuminate\Http\Request;
 
@@ -46,9 +47,26 @@ class UsersController extends Controller {
 			//processinam avatara
 			if($request->file('avatar'))
 			{
+
+				//isvalom direktorija.
+				
+				$files = Storage::disk('avatar')->files($user->id);
+
+				$files = array_map(function($file) use($user) {
+					return '/'.$user->id.'/'.$file;
+				}, $files);
+
 				$filename = str_random(40);
-				Image::make($request->file('avatar'))->fit(150,150)->encode('png')->encode('png', 100)->save(public_path('images/avatars/'.$user->id.'/'.$filename.'.png'));
-				$user->image_url = $filename.'.png';
+				$saved = Image::make($request->file('avatar'))->fit(150,150)->encode('png')->encode('png', 100)->save(public_path('images/avatars/'.$user->id.'/'.$filename.'.png'));
+
+				//jeigu nieko nepridirbo su failu
+				//istrinam pries tai buvusius failus
+				//ir nustatom nauja avatara
+				if($saved)
+				{
+					Storage::disk('avatar')->delete($files);
+					$user->image_url = $filename.'.png';
+				}
 			}
 
 			if($key == 'password')
