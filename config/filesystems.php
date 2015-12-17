@@ -50,7 +50,7 @@ return [
 
 		'avatars' => [
 			'driver' => 'local',
-			'root'	 => storage_path().'/public/images/avatars',
+			'root'	 => public_path().'/images/avatars',
 		],
 
 		's3' => [

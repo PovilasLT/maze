@@ -50,11 +50,7 @@ class UsersController extends Controller {
 
 				//isvalom direktorija.
 				
-				$files = Storage::disk('avatar')->files($user->id);
-
-				$files = array_map(function($file) use($user) {
-					return '/'.$user->id.'/'.$file;
-				}, $files);
+				$files = Storage::disk('avatars')->files($user->id);
 
 				$filename = str_random(40);
 				$saved = Image::make($request->file('avatar'))->fit(150,150)->encode('png')->encode('png', 100)->save(public_path('images/avatars/'.$user->id.'/'.$filename.'.png'));
@@ -64,7 +60,7 @@ class UsersController extends Controller {
 				//ir nustatom nauja avatara
 				if($saved)
 				{
-					Storage::disk('avatar')->delete($files);
+					Storage::disk('avatars')->delete($files);
 					$user->image_url = $filename.'.png';
 				}
 			}
