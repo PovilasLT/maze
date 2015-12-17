@@ -484,15 +484,19 @@ h1.media-heading {
 	}
 }
 
-.user-messages-icon > span {
-	font-size: 11px;
-	color: white;
-	background: #0f7255;
-	border-radius: 90%;
-	padding: 0 4px;
-	position: absolute;
-	margin-left: -18px;
-	margin-top: 18px;
+.user-messages-icon,
+.user-notifications-icon {
+	span {
+	    font-size: 11px;
+	    color: white;
+	    background: @brand-danger;
+	    border-radius: 45px;
+	    padding: 0 5px;
+	    position: absolute;
+	    margin-left: -25px;
+	    margin-top: 20px;
+	    line-height: 16px;
+	}
 }
 
 .navbar-user-info > a:hover {
