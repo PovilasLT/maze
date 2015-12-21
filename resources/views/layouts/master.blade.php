@@ -38,8 +38,18 @@
 					<div class="navmenu navmenu-default navmenu-fixed-left offcanvas navbar-ex1-offcanvas">
 						<ul class="nav navbar-nav">
 							@include('includes.user_info')
-							<li class="active"><a href="#"><i class="fa fa-film fa-primary"></i> TV</a></li>
-							<li><a href="#"><i class="fa fa-comments-o fa-primary"></i> Forumas</a></li>
+							<li><a href="/">TV</a></li>
+							<li><a href="/">Forumas</a></li>
+							<li><a href="/">Paieška</a></li>
+							@yield('sidebar')
+						</ul>
+					</div>
+
+					<div class="collapse navbar-collapse">
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="http://www.maze.lt/">Forumas</a></li>
+							<li><a href="http://tv.maze.lt/">TV</a></li>
+							<li><a href="{{ route('search.index') }}">Paieška</a></li>
 						</ul>
 					</div>
 				</div>
