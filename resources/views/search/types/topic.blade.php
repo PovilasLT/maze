@@ -1,0 +1,1 @@
+@include('topic.item', ['topic' => $result])

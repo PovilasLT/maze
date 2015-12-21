@@ -29,18 +29,16 @@ class SearchController extends Controller
         }
         elseif($type == 'reply')
         {
-            $results = Reply::where('body_original', 'LIKE', '%'.$query.'%');
+            $results = Reply::where('body_original', 'LIKE', '%'.$query.'%')->paginate(20);
         }
         elseif($type == 'topic')
         {
-            $results = Topic::where('body_original', 'LIKE', '%'.$query.'%');
+            $results = Topic::where('body_original', 'LIKE', '%'.$query.'%')->paginate(20);
         }
         elseif($type == 'status')
         {
-            $results = Status::where('body_original', 'LIKE', '%'.$query.'%');
+            $results = Status::where('body_original', 'LIKE', '%'.$query.'%')->paginate(20);
         }
-
-        // $results->paginate(20);
 
         return view('search.results', compact('type', 'query', 'results'));
     }
