@@ -29,11 +29,14 @@ require_once('Routes/reply.routes.php');
 //Busenos
 require_once('Routes/status.routes.php');
 
+//Paieška
+require_once('Routes/search.routes.php');
+
 //TV
-require_once('Routes/tv.routes.php');
+// require_once('Routes/tv.routes.php');
 
 //Blog'ai
-require_once('Routes/blog.routes.php');
+// require_once('Routes/blog.routes.php');
 
 //Confer
 require_once('Routes/confer.routes.php');

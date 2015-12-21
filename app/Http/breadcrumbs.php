@@ -101,3 +101,16 @@ Breadcrumbs::register('status.comment.edit', function($breadcrumbs, $comment)
     $breadcrumbs->push('Redaguoti komentarą', route('status.comment.edit', $comment->id));
 });
 
+//Paieska
+
+Breadcrumbs::register('search.index', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Paieška', route('search.index'));
+});
+
+Breadcrumbs::register('search.results', function($breadcrumbs)
+{
+    $breadcrumbs->parent('search.index');
+    $breadcrumbs->push('Rezultatai', route('search.results'));
+});
