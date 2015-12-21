@@ -17,3 +17,9 @@ Route::get('/api/users/search/{query}', function($query) {
 		return maze\User::where('username', 'LIKE', '%'.$query.'%')->get();		
 	});
 });
+
+Route::get('/api/users/twitch', function() {
+	// return Cache::remember('twitch_users', 3, function() {
+		return maze\User::whereNotNull('twitch')->get();
+	// });
+});
