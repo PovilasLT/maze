@@ -40,6 +40,10 @@ class Handler extends ExceptionHandler {
 		{
 			return response()->view('errors.503');
 		}
+		elseif($e->getStatusCode() != 404)
+		{
+			return response()->view('errors.internal');
+		}
 		else
 		{
 			return parent::render($request, $e);

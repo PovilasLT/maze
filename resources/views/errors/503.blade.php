@@ -19,7 +19,7 @@
 	<body>
 		<div class="container text-center">
 			<h1 class="text-center">Maze Atsinaujina</h1>
-			<p>Sveikas atvykeli! Užklupai mus ne pačioje geriausioje būsenoje. Šiuo metu atliekame platformos atnaujinimo darbus. Pabandyk puslapį perkrauti už keleto minučių!</p>
+			<p>Sveikas atvykeli! Užklupai mus ne pačioje geriausioje būsenoje. Šiuo metu atliekame platformos atnaujinimo darbus. Pabandyk puslapį perkrauti už keletos minučių!</p>
 			<img src="http://i.imgur.com/DRQGIt9.jpg" style="height:50%;width:50%;">
 		</div>
 		<!-- jQuery -->

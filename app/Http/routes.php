@@ -1,5 +1,9 @@
 ﻿<?php
 
+Route::get('/qq', function() {
+	return response()->view('errors.internal');
+});
+
 require_once('Routes/api.routes.php');
 
 //Bendriniai puslapiai
