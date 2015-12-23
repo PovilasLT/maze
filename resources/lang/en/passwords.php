@@ -13,10 +13,10 @@ return [
 	|
 	*/
 
-	"password" => "Slaptaşodá turi sudaryti bent ğeği simboliai.",
-	"user" => "Narys su nurodytu el. pağtu neegzistuoja.",
-	"token" => "Slaptaşodşio keitimo kodas negaliojantis.",
-	"sent" => "Nuoroda slaptaşodşio keitimui buvo iğsiøst jums á el. pağtà!",
-	"reset" => "Jûsø slaptaşodis atnaujintas!",
+	"password" => "SlaptaÅ¾odÄ¯ turi sudaryti bent Å¡eÅ¡i simboliai.",
+	"user" => "Narys su nurodytu el. paÅ¡tu neegzistuoja.",
+	"token" => "SlaptaÅ¾odÅ¾io keitimo kodas negaliojantis.",
+	"sent" => "Nuoroda slaptaÅ¾odÅ¾io keitimui buvo iÅ¡siÅ³st jums Ä¯ el. paÅ¡tÄ…!",
+	"reset" => "JÅ«sÅ³ slaptaÅ¾odis atnaujintas!",
 
 ];
