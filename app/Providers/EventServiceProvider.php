@@ -7,7 +7,6 @@ use maze\Vote;
 use maze\Topic;
 use maze\Modules\News\News as ModuleNews;
 use maze\Modules\CacheBuster\CacheBuster as ModuleCacheBuster;
-use Config;
 
 class EventServiceProvider extends ServiceProvider {
 
