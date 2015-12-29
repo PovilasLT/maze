@@ -36,18 +36,18 @@ class Handler extends ExceptionHandler {
 	 */
 	public function render($request, Exception $e)
 	{
-		if($e->getStatusCode() == 503)
-		{
-			return response()->view('errors.503');
-		}
-		elseif($e->getStatusCode() != 404)
-		{
-			return response()->view('errors.internal');
-		}
-		else
-		{
+		// if($e->getStatusCode() == 503)
+		// {
+		// 	return response()->view('errors.503');
+		// }
+		// elseif($e->getStatusCode() != 404)
+		// {
+		// 	return response()->view('errors.internal');
+		// }
+		// else
+		// {
 			return parent::render($request, $e);
-		}
+		// }
 		// return parent::render($request, $e);
 	}
 

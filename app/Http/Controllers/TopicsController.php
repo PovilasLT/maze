@@ -8,6 +8,8 @@ use maze\Http\Requests\EditTopic;
 use maze\Http\Requests\AdminTopic;
 use maze\Http\Requests\DeleteTopic;
 use maze\Http\Requests\UpdateTopic;
+use maze\Events\TopicWasCreated;
+use maze\Events\TopicWasDeleted;
 
 use maze\Topic;
 use maze\Node;
@@ -65,7 +67,9 @@ class TopicsController extends Controller {
 		$data['user_id'] 		= Auth::user()->id;
 
 		$topic = Topic::create($data);
+		$user = Auth::user();
 
+		event(new TopicWasCreated($topic, $user));
 
 		//Jeigu tema yra Apklausa, sukurti apklausą
 		if($data['type'] == 3)
@@ -173,6 +177,9 @@ class TopicsController extends Controller {
 	{
 		$topic = $request->topic;
 		$topic->delete();
+		$user = Auth::user();
+
+		event(new TopicWasDeleted($topic, $user));
 
 		flash()->success('Tema sėkmingai ištrinta!');
 

@@ -17,8 +17,41 @@ class EventServiceProvider extends ServiceProvider {
 	 * @var array
 	 */
 	protected $listen = [
-		'event.name' => [
-			'EventListener',
+		'maze\Events\ReplyWasCreated' => [
+			'maze\Listeners\NotifyUser',
+			'maze\Listeners\IncrementWeight',
+		],
+		'maze\Events\ReplyWasDeleted' => [
+			'maze\Listeners\DecrementWeight',
+			'maze\Listeners\DecrementKarma',
+		],
+		'maze\Events\TopicWasCreated' => [
+			'maze\Listeners\NotifyUser',
+		],
+		'maze\Events\TopicWasDeleted' => [
+			'maze\Listeners\DecrementKarma',
+		],
+		'maze\Events\UpVoted' => [
+			'maze\Listeners\IncrementWeight',
+			'maze\Listeners\IncrementKarma',
+			'maze\Listeners\IncrementVoteCount',
+		],
+		'maze\Events\DownVoted' => [
+			'maze\Listeners\DecrementWeight',
+			'maze\Listeners\DecrementKarma',
+			'maze\Listeners\DecrementVoteCount',
+		],
+		'maze\Events\StatusWasCreated' => [
+			'maze\Listeners\NotifyUser',
+		],
+		'maze\Events\StatusCommentWasCreated' => [
+			'maze\Listeners\NotifyUser',
+		],
+		'maze\Events\UserWasMentioned' => [
+			'maze\Listeners\NotifyUser',
+		],
+		'maze\Events\UserWasNotified' => [
+			'maze\Listeners\EmailNotification',
 		],
 	];
 
@@ -36,51 +69,6 @@ class EventServiceProvider extends ServiceProvider {
 		$modules = [
 			'cachebuster'	=> new ModuleCacheBuster(),
 		];
-
-		Reply::created(function($reply){
-			$topic = $reply->topic;
-			$topic->increment('weight', Config::get('app.reply_gain_weight'));
-
-		});
-
-		Reply::deleted(function($reply){
-			$topic = $reply->topic;
-			$topic->decrement('weight', Config::get('app.reply_gain_weight'));
-		});
-
-		Vote::created(function($vote)
-		{
-			if($vote->votable_type == 'Topic')
-			{
-				$topic = Topic::findOrFail($vote->votable_id);
-				//Pridedam svori
-				if($vote->is == 'upvote')
-				{
-					$topic->increment('weight', Config::get('app.upvote_gain_weight'));
-				}
-				else
-				{
-					$topic->decrement('weight', Config::get('app.downvote_lose_weight'));
-				}
-			}
-		});
-
-		Vote::deleted(function($vote)
-		{
-			if($vote->votable_type == 'Topic')
-			{
-				$topic = Topic::findOrFail($vote->votable_id);
-				//Grazinam atimta svori
-				if($vote->is == 'upvote')
-				{
-					$topic->decrement('weight', Config::get('app.upvote_gain_weight'));
-				}
-				else
-				{
-					$topic->increment('weight', Config::get('app.downvote_lose_weight'));
-				}
-			}
-		});
 
 	}
 

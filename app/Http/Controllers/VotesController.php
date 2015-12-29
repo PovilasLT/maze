@@ -10,6 +10,9 @@ use maze\Reply;
 use maze\Vote;
 use maze\Topic;
 
+use maze\Events\UpVoted;
+use maze\Events\DownVoted;
+
 use Auth;
 
 class VotesController extends Controller {
@@ -51,28 +54,26 @@ class VotesController extends Controller {
 					'is'			=> $vote
 				]);
 
+				//cancel old vote and give new vote
 				if($vote == 'upvote')
 				{
-					$_votable->increment('vote_count', 2);
-					$_votable->user()->increment('karma_count', 2);
+					event(new UpVoted($_votable, $created_vote , $_votable->user, true));
 				}
 				else
 				{
-					$_votable->decrement('vote_count', 2);
-					$_votable->user()->decrement('karma_count', 2);
+					event(new DownVoted($_votable, $created_vote , $_votable->user, true));
 				}
 			}
 			else
 			{
+				//cancel current vote
 				if($vote == 'upvote')
 				{
-					$_votable->decrement('vote_count', 1);
-					$_votable->user()->decrement('karma_count', 1);
+					event(new DownVoted($_votable, $_vote , $_votable->user, false));
 				}
 				else
 				{
-					$_votable->increment('vote_count', 1);
-					$_votable->user()->increment('karma_count', 1);
+					event(new UpVoted($_votable, $_vote , $_votable->user, false));
 				}
 			}
 		}
@@ -85,15 +86,16 @@ class VotesController extends Controller {
 					'is'			=> $vote
 			]);
 
+			//just vote
+
 			if($vote == 'upvote')
 			{
-				$_votable->increment('vote_count', 1);
-				$_votable->user()->increment('karma_count', 1);
+
+				event(new UpVoted($_votable, $created_vote , $_votable->user, false));
 			}
 			else
 			{
-				$_votable->decrement('vote_count', 1);
-				$_votable->user()->decrement('karma_count', 1);
+				event(new DownVoted($_votable, $created_vote , $_votable->user, false));
 			}
 		}
 

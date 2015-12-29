@@ -8,6 +8,8 @@ use maze\Http\Requests\AnswerReply;
 use maze\Http\Requests\EditReply;
 use maze\Http\Requests\DeleteReply;
 use maze\Http\Requests\UpdateReply;
+use maze\Events\ReplyWasCreated;
+use maze\Events\ReplyWasDeleted;
 use Auth;
 use maze\Topic;
 use Markdown;
@@ -32,12 +34,15 @@ class RepliesController extends Controller {
 
 		$topic = Topic::findOrFail($data['topic_id']);
 		$reply = Reply::create($data);
+
 		$topic->increment('reply_count');
 
 		$user = Auth::user();
 		$user->increment('reply_count');
 
 		flash()->success('Pranešimas sėkmingai išsaugotas!');
+
+		event(new ReplyWasCreated($reply, $topic, $user));
 		
 		//redirectina tiesiai i ten, kur yra pranesimas
 		return redirect()->route('topic.show', [$topic->slug, '#pranesimas-'.$reply->id]);
@@ -70,11 +75,16 @@ class RepliesController extends Controller {
 		$reply = $request->reply;
 		$topic = $reply->topic;
 
-		$reply->user->decrement('reply_count');
+		$user = $reply->user;
+		$user->decrement('reply_count');
 
 		$reply->delete();
 		$topic->decrement('reply_count');
+
 		flash()->success('Pranešimas sėkmingai ištrintas!');
+
+		event(new ReplyWasDeleted($reply, $topic, $user));
+
 		return redirect()->route('topic.show', [$topic->slug]);
 	}
 
