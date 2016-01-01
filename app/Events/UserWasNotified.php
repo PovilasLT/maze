@@ -10,14 +10,18 @@ class UserWasNotified extends Event
 {
     use SerializesModels;
 
+    public $object;
+    public $user;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($object, User $user)
     {
-        //
+        $this->object = $object;
+        $this->user = $user;
     }
 
     /**

@@ -35,6 +35,8 @@ class TopicWasCreated extends Event
             event(new NewsWasPosted($topic));
         }
 
+        $user->increment('topic_count');
+
     }
 
     /**

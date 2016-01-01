@@ -3,11 +3,7 @@
 use Illuminate\Database\Eloquent\Model;
 use Auth;
 
-use \maze\Traits\Notifiable;
-
 class Reply extends Model {
-
-	use \maze\Traits\Notifiable;
 
 	protected $fillable = [
 		'user_id',
@@ -54,6 +50,10 @@ class Reply extends Model {
 		{
 			return false;
 		}
+	}
+
+	public function getParentContainerAttribute() {
+		return $this->topic;
 	}
 	
 }

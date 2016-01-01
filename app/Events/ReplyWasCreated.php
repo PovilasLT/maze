@@ -22,6 +22,7 @@ class ReplyWasCreated extends Event
     public $user;
     public $weight;
     public $karma;
+    public $notifiable;
 
     /**
      * Create a new event instance.
@@ -35,6 +36,7 @@ class ReplyWasCreated extends Event
         $this->user = $user;
         $this->weight = Config::get('app.reply_gain_weight');
         $this->karma = 0;
+        $this->notifiable = $reply;
     }
 
     /**

@@ -72,27 +72,24 @@ class TopicsController extends Controller {
 		event(new TopicWasCreated($topic, $user));
 
 		//Jeigu tema yra Apklausa, sukurti apklausą
-		if($data['type'] == 3)
-		{
-			$poll = Poll::create([
-				'topic_id' => $topic->id
-			]);
+		// if($data['type'] == 3)
+		// {
+		// 	$poll = Poll::create([
+		// 		'topic_id' => $topic->id
+		// 	]);
 
-			foreach($data['answers'] as $answer)
-			{
-				if($answer)
-				{
-					Answer::create([
-						'poll_id'	=> $poll->id,
-						'title'		=> $answer
-					]);
-				}
-			}
-		}
-
-		$user = Auth::user();
-		$user->increment('topic_count');
-
+		// 	foreach($data['answers'] as $answer)
+		// 	{
+		// 		if($answer)
+		// 		{
+		// 			Answer::create([
+		// 				'poll_id'	=> $poll->id,
+		// 				'title'		=> $answer
+		// 			]);
+		// 		}
+		// 	}
+		// }
+		
 		flash()->success('Tema sėkmingai sukurta!');
 		//grazinam useri i sukurta topic'a
 		return redirect()->route('topic.show', ['slug' => $topic->slug]);

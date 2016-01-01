@@ -23,12 +23,14 @@ class EventServiceProvider extends ServiceProvider {
 		'maze\Events\ReplyWasDeleted' => [
 			'maze\Listeners\DecrementWeight',
 			'maze\Listeners\DecrementKarma',
+			'maze\Listeners\CleanUpNotifications',
 		],
 		'maze\Events\TopicWasCreated' => [
 			'maze\Listeners\NotifyUser',
 		],
 		'maze\Events\TopicWasDeleted' => [
 			'maze\Listeners\DecrementKarma',
+			'maze\Listeners\CleanUpNotifications',
 		],
 		'maze\Events\UpVoted' => [
 			'maze\Listeners\IncrementWeight',
@@ -43,14 +45,23 @@ class EventServiceProvider extends ServiceProvider {
 		'maze\Events\StatusWasCreated' => [
 			'maze\Listeners\NotifyUser',
 		],
+		'maze\Events\StatusWasDeleted' => [
+			'maze\Listeners\CleanUpNotifications',
+		],
 		'maze\Events\StatusCommentWasCreated' => [
 			'maze\Listeners\NotifyUser',
+		],
+		'maze\Events\StatusCommnetWasDeleted' => [
+			'maze\Listeners\CleanUpNotifications',
 		],
 		'maze\Events\UserWasMentioned' => [
 			'maze\Listeners\NotifyUser',
 		],
 		'maze\Events\UserWasNotified' => [
 			'maze\Listeners\EmailNotification',
+		],
+		'maze\Events\NewsWasPosted' => [
+			'maze\Listeners\EmailNews',
 		],
 	];
 

@@ -49,4 +49,8 @@ class StatusComment extends Model {
         return $nice_names;
 	}
 
+	public function getParentContainerAttribute() {
+		return $this->status;
+	}
+
 }

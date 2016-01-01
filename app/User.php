@@ -37,7 +37,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
-	protected $dates = ['created_at', 'updated_at', 'last_login', 'last_action', 'notifications_read', 'dob'];
+	protected $dates = ['created_at', 'updated_at', 'last_login', 'last_action', 'notifications_read', 'dob', 'last_reply_emailed'];
 
 	public $information = [
 		'city',
