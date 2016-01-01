@@ -34,7 +34,7 @@ class EmailNotification
         //TODO: pakeisti i universalesni sprendima.
         if($type == 'Reply');
         {
-            if($user->id != $reply->topic->user_id && $this->canEmailReply($user)) {
+            if($user->id != $reply->topic->user_id) {
                 $last_reply = $reply->topic->replies()->where('user_id', '<>', $user->id)->orderBy('created_at', 'desc')->first();
                 if(!$last_reply || ($last_reply && $last_reply->created_at->diffInHours() > 24 && $reply->topic->user->email_replies))
                 {
