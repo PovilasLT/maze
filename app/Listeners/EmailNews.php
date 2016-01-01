@@ -28,19 +28,21 @@ class EmailNews
      */
     public function handle(NewsWasPosted $event)
     {
-        $users = User::where('email_news', 1)->get();
+        $topic = $event->topic;
+        
+        $users = User::where('email_news', 1)->chunk(200, function($users) use($topic) {
+            $data = [
+                'title' => $topic->title,
+                'body'  => $topic->body
+            ];
 
-        $data = [
-            'title' => $topic->title,
-            'body'  => $topic->body
-        ];
-
-        foreach($users as $user)
-        {
-            Mail::queue('emails.news', $data, function($message) use($user, $topic)
+            foreach($users as $user)
             {
-                $message->to($user->email)->subject('Maze Naujienos: '.utf8_urldecode($topic->title));
-            });
-        }
+                Mail::queue('emails.news', $data, function($message) use($user, $topic)
+                {
+                    $message->to($user->email)->subject('Maze Naujienos: '.utf8_urldecode($topic->title));
+                });
+            }
+        });
     }
 }
