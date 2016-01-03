@@ -19,40 +19,50 @@ class EventServiceProvider extends ServiceProvider {
 		'maze\Events\ReplyWasCreated' => [
 			'maze\Listeners\NotifyUser',
 			'maze\Listeners\IncrementWeight',
+			'maze\Listeners\LogAction',
 		],
 		'maze\Events\ReplyWasDeleted' => [
 			'maze\Listeners\DecrementWeight',
 			'maze\Listeners\DecrementKarma',
 			'maze\Listeners\CleanUpNotifications',
+			'maze\Listeners\LogAction',
 		],
 		'maze\Events\TopicWasCreated' => [
 			'maze\Listeners\NotifyUser',
+			'maze\Listeners\LogAction',
 		],
 		'maze\Events\TopicWasDeleted' => [
 			'maze\Listeners\DecrementKarma',
 			'maze\Listeners\CleanUpNotifications',
+			'maze\Listeners\LogAction',
 		],
 		'maze\Events\UpVoted' => [
 			'maze\Listeners\IncrementWeight',
 			'maze\Listeners\IncrementKarma',
 			'maze\Listeners\IncrementVoteCount',
+			'maze\Listeners\LogAction',
 		],
 		'maze\Events\DownVoted' => [
 			'maze\Listeners\DecrementWeight',
 			'maze\Listeners\DecrementKarma',
 			'maze\Listeners\DecrementVoteCount',
+			'maze\Listeners\LogAction',
 		],
 		'maze\Events\StatusWasCreated' => [
 			'maze\Listeners\NotifyUser',
+			'maze\Listeners\LogAction',
 		],
 		'maze\Events\StatusWasDeleted' => [
 			'maze\Listeners\CleanUpNotifications',
+			'maze\Listeners\LogAction',
 		],
 		'maze\Events\StatusCommentWasCreated' => [
 			'maze\Listeners\NotifyUser',
+			'maze\Listeners\LogAction',
 		],
 		'maze\Events\StatusCommentWasDeleted' => [
 			'maze\Listeners\CleanUpNotifications',
+			'maze\Listeners\LogAction',
 		],
 		'maze\Events\UserWasMentioned' => [
 			'maze\Listeners\NotifyUser',
@@ -62,6 +72,7 @@ class EventServiceProvider extends ServiceProvider {
 		],
 		'maze\Events\NewsWasPosted' => [
 			'maze\Listeners\EmailNews',
+			'maze\Listeners\LogAction',
 		],
 	];
 
