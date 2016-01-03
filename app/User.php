@@ -55,10 +55,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	public function replies() {
 		return $this->hasMany('maze\Reply');
 	}
-
-	public function notifications() {
-		return $this->hasMany('maze\Notification');
-	}
 	
 	public function statuses() {
 		return $this->hasMany('maze\Notification')->where('object_type', 'status');
@@ -70,6 +66,16 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	public function following() {
 		return $this->hasMany('maze\Follower', 'follower_id', 'id');
+	}
+
+	public function notifications() {
+		return $this->hasMany('maze\Notification')->whereNotIn('object_type', ['follow'])->orWhere(function($query) {
+			$query->where('object_type', 'mention')->where('user_id', $this->id);
+		});
+	}
+
+	public function activities() {
+		return $this->hasMany('maze\Notification')->whereNotIn('object_type', ['follow'])->where('from_id', $this->id);
 	}
 
 	//Patikrina ar User jau balsavo uz tam tikra turini.
@@ -189,25 +195,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	public function getUrlAttribute()
 	{
 		return route('user.show', $this->slug);
-	}
-
-	public function getNotificationCountAttribute() {
-		$minutes = 3;
-
-		$user = $this;
-
-		$count = Cache::remember($this->id.'_notification_count', $minutes, function() use($user) {
-			$ncount = $user
-			->notifications()
-			->where('updated_at', '>', $user->notifications_read)
-			->where('read_at', '<', $user->notifications_read)
-			->count('id');
-			return $ncount;
-		});
-
-		// $count = $user->notifications()->where('created_at', '>', $user->notifications_read)->count('id');
-
-		return $count;
 	}
 
 	public function getSexAttribute($value) {

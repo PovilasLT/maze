@@ -3,6 +3,7 @@
 namespace maze;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class Mention extends Model
 {
@@ -21,18 +22,28 @@ class Mention extends Model
     }
 
     public function getNotificationAttribute() {
+
+        if($this->user_id == Auth::user()->id)
+        {
+            $username = 'tave';
+        }
+        else
+        {
+            $username = '<a href="'.$this->user->url.'">'.e($this->user->username).'</a>';
+        }
+
         switch ($this->object_type) {
             case 'Reply':
-                    return 'Paminėjo <a href="'.$this->user->url.'">'.e($this->user->username).'</a> savo <a href="'.$this->url.'">pranešime</a>, temoje <a href="'. $this->mentioned_in->topic->url.'">'.e($this->mentioned_in->topic->title).'</a>.';
+                    return 'Paminėjo '.$username.' savo <a href="'.$this->url.'">pranešime</a>, temoje <a href="'. $this->mentioned_in->topic->url.'">'.e($this->mentioned_in->topic->title).'</a>.';
                 break;
             case 'Topc':
-                    return 'Paminėjo <a href="'.$this->user->url.'">'.e($this->user->username).'</a> temoje <a href="'.$this->url.'">'.e($this->mentioned_in->title).'.</a>';
+                    return 'Paminėjo '.$username.' temoje <a href="'.$this->url.'">'.e($this->mentioned_in->title).'.</a>';
                 break;
             case 'Status':
-                    return 'Paminėjo <a href="'.$this->user->url.'">'.e($this->user->username).'</a> <a href="'.$this->url.'">būsenos atnaujinime</a>.';
+                    return 'Paminėjo '.$username.' <a href="'.$this->url.'">būsenos atnaujinime</a>.';
                 break;
             case 'StatusComment':
-                    return 'Paminėjo <a href="'.$this->user->url.'">'.e($this->user->username).'</a> <a href="'.$this->mentioned_in->status->url.'">būsenos atnaujinimo</a> <a href="'.$this->url.'">komentare</a>.';
+                    return 'Paminėjo '.$username.' <a href="'.$this->mentioned_in->status->url.'">būsenos atnaujinimo</a> <a href="'.$this->url.'">komentare</a>.';
                 break;
             default:
                     return false;

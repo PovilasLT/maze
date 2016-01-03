@@ -32,14 +32,6 @@ class Notification extends Model {
 		return $query->whereIn('from_id', Auth::user()->follower_list)->orWhere('from_id', Auth::user()->id);
 	}
 
-	public function scopeShowProfile($query) {
-		return $query->latest()->whereNotIn('object_type', ['follow']);
-	}
-
-	public function scopeShowUser($query, $user_id) {
-		return $query->latest()->whereNotIn('object_type', ['follow'])->where('from_id', $user_id);
-	}
-
 	public function scopeLatest($query) {
 		return $query->orderBy('created_at', 'DESC');
 	}
