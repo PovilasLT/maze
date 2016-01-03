@@ -68,6 +68,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->hasMany('maze\Follower');
 	}
 
+	public function following() {
+		return $this->hasMany('maze\Follower', 'follower_id', 'id');
+	}
+
 	//Patikrina ar User jau balsavo uz tam tikra turini.
 	//Jei balsavo - grazina Vote objekta
 	//Jei nebalsavo - grazina false
@@ -122,6 +126,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		{
 			return false;
 		}
+	}
+
+	public function getFollowerListAttribute() {
+		return $this->following()->lists('user_id');
 	}
 
 	public function getAvatarAttribute($value)

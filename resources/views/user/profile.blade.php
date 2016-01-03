@@ -7,7 +7,7 @@
 @section('content')
 	@include('status.forms.create')
 	<ul class="nav nav-tabs">
-	  <li role="presentation"@if($sort == 'sekamieji' || !$sort) class="active" @endif><a href="?rodyti=sekamieji">Asmeniniai</a></li>
+	  <li role="presentation"@if($sort == 'sekamieji' || !$sort) class="active" @endif><a href="?rodyti=sekamieji">Sekamieji</a></li>
 	  <li role="presentation"@if($sort == 'visi') class="active" @endif><a href="?rodyti=visi">Visi</a></li>
 	</ul>
 	@if(!$sort | $sort == 'sekamieji')

@@ -21,7 +21,7 @@ class NotifyUser
     public $self_notifiable = [
         'Topic',
         'Status',
-        // 'Reply',
+        'Reply',
     ];
 
     public $has_parent = [
@@ -68,15 +68,6 @@ class NotifyUser
                 else
                 {
                     Notifier::notify($type, $event->notifiable, $event->notifiable->user);
-                }
-            }
-
-            //patikrinam ar reikia followeriams notificationu
-            if(in_array($notifiable_base, $this->followers_notifiable))
-            {
-                foreach($event->user->followers as $follower)
-                {
-                    Notifier::notify($type, $event->notifiable, $follower->follower);
                 }
             }
         }

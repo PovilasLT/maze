@@ -29,7 +29,7 @@ class Notification extends Model {
 	}
 
 	public function scopeFollowing($query) {
-		return $query->where('user_id', Auth::user()->id)->where('from_id', 'NOT LIKE', Auth::user()->id);
+		return $query->whereIn('from_id', Auth::user()->follower_list)->orWhere('from_id', Auth::user()->id);
 	}
 
 	public function scopeShowProfile($query) {
@@ -37,7 +37,7 @@ class Notification extends Model {
 	}
 
 	public function scopeShowUser($query, $user_id) {
-		return $query->latest()->whereNotIn('object_type', ['follow'])->where('from_id', $user_id)->where('user_id', $user_id);
+		return $query->latest()->whereNotIn('object_type', ['follow'])->where('from_id', $user_id);
 	}
 
 	public function scopeLatest($query) {
