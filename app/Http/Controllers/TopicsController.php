@@ -20,7 +20,7 @@ use Auth;
 use Markdown;
 use Cache;
 
-use maze\Modules\Mentions\Mention;
+use maze\Mentions\Mention;
 
 
 use Illuminate\Http\Request;
@@ -68,6 +68,11 @@ class TopicsController extends Controller {
 
 		$topic = Topic::create($data);
 		$user = Auth::user();
+
+		foreach($mention->users as $user)
+		{
+			event(new UserWasMentioned($topic, $user));
+		}
 
 		event(new TopicWasCreated($topic, $user));
 

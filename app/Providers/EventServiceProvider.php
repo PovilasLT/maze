@@ -51,7 +51,7 @@ class EventServiceProvider extends ServiceProvider {
 		'maze\Events\StatusCommentWasCreated' => [
 			'maze\Listeners\NotifyUser',
 		],
-		'maze\Events\StatusCommnetWasDeleted' => [
+		'maze\Events\StatusCommentWasDeleted' => [
 			'maze\Listeners\CleanUpNotifications',
 		],
 		'maze\Events\UserWasMentioned' => [
@@ -74,12 +74,6 @@ class EventServiceProvider extends ServiceProvider {
 	public function boot(DispatcherContract $events)
 	{
 		parent::boot($events);
-
-		//modulių registracija
-		$modules = [
-			'cachebuster'	=> new ModuleCacheBuster(),
-		];
-
 	}
 
 }

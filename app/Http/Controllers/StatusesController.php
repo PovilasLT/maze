@@ -11,13 +11,21 @@ use maze\Http\Requests\UpdateStatusComment;
 use maze\Http\Requests\DeleteStatusComment;
 use maze\Http\Requests\EditStatusComment;
 
+use maze\Events\StatusWasCreated;
+use maze\Events\StatusWasDeleted;
+
+use maze\Events\StatusCommentWasCreated;
+use maze\Events\StatusCommentWasDeleted;
+
+use maze\Events\UserWasMentioned;
+
 use maze\Status;
 use maze\StatusComment;
 
 use Auth;
 use Markdown;
 
-use maze\Modules\Mentions\Mention;
+use maze\Mentions\Mention;
 
 use maze\User;
 
@@ -35,13 +43,18 @@ class StatusesController extends Controller {
 
 		$mention = new Mention();
 
-		Status::create([
+		$status = Status::create([
 			'user_id' 			=> Auth::user()->id,
 			'body'    			=> markdown($mention->parse($request->input('body'))),
 			'body_original'		=> $request->input('body'),
 		]);
 
-		User::find(Auth::user()->id)->increment('status_count');
+		foreach($mention->users as $user)
+		{
+			event(new UserWasMentioned($status, $user));
+		}
+
+		event(new StatusWasCreated($status, Auth::user()));
 
 		flash()->success('Būsena sėkmingai atnaujinta!');
 		return redirect()->route('user.profile');
@@ -77,7 +90,7 @@ class StatusesController extends Controller {
 		//Ištrina būsenos atnaujinimą.
 		$status->delete();
 
-		$user->decrement('status_count');
+		event(new StatusWasDeleted($status, $status->user));
 
 		flash()->success('Būsenos atnaujinimas sėkmingai ištrintas');
 		return redirect()->route('user.show', $user->slug);
@@ -99,7 +112,14 @@ class StatusesController extends Controller {
 		$data['body_original']	= $data['body'];
 		$data['body']			= markdown($mention->parse($data['body']));
 
-		StatusComment::create($data);
+		$status_comment = StatusComment::create($data);
+
+		foreach($mention->users as $user)
+		{
+			event(new UserWasMentioned($status_comment, $user));
+		}
+
+		event(new StatusCommentWasCreated($status_comment, Auth::user()));
 
 		flash()->success('Komentaras sėkmingai sukurtas!');
 
@@ -111,6 +131,8 @@ class StatusesController extends Controller {
 
 		$comment = StatusComment::findOrFail($id);
 		$comment->delete($id);
+
+		event(new StatusCommentWasDeleted($comment, $comment->user));
 
 		flash()->success('Komentaras sėkmingai ištrintas!');
 

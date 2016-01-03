@@ -4,9 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 use \maze\Traits\Notifiable;
 
 class Follower extends Model {
-
-	use \maze\Traits\Notifiable;
-
+    
 	protected $fillable = [
         'user_id',
         'follower_id'

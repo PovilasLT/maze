@@ -1,6 +1,7 @@
 <?php namespace maze;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class StatusComment extends Model {
 
@@ -51,6 +52,39 @@ class StatusComment extends Model {
 
 	public function getParentContainerAttribute() {
 		return $this->status;
+	}
+
+	public function getUrlAttribute() {
+		return route('status.show', $this->status_id).'#komentaras-'.$this->id;
+	}
+
+	public function getActivityAttribute() {
+		if ($this->status->user_id == Auth::user()->id)
+		{
+			return 'Pakomentavo tavo <a href="' . $this->url . '">būsenos atnaujinimą</a>.';
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public function getNotificationAttribute() {
+		if ($this->status)
+		{
+			if ($this->status->user_id == $this->user_id)
+			{
+				return '<a href="'.$this->url.'">Pakomentavo</a> savo <a href="' . $this->status->url . '">būsenos atnaujinimą</a>.';
+			}
+			else
+			{
+				return '<a href="'.$this->url.'">Pakomentavo</a> <a href="' .$this->status->user->url. ' profilis" title="' . e($this->status->user->username) . ' profilis">' . e($this->status->user->username) . '</a> <a href="' . $this->status->url . '">būsenos atnaujinimą</a>.';
+			}
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 }

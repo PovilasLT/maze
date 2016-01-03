@@ -6,6 +6,7 @@ use maze\Events\UserWasNotified;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use maze\User;
+use maze\Reply;
 
 class EmailNotification
 {
@@ -29,14 +30,15 @@ class EmailNotification
     {
 
         $user = $event->user;
-        $type = class_basename($event->object);
 
         //TODO: pakeisti i universalesni sprendima.
-        if($type == 'Reply');
+        if($event->object instanceof Reply)
         {
+            $reply = $event->object;
+
             if($user->id != $reply->topic->user_id) {
                 $last_reply = $reply->topic->replies()->where('user_id', '<>', $user->id)->orderBy('created_at', 'desc')->first();
-                if(!$last_reply || ($last_reply && $last_reply->created_at->diffInHours() > 24 && $reply->topic->user->email_replies))
+                if(!$last_reply || ($last_reply && $last_reply->created_at->diffInHours() > 1 && $reply->topic->user->email_replies))
                 {
                     $data = [
                         'user'      => $reply->topic->user->username,

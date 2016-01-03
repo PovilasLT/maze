@@ -108,8 +108,9 @@ class UsersController extends Controller {
 
 		//atnaujinam notificationu perskaitymo data
 		$user->notifications_read = new \DateTime();
+		$user->notification_count = 0;
 		$user->save();
-
+		
 		$sort = $request->input('rodyti');
 		$subsort = $request->input('sub');
 
@@ -117,25 +118,25 @@ class UsersController extends Controller {
 		{
 			switch ($subsort) {
 				case 'temos':
-					$items = $user->notifications()->profile()->topics()->paginate('10');
+					$items = $user->notifications()->showProfile()->topics()->paginate('10');
 					break;
 				case 'paminejimai':
-					$items = $user->notifications()->profile()->mentions()->paginate('10');
+					$items = $user->notifications()->showProfile()->mentions()->paginate('10');
 					break;
 				case 'pranesimai':
-					$items = $user->notifications()->profile()->replies()->paginate('10');
+					$items = $user->notifications()->showProfile()->replies()->paginate('10');
 					break;
 				case 'busenos':
-					$items = $user->notifications()->profile()->statuses()->paginate('10');
+					$items = $user->notifications()->showProfile()->statuses()->paginate('10');
 					break;
 				default:
-					$items = $user->notifications()->profile()->paginate('10');
+					$items = $user->notifications()->showProfile()->paginate('10');
 					break;
 			}
 		}
 		else
 		{
-			$items = Notification::latest()->statuses()->groupBy('object_id')->paginate('20');
+			$items = $user->notifications()->showProfile()->paginate('10');
 		}
 
 		return view('user.profile', compact('user', 'items', 'sort', 'subsort'));
@@ -150,25 +151,25 @@ class UsersController extends Controller {
 		{
 			switch ($sort) {
 				case 'temos':
-					$items = $user->notifications()->profile()->topics()->paginate('10');
+					$items = $user->notifications()->showUser($user->id)->topics()->paginate('10');
 					break;
 				case 'paminejimai':
-					$items = $user->notifications()->profile()->mentions()->paginate('10');
+					$items = $user->notifications()->showUser($user->id)->mentions()->paginate('10');
 					break;
 				case 'pranesimai':
-					$items = $user->notifications()->profile()->replies()->paginate('10');
+					$items = $user->notifications()->showUser($user->id)->replies()->paginate('10');
 					break;
 				case 'busenos':
-					$items = $user->notifications()->profile()->statuses()->paginate('10');
+					$items = $user->notifications()->showUser($user->id)->statuses()->paginate('10');
 					break;
 				default:
-					$items = $user->notifications()->profile()->paginate('10');
+					$items = $user->notifications()->showUser($user->id)->paginate('10');
 					break;
 			}
 		}
 		else
 		{
-			$items = $user->notifications()->profile()->paginate('20');
+			$items = $user->notifications()->showUser($user->id)->paginate('20');
 		}
 
 		return view('user.show', compact('user', 'items', 'sort'));

@@ -34,6 +34,9 @@ class ReplyWasDeleted extends Event
         $this->weight = Config::get('app.reply_gain_weight');
         $this->karma = $reply->vote;
         $this->notifiable = $reply;
+
+        $topic->decrement('reply_count');
+        $user->decrement('reply_count');
     }
 
     /**

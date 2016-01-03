@@ -159,4 +159,17 @@ class Topic extends Model {
 		return $parent.' &raquo '.$node;
 	}
 
+
+	public function getUrlAttribute() {
+		return route('topic.show', $this->slug);
+	}
+
+	public function getNotificationAttribute() {
+		return 'Sukūrė temą <a href="' . $this->url . '" alt="' . e($this->title) . '" title="' . e($this->title) . '">' . e($this->title) . '</a>';
+	}
+
+	public function getActivityAttribute() {
+		return 'Sukūrė temą <a href="' . $this->url . '" alt="' . e($this->title) . '" title="' . e($this->title) . '">' . e($this->title) . '</a>';
+	}
+
 }

@@ -37,6 +37,9 @@ class ReplyWasCreated extends Event
         $this->weight = Config::get('app.reply_gain_weight');
         $this->karma = 0;
         $this->notifiable = $reply;
+
+        $user->increment('reply_count');
+        $topic->increment('reply_count');
     }
 
     /**

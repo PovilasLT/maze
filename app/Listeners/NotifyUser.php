@@ -6,6 +6,7 @@ use maze\Events\UserWasNotified;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use maze\Notifications\Notifier;
+use maze\Mention;
 
 use Auth;
 
@@ -20,6 +21,12 @@ class NotifyUser
     public $self_notifiable = [
         'Topic',
         'Status',
+        'Reply',
+    ];
+
+    public $has_parent = [
+        'Reply',
+        'StatusComment',
     ];
 
     /**
@@ -42,7 +49,6 @@ class NotifyUser
     {
         if(isset($event->notifiable))
         {
-
             $notifiable_base = class_basename($event->notifiable);
             $type = snake_case($notifiable_base);
 
@@ -51,9 +57,16 @@ class NotifyUser
             {
                 Notifier::notify($type, $event->notifiable, Auth::user());
             }
-            else
+
+            //jeigu struktura turi containeri, notifinam containerio seimininka.
+            if(in_array($notifiable_base, $this->has_parent))
             {
                 Notifier::notify($type, $event->notifiable, $event->notifiable->parent_container->user);
+            }
+            //kitu atveju tiesiog notifikuojam strukturos savininka
+            else
+            {
+                Notifier::notify($type, $event->notifiable, $event->notifiable->user);
             }
 
             //patikrinam ar reikia followeriams notificationu

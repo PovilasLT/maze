@@ -19,12 +19,7 @@ class Reply extends Model {
 	public function topic() {
 		return $this->belongsTo('maze\Topic');
 	}
-
-	public function getUrlAttribute()
-	{
-		
-	}
-
+	
 	public function notifications() {
 		return Notification::where('object_type', 'reply')
 							->orWhere('object_type', 'mention')
@@ -54,6 +49,18 @@ class Reply extends Model {
 
 	public function getParentContainerAttribute() {
 		return $this->topic;
+	}
+
+	public function getUrlAttribute() {
+		return $this->topic->url.'#pranesimas-'.$this->id;
+	}
+
+	public function getNotificationAttribute() {
+		return 'Parašė <a href="'.$this->url.'">atsakymą</a> į temą <a href="' . $this->topic->url . '" alt="' . e($this->topic->title) . '" title="' . e($this->topic->title) . '">' . e($this->topic->title) . '</a>';
+	}
+
+	public function getActivityAttribute() {
+		return 'Parašė <a href="'.$this->url.'">atsakymą</a> į temą <a href="' . $this->topic->url . '" alt="' . e($this->topic->title) . '" title="' . e($this->topic->title) . '">' . e($this->topic->title) . '</a>';
 	}
 	
 }

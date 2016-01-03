@@ -8,9 +8,6 @@ use Markdown;
 
 class Status extends Model {
 
-	use \maze\Traits\Notifiable;
-
-
 	protected $fillable = [
 		'user_id',
 		'body',
@@ -57,6 +54,18 @@ class Status extends Model {
 		{
 			return $this->body;
 		}
+	}
+
+	public function getUrlAttribute() {
+		return route('status.show', $this->id);
+	}
+
+	public function getNotificationAttribute() {
+		return $this->body;
+	}
+
+	public function getActivityAttribute() {
+		return $this->body;
 	}
 
 }

@@ -75,7 +75,7 @@ p {
 .emoji {
     width: 1.5em;
     height: 1.5em;
-    display: inline-block;
+    display: inline-block !important;
     margin-bottom: -0.25em;
 	background-size: cover;
 }
@@ -356,13 +356,14 @@ h1.media-heading {
 .post-show,
 .notification-show {
 	margin: 0;
-	padding: 0 0 10px 0;
+	padding: 0 0 20px 0;
 	// &:nth-child(odd) {
 	//   background: @maze-border-faded;
 	// }
 	.media-body {
 		border: none;
 		padding: 0;
+		border-bottom: 1px dashed @maze-border-faded;
 	}
 	.media-left {
 		padding: 0 10px 0 0;

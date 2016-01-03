@@ -5,14 +5,15 @@ namespace maze\Events;
 use maze\Events\Event;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use maze\Status;
+
+use maze\StatusComment;
 use maze\User;
 
-class StatusWasCreated extends Event
+class StatusCommentWasDeleted extends Event
 {
     use SerializesModels;
 
-    public $status;
+    public $status_comment;
     public $user;
     public $notifiable;
 
@@ -21,13 +22,11 @@ class StatusWasCreated extends Event
      *
      * @return void
      */
-    public function __construct(Status $status, User $user)
+    public function __construct(StatusComment $status_comment, User $user)
     {
-        $this->status = $status;
+        $this->status_comment = $status_comment;
         $this->user = $user;
-        $this->notifiable = $status;
-
-        $user->increment('status_count');
+        $this->notifiable = $status_comment;
     }
 
     /**

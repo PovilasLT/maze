@@ -1,4 +1,4 @@
-<?php namespace maze\Modules\Mentions;
+<?php namespace maze\Mentions;
 
 use maze\User;
 
@@ -8,7 +8,7 @@ class Mention {
 	public $users = [];
 	public $usernames;
 	public $body_original;
-	public $reply;
+	public $location;
 
 	public function parse($body)
 	{

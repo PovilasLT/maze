@@ -177,6 +177,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 			return $value;
 		}
 	}
+	
+	public function getUrlAttribute()
+	{
+		return route('user.show', $this->slug);
+	}
 
 	public function getNotificationCountAttribute() {
 		$minutes = 3;
