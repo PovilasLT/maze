@@ -23,16 +23,16 @@ class Mention extends Model
     public function getNotificationAttribute() {
         switch ($this->object_type) {
             case 'Reply':
-                    return 'Paminėjo tave savo <a href="'.$this->url.'">pranešime</a>, temoje <a href="'. $this->mentioned_in->topic->url.'">'.e($this->mentioned_in->topic->title).'</a>.';
+                    return 'Paminėjo <a href="'.$this->user->url.'">'.e($this->user->username).'</a> savo <a href="'.$this->url.'">pranešime</a>, temoje <a href="'. $this->mentioned_in->topic->url.'">'.e($this->mentioned_in->topic->title).'</a>.';
                 break;
             case 'Topc':
-                    return 'Paminėjo tave temoje <a href="'.$this->url.'">'.e($this->mentioned_in->title).'.</a>';
+                    return 'Paminėjo <a href="'.$this->user->url.'">'.e($this->user->username).'</a> temoje <a href="'.$this->url.'">'.e($this->mentioned_in->title).'.</a>';
                 break;
             case 'Status':
-                    return 'Paminėjo tave <a href="'.$this->url.'">būsenos atnaujinime</a>.';
+                    return 'Paminėjo <a href="'.$this->user->url.'">'.e($this->user->username).'</a> <a href="'.$this->url.'">būsenos atnaujinime</a>.';
                 break;
             case 'StatusComment':
-                    return 'Paminėjo tave <a href="'.$this->mentioned_in->status->url.'">būsenos atnaujinimo</a> <a href="'.$this->url.'">komentare</a>.';
+                    return 'Paminėjo <a href="'.$this->user->url.'">'.e($this->user->username).'</a> <a href="'.$this->mentioned_in->status->url.'">būsenos atnaujinimo</a> <a href="'.$this->url.'">komentare</a>.';
                 break;
             default:
                     return false;
