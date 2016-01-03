@@ -1,8 +1,6 @@
 <form action="{{ route('auth.login.post') }}" method="POST" role="form">
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-	<legend>Prisijungti</legend>
-
 	<div class="form-group">
 		<label for="">Vartotojo Vardas</label>
 		<input type="text" class="form-control" id="username" name="username">
