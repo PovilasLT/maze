@@ -118,19 +118,19 @@ class UsersController extends Controller {
 		{
 			switch ($subsort) {
 				case 'temos':
-					$items = $user->notifications()->showProfile()->topics()->paginate('10');
+					$items = $user->notifications()->showProfile()->following()->topics()->paginate('10');
 					break;
 				case 'paminejimai':
-					$items = $user->notifications()->showProfile()->mentions()->paginate('10');
+					$items = $user->notifications()->showProfile()->following()->mentions()->paginate('10');
 					break;
 				case 'pranesimai':
-					$items = $user->notifications()->showProfile()->replies()->paginate('10');
+					$items = $user->notifications()->showProfile()->following()->replies()->paginate('10');
 					break;
 				case 'busenos':
-					$items = $user->notifications()->showProfile()->statuses()->paginate('10');
+					$items = $user->notifications()->showProfile()->following()->statuses()->paginate('10');
 					break;
 				default:
-					$items = $user->notifications()->showProfile()->paginate('10');
+					$items = $user->notifications()->showProfile()->following()->paginate('10');
 					break;
 			}
 		}

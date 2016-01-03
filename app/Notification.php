@@ -28,6 +28,10 @@ class Notification extends Model {
 		return $this->belongsTo('User', 'from_id', 'id');
 	}
 
+	public function scopeFollowing($query) {
+		return $query->where('user_id', Auth::user()->id)->where('from_id', 'NOT LIKE', Auth::user()->id);
+	}
+
 	public function scopeShowProfile($query) {
 		return $query->latest()->whereNotIn('object_type', ['follow']);
 	}
