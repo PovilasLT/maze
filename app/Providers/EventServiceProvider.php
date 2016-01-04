@@ -35,6 +35,7 @@ class EventServiceProvider extends ServiceProvider {
 			'maze\Listeners\DecrementKarma',
 			'maze\Listeners\CleanUpNotifications',
 			'maze\Listeners\LogAction',
+			'maze\Listeners\CleanTopic',
 		],
 		'maze\Events\UpVoted' => [
 			'maze\Listeners\IncrementWeight',
@@ -55,6 +56,7 @@ class EventServiceProvider extends ServiceProvider {
 		'maze\Events\StatusWasDeleted' => [
 			'maze\Listeners\CleanUpNotifications',
 			'maze\Listeners\LogAction',
+			'maze\Listeners\CleanStatus',
 		],
 		'maze\Events\StatusCommentWasCreated' => [
 			'maze\Listeners\NotifyUser',
