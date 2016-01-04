@@ -1031,7 +1031,7 @@
               chunk = selected.text;
             }
 
-            link = prompt(e.__localize('Insert Hyperlink'),'http://');
+            link = prompt(e.__localize('Nuoroda'),'http://');
 
             if (link !== null && link !== '' && link !== 'http://' && link.substr(0,4) === 'http') {
               var sanitizedLink = $('<div>'+link+'</div>').text();
