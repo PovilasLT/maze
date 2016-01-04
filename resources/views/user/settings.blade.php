@@ -56,21 +56,25 @@
 						<div class="form-group col-sm-6">
 							<label for="">Twitter</label>
 							<input type="text" class="form-control" id="" name="twitter" value="{{ $user->getOriginal('twitter') }}">
+							<p class="help-block">Vartotojo vardas.</p>
 						</div>
 
 						<div class="form-group col-sm-6">
 							<label for="">Steam</label>
 							<input type="text" class="form-control" id="" name="steam" value="{{ $user->getOriginal('steam') }}">
+							<p class="help-block">Tiesioginė nuoroda į profilį.</p>
 						</div>
 
 						<div class="form-group col-sm-6">
 							<label for="">Twitch</label>
 							<input type="text" class="form-control" id="" name="twitch" value="{{ $user->getOriginal('twitch') }}">
+							<p class="help-block">Vartotojo vardas.</p>
 						</div>	
 
 						<div class="form-group col-sm-6">
 							<label for="">Youtube</label>
 							<input type="text" class="form-control" id="" name="youtube" value="{{ $user->getOriginal('youtube') }}">
+							<p class="help-block">Tiesioginė nuoroda į profilį.</p>
 						</div>
 					</div>
 
