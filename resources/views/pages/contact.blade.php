@@ -17,10 +17,10 @@ Susisiekti | @parent
 	<h2>Administratoriai</h2>
 	<p><b><a href="/vartotojas/edvinas">Edvinas</a></b> - edvinasrp@gmail.com</p>
 	<p><b><a href="/vartotojas/yiin">Yiin</a></b> - stanislovas.janonis@gmail.com</p>
-	<p><b><a href="/vartotojas/bebras">Bebras</a></b> - [...]</p>
+	<p><b><a href="/vartotojas/bebras">Bebras</a></b> - justas963@gmail.com</p>
 	<h2>Moderatoriai</h2>
-	<p><b><a href="/vartotojas/codemenas">CodeMenas</a></b> - [...]</p>
-	<p><b><a href="/vartotojas/rin">Rin</a></b> - [...]</p>
+	<p><b><a href="/vartotojas/codemenas">CodeMenas</a></b> - sauliusaulys@gmail.com</p>
+	<p><b><a href="/vartotojas/rin">Rin</a></b> - arnasswede@gmail.com</p>
 @stop
 
 @section('sidebar')
