@@ -85,19 +85,19 @@
 						<h4>Nuorodos</h4>
 						<ul>
 							<li>
-								<a href="#">Komanda</a>
+								<a href="{{ route('page.team') }}">Komanda</a>
 							</li>
 							<li>
-								<a href="#">Apie</a>
+								<a href="{{ route('page.about') }}">Apie</a>
 							</li>
 							<li>
-								<a href="#">Naujienos</a>
+								<a href="{{ route('node.show', 'naujienos') }}">Naujienos</a>
 							</li>
 							<li>
-								<a href="#">Susisiekti</a>
+								<a href="{{ route('page.contact') }}">Susisiekti</a>
 							</li>
 							<li>
-								<a href="#">Žinynas</a>
+								<a href="{{ route('page.knowledgebase') }}">Žinynas</a>
 							</li>
 						</ul>
 					</div>
@@ -119,11 +119,6 @@
 			<div class="current-date-invisible" style="display: none;">{{ \Carbon\Carbon::now() }}</div>
 		</footer>
 		<script src="/js/scripts.js"></script>
-		<script src="/vendor/jasny-bootstrap/js/jasny-bootstrap.min.js"></script>
-		<script src="/vendor/pusher/assets/js/pusher.min.js"></script>
-
 		@yield('scripts')
-
-		@include('confer::js')
 	</body>
 </html>

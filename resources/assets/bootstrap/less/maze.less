@@ -534,6 +534,60 @@ h1.media-heading {
 	}
 }
 
+//zinynas
+#kb-nav {
+	.nav > li.active > a {
+		border-left: 3px solid @maze-primary;
+	}
+	.nav {
+		a {
+			padding: 2px 0 2px 5px;
+		}
+		//antraeiliai nav elementai
+		.nav {
+			display: none;
+		}
+		.active {
+			.nav {
+				display: block;
+				a {
+					font-weight: normal;
+					padding-left: 10px;
+					font-size: 12px;
+				}
+				.active a {
+					border-left: 1px solid @maze-primary;
+				}
+			}
+		}
+	}
+	.affix-top {
+		position: relative;
+	}
+	.affix {
+		top: 20px;
+	}
+	.affix-bottom {
+		position: absolute;
+	}
+}
+
+@media (min-width: 992px) {
+	.affix, 
+	.affix-bottom {
+    	width: 213px;
+	}
+}
+
+@media (min-width: 1200px) {
+    .scrollspy {
+    	.affix, 
+		.affix-bottom {
+	    	width: 263px;
+    	}
+    }
+}
+
 //Responsiveness
 
 //tablet

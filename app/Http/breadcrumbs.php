@@ -6,6 +6,38 @@ Breadcrumbs::register('home', function($breadcrumbs)
     $breadcrumbs->push('Pagrindinis', '/');
 });
 
+//Statiniai puslapiai
+
+Breadcrumbs::register('page.about', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Apie', route('page.about'));
+});
+
+Breadcrumbs::register('page.contact', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Susisiekti', route('page.contact'));
+});
+
+Breadcrumbs::register('page.knowledgebase', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Žinynas', route('page.knowledgebase'));
+});
+
+Breadcrumbs::register('page.rules', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Etiketas', route('page.rules'));
+});
+
+Breadcrumbs::register('page.team', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Komanda', route('page.team'));
+});
+
 //Skiltis
 Breadcrumbs::register('node.show', function($breadcrumbs, $node)
 {

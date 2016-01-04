@@ -19,12 +19,27 @@ class PageController extends Controller {
 
 	public function team()
 	{
-		
+		return view('pages.team');
 	}
 
 	public function about()
 	{
+		return view('pages.about');
+	}
 
+	public function rules()
+	{
+		return view('pages.rules');
+	}
+
+	public function knowledgebase()
+	{
+		return view('pages.knowledgebase');
+	}
+
+	public function contact()
+	{
+		return view('pages.contact');
 	}
 
 }
