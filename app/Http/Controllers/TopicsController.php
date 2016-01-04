@@ -257,6 +257,7 @@ class TopicsController extends Controller {
 
 		$topic = $request->topic;
 		$topic->order = -1;
+		$topic->pin_local = -1;
 		$topic->save();
 		flash()->success('Tema sėkmingai nuskandinta!');
 
