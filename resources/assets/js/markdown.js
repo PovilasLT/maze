@@ -1055,22 +1055,22 @@
 
             if (selected.length === 0) {
               // Give extra word
-              chunk = e.__localize('enter image description here');
+              chunk = e.__localize('paveikslėlio apibūdinimas');
             } else {
               chunk = selected.text;
             }
 
-            link = prompt(e.__localize('Insert Image Hyperlink'),'http://');
+            link = prompt(e.__localize('Paveikslėlio nuoroda'),'http://');
 
             if (link !== null && link !== '' && link !== 'http://' && link.substr(0,4) === 'http') {
               var sanitizedLink = $('<div>'+link+'</div>').text();
 
               // transform selection and set the cursor into chunked text
-              e.replaceSelection('!['+chunk+']('+sanitizedLink+' "'+e.__localize('enter image title here')+'")');
+              e.replaceSelection('!['+chunk+']('+sanitizedLink+')');
               cursor = selected.start+2;
 
               // Set the next tab
-              e.setNextTab(e.__localize('enter image title here'));
+              e.setNextTab(e.__localize('paveikslėlio pavadinimas'));
 
               // Set the cursor
               e.setSelection(cursor,cursor+chunk.length);
