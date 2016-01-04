@@ -53,6 +53,9 @@ Etiketas | @parent
 <li>
     <b>Neskelbti jokios informacijos apie MultiPlayer žaidimų "cheats" ir kitas kenkėjiškas programas, kurios vienaip ar kitaip gadintų žadimo kokybę.</b>
 </li>
+<li>
+	<b>Draudžiama iškelinėti temą į sąrašo viršu naudojant įvairius bereikšmius pranešimus kaip "Up", "Bump" bei kitus.</b>
+</li>
 </ol>
 <p>Šalia šitų taisyklių yra tikimasi, kad diskusijose vadovausitės sveiku protu, būsite atsakingi ir elgsitės moraliai.</p>
 <p><small>Maze administracija pasilieka teisę užblokuoti narį be jokio įspėjimo ar priežasties.</small></p>
