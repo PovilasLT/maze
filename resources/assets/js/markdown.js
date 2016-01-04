@@ -923,7 +923,7 @@
 
             if (selected.length === 0) {
               // Give extra word
-              chunk = e.__localize('strong text');
+              chunk = e.__localize('paryškintas tekstas');
             } else {
               chunk = selected.text;
             }
@@ -953,7 +953,7 @@
 
             if (selected.length === 0) {
               // Give extra word
-              chunk = e.__localize('emphasized text');
+              chunk = e.__localize('pasviręs tekstas');
             } else {
               chunk = selected.text;
             }
@@ -983,7 +983,7 @@
 
             if (selected.length === 0) {
               // Give extra word
-              chunk = e.__localize('heading text');
+              chunk = e.__localize('antraštės tekstas');
             } else {
               chunk = selected.text;
             }
@@ -1026,7 +1026,7 @@
 
             if (selected.length === 0) {
               // Give extra word
-              chunk = e.__localize('enter link description here');
+              chunk = e.__localize('nuorodos apibūdinimas');
             } else {
               chunk = selected.text;
             }
@@ -1091,7 +1091,7 @@
             // transform selection and set the cursor into chunked text
             if (selected.length === 0) {
               // Give extra word
-              chunk = e.__localize('list text here');
+              chunk = e.__localize('sąrašo tekstas');
 
               e.replaceSelection('- '+chunk);
               // Set the cursor
@@ -1138,7 +1138,7 @@
             // transform selection and set the cursor into chunked text
             if (selected.length === 0) {
               // Give extra word
-              chunk = e.__localize('list text here');
+              chunk = e.__localize('sąrašo tekstas');
               e.replaceSelection('1. '+chunk);
               // Set the cursor
               cursor = selected.start+3;
@@ -1182,7 +1182,7 @@
 
             if (selected.length === 0) {
               // Give extra word
-              chunk = e.__localize('code text here');
+              chunk = e.__localize('kodas');
             } else {
               chunk = selected.text;
             }
@@ -1222,7 +1222,7 @@
             // transform selection and set the cursor into chunked text
             if (selected.length === 0) {
               // Give extra word
-              chunk = e.__localize('quote here');
+              chunk = e.__localize('citatos tekstas');
 
               e.replaceSelection('> '+chunk);
 
