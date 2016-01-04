@@ -17,6 +17,11 @@ use Auth;
 
 class VotesController extends Controller {
 
+	public function __construct()
+	{
+		$this->middleware('loggedIn');
+	}
+
 	public function vote(VoteRequest $request, $vote, $type, $id) {
 		
 		$user = Auth::user();

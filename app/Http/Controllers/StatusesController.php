@@ -31,6 +31,11 @@ use maze\User;
 
 class StatusesController extends Controller {
 
+	public function __construct()
+	{
+		$this->middleware('loggedIn');
+	}
+
 	public function show($id)
 	{
 		$status = Status::findOrFail($id);

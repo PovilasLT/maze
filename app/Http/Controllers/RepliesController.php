@@ -19,7 +19,7 @@ use maze\Mentions\Mention;
 class RepliesController extends Controller {
 
 	function __construct() {
-		//$this->middleware('auth');
+		$this->middleware('loggedIn');
 	}
 
 	public function store(CreateReply $request)

@@ -27,6 +27,7 @@ class Kernel extends HttpKernel {
 		'auth' => 'maze\Http\Middleware\Authenticate',
 		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
 		'guest' => 'maze\Http\Middleware\RedirectIfAuthenticated',
+		'loggedIn' => \maze\Http\Middleware\LogIn::class,
 	];
 
 }

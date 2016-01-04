@@ -6,6 +6,7 @@ abstract class Request extends FormRequest {
 
 	public function forbiddenResponse()
 	{
+		dd('yo');
 		return $this->redirector->route('auth.login');
 	}
 }
