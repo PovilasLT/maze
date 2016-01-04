@@ -109,6 +109,15 @@ class TopicsController extends Controller {
 	public function show($slug)
 	{
 		$topic = Topic::where('slug', $slug)->firstOrFail();
+
+		if($topic->node->parent_node)
+		{
+			$expandable = $topic->node->parent_node;
+		}
+		else
+		{
+			$expandable = $topic->node_id;
+		}
 		
 		if(Auth::check())
 		{
@@ -125,7 +134,7 @@ class TopicsController extends Controller {
 		//padidina view counteri.
 		$topic->increment('view_count');
 
-		return view('topic.show', compact('topic'));
+		return view('topic.show', compact('topic', 'expandable'));
 	}
 
 	/**
