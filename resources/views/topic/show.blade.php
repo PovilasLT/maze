@@ -110,3 +110,14 @@
 @section('sidebar')
 	@include('includes.sidebar_topic')
 @stop
+
+@section('scripts')
+<script type="text/javascript">
+	$('#create-reply-form').affix({
+	    offset: {     
+	      top: $('#create-reply-form').offset().top,
+	      bottom: $('footer').outerHeight(true)
+	    }
+	});
+</script>
+@stop

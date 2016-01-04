@@ -1,5 +1,5 @@
-<div class="media markdown-form">
-	<a class="pull-left" href="#">
+<div class="media markdown-form" id="create-reply-form">
+	<a class="pull-left" href="{{ route('user.show', Auth::user()->slug) }}">
 		<img class="media-object markdown-avatar" src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->username }} avataras">
 	</a>
 	<div class="media-body">

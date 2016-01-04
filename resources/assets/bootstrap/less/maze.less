@@ -572,19 +572,30 @@ h1.media-heading {
 	}
 }
 
+#create-reply-form {
+	background: @maze-background;
+	z-index: 99;
+	top: 0;
+}
+
 @media (min-width: 992px) {
-	.affix, 
-	.affix-bottom {
-    	width: 213px;
+	#kb-nav {
+		.affix, 
+		.affix-bottom {
+	    	width: 213px;
+		}
 	}
 }
 
 @media (min-width: 1200px) {
-    .scrollspy {
+    #kb-nav {
     	.affix, 
 		.affix-bottom {
 	    	width: 263px;
     	}
+    }
+    #create-reply-form {
+    	width: 821px;
     }
 }
 
