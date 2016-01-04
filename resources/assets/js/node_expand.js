@@ -1,4 +1,15 @@
 $(function() {
+
+	var is_expanded = $('.is-expanded .parent-icon');
+	if(is_expanded.length)
+	{
+		var is_expanded_id = is_expanded.attr('id');
+		is_expanded.addClass('expanded')
+		.removeClass('fa-plus')
+		.addClass('fa-minus');
+		$('.parent-node-collection-'+is_expanded_id).slideDown('fast');
+	}
+	
 	$('.parent-icon').click(function() {
 		
 		var current = $(this);

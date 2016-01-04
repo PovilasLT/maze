@@ -33,11 +33,13 @@ class NodesController extends Controller {
 		if($node->parent_node)
 		{
 			$topics = $node->topics();
+			$expandable = $node->parent_node;
 		}
 		else
 		{
 			$nodes = Node::where('parent_node', $node->id)->lists('id')->all();
 			$topics = Topic::whereIn('node_id', $nodes);
+			$expandable = $node->id;
 		}
 
 		if($sort == 'populiariausi' || !$sort)
@@ -51,7 +53,7 @@ class NodesController extends Controller {
 
 		$topics = $topics->paginate(20);
 		
-		return view('node.show', compact('node', 'topics', 'sort'));
+		return view('node.show', compact('node', 'topics', 'sort', 'expandable'));
 	}
 
 	/**

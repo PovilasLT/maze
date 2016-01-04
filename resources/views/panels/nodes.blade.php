@@ -5,14 +5,14 @@
   <div class="panel-body">
 	<ul class="node-list">
     @foreach(maze\Node::parents() as $parent)
-    	<li id="parent-node-{{ $parent->id }}"><i class="fa fa-plus parent-icon" id="{{$parent->id}}"></i><a href="{{ route('node.show', $parent->slug) }}">{{ $parent->name }}</a></li>
-    	<ul class="child-node-list parent-node-collection-{{ $parent->id }}">
-    		@foreach($parent->children as $child)
-			<li>
-    			<a href="{{ route('node.show', $child->slug) }}">{{ $child->name }}</a>
-    		</li>
-    		@endforeach
-    	</ul>
+      <li id="parent-node-{{ $parent->id }}" @if(isset($expandable) && $expandable == $parent->id) class="is-expanded" @endif><i class="fa fa-plus parent-icon" id="{{$parent->id}}"></i><a href="{{ route('node.show', $parent->slug) }}">{{ $parent->name }}</a></li>
+      <ul class="child-node-list parent-node-collection-{{ $parent->id }}">
+        @foreach($parent->children as $child)
+          <li>
+            <a href="{{ route('node.show', $child->slug) }}">{{ $child->name }}</a>
+          </li>
+        @endforeach
+      </ul>
     @endforeach
 	</ul>
   </div>
