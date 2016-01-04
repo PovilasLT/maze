@@ -79,6 +79,14 @@
 				<a href="#karma">Karma</a>
 			</li>
 			<li>
+				<a href="#temos">Temos</a>
+				<ul class="nav">
+					<li>
+						<a href="#temu-tipai">Temų tipai</a>
+					</li>
+				</ul>
+			</li>
+			<li>
 				<a href="#markdown">Markdown</a>
 				<ul class="nav">
 					<li>
@@ -159,6 +167,16 @@
 		<section id="karma">
 			<h2>Karma</h2>
 			<p>Karma yra naudojama nustatyti narių kuriamo turinio kokybę. Kiekvienas narys turi savo individualų karmos skaitiklį. Nors karma platformoje naudojama ne per daugiausiai, patiems nariams ji parodo kokį turinį bendruomenė mėgsta, o kokio nelabai.</p>
+		</section>
+		<section id="temos">
+			<h2>Temos</h2>
+			<h3 id="temu-tipai">Temų tipai</h3>
+			<p>Kiekviena tema gali turėti savo atskirą tipą. Šiuo metu maze platforma palaiko tris pagrindinius temų tipus:</p>
+			<ol>
+				<li>Diskusija - naudojama pažymėti paprastas diskusijas.</li>
+				<li>Klausimas - naudojama pažymėti temoms, kurios yra klausiamo pobūdžio. Temos autorius gali išrinkti tinkamą atsakymą ir jį pažymėti.</li>
+				<li>Pranešimas - naudojama tik maze komandos. Skirta informuoti bendruomenės narius.</li>
+			</ol>
 		</section>
         <section id="markdown">
         	<h2>Markdown</h2>

@@ -19,7 +19,7 @@
 	</div>
 	<div class="form-group">
 		<label for="type">Temos Tipas</label>
-		<p class="helpblock">Temų tipai padeda kitiems lankytojams atskirti kokia tai tema. Kiekvienas temos tipas suteikia jūsų temai papildomas galimybes. <a href="#" target="_blank">[Skaityti Daugiau]</a></p>
+		<p class="helpblock">Temų tipai padeda kitiems lankytojams atskirti kokia tai tema. Kiekvienas temos tipas suteikia jūsų temai papildomas galimybes. <a href="{{ route('page.knowledgebase').'#temu-tipai' }}" target="_blank">[Skaityti Daugiau]</a></p>
 		<select name="type" id="type" class="form-control" required="required">
 			<option value="0">Diskusija</option>
 			@if(Auth::user()->can('manage_topics'))
