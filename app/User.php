@@ -7,14 +7,13 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use maze\Vote;
-use \maze\Traits\CanConfer;
 use Auth;
 use Stringy\StaticStringy as S;
 use Cache;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
-	use Authenticatable, CanResetPassword, EntrustUserTrait, CanConfer;
+	use Authenticatable, CanResetPassword, EntrustUserTrait;
 
 	/**
 	 * The database table used by the model.
