@@ -5,6 +5,9 @@ namespace maze\Listeners;
 use maze\Events\StatusWasDeleted;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+
+use maze\Events\StatusCommentWasDeleted;
+
 use maze\StatusComment;
 
 class CleanStatus
@@ -27,6 +30,11 @@ class CleanStatus
      */
     public function handle(StatusWasDeleted $event)
     {
-        StatusComment::where('status_id', $event->status->id)->delete();
+        $status_comments = StatusComment::where('status_id', $event->status->id)->get();
+        foreach($status_comments as $status_comment)
+        {
+            $status_comment->delete();
+            event(new StatusCommentWasDeleted($status_comment, $event->status, Auth::user()));
+        }
     }
 }

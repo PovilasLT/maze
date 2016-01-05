@@ -188,7 +188,6 @@ return [
 		'maze\Providers\ConfigServiceProvider',
 		'maze\Providers\EventServiceProvider',
 		'maze\Providers\RouteServiceProvider',
-		'maze\Providers\ConferServiceProvider',
 
 		/*
 		 * Papildomi paketai
@@ -249,9 +248,6 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 
-		'User'			=> 'maze\User',
-		'Message'		=> 'maze\Modules\Confer\Message',
-		'Conversation'	=> 'maze\Modules\Confer\Conversation',
 		'Flash' 		=> 'Laracasts\Flash\Flash',
 		'Entrust' 		=> 'Zizaco\Entrust\EntrustFacade',
 		'Image' 		=> 'Intervention\Image\Facades\Image',

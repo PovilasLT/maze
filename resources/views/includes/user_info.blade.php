@@ -7,9 +7,6 @@
 			@endif
 		</a>
 		<a href="{{ route('user.messages') }}" class="user-messages-icon"><i class="fa fa-envelope-o"></i>
-			@if ($unread = \Message::unread(Auth::user()))
-				<span>{{ $unread }}</span>
-			@endif
 		</a>
 		<a href="{{ route('auth.logout') }}"><i class="fa fa-sign-out"></i></a>
 	@else

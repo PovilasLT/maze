@@ -15,10 +15,6 @@
 			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
 
-		<link href="/vendor/jasny-bootstrap/css/jasny-bootstrap.min.css" rel="stylesheet">
-		<link href="/vendor/confer/css/confer.css" rel="stylesheet">
-		@include('confer::confer')
-
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
@@ -34,17 +30,6 @@
 						</button>
 						<a class="navbar-brand" href="/"><img src="/images/logo.svg"></a>
 					</div>
-			
-					<div class="navmenu navmenu-default navmenu-fixed-left offcanvas navbar-ex1-offcanvas">
-						<ul class="nav navbar-nav">
-							@include('includes.user_info')
-							<li><a href="/">TV</a></li>
-							<li><a href="/">Forumas</a></li>
-							<li><a href="/">Paieška</a></li>
-							@yield('sidebar')
-						</ul>
-					</div>
-
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav navbar-right">
 							<li><a href="http://www.maze.lt/">Forumas</a></li>

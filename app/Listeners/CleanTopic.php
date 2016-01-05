@@ -5,6 +5,9 @@ namespace maze\Listeners;
 use maze\Events\TopicWasDeleted;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+
+use maze\Events\ReplyWasDeleted;
+
 use maze\Reply;
 
 class CleanTopic
@@ -27,6 +30,11 @@ class CleanTopic
      */
     public function handle(TopicWasDeleted $event)
     {
-       Reply::where('topic_id', $event->topic->id)->delete(); 
+       $replies = Reply::where('topic_id', $event->topic->id)->get();
+       foreach($replies as $reply)
+       {
+            $reply->delete();
+            event(new ReplyWasDeleted($reply, $event->topic, Auth::user()));
+       } 
     }  
 }
