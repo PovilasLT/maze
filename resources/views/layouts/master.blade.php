@@ -45,13 +45,13 @@
 			<div class="container">
 			@include('includes.messages')
 					<div class="row">
-						<div class="col-lg-9 main-content">
+						<div class="col-md-9 main-content">
 							@yield('breadcrumbs')
 							<div class="col-lg-12 content-box">
 								@yield('content')
 							</div>
 						</div>
-						<div class="col-lg-3 main-sidebar">
+						<div class="col-md-3 hidden-sm hidden-xs main-sidebar">
 							@include('includes.user_info')
 							@yield('sidebar')
 						</div>
@@ -104,9 +104,6 @@
 			<div class="current-date-invisible" style="display: none;">{{ \Carbon\Carbon::now() }}</div>
 		</footer>
 		<script src="/js/scripts.js"></script>
-		<script type="text/javascript">
-			console.log(window.location.host);
-		</script>
 		@yield('scripts')
 	</body>
 </html>

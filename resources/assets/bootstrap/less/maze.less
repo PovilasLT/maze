@@ -569,9 +569,10 @@ h1.media-heading {
 	.affix {
 		top: 20px;
 	}
-	.affix-bottom {
-		position: absolute;
-	}
+}
+
+.affix-bottom {
+	position: absolute;
 }
 
 #create-reply-form {
@@ -588,15 +589,6 @@ h1.media-heading {
 	margin-top: 0;
 }
 
-@media (min-width: 992px) {
-	#kb-nav {
-		.affix, 
-		.affix-bottom {
-	    	width: 213px;
-		}
-	}
-}
-
 @media (min-width: 1200px) {
     #kb-nav {
     	.affix, 
@@ -609,36 +601,10 @@ h1.media-heading {
     }
 }
 
-//Responsiveness
-
-//tablet
 
 @media (max-width: 1200px) {
-
-	.main-sidebar {
-		display: none;
-	}
-	.navbar-user-info {
-		display: none;
-	}
-	.navbar-ex1-offcanvas {
-		.navbar-user-info {
-			display: inherit;
-			margin-top: 15px;
-			> a {
-				font-size: 18px;
-				padding-right: 20px;
-			}
-		}
-		.user-messages-icon > span {
-			font-size: 14px;
-			padding: 0 5px;
-			margin-left: -19px;
-			margin-top: 16px;
-		}
-	}
-	.main-content {
-		border-right: 0;
+	#create-reply-form {
+		width: 696px;
 	}
 	.content-box {
 		padding-right: 15px;
@@ -646,6 +612,28 @@ h1.media-heading {
 		> h2 {
 			display: none;
 		}
+	}
+}
+
+@media (min-width: 992px) {
+	#kb-nav {
+		.affix, 
+		.affix-bottom {
+	    	width: 213px;
+		}
+	}
+}
+
+//pradingsta sonine panele
+@media (max-width: 991px) {
+	.main-content {
+		border-right: none;
+	}
+	#create-reply-form {
+		width: 100%;
+		top: 0;
+		left: 0;
+		right: 0;
 	}
 }
 
