@@ -42,7 +42,7 @@ class Mention {
 		foreach ($this->users as $user) {
 			$search = '@' . $user->username;
 			$place = '[' . $search . '](' . route('user.show', [$user->slug]) . ')';
-			$this->body_parsed = str_replace($search, $place, $this->body_parsed);
+			$this->body_parsed = str_ireplace($search, $place, $this->body_parsed);
 		}
 	}
 
