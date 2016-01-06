@@ -11,21 +11,9 @@ class Handler extends ExceptionHandler {
 	 * @var array
 	 */
 	protected $dontReport = [
-		'Symfony\Component\HttpKernel\Exception\HttpException'
+		'Symfony\Component\HttpKernel\Exception\HttpException',
+		'Illuminate\Database\Eloquent\ModelNotFoundException',
 	];
-
-	/**
-	 * Report or log an exception.
-	 *
-	 * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
-	 *
-	 * @param  \Exception  $e
-	 * @return void
-	 */
-	public function report(Exception $e)
-	{
-		return parent::report($e);
-	}
 
 	/**
 	 * Render an exception into an HTTP response.
@@ -36,19 +24,29 @@ class Handler extends ExceptionHandler {
 	 */
 	public function render($request, Exception $e)
 	{
-		// if($e->getStatusCode() == 503)
-		// {
-		// 	return response()->view('errors.503');
-		// }
-		// elseif($e->getStatusCode() != 404)
-		// {
-		// 	return response()->view('errors.internal');
-		// }
-		// else
-		// {
-			return parent::render($request, $e);
-		// }
-		// return parent::render($request, $e);
+		if($this->isHttpException($e))
+		{
+			if($e->getStatusCode() == 404)
+			{
+				return response()->view('errors.404');
+			}
+			elseif($e->getStatusCode() == 503)
+			{
+				return response()->view('errors.503');
+			}
+			else
+			{
+				return response()->view('errors.internal');
+			}
+		}
+		if(class_basename($e) == 'ModelNotFoundException')
+		{
+			return response()->view('errors.404');
+		}
+		else
+		{
+			return response()->view('errors.internal');
+		}
 	}
 
 }
