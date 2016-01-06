@@ -16,6 +16,13 @@ Jeigu norite prisidėti prie platformos tobulinimo, mes priimame pull request'us
 
 Soon™
 
+## To-Do
+
+* Localhost ir VM paleidimo instrukcijos.
+* Automatizuoti testai.
+* Front-End spagečių sutvarkymas.
+* Geresnis notification/event serveris.
+
 ## Naudojamos Technologijos
 
 * jQuery
