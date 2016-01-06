@@ -992,16 +992,16 @@
             if ((pointer = 3, content.substr(selected.start-pointer,pointer) === '## ')
                 || (pointer = 2, content.substr(selected.start-pointer,pointer) === '## ')) {
                 if (selected.start > 0 && (prevChar = content.substr(selected.start-1,1), !!prevChar && prevChar != '\n')) {
-                    e.replaceSelection('#' + chunk);
+                    e.replaceSelection('# ' + chunk);
                     cursor = selected.start + 1;
                 }
                 else {
                     // Empty string before element
-                    e.replaceSelection('#'+chunk);
+                    e.replaceSelection('# '+chunk);
                     cursor = selected.start+1;
                 }
             } else if (selected.start > 0 && (prevChar = content.substr(selected.start-1,1), !!prevChar && prevChar != '\n' && prevChar != '#')) {
-              e.replaceSelection('\n\n##' +chunk);
+              e.replaceSelection('\n\n## ' +chunk);
               cursor = selected.start+5;
             } else {
               // Empty string before element
