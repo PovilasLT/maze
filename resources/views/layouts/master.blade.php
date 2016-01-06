@@ -22,7 +22,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navbar-ex1-offcanvas" data-canvas="body">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#maze-navbar-collapse" aria-expanded="false">
 							<span class="sr-only">Toggle navigation</span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
@@ -30,7 +30,7 @@
 						</button>
 						<a class="navbar-brand" href="/"><img src="/images/logo.svg"></a>
 					</div>
-					<div class="collapse navbar-collapse">
+					<div class="collapse navbar-collapse" id="maze-navbar-collapse">
 						<ul class="nav navbar-nav navbar-right">
 							<li><a href="/">Forumas</a></li>
 							<!-- <li><a href="http://tv.maze.lt/">TV</a></li> -->

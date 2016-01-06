@@ -17,7 +17,7 @@ class EditReply extends Request {
 		{
 			$reply = Reply::findOrFail($this->route('id'));
 			$user = Auth::user();
-			if(($reply->user_id == $user->id) || $user->can('manage_replies'))
+			if(($reply->user_id == $user->id) || $user->can('manage_posts'))
 			{
 				return true;
 			}
