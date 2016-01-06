@@ -12,10 +12,10 @@ $( document ).ready(function() {
 
     $('textarea').textcomplete([{
         mentions: at_users,
-        match: /\B@(\w*)$/,
+        match: /\B@(\w*)$/i,
         search: function (term, callback) {
             callback($.map(this.mentions, function (mention) {
-                return mention.indexOf(term) === 0 ? mention : null;
+                return mention.search(new RegExp(term, "i")) === 0 ? mention : null;
             }));
         },
         index: 1,
