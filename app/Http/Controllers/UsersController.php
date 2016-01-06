@@ -133,7 +133,7 @@ class UsersController extends Controller {
 					$items = Notification::following()->statuses()->latest()->paginate('10');
 					break;
 				default:
-					$items = Notification::following()->latest()->paginate('10');
+					$items = Notification::following()->latest()->where('object_type', 'NOT LIKE', 'mention')->paginate('10');
 					break;
 			}
 		}
