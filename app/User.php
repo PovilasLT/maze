@@ -85,9 +85,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	}
 
 	public function notifications() {
-		return $this->hasMany('maze\Notification')->whereNotIn('object_type', ['follow'])->orWhere(function($query) {
-			$query->where('object_type', 'mention')->where('user_id', $this->id);
-		});
+		return $this->hasMany('maze\Notification');
 	}
 
 	public function activities() {

@@ -29,7 +29,9 @@ class Notification extends Model {
 	}
 
 	public function scopeFollowing($query) {
-		return $query->whereIn('from_id', Auth::user()->follower_list)->orWhere('from_id', Auth::user()->id);
+		$users = Auth::user()->follower_list;
+		$users[] = Auth::user()->id;
+		return $query->whereIn('from_id', $users);
 	}
 
 	public function scopeLatest($query) {
