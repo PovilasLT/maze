@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel {
 	protected $commands = [
 		'maze\Console\Commands\Inspire',
 		'maze\Console\Commands\ConvertAvatarUploads',
-		'maze\Console\Commands\TopicsDecay'
+		'maze\Console\Commands\TopicsDecay',
+		'maze\Console\Commands\CleanReplies',
 	];
 
 	/**
