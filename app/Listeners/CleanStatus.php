@@ -10,6 +10,8 @@ use maze\Events\StatusCommentWasDeleted;
 
 use maze\StatusComment;
 
+use maze\Auth;
+
 class CleanStatus
 {
     /**

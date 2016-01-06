@@ -78,7 +78,7 @@ class StatusComment extends Model {
 			}
 			else
 			{
-				return '<a href="'.$this->url.'">Pakomentavo</a> <a href="' .$this->status->user->url. ' profilis" title="' . e($this->status->user->username) . ' profilis">' . e($this->status->user->username) . '</a> <a href="' . $this->status->url . '">būsenos atnaujinimą</a>.';
+				return '<a href="'.$this->url.'">Pakomentavo</a> <a href="' .$this->status->user->url. '" title="' . e($this->status->user->username) . ' profilis">' . e($this->status->user->username) . '</a> <a href="' . $this->status->url . '">būsenos atnaujinimą</a>.';
 			}
 		}
 		else
