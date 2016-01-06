@@ -63,9 +63,9 @@
 		<footer>
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-7">
+					<div class="col-lg-10">
 						<h4>Apie maze</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi feugiat orci id augue aliquet, id pellentesque nisl imperdiet. Quisque nec accumsan velit, et placerat ligula. Integer at aliquet est. Donec interdum lorem eu purus pulvinar faucibus. Nullam magna erat, facilisis vitae risus vel, elementum varius neque. Suspendisse feugiat faucibus lorem ut congue. Suspendisse tincidunt viverra porttitor. Proin tristique vehicula arcu, eu consequat libero. Morbi placerat dolor justo, vel maximus eros aliquam in. Mauris fermentum dui at nisl viverra, sit amet feugiat mi sollicitudin. Vivamus felis dolor, hendrerit in dictum quis, ullamcorper sed quam.</p>
+						<p>Maze yra būtybė, kurios tikslas yra suteikti "geimeriams" viską, ko gali reikėti propoguojant šį pomėgį. Vienas iš projekto siekių yra išlaikyti kompiuterinių žaidimų žaidėjus įvykių centre, suteikti jiems sąlygas diskutuoti, tobulėti, įgyti naujus įgūdžius, mokytis ir mokyti kitus.</p>
 					</div>
 					<div class="col-lg-2">
 						<h4>Nuorodos</h4>
@@ -85,14 +85,6 @@
 							<li>
 								<a href="{{ route('page.knowledgebase') }}">Žinynas</a>
 							</li>
-						</ul>
-					</div>
-					<div class="col-lg-3">
-						<h4>Kontaktai</h4>
-						<ul>
-							<li>Informacija: </li>
-							<li>Reklama: </li>
-							<li>Bendradarbiavimas: </li>
 						</ul>
 					</div>
 				</div>
