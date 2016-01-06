@@ -29,8 +29,8 @@ class CreateTopic extends Request {
 	public function rules()
 	{
 		$rules = [
-			'title'   => 'required|min:2',
-			'body'    => 'required|min:2',
+			'title'   => 'required|min:10',
+			'body'    => 'required|min:10',
 			'node_id' => 'required|numeric'
     	];
     	return $rules;
