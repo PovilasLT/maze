@@ -6,8 +6,14 @@ use Illuminate\Http\Request;
 use Auth, Hash;
 use maze\User;
 use maze\Role;
+use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class AuthController extends Controller {
+
+    use ResetsPasswords;
+
+    protected $redirectTo = '/';
+    protected $subject = 'Maze - Slaptažodžio Priminimas';
 
 	function __construct() {
 		$this->middleware('guest', [

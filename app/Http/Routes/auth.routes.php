@@ -24,3 +24,27 @@ Route::post('/prisijungti', [
 	'as'	=> 'auth.login.post',
 	'uses'	=> 'AuthController@postLogin'
 ]);
+
+Route::get('/slaptazodis/pastas', [
+	'middleware' => 'guest',
+	'as' 	=> 'auth.reset.email',
+	'uses'	=> 'AuthController@getEmail'
+]);
+
+Route::post('/slaptazodis/pastas', [
+	'middleware' => 'guest',
+	'as' 	=> 'auth.reset.email.post',
+	'uses'	=> 'AuthController@postEmail'
+]);
+
+Route::get('/slaptazodis/keisti/{token}', [
+	'middleware' => 'guest',
+	'as' 	=> 'auth.reset.token',
+	'uses'	=> 'AuthController@getReset'
+]);
+
+Route::post('/slaptazodis/keisti', [
+	'middleware' => 'guest',
+	'as' 	=> 'auth.reset.token.post',
+	'uses'	=> 'AuthController@postReset'
+]);

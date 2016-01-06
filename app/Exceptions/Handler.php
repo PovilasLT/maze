@@ -11,8 +11,8 @@ class Handler extends ExceptionHandler {
 	 * @var array
 	 */
 	protected $dontReport = [
-		'Symfony\Component\HttpKernel\Exception\HttpException',
-		'Illuminate\Database\Eloquent\ModelNotFoundException',
+        HttpException::class,
+        ModelNotFoundException::class,
 	];
 
 	/**
@@ -24,6 +24,9 @@ class Handler extends ExceptionHandler {
 	 */
 	public function render($request, Exception $e)
 	{
+
+		return parent::render($request, $e);
+
 		if($this->isHttpException($e))
 		{
 			if($e->getStatusCode() == 404)

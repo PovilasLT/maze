@@ -10,7 +10,7 @@
 
 @section('content')
 	<h4>Slaptažodžio priminimas</h4>
-	@include('auth.forms.forgot')
+	@include('auth.forms.password')
 @stop
 
 @section('sidebar')
