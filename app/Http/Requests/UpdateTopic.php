@@ -33,11 +33,24 @@ class UpdateTopic extends Request {
 	 */
 	public function rules()
 	{
-		$rules = array(
-            'title'   => 'required|min:2',
-			'body'    => 'required|min:2',
-			'node_id' => 'required|numeric'
-        );
+		if(Auth::user()->can('manage_topics'))
+		{
+			$rules = [
+				'title'   => 'required|min:10',
+				'body'    => 'required|min:10',
+				'node_id' => 'required|numeric',
+				'type'	  => 'required|in:0,2,215'
+	    	];
+	    }
+	    else
+	    {
+	    	$rules = [
+				'title'   => 'required|min:10',
+				'body'    => 'required|min:10',
+				'node_id' => 'required|numeric',
+				'type'	  => 'required|in:0,2'
+	    	];
+	    }
 		return $rules;
 	}
 
