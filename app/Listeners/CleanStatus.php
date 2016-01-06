@@ -10,7 +10,7 @@ use maze\Events\StatusCommentWasDeleted;
 
 use maze\StatusComment;
 
-use maze\Auth;
+use Auth;
 
 class CleanStatus
 {
@@ -36,7 +36,7 @@ class CleanStatus
         foreach($status_comments as $status_comment)
         {
             $status_comment->delete();
-            event(new StatusCommentWasDeleted($status_comment, $event->status, Auth::user()));
+            event(new StatusCommentWasDeleted($status_comment, Auth::user()));
         }
     }
 }
