@@ -1,0 +1,17 @@
+<div class="media markdown-form messenger-form" id="create-message-form">
+	<a class="pull-left" href="{{ route('user.show', Auth::user()->slug) }}">
+		<img class="media-object markdown-avatar message-create-avatar" src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->username }} avataras">
+	</a>
+	<div class="media-body">
+		<form action="{{ route('message.store') }}" method="POST" role="form" id="send-message">
+		@include('includes.csrf')
+			<input type="hidden" name="conversation_id" value="{{ $conversation->id }}">
+			<div class="form-group">
+				<textarea class="form-control" name="body" rows="1" placeholder="Čia rašyk savo išmintingos žinutės turinį..." required></textarea>
+			</div>
+
+			<button type="submit" class="btn btn-primary pull-right">Rašyti</button>
+			<div class="clearfix"></div>
+		</form>
+	</div>
+</div>

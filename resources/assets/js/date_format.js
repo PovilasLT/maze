@@ -1,4 +1,5 @@
-$(function() {
+
+var maze_format_date = function() {
 	moment.locale('lt');
 	$('.date-when').each(function() {
 		var date = $(this);
@@ -8,4 +9,6 @@ $(function() {
 		var date_text = moment_obj.from(current_date);
 		date.text(date_text);
 	});
-});
+};
+
+maze_format_date();

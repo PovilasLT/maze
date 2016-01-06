@@ -46,6 +46,6 @@ class TopicWasCreated extends Event
      */
     public function broadcastOn()
     {
-        return [];
+        return ['notifications'];
     }
 }

@@ -2,11 +2,14 @@
 	@if(Auth::check())
 		<a href="{{ route('user.show', Auth::user()->slug) }}"><img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->username }} Profilis" class="avatar"></a>
 		<a href="{{ route('user.profile') }}" class="user-notifications-icon"><i class="fa fa-globe"></i>
-			@if($notifications = Auth::user()->notification_count)
-				<span>{{ $notifications }}</span>
+			@if($notification_count = Auth::user()->notification_count)
+				<span>{{ $notification_count }}</span>
 			@endif
 		</a>
-		<a href="{{ route('user.messages') }}" class="user-messages-icon"><i class="fa fa-envelope-o"></i>
+		<a href="{{ route('conversation.index') }}" class="user-messages-icon"><i class="fa fa-envelope-o"></i>
+			@if($message_count = Auth::user()->message_count)
+				<span>{{ $message_count }}</span>
+			@endif
 		</a>
 		<a href="{{ route('auth.logout') }}"><i class="fa fa-sign-out"></i></a>
 	@else

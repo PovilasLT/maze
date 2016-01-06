@@ -38,6 +38,20 @@ Breadcrumbs::register('page.team', function($breadcrumbs)
     $breadcrumbs->push('Komanda', route('page.team'));
 });
 
+//AZ
+//
+Breadcrumbs::register('conversation.index', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Pokalbiai', route('conversation.index'));
+});
+
+Breadcrumbs::register('conversation.show', function($breadcrumbs, $conversation)
+{
+    $breadcrumbs->parent('conversation.index');
+    $breadcrumbs->push($conversation->receiver->username, route('conversation.index', $conversation->id));
+});
+
 //Skiltis
 Breadcrumbs::register('node.show', function($breadcrumbs, $node)
 {

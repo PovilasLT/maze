@@ -27,7 +27,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['username', 'email', 'password', 'sex', 'steam', 'about_me', 'twitter', 'youtube', 'twitch', 'city', 'email_replies', 'email_messages', 'email_news'];
+	protected $fillable = ['username', 'email', 'password', 'sex', 'steam', 'about_me', 'twitter', 'youtube', 'twitch', 'city', 'email_replies', 'email_messages', 'email_news', 'message_count'];
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -75,6 +75,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	public function activities() {
 		return $this->hasMany('maze\Notification')->whereNotIn('object_type', ['follow'])->where('from_id', $this->id);
+	}
+
+	public function messages() {
+		return $this->hasMany('maze\Message');
+	}
+
+	public function conversations() {
+		return $this->belongsToMany('maze\Conversation')->withTimestamps();
 	}
 
 	//Patikrina ar User jau balsavo uz tam tikra turini.

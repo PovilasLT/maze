@@ -248,6 +248,7 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 
+		'User'			=> 'maze\User',
 		'Flash' 		=> 'Laracasts\Flash\Flash',
 		'Entrust' 		=> 'Zizaco\Entrust\EntrustFacade',
 		'Image' 		=> 'Intervention\Image\Facades\Image',

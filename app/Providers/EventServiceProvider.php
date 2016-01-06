@@ -76,6 +76,12 @@ class EventServiceProvider extends ServiceProvider {
 			'maze\Listeners\EmailNews',
 			'maze\Listeners\LogAction',
 		],
+		'maze\Events\ConversationWasCreated' => [
+			
+		],
+		'maze\Events\MessageWasSent' => [
+			'maze\Listeners\ProcessMessage',
+		],
 	];
 
 	/**

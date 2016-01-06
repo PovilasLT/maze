@@ -32,8 +32,8 @@
 					</div>
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="http://www.maze.lt/">Forumas</a></li>
-							<li><a href="http://tv.maze.lt/">TV</a></li>
+							<li><a href="/">Forumas</a></li>
+							<!-- <li><a href="http://tv.maze.lt/">TV</a></li> -->
 							<li><a href="{{ route('search.index') }}">Paieška</a></li>
 						</ul>
 					</div>

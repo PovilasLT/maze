@@ -32,6 +32,9 @@ require_once('Routes/status.routes.php');
 //Paieška
 require_once('Routes/search.routes.php');
 
+//AZ
+require_once('Routes/messenger.routes.php');
+
 //TV
 // require_once('Routes/tv.routes.php');
 
