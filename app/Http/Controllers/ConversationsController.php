@@ -23,15 +23,8 @@ class ConversationsController extends Controller {
 	public function index(Request $request)
 	{
 		$user = Auth::user();
-		$conversations = $user->conversations()->latest()->with([
-			'users' => function($query) use($user) {
-				return $query->where('user_id', 'NOT LIKE', $user->id)->where('is_banned', false);
-			},
-			'messages' => function($query) {
-				return $query;
-			}
-		])->get();
-
+		$conversations = $user->conversations()->latest()->withUsersAndMessages($user)->limit(30)->get();
+		
 		$user->update(['message_count' => 0]);
 		$username = $request->input('username');
 
@@ -46,13 +39,15 @@ class ConversationsController extends Controller {
 		$users = $conversation->users;
 		$receiver = $conversation->receiver;
 
+		$conversation->pivot(Auth::user())->update(['read_at' => new \DateTime]);
+
 		return view('conversation.show', compact('conversation', 'messages', 'users', 'receiver'));
 	}
 
 	public function create($id) {
 		$user = Auth::user();
-		$participant = User::findOrFail($id);
-		$conversation = $user->conversations()->whereIn('id', $participant->conversations()->lists('id'))->first();
+		$receiver = User::findOrFail($id);
+		$conversation = $user->jointConversations($receiver)->first();
 		if($conversation)
 		{
 			return redirect()->route('conversation.show', $conversation->id);
@@ -68,14 +63,14 @@ class ConversationsController extends Controller {
 		$user = Auth::user();
 		$receiver = User::where('username', $request->input('username'))->first();
 
-		if(!$receiver)
+		if(!$receiver || $receiver->id == $user->id)
 		{
 			flash()->error('Gavėjas nerastas!');
 			return redirect()->back()->withInput();
 		}
 		else
 		{
-			$conversation = $user->conversations()->whereIn('id', $receiver->conversations()->lists('id'))->first();
+			$conversation = $user->jointConversations($receiver)->first();
 			if(!$conversation)
 			{
 				$conversation = Conversation::create(['secret' => str_random(70)]);

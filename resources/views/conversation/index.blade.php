@@ -15,7 +15,9 @@ Pokalbiai | @parent
 
 	<h4>Aktyvūs Pokalbiai</h4>
 	@foreach($conversations as $conversation)
-		@include('conversation.item', ['participant' => $conversation->users[0]])
+		@if(isset($conversation->users[0]))
+			@include('conversation.item', ['participant' => $conversation->users[0]])
+		@endif
 	@endforeach
 @stop
 

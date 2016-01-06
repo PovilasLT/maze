@@ -82,7 +82,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	}
 
 	public function conversations() {
-		return $this->belongsToMany('maze\Conversation')->withTimestamps();
+		return $this->belongsToMany('maze\Conversation')->withTimestamps()->withPivot('read_at');
+	}
+
+	public function jointConversations($user)
+	{
+		return $this->conversations()->whereIn('id', $user->conversations()->lists('id'));
 	}
 
 	//Patikrina ar User jau balsavo uz tam tikra turini.
