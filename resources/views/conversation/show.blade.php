@@ -63,7 +63,7 @@
 		});
 	});
 	
-	var socket = io('http://maze.app:6001');
+	var socket = io('http://'+window.location.host+':6001');
 	socket.emit('join', {id: {{ $conversation->id }}, secret: '{{ $conversation->secret }}'});
 	
 	socket.on("message", function(data) {

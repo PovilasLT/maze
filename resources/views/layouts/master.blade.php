@@ -104,6 +104,9 @@
 			<div class="current-date-invisible" style="display: none;">{{ \Carbon\Carbon::now() }}</div>
 		</footer>
 		<script src="/js/scripts.js"></script>
+		<script type="text/javascript">
+			console.log(window.location.host);
+		</script>
 		@yield('scripts')
 	</body>
 </html>
