@@ -4,12 +4,15 @@ use maze\Http\Requests;
 use maze\Http\Requests\CreateUser;
 use maze\Http\Requests\UpdateUser;
 use maze\Http\Requests\UserProfile;
+use maze\Http\Requests\ChangeUsername;
 use maze\User;
 use maze\Notification;
 use Auth;
 use Image;
 use Hash;
 use Storage;
+
+use Stringy\StaticStringy as S;
 
 use Illuminate\Http\Request;
 
@@ -208,6 +211,34 @@ class UsersController extends Controller {
 	{
 		$user = Auth::user();
 		return view('user.settings', compact('user'));
+	}
+
+	public function changeUsername()
+	{
+		if(!Auth::user()->name_changes)
+		{
+			return view('user.username');
+		}
+		else
+		{
+			return redirect()->back();
+		}
+	}
+
+	public function postChangeUsername(ChangeUsername $request)
+	{
+
+		$username = $request->input('username');
+
+		Auth::user()->update([
+			'username'	=> $username,
+			'slug'		=> S::slugify($username),
+			'name_changes' => 1,
+		]);
+
+		flash()->success('Vartotojo vardas sėkmingai pakeistas!');
+
+		return redirect('/');
 	}
 
 }

@@ -40,3 +40,13 @@ Route::post('/profilis/nustatymai/issaugoti', [
 	'as'	=> 'user.settings.save',
 	'uses'	=> 'UsersController@update'
 ]);
+
+Route::get('/slapyvardis/keisti', [
+	'as'	=> 'user.change.username',
+	'uses'	=> 'UsersController@changeUsername',
+]);
+
+Route::post('/slapyvardis/keisti', [
+	'as'	=> 'user.change.username.post',
+	'uses'	=> 'UsersController@postChangeUsername',
+]);
