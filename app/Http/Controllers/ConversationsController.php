@@ -54,7 +54,7 @@ class ConversationsController extends Controller {
 		}
 		else
 		{
-			return redirect()->route('conversation.index', ['username' => $participant->username]);
+			return redirect()->route('conversation.index', ['username' => $receiver->username]);
 		}
 	}
 
