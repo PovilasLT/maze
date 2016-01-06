@@ -16,6 +16,7 @@ class Kernel extends HttpKernel {
 		'Illuminate\Session\Middleware\StartSession',
 		'Illuminate\View\Middleware\ShareErrorsFromSession',
 		'maze\Http\Middleware\VerifyCsrfToken',
+		'maze\Http\Middleware\CheckIfUserIsBanned',
 	];
 
 	/**
