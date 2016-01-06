@@ -26,7 +26,6 @@
 			<option value="215" @if($topic->type == 215) {{ 'selected '}} @endif >Pranešimas</option>
 			@endif
 			<option value="2" @if($topic->type == 2) {{ 'selected '}} @endif >Klausimas</option>
-			<option value="3" @if($topic->type == 3) {{ 'selected '}} @endif >Apklausa</option>
 		</select>
 	</div>
 	<label for="title">Temos pavadinimas</label>
