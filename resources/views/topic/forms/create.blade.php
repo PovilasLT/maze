@@ -26,6 +26,7 @@
 			<option value="215">Pranešimas</option>
 			@endif
 			<option value="2">Klausimas</option>
+			<option value="3">Konkursas</option>
 		</select>
 	</div>
 	<label for="title">Temos pavadinimas</label>
