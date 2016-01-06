@@ -39,7 +39,7 @@ class UpdateTopic extends Request {
 				'title'   => 'required|min:10',
 				'body'    => 'required|min:10',
 				'node_id' => 'required|numeric',
-				'type'	  => 'required|in:0,2,215'
+				'type'	  => 'required|in:0,2,215,3'
 	    	];
 	    }
 	    else
@@ -48,7 +48,7 @@ class UpdateTopic extends Request {
 				'title'   => 'required|min:10',
 				'body'    => 'required|min:10',
 				'node_id' => 'required|numeric',
-				'type'	  => 'required|in:0,2'
+				'type'	  => 'required|in:0,2,3'
 	    	];
 	    }
 		return $rules;
@@ -59,7 +59,8 @@ class UpdateTopic extends Request {
 	{
 		$nice_names = [
             'title'  => 'temos pavadinimas',
-            'body'  => 'temos turinys'
+            'body'  => 'temos turinys',
+            'type'	=> 'temos tipas'
         ];
         return $nice_names;
 	}

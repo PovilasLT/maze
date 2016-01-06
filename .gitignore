@@ -2,5 +2,6 @@
 /node_modules
 /public/css/*
 /public/js/*
+/public/images/avatars
 .env
 _ide_helper.php
