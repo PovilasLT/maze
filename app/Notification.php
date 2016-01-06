@@ -39,7 +39,7 @@ class Notification extends Model {
 	}
 
 	public function scopeMentions($query) {
-		return $query->where('object_type', 'mention');
+		return $query->where('object_type', 'mention')->where('user_id', Auth::user()->id);
 	}
 
 	public function scopeTopics($query) {
