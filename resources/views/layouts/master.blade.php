@@ -85,6 +85,9 @@
 							<li>
 								<a href="{{ route('page.knowledgebase') }}">Žinynas</a>
 							</li>
+							<li>
+								<a href="{{ route('page.rules') }}">Etiketas</a>
+							</li>
 						</ul>
 					</div>
 				</div>
