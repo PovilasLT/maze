@@ -27,6 +27,10 @@
 			@endif
 			<option value="2" @if($topic->type == 2) {{ 'selected '}} @endif >Klausimas</option>
 			<option value="3" @if($topic->type == 3) {{ 'selected '}} @endif >Konkursas</option>
+			<option value="4" @if($topic->type == 4) {{ 'selected '}} @endif >Video</option>
+			<option value="5" @if($topic->type == 5) {{ 'selected '}} @endif >Stream</option>
+			<option value="6" @if($topic->type == 6) {{ 'selected '}} @endif >Kviečiu Žaisti</option>
+			<option value="7" @if($topic->type == 7) {{ 'selected '}} @endif >Pristatymas</option>
 		</select>
 	</div>
 	<label for="title">Temos pavadinimas</label>

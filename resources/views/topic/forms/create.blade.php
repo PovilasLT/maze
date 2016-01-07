@@ -27,6 +27,10 @@
 			@endif
 			<option value="2">Klausimas</option>
 			<option value="3">Konkursas</option>
+			<option value="4">Video</option>
+			<option value="5">Stream</option>
+			<option value="6">Kviečiu Žaisti</option>
+			<option value="7">Pristatymas</option>
 		</select>
 	</div>
 	<label for="title">Temos pavadinimas</label>

@@ -134,6 +134,14 @@ class Topic extends Model {
 			return '<span class="maze-label label-klausimas media-meta-element"><i class="fa fa-question"></i> Klausimas</span>';
 		elseif($type == 3)
 			return '<span class="maze-label label-apklausa media-meta-element"><i class="fa fa-trophy"></i> Konkursas</span>';
+		elseif($type == 4)
+			return '<span class="maze-label label-video media-meta-element"><i class="fa fa-youtube-play"></i> Video</span>';
+		elseif($type == 5)
+			return '<span class="maze-label label-stream media-meta-element"><i class="fa fa-twitch"></i> Stream</span>';
+		elseif($type == 6)
+			return '<span class="maze-label label-play media-meta-element"><i class="fa fa-gamepad"></i> Kviečiu Žaisti</span>';
+		elseif($type == 7)
+			return '<span class="maze-label label-spam media-meta-element"><i class="fa fa-star"></i> Pristatymas</span>';
 		else 
 			return '<span class="maze-label label-diskusija media-meta-element"><i class="fa fa-comments-o"></i> Diskusija</span>';
 	}

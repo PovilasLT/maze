@@ -34,7 +34,7 @@ class CreateTopic extends Request {
 				'title'   => 'required|min:10',
 				'body'    => 'required|min:10',
 				'node_id' => 'required|numeric',
-				'type'	  => 'required|in:0,2,215,3'
+				'type'	  => 'required|in:0,2,215,3,4,5,6,7'
 	    	];
 	    }
 	    else
@@ -43,7 +43,7 @@ class CreateTopic extends Request {
 				'title'   => 'required|min:10',
 				'body'    => 'required|min:10',
 				'node_id' => 'required|numeric',
-				'type'	  => 'required|in:0,2,3'
+				'type'	  => 'required|in:0,2,3,4,5,6,7'
 	    	];
 	    }
     	return $rules;
