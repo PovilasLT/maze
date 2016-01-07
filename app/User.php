@@ -219,7 +219,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 			$slug = $value;
 			if($slugs > 0)
 			{
-				$slug = $value.$this->id;
+				$slug = S::slugify($this->username).$this->id;
 				$this->slug = $slug;
 				$this->save();
 			}
