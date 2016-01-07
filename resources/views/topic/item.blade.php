@@ -31,7 +31,7 @@
 		</div>
 	</div>
 	<div class="media-left media-top">
-	    <img class="media-object topic-avatar" src="{{ $topic->user->avatar }}" alt="{{ $topic->user->username }}">
+	    <a href="{{ $topic->user->url }}"><img class="media-object topic-avatar" src="{{ $topic->user->avatar }}" alt="{{ $topic->user->username }}"></a>
 	</div>
 	<div class="media-body">
 		<h4 class="media-heading">
@@ -61,7 +61,7 @@
 			</span>
 			@endif
 			<span class="media-meta-element">{!! $topic->nodePath() !!}</span>
-			<span class="media-meta-element">Autorius: <a href="/vartotojas/{{ $topic->user->slug }}">{{ $topic->user->username }}</a> </span>
+			<span class="media-meta-element">Autorius: <a href="{{ $topic->user->url }}">{{ $topic->user->username }}</a> </span>
 		</p>
 	</div>
 </div>
