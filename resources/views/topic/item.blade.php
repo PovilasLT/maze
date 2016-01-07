@@ -40,14 +40,24 @@
 			</a>
 		</h4>
 		<p>
-			<span class="media-meta-element">Parašyta: <strong>
-			<span class="date-when">{{ $topic->created_at }}</span></strong></span>
-			<span class="media-meta-element">Pranešimų: <strong>{{ $topic->reply_count }}</strong></span>
+			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Parašyta">
+				<i class="fa fa-clock-o"></i> 
+				<span class="date-when">{{ $topic->created_at }}</span>
+			</span>
 			@if(isset($topic->replies[0]))
-			<span class="media-meta-element">Paskutinis: <strong>
-			<span class="date-when">{{ $topic->replies[0]->created_at }}</span></strong></span>
+			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Paskutinis atsakymas">
+				<i class="fa fa-comment-o"></i> 
+				<span class="date-when">{{ $topic->replies[0]->created_at }}</span>
+			</span>
 			@endif
-			<span class="media-meta-element">Peržiūrų: <strong>{{ $topic->view_count }}</strong></span>
+			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Atsakymų">
+				<i class="fa fa-comments-o"></i> 
+				{{ $topic->reply_count }}
+			</span>
+			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Peržiūrų">
+			<i class="fa fa-eye"></i> 
+			{{ $topic->view_count }}
+			</span>
 		</p>
 		<p>
 			{!! $topic->full_type !!}
@@ -65,9 +75,15 @@
 			</span>
 			@endif
 			<span class="media-meta-element">{!! $topic->nodePath() !!}</span>
-			<span class="media-meta-element">Autorius: <a href="{{ $topic->user->url }}">{{ $topic->user->username }}</a></span>
+			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Temos autorius">
+				<i class="fa fa-user"></i>
+				<a href="{{ $topic->user->url }}">{{ $topic->user->username }}</a>
+			</span>
 			@if(isset($topic->replies[0]))
-			<span class="media-meta-element">Pask. Pranešimo: <a href="{{ $topic->replies[0]->user->url }}">{{ $topic->replies[0]->user->username }}</a></span>
+			<span class="media-meta-element"  data-toggle="tooltip" data-placement="top" title="Paskutinio atsakymo autorius">
+				<i class="fa fa-users"></i>
+				<a href="{{ $topic->replies[0]->user->url }}">{{ $topic->replies[0]->user->username }}</a>
+			</span>
 			@endif
 		</p>
 	</div>

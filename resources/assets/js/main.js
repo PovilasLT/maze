@@ -25,4 +25,5 @@ $(document).ready(function() {
 		}).addClass('is_visible');
 	}
 	});
+	$('[data-toggle="tooltip"]').tooltip();
 });
