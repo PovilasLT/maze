@@ -60,6 +60,13 @@ class Topic extends Model {
 		return $query->orderBy('order', 'DESC');
 	}
 
+	public function scopeWithReplies($query)
+	{
+		return $query->with(['replies' => function($replies_query) {
+			return $replies_query->orderBy('created_at', 'DESC');
+		}]);
+	}
+
 	public function notifications() {
 		return Notification::where('object_type', 'topic')
 							->where('object_id', $this->id)
@@ -71,11 +78,11 @@ class Topic extends Model {
 	public static function frontPage($sort) {
 		if($sort == 'populiariausi' || !$sort)
 		{
-			$topics = Topic::games()->pinned()->popular()->paginate(20);
+			$topics = Topic::games()->pinned()->popular()->withReplies()->paginate(20);
 		}
 		else
 		{
-			$topics = Topic::games()->pinned()->latest()->paginate(20);
+			$topics = Topic::games()->pinned()->latest()->withReplies()->paginate(20);
 		}
 		return $topics;
 	}

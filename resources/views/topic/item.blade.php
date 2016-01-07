@@ -43,6 +43,10 @@
 			<span class="media-meta-element">Parašyta: <strong>
 			<span class="date-when">{{ $topic->created_at }}</span></strong></span>
 			<span class="media-meta-element">Pranešimų: <strong>{{ $topic->reply_count }}</strong></span>
+			@if(isset($topic->replies[0]))
+			<span class="media-meta-element">Paskutinis: <strong>
+			<span class="date-when">{{ $topic->replies[0]->created_at }}</span></strong></span>
+			@endif
 			<span class="media-meta-element">Peržiūrų: <strong>{{ $topic->view_count }}</strong></span>
 		</p>
 		<p>
@@ -61,7 +65,10 @@
 			</span>
 			@endif
 			<span class="media-meta-element">{!! $topic->nodePath() !!}</span>
-			<span class="media-meta-element">Autorius: <a href="{{ $topic->user->url }}">{{ $topic->user->username }}</a> </span>
+			<span class="media-meta-element">Autorius: <a href="{{ $topic->user->url }}">{{ $topic->user->username }}</a></span>
+			@if(isset($topic->replies[0]))
+			<span class="media-meta-element">Pask. Pranešimo: <a href="{{ $topic->replies[0]->user->url }}">{{ $topic->replies[0]->user->username }}</a></span>
+			@endif
 		</p>
 	</div>
 </div>
