@@ -126,7 +126,7 @@ class Topic extends Model {
 		elseif($type == 2)
 			return '<span class="maze-label label-klausimas media-meta-element"><i class="fa fa-question"></i> Klausimas</span>';
 		elseif($type == 3)
-			return '<span class="maze-label label-apklausa media-meta-element"><i class="fa fa-bar- futbol-o"></i> Konkursas</span>';
+			return '<span class="maze-label label-apklausa media-meta-element"><i class="fa fa-trophy"></i> Konkursas</span>';
 		else 
 			return '<span class="maze-label label-diskusija media-meta-element"><i class="fa fa-comments-o"></i> Diskusija</span>';
 	}
