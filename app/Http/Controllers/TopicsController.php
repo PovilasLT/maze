@@ -52,10 +52,15 @@ class TopicsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create(Request $request)
 	{
 		$nodes = Node::parents();
-		return view('topic.create', compact('nodes'));
+		$node_id = false;
+
+		if($request->has('skiltis'))
+			$node_id = $request->input('skiltis');
+
+		return view('topic.create', compact('nodes', 'node_id'));
 	}
 
 	/**

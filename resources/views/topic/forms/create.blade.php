@@ -7,7 +7,7 @@
 			<option value="" disabled>{{ $node->name }}</option>
 			@foreach($node->children as $child)
 			@if(($child->id != 15) || ($child->id == 15 && Auth::user()->can('manage_topics')))
-				@if(old('node_id') == $child->id)
+				@if((old('node_id') == $child->id) || $node_id == $child->id)
 				<option value="{{ $child->id }}" selected>-- {{ $child->name }}</option>
 				@else
 				<option value="{{ $child->id }}">-- {{ $child->name }}</option>
