@@ -220,7 +220,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 			if($slugs > 0)
 			{
 				$slug = $value.$this->id;
-				$this->update(['slug' => $slug]);
+				$this->slug = $slug;
+				$this->save();
 			}
 			return $slug;
 		}
