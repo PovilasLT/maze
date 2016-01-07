@@ -215,7 +215,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 			}
 		}
 		else {
-			return $value;
+			$slugs = User::where('slug', $value)->count();
+			$slug = $value;
+			if($slugs > 0)
+			{
+				$slug = $value.$this->id;
+				$this->update(['slug' => $slug]);
+			}
+			return $slug;
 		}
 	}
 	
