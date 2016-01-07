@@ -915,7 +915,7 @@
         data: [{
           name: 'cmdBold',
           hotkey: 'Ctrl+B',
-          title: 'Bold',
+          title: 'Paryškinimas',
           icon: { glyph: 'glyphicon glyphicon-bold', fa: 'fa fa-bold', 'fa-3': 'icon-bold' },
           callback: function(e){
             // Give/remove ** surround the selection
@@ -944,7 +944,7 @@
           }
         },{
           name: 'cmdItalic',
-          title: 'Italic',
+          title: 'Pasvirimas',
           hotkey: 'Ctrl+I',
           icon: { glyph: 'glyphicon glyphicon-italic', fa: 'fa fa-italic', 'fa-3': 'icon-italic' },
           callback: function(e){
@@ -974,7 +974,7 @@
           }
         },{
           name: 'cmdHeading',
-          title: 'Heading',
+          title: 'Antraštė',
           hotkey: 'Ctrl+H',
           icon: { glyph: 'glyphicon glyphicon-header', fa: 'fa fa-header', 'fa-3': 'icon-font' },
           callback: function(e){
@@ -1017,7 +1017,7 @@
         name: 'groupLink',
         data: [{
           name: 'cmdUrl',
-          title: 'URL/Link',
+          title: 'URL/Nuoroda',
           hotkey: 'Ctrl+L',
           icon: { glyph: 'glyphicon glyphicon-link', fa: 'fa fa-link', 'fa-3': 'icon-link' },
           callback: function(e){
@@ -1046,7 +1046,7 @@
           }
         },{
           name: 'cmdImage',
-          title: 'Image',
+          title: 'Paveikslėlis',
           hotkey: 'Ctrl+G',
           icon: { glyph: 'glyphicon glyphicon-picture', fa: 'fa fa-picture-o', 'fa-3': 'icon-picture' },
           callback: function(e){
@@ -1082,7 +1082,7 @@
         data: [{
           name: 'cmdList',
           hotkey: 'Ctrl+U',
-          title: 'Unordered List',
+          title: 'Sąrašas',
           icon: { glyph: 'glyphicon glyphicon-list', fa: 'fa fa-list', 'fa-3': 'icon-list-ul' },
           callback: function(e){
             // Prepend/Give - surround the selection
@@ -1128,7 +1128,7 @@
         {
           name: 'cmdListO',
           hotkey: 'Ctrl+O',
-          title: 'Ordered List',
+          title: 'Sunumeruotas Sąrašas',
           icon: { glyph: 'glyphicon glyphicon-th-list', fa: 'fa fa-list-ol', 'fa-3': 'icon-list-ol' },
           callback: function(e) {
 
@@ -1174,7 +1174,7 @@
         {
           name: 'cmdCode',
           hotkey: 'Ctrl+K',
-          title: 'Code',
+          title: 'Kodas',
           icon: { glyph: 'glyphicon glyphicon-asterisk', fa: 'fa fa-code', 'fa-3': 'icon-code' },
           callback: function(e) {
             // Give/remove ** surround the selection
@@ -1213,7 +1213,7 @@
         {
           name: 'cmdQuote',
           hotkey: 'Ctrl+Q',
-          title: 'Quote',
+          title: 'Citata',
           icon: { glyph: 'glyphicon glyphicon-comment', fa: 'fa fa-quote-left', 'fa-3': 'icon-quote-left' },
           callback: function(e) {
             // Prepend/Give - surround the selection
@@ -1263,7 +1263,7 @@
           name: 'cmdPreview',
           toggle: true,
           hotkey: 'Ctrl+P',
-          title: 'Preview',
+          title: 'Peržiūra',
           btnText: 'Peržiūra',
           btnClass: 'btn btn-default btn-sm green-text',
           icon: { glyph: 'glyphicon glyphicon-search', fa: 'fa fa-eye', 'fa-3': 'icon-eye' },
