@@ -73,7 +73,7 @@
 			</span>
 			@endif
 			<span class="media-meta-element">{!! $topic->nodePath() !!}</span>
-			<span class="media-meta-element">Autorius: <a href="{{ route('user.show', $topic->user->slug) }}">{{ $topic->user->username }}</a> </span>
+			<span class="media-meta-element">Autorius: <a class="author" href="{{ route('user.show', $topic->user->slug) }}">{{ $topic->user->username }}</a> </span>
 		</p>
 	</div>
 	</div>

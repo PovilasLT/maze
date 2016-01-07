@@ -1,7 +1,7 @@
 $( document ).ready(function() {
     var at_users = [], user;
 
-    $users = $('.media-heading').find('a.author');
+    $users = $('.author');
     for (var i = 0; i < $users.length; i++) {
         user = $users.eq(i).text().trim();
         if ($.inArray(user, at_users) == -1) {
