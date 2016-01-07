@@ -152,6 +152,16 @@
 					<br class="clearfix">
 				</form>
 		  </div>
+		  @if(!$user->name_changes)
+		  	<div class="panel panel-primary">
+				  <div class="panel-heading">
+						<h3 class="panel-title"><i class="fa fa-male"></i> Vartotojo Vardas</h3>
+				  </div>
+				  <div class="panel-body">
+						Tu turi vieną nemokamą vartotojo vardo pasikeitimą. Vartotojo vardą gali pasikeisti <a href="{{ route('user.change.username') }}">čia</a>.
+				  </div>
+			</div>
+			@endif
 	</div>
 
 	<form class="user-settings margin-bottom" action="{{ route('user.settings.save') }}" method="POST" role="form">
