@@ -180,6 +180,7 @@ class TopicsController extends Controller {
 		$data['body']			= $mention->parse($data['body']);
 		$topic->body			= markdown($data['body']);
 		$topic->type 			= $data['type'];
+		$topic->node_id			= $data['node_id'];
 
 		$topic->save();
 
