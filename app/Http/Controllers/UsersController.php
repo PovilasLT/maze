@@ -148,6 +148,10 @@ class UsersController extends Controller {
 	public function show(Request $request, $slug) {
 		$user = User::where('slug', $slug)->firstOrFail();
 
+		if($user == Auth::user()) {
+			return redirect()->route('user.profile');
+		}
+
 		$sort = $request->input('rodyti', 'visi');
 
 		if($sort)
