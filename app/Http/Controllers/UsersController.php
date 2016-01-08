@@ -248,7 +248,7 @@ class UsersController extends Controller {
 		return redirect('/');
 	}
 
-	public function ban($id)
+	public function disableUser($id)
 	{
 		$user = Auth::user();
 		if($user->can('manage_topics'))
