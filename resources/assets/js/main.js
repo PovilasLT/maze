@@ -28,10 +28,4 @@ $(document).ready(function() {
 	}
 	});
 	$('[data-toggle="tooltip"]').tooltip();
-	$('#sidebar-affix-container').affix({
-	    offset: {     
-	      top: 81,
-	      bottom: $('footer').outerHeight(true)
-	    }
-	});
 });
