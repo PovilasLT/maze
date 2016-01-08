@@ -22,6 +22,7 @@ class VoteRequest extends Request {
 			}
 			else
 			{
+				flash()->error('Galimybė balsuoti tau yra išjungta!');
 				return false;
 			}
 		}
