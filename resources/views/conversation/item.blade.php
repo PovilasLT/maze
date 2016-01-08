@@ -19,9 +19,9 @@
 		</h4>
 		<p>
 			<span class="media-meta-element">Pradėta: <strong>
-			<span class="date-when">{{ $conversation->created_at }}</span></strong></span>
+			<span class="date-when">{{ $conversation->created_at->diffForHumans() }}</span></strong></span>
 			<span class="media-meta-element">Paskutinė žinutė: <strong>
-			<span class="date-when">{{ $conversation->updated_at }}</span></strong></span>
+			<span class="date-when">{{ $conversation->updated_at->diffForHumans() }}</span></strong></span>
 		</p>
 	</div>
 </div>

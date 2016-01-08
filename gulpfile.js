@@ -26,12 +26,10 @@ elixir(function(mix) {
     mix.scripts([
         '../jquery/dist/jquery.js',
         '../bootstrap/dist/js/bootstrap.js',
-        '../moment/min/moment-with-locales.min.js',
         '../emojify.js/dist/js/emojify.js',
         'emoji.js',
         'markdown_parser.js',
         'markdown.js',
-        'date_format.js',
         'lightbox.js',
         'lightbox_call.js',
         'textcomplete.js',

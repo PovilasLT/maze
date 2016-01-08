@@ -42,12 +42,12 @@
 		<p>
 			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Parašyta">
 				<i class="fa fa-clock-o"></i> 
-				<span class="date-when">{{ $topic->created_at }}</span>
+				<span class="date-when">{{ $topic->created_at->diffForHumans() }}</span>
 			</span>
 			@if(isset($topic->replies[0]))
 			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Paskutinis atsakymas">
 				<i class="fa fa-comment-o"></i> 
-				<span class="date-when">{{ $topic->replies[0]->created_at }}</span>
+				<span class="">{{ $topic->replies[0]->created_at->diffForHumans() }}</span>
 			</span>
 			@endif
 			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Atsakymų">

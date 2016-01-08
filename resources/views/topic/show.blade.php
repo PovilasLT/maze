@@ -53,7 +53,7 @@
 		<h1 class="media-heading">{{ $topic->title }}</h1>
 		<p>
 			<span class="media-meta-element">Parašyta: <strong>
-			<span class="date-when">{{ $topic->created_at }}</span></strong></span>
+			<span class="date-when">{{ $topic->created_at->diffForHumans() }}</span></strong></span>
 			<span class="media-meta-element">Pranešimų: <strong>{{ $topic->reply_count }}</strong></span>
 			<span class="media-meta-element">Peržiūrų: <strong>{{ $topic->view_count }}</strong></span>
 		</p>

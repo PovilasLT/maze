@@ -53,8 +53,10 @@
 							</div>
 						</div>
 						<div class="col-md-3 hidden-sm hidden-xs main-sidebar">
-							@include('includes.user_info')
-							@yield('sidebar')
+							<div id="sidebar-affix-container">
+								@include('includes.user_info')
+								@yield('sidebar')
+							</div>
 						</div>
 					</div>
 			</div>
@@ -97,7 +99,6 @@
 					</div>
 				</div>
 			</div>
-			<div class="current-date-invisible" style="display: none;">{{ \Carbon\Carbon::now() }}</div>
 		</footer>
 		<script src="/js/scripts.js"></script>
 		@yield('scripts')

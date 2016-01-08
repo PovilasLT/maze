@@ -7,9 +7,9 @@
 @section('content')
 	<div class="row">
 		<div class="col-lg-12 status-meta">
-			Parašyta <span class="date-when">{{ $status->created_at }}</span>
+			Parašyta <span class="date-when">{{ $status->created_at->diffForHumans() }}</span>
 			@if($status->editor && (Auth::user()->can('manage_statuses') || Auth::user()->id == $status->editor_id ))
-			| Redagavo: <a href="{{ route('user.show', $status->editor->slug) }}">{{ $status->editor->username }}</a> (<span class="date-when">{{ $status->updated_at }}</span>)
+			| Redagavo: <a href="{{ route('user.show', $status->editor->slug) }}">{{ $status->editor->username }}</a> (<span class="date-when">{{ $status->updated_at->diffForHumans() }}</span>)
 			@endif
 		</div>
 	</div>

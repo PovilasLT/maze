@@ -2,6 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 use Blade;
+use Carbon\Carbon;
 
 class AppServiceProvider extends ServiceProvider {
 
@@ -20,6 +21,7 @@ class AppServiceProvider extends ServiceProvider {
 		Blade::extend(function($value) {
 		    return preg_replace('/\{\?(.+)\?\}/', '<?php ${1} ?>', $value);
 		});
+		Carbon::setLocale('lt');
 	}
 
 	/**
