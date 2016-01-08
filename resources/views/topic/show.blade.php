@@ -13,7 +13,7 @@
 
 @section('content')
 	<div class="media topic-show">
-		<div class="votes pull-left" id="votes-{{ $topic->id }}">
+		<div class="votes @if(Auth::check() && !Auth::user()->can_vote) votes-disabled @endif pull-left" id="votes-{{ $topic->id }}">
 			<div class="upvote-container vote-action" type="tema" vote="upvote" id="{{ $topic->id }}">
 				@if(!$topic->voted('up'))
 				<i class="fa vote upvote"></i>

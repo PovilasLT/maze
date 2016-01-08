@@ -17,6 +17,10 @@ $("body").delegate('.vote-action', 'click', function (event) {
         {
             window.location.href = '/prisijungti';
         }
+        else if(data == 'disabled')
+        {
+            alert('Galimybė balsuoti tau yra išjungta!');
+        }
         else
         {
             do_vote();

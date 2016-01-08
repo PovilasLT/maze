@@ -633,6 +633,16 @@ h1.media-heading {
 	color: #7f8c8d;
 }
 
+.votes-disabled {
+	.upvote-active:before,
+	.downvote-active:before,
+	.downvote:before,
+	.upvote:before
+	{
+		color: @maze-grey !important;
+	}
+}
+
 @media (min-width: 1200px) {
     #kb-nav {
     	.affix, 
