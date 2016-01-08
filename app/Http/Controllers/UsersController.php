@@ -267,10 +267,7 @@ class UsersController extends Controller {
 				flash()->success('Vartotojas užblokuotas.');
 			}
 		}
-		else
-		{
-			return redirect()->back();
-		}
+		return redirect()->back();
 	}
 
 	public function disableVote($id)
@@ -279,23 +276,20 @@ class UsersController extends Controller {
 		if($user->can('manage_topics'))
 		{
 			$user = User::findOrFail($id);
-			if($user->is_banned)
+			if($user->can_vote)
 			{
-				$user->is_banned = 0;
+				$user->can_vote = 0;
 				$user->save();
 				flash()->success('Balsai išjungti.');
 			}
 			else
 			{
-				$user->is_banned = 1;
+				$user->can_vote = 1;
 				$user->save();
 				flash()->success('Balsai įjungti.');
 			}
 		}
-		else
-		{
-			return redirect()->back();
-		}
+		return redirect()->back();
 	}
 
 }
