@@ -45,8 +45,7 @@ class AuthController extends Controller {
 
 		if (Auth::attempt(array('username' => $username, 'password' => $password), true))
 		{
-			flash()->success('Tu sėkmingai prisijungei!');
-			return redirect('/');
+			return redirect($request->session()->pull('intended_url', '/'));
 		}
 		else
 		{

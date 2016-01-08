@@ -26,6 +26,7 @@ class LogIn
             }
             else
             {
+                session(['intended_url' => $request->url()]);
                 return redirect()->route('auth.login');
             }
         }
