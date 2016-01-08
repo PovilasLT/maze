@@ -43,4 +43,18 @@ class UpdateUser extends Request {
 		];
 	}
 
+	public function attributes()
+	{
+		$nice_names = [
+			'email'		 => 'el-paštas',
+			'steam'		 => 'steam',
+			'youtube'	 => 'youtube',
+			'twitch'	 => 'twitch',
+			'twitter'	 => 'twitter',
+			'avatar'	 => 'avataras',
+            'npassword'  => 'naujas slaptažodis',
+        ];
+        return $nice_names;
+	}
+
 }
