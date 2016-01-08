@@ -39,7 +39,7 @@
 				{{ $topic->title }}
 			</a>
 		</h4>
-		<p>
+		<p class="topic-meta-container">
 			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Parašyta">
 				<i class="fa fa-clock-o"></i> 
 				<span class="date-when">{{ $topic->created_at->diffForHumans() }}</span>
@@ -59,7 +59,7 @@
 			{{ $topic->view_count }}
 			</span>
 		</p>
-		<p>
+		<p class="topic-meta-container">
 			{!! $topic->full_type !!}
 			@if($topic->is_blocked || $topic->order == 1 || $topic->pin_local)
 			<span class="media-meta-element maze-label label-misc">
