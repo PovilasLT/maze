@@ -10,6 +10,7 @@ use maze\Http\Requests\DeleteTopic;
 use maze\Http\Requests\UpdateTopic;
 use maze\Events\TopicWasCreated;
 use maze\Events\TopicWasDeleted;
+use maze\Events\UserWasMentioned;
 
 use maze\Topic;
 use maze\Node;

@@ -12,6 +12,7 @@ class NewsWasPosted extends Event
     use SerializesModels;
 
     public $topic;
+    public $entity;
 
     /**
      * Create a new event instance.
@@ -21,6 +22,7 @@ class NewsWasPosted extends Event
     public function __construct(Topic $topic)
     {
         $this->topic = $topic;
+        $this->entity = $topic;
     }
 
     /**
