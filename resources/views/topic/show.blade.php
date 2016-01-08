@@ -68,7 +68,7 @@
 				<i class="fa fa-fw fa-bullhorn" data-toggle="tooltip" title="Išskirta tema"></i>
   				@endif
   				@if($topic->pin_local)
-				<i class="fa fa-fw fa-thumb-tack" data-toggle="tooltip" title="Prikabinta tema"></i>
+				<i class="fa fa-fw fa-thumb-tack" data-toggle="tooltip" title="Prisegta tema"></i>
   				@endif
 			</span>
 			@endif

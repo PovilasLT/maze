@@ -64,14 +64,14 @@
 			@if($topic->is_blocked || $topic->order == 1 || $topic->pin_local)
 			<span class="media-meta-element maze-label label-misc">
 				@if($topic->is_blocked)
-				<i class="fa fa-fw fa-lock"></i>
-				@endif
-				@if($topic->order == 1)
-				<i class="fa fa-fw fa-bullhorn"></i>
-				@endif
-				@if($topic->pin_local)
-				<i class="fa fa-fw fa-thumb-tack"></i>
-				@endif
+				<i class="fa fa-fw fa-lock" data-toggle="tooltip" title="Tema yra užrakinta"></i>
+  				@endif
+  				@if($topic->order == 1)
+				<i class="fa fa-fw fa-bullhorn" data-toggle="tooltip" title="Išskirta tema"></i>
+  				@endif
+  				@if($topic->pin_local)
+				<i class="fa fa-fw fa-thumb-tack" data-toggle="tooltip" title="Prisegta tema"></i>
+  				@endif
 			</span>
 			@endif
 			<span class="media-meta-element">{!! $topic->nodePath() !!}</span>
