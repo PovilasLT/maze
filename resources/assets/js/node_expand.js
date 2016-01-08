@@ -3,12 +3,12 @@ $(function() {
 	var is_expanded = $('.is-expanded .parent-icon');
 
 	var affix_sidebar = function() {
-		$('#sidebar-affix-container').css('height', window.innerHeight - $('.main-sidebar').offset().top).affix({
-		    offset: {     
-		      top: 82,
-		      bottom: $('footer').outerHeight(true) + 40
-		    }
-		});
+		// $('#sidebar-affix-container').css('height', window.innerHeight - $('.main-sidebar').offset().top).affix({
+		//     offset: {     
+		//       top: 82,
+		//       bottom: $('footer').outerHeight(true) + 40
+		//     }
+		// });
 	};
 
 	if(is_expanded.length)
@@ -52,8 +52,6 @@ $(function() {
 
 		var current = $(this);
 		var status_id = current.attr('status-id');
-
-		console.log(status_id);
 
 		if(current.hasClass('active'))
 		{

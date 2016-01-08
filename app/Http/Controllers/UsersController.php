@@ -248,4 +248,54 @@ class UsersController extends Controller {
 		return redirect('/');
 	}
 
+	public function ban($id)
+	{
+		$user = Auth::user();
+		if($user->can('manage_topics'))
+		{
+			$user = User::findOrFail($id);
+			if($user->is_banned)
+			{
+				$user->is_banned = 0;
+				$user->save();
+				flash()->success('Vartotojas atblokuotas.');
+			}
+			else
+			{
+				$user->is_banned = 1;
+				$user->save();
+				flash()->success('Vartotojas užblokuotas.');
+			}
+		}
+		else
+		{
+			return redirect()->back();
+		}
+	}
+
+	public function disableVote($id)
+	{
+		$user = Auth::user();
+		if($user->can('manage_topics'))
+		{
+			$user = User::findOrFail($id);
+			if($user->is_banned)
+			{
+				$user->is_banned = 0;
+				$user->save();
+				flash()->success('Balsai išjungti.');
+			}
+			else
+			{
+				$user->is_banned = 1;
+				$user->save();
+				flash()->success('Balsai įjungti.');
+			}
+		}
+		else
+		{
+			return redirect()->back();
+		}
+	}
+
 }
