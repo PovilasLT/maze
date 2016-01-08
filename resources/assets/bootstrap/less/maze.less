@@ -248,6 +248,22 @@ ul {
 	background: #95a5a6;
 }
 
+.label-video {
+	background: #d71e17;
+}
+
+.label-stream {
+	background: #6441a5;
+}
+
+.label-spam {
+	background: #bdc3c7;
+}
+
+.label-play {
+	background: #1abc9c;
+}
+
 .media-meta-element {
 	margin-right: 5px;
 }
@@ -295,6 +311,12 @@ h1.media-heading {
 
 .full-width {
 	width: 100%;
+}
+
+.active-node {
+	a {
+		color: #1abc9c;
+	}
 }
 
 .new-topic {
@@ -365,6 +387,9 @@ h1.media-heading {
 	.media-body {
 		border: none;
 		padding: 0 0 20px 0;
+		img {
+			max-width: 100%;
+		}
 	}
 	.media-left {
 		padding: 0 10px 0 0;
@@ -575,6 +600,16 @@ h1.media-heading {
 	position: absolute;
 }
 
+// #sidebar-affix-container {
+// 	top: 40px;
+// 	padding-bottom: 40px;
+// 	overflow-y: scroll;
+// 	overflox-x: hidden;
+// 	-ms-overflow-style: none;
+// 	overflow: -moz-scrollbars-none;
+// 	&::-webkit-scrollbar { width: 0 !important }
+// }
+
 #create-reply-form {
 	background: @maze-background;
 	z-index: 99;
@@ -589,6 +624,25 @@ h1.media-heading {
 	margin-top: 0;
 }
 
+.post-show:nth-child(n+2) {
+	margin-top: -160px;
+	padding-top: 160px;
+}
+
+.topic-meta-container {
+	color: #7f8c8d;
+}
+
+.votes-disabled {
+	.upvote-active:before,
+	.downvote-active:before,
+	.downvote:before,
+	.upvote:before
+	{
+		color: @maze-grey !important;
+	}
+}
+
 @media (min-width: 1200px) {
     #kb-nav {
     	.affix, 
@@ -599,6 +653,9 @@ h1.media-heading {
     #create-reply-form {
     	width: 821px;
     }
+    // #sidebar-affix-container {
+    // 	width: 237px;
+    // }
 }
 
 
@@ -606,6 +663,9 @@ h1.media-heading {
 	#create-reply-form {
 		width: 696px;
 	}
+	// #sidebar-affix-container {
+ //    	width: 187px;
+ //    }
 	.content-box {
 		padding-right: 15px;
 		padding-bottom: 15px;

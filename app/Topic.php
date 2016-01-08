@@ -60,6 +60,13 @@ class Topic extends Model {
 		return $query->orderBy('order', 'DESC');
 	}
 
+	public function scopeWithReplies($query)
+	{
+		return $query->with(['replies' => function($replies_query) {
+			return $replies_query->orderBy('created_at', 'DESC');
+		}]);
+	}
+
 	public function notifications() {
 		return Notification::where('object_type', 'topic')
 							->where('object_id', $this->id)
@@ -71,11 +78,11 @@ class Topic extends Model {
 	public static function frontPage($sort) {
 		if($sort == 'populiariausi' || !$sort)
 		{
-			$topics = Topic::games()->pinned()->popular()->paginate(20);
+			$topics = Topic::games()->pinned()->popular()->withReplies()->paginate(20);
 		}
 		else
 		{
-			$topics = Topic::games()->pinned()->latest()->paginate(20);
+			$topics = Topic::games()->pinned()->latest()->withReplies()->paginate(20);
 		}
 		return $topics;
 	}
@@ -126,7 +133,15 @@ class Topic extends Model {
 		elseif($type == 2)
 			return '<span class="maze-label label-klausimas media-meta-element"><i class="fa fa-question"></i> Klausimas</span>';
 		elseif($type == 3)
-			return '<span class="maze-label label-apklausa media-meta-element"><i class="fa fa-bar- futbol-o"></i> Konkursas</span>';
+			return '<span class="maze-label label-apklausa media-meta-element"><i class="fa fa-trophy"></i> Konkursas</span>';
+		elseif($type == 4)
+			return '<span class="maze-label label-video media-meta-element"><i class="fa fa-youtube-play"></i> Video</span>';
+		elseif($type == 5)
+			return '<span class="maze-label label-stream media-meta-element"><i class="fa fa-twitch"></i> Stream</span>';
+		elseif($type == 6)
+			return '<span class="maze-label label-play media-meta-element"><i class="fa fa-gamepad"></i> Kviečiu Žaisti</span>';
+		elseif($type == 7)
+			return '<span class="maze-label label-spam media-meta-element"><i class="fa fa-star"></i> Pristatymas</span>';
 		else 
 			return '<span class="maze-label label-diskusija media-meta-element"><i class="fa fa-comments-o"></i> Diskusija</span>';
 	}

@@ -12,6 +12,11 @@ class Reply extends Model {
 		'body_original'
 	];
 
+	protected $dates = [
+		'created_at',
+		'updated_at',
+	];
+
 	public function user() {
 		return $this->belongsTo('maze\User');
 	}

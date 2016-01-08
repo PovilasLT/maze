@@ -20,6 +20,7 @@ class VotesController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('loggedIn');
+		$this->middleware('UserCanVote');
 	}
 
 	public function vote(VoteRequest $request, $vote, $type, $id) {

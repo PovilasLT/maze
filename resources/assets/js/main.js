@@ -11,6 +11,8 @@ $(document).ready(function() {
 	if(main_content.hasClass('is_visible'))
 	{
 		footer.hide();
+		$(window).off('.affix');
+		$('#sidebar-affix-container').removeClass('affix affix-top affix-bottom').removeData('affix');
 		main_content.slideUp('', function() {
 			main_sidebar.removeClass('hidden-xs').removeClass('hidden-sm');
 			footer.show();
@@ -25,4 +27,5 @@ $(document).ready(function() {
 		}).addClass('is_visible');
 	}
 	});
+	$('[data-toggle="tooltip"]').tooltip();
 });

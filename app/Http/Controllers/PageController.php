@@ -14,7 +14,6 @@ class PageController extends Controller {
 	{
 		$sort = $request->input('rodyti');
 		$topics = Topic::frontPage($sort);
-
 		return view('pages.home', compact('topics', 'sort'));
 	}
 

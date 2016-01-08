@@ -50,3 +50,13 @@ Route::post('/slapyvardis/keisti', [
 	'as'	=> 'user.change.username.post',
 	'uses'	=> 'UsersController@postChangeUsername',
 ]);
+
+Route::get('/vartotojas/{id}/isjungti/vartotoja', [
+	'as'	=> 'user.disable.user',
+	'uses'	=> 'UsersController@disableUser',
+]);
+
+Route::get('/vartotojas/{id}/isjungti/balsus', [
+	'as'	=> 'user.disable.vote',
+	'uses'	=> 'UsersController@disableVote',
+]);

@@ -3,7 +3,7 @@
 @else
 <div class="media post-show post-answer" id="pranesimas-{{ $reply->id }}">
 @endif
-  <div class="votes reply-votes pull-left" id="votes-{{ $reply->id }}">
+  <div class="votes reply-votes @if(Auth::check() && !Auth::user()->can_vote) votes-disabled @endif pull-left" id="votes-{{ $reply->id }}">
     <div class="upvote-container vote-action" type="pranesimas" vote="upvote" id="{{ $reply->id }}">
       @if(!$reply->voted('up'))
       <i class="fa vote upvote"></i>
@@ -42,7 +42,7 @@
   <div class="media-body">
     <h4 class="media-heading">
     	<a href="{{ route('user.show', $reply->user->slug) }}" class="author">{{ $reply->user->username }}</a>
-    	<small class="date-when">{{ $reply->created_at }}</small><a href="#pranesimas-{{ $reply->id }}" class="pull-right btn btn-xs btn-grey"><i class="fa fa-link"></i></a>
+    	<small class="date-when">{{ $reply->created_at->diffForHumans() }}</small><a href="#pranesimas-{{ $reply->id }}" class="pull-right btn btn-xs btn-grey"><i class="fa fa-link"></i></a>
 		@if($topic->type == 2 && !$topic->is_answered)
 			<small class="pull-right"><a href="{{ route('reply.answer', $reply->id) }}">Atsakymas</a></small>
     @elseif($topic->type == 2 && $topic->is_answered && $reply->is_answer)

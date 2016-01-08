@@ -33,6 +33,7 @@ class UsersController extends Controller {
 		$user = Auth::user();
 
 		$_settings = [];
+
 		$protected = [
 			'username',
 			'password',
@@ -56,6 +57,12 @@ class UsersController extends Controller {
 				$files = Storage::disk('avatars')->files($user->id);
 
 				$filename = str_random(40);
+
+				if(!Storage::disk('public')->has('images/avatars/'.$user->id))
+				{
+					Storage::disk('public')->makeDirectory('images/avatars/'.$user->id);
+				}
+
 				$saved = Image::make($request->file('avatar'))->fit(150,150)->encode('png')->encode('png', 100)->save(public_path('images/avatars/'.$user->id.'/'.$filename.'.png'));
 
 				//jeigu nieko nepridirbo su failu
@@ -239,6 +246,50 @@ class UsersController extends Controller {
 		flash()->success('Vartotojo vardas sėkmingai pakeistas!');
 
 		return redirect('/');
+	}
+
+	public function disableUser($id)
+	{
+		$user = Auth::user();
+		if($user->can('manage_topics'))
+		{
+			$user = User::findOrFail($id);
+			if($user->is_banned)
+			{
+				$user->is_banned = 0;
+				$user->save();
+				flash()->success('Vartotojas atblokuotas.');
+			}
+			else
+			{
+				$user->is_banned = 1;
+				$user->save();
+				flash()->success('Vartotojas užblokuotas.');
+			}
+		}
+		return redirect()->back();
+	}
+
+	public function disableVote($id)
+	{
+		$user = Auth::user();
+		if($user->can('manage_topics'))
+		{
+			$user = User::findOrFail($id);
+			if($user->can_vote)
+			{
+				$user->can_vote = 0;
+				$user->save();
+				flash()->success('Balsai išjungti.');
+			}
+			else
+			{
+				$user->can_vote = 1;
+				$user->save();
+				flash()->success('Balsai įjungti.');
+			}
+		}
+		return redirect()->back();
 	}
 
 }

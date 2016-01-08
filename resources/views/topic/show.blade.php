@@ -13,7 +13,7 @@
 
 @section('content')
 	<div class="media topic-show">
-		<div class="votes pull-left" id="votes-{{ $topic->id }}">
+		<div class="votes @if(Auth::check() && !Auth::user()->can_vote) votes-disabled @endif pull-left" id="votes-{{ $topic->id }}">
 			<div class="upvote-container vote-action" type="tema" vote="upvote" id="{{ $topic->id }}">
 				@if(!$topic->voted('up'))
 				<i class="fa vote upvote"></i>
@@ -53,7 +53,7 @@
 		<h1 class="media-heading">{{ $topic->title }}</h1>
 		<p>
 			<span class="media-meta-element">Parašyta: <strong>
-			<span class="date-when">{{ $topic->created_at }}</span></strong></span>
+			<span class="date-when">{{ $topic->created_at->diffForHumans() }}</span></strong></span>
 			<span class="media-meta-element">Pranešimų: <strong>{{ $topic->reply_count }}</strong></span>
 			<span class="media-meta-element">Peržiūrų: <strong>{{ $topic->view_count }}</strong></span>
 		</p>
@@ -62,18 +62,18 @@
 			@if($topic->is_blocked || $topic->order == 1 || $topic->pin_local)
 			<span class="media-meta-element maze-label label-misc">
 				@if($topic->is_blocked)
-				<i class="fa fa-fw fa-lock"></i>
-				@endif
-				@if($topic->order == 1)
-				<i class="fa fa-fw fa-bullhorn"></i>
-				@endif
-				@if($topic->pin_local)
-				<i class="fa fa-fw fa-thumb-tack"></i>
-				@endif
+				<i class="fa fa-fw fa-lock" data-toggle="tooltip" title="Tema yra užrakinta"></i>
+  				@endif
+  				@if($topic->order == 1)
+				<i class="fa fa-fw fa-bullhorn" data-toggle="tooltip" title="Išskirta tema"></i>
+  				@endif
+  				@if($topic->pin_local)
+				<i class="fa fa-fw fa-thumb-tack" data-toggle="tooltip" title="Prisegta tema"></i>
+  				@endif
 			</span>
 			@endif
 			<span class="media-meta-element">{!! $topic->nodePath() !!}</span>
-			<span class="media-meta-element">Autorius: <a href="{{ route('user.show', $topic->user->slug) }}">{{ $topic->user->username }}</a> </span>
+			<span class="media-meta-element">Autorius: <a class="author" href="{{ route('user.show', $topic->user->slug) }}">{{ $topic->user->username }}</a> </span>
 		</p>
 	</div>
 	</div>
@@ -113,11 +113,6 @@
 
 @section('scripts')
 <script type="text/javascript">
-	$('#create-reply-form').affix({
-	    offset: {     
-	      top: $('#create-reply-form').offset().top,
-	      bottom: $('footer').outerHeight(true)
-	    }
-	});
+	
 </script>
 @stop

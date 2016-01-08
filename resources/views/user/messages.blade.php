@@ -54,7 +54,7 @@
 							{{ confer_make_list($conversation->participants()->lists('username')) }}
 						@endif
 						</a>
-						<a class="silent"><span class="date-when">{{ $conversation->updated_at }}</span></a>
+						<a class="silent"><span class="date-when">{{ $conversation->updated_at->diffForHumans() }}</span></a>
 					</h4>
 					<p class="last-message">
 						@if ($conversation->messages()->latest()->get()->first()->sender->id == $user->id)

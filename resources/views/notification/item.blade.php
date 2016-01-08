@@ -6,7 +6,7 @@
 	<h4 class="media-heading">
 	<a href="{{ $item->fromUser->url }}" class="author">{{ $item->fromUser->username }}</a>
 
-	<small class="date-when">{{ $item->created_at }}</small>
+	<small class="date-when">{{ $item->created_at->diffForHumans() }}</small>
 	</h4>
 		@if($item->object_type != 'status')
 		<p class="normal-body">{!! $item->notification !!}</p>

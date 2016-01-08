@@ -1,5 +1,5 @@
 <div class="media">
-	<div class="votes pull-left" id="votes-{{ $topic->id }}">
+	<div class="votes @if(Auth::check() && !Auth::user()->can_vote) votes-disabled @endif pull-left" id="votes-{{ $topic->id }}">
 		<div class="upvote-container vote-action" type="tema" vote="upvote" id="{{ $topic->id }}">
 			@if(!$topic->voted('up'))
 			<i class="fa vote upvote"></i>
@@ -31,7 +31,7 @@
 		</div>
 	</div>
 	<div class="media-left media-top">
-	    <img class="media-object topic-avatar" src="{{ $topic->user->avatar }}" alt="{{ $topic->user->username }}">
+	    <a href="{{ $topic->user->url }}"><img class="media-object topic-avatar" src="{{ $topic->user->avatar }}" alt="{{ $topic->user->username }}"></a>
 	</div>
 	<div class="media-body">
 		<h4 class="media-heading">
@@ -39,29 +39,52 @@
 				{{ $topic->title }}
 			</a>
 		</h4>
-		<p>
-			<span class="media-meta-element">Parašyta: <strong>
-			<span class="date-when">{{ $topic->created_at }}</span></strong></span>
-			<span class="media-meta-element">Pranešimų: <strong>{{ $topic->reply_count }}</strong></span>
-			<span class="media-meta-element">Peržiūrų: <strong>{{ $topic->view_count }}</strong></span>
+		<p class="topic-meta-container">
+			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Parašyta">
+				<i class="fa fa-clock-o"></i> 
+				<span class="date-when">{{ $topic->created_at->diffForHumans() }}</span>
+			</span>
+			@if(isset($topic->replies[0]))
+			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Paskutinis atsakymas">
+				<i class="fa fa-comment-o"></i> 
+				<span class="">{{ $topic->replies[0]->created_at->diffForHumans() }}</span>
+			</span>
+			@endif
+			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Atsakymų">
+				<i class="fa fa-comments-o"></i> 
+				{{ $topic->reply_count }}
+			</span>
+			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Peržiūrų">
+			<i class="fa fa-eye"></i> 
+			{{ $topic->view_count }}
+			</span>
 		</p>
-		<p>
+		<p class="topic-meta-container">
 			{!! $topic->full_type !!}
 			@if($topic->is_blocked || $topic->order == 1 || $topic->pin_local)
 			<span class="media-meta-element maze-label label-misc">
 				@if($topic->is_blocked)
-				<i class="fa fa-fw fa-lock"></i>
-				@endif
-				@if($topic->order == 1)
-				<i class="fa fa-fw fa-bullhorn"></i>
-				@endif
-				@if($topic->pin_local)
-				<i class="fa fa-fw fa-thumb-tack"></i>
-				@endif
+				<i class="fa fa-fw fa-lock" data-toggle="tooltip" title="Tema yra užrakinta"></i>
+  				@endif
+  				@if($topic->order == 1)
+				<i class="fa fa-fw fa-bullhorn" data-toggle="tooltip" title="Išskirta tema"></i>
+  				@endif
+  				@if($topic->pin_local)
+				<i class="fa fa-fw fa-thumb-tack" data-toggle="tooltip" title="Prisegta tema"></i>
+  				@endif
 			</span>
 			@endif
 			<span class="media-meta-element">{!! $topic->nodePath() !!}</span>
-			<span class="media-meta-element">Autorius: <a href="/vartotojas/{{ $topic->user->slug }}">{{ $topic->user->username }}</a> </span>
+			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Temos autorius">
+				<i class="fa fa-user"></i>
+				<a href="{{ $topic->user->url }}">{{ $topic->user->username }}</a>
+			</span>
+			@if(isset($topic->replies[0]))
+			<span class="media-meta-element"  data-toggle="tooltip" data-placement="top" title="Paskutinio atsakymo autorius">
+				<i class="fa fa-users"></i>
+				<a href="{{ $topic->replies[0]->user->url }}">{{ $topic->replies[0]->user->username }}</a>
+			</span>
+			@endif
 		</p>
 	</div>
 </div>

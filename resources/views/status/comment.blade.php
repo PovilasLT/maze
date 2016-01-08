@@ -5,7 +5,7 @@
 	<div class="media-body">
 		<h4 class="media-heading">
 		<a href="{{ route('user.show', $comment->user->slug) }}" class="author">{{ $comment->user->username }}</a>
-		<small class="date-when">{{ $comment->created_at }}</small>
+		<small class="date-when">{{ $comment->created_at->diffForHumans() }}</small>
 		</h4>
 		{!! $comment->body !!}
 	</div>
