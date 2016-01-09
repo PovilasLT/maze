@@ -131,7 +131,7 @@ class UsersController extends Controller {
 					$items = Notification::following()->topics()->latest()->paginate('10');
 					break;
 				case 'paminejimai':
-					$items = Notification::following()->mentions()->latest()->paginate('10');
+					$items = Notification::mentions()->latest()->paginate('10');
 					break;
 				case 'pranesimai':
 					$items = Notification::following()->replies()->latest()->paginate('10');
