@@ -73,7 +73,7 @@ return [
 	"unique"               => ":attribute jau naudojamas.",
 	"url"                  => ":attribute formatas netinkamas.",
 	"timezone"             => ":attribute turi būti laiko juosta.",
-	"recaptcha"			   => "Neteisingas saugos klausimo atsakymas!",
+	"recaptcha"			   => "Nepraėjai saugumo patikrinimo!",
 
 	/*
 	|--------------------------------------------------------------------------
