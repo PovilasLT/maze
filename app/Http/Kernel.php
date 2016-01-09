@@ -31,6 +31,7 @@ class Kernel extends HttpKernel {
 		'guest' => 'maze\Http\Middleware\RedirectIfAuthenticated',
 		'loggedIn' => \maze\Http\Middleware\LogIn::class,
 		'UserCanVote' => \maze\Http\Middleware\UserCanVote::class,
+		'ThrottleReply' => \maze\Http\Middleware\ThrottleReply::class,
 	];
 
 }

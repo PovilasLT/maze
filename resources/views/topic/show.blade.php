@@ -92,7 +92,7 @@
 			<div class="alert alert-warning alert-generic" role="alert">Norėdamas rašyti pranešimą privalai <a href="{{ route('auth.login') }}">prisijungti</a> arba <a href="{{ route('auth.register') }}">užsiregistruoti</a>!</div>
 		@endif
 	@else
-		<div class="alert alert-danger alert-generic" role="alert">Ši tema yra užrakinta!</div>
+		<div class="alert alert-danger alert-generic margin-bottom text-center" role="alert">Ši tema yra užrakinta!</div>
 	@endif
 	
 	<div class="replies-wrapper">
@@ -100,7 +100,7 @@
 			@foreach($topic->replies as $reply)
 				@include('reply.show')
 			@endforeach
-		@else
+		@elseif(!$topic->is_blocked)
 			<p class="text-center">Šita tema neturi atsakymų! Būk pirmas!</p>
 		@endif
 	</div>

@@ -10,6 +10,7 @@ use maze\Vote;
 use Auth;
 use Stringy\StaticStringy as S;
 use Cache;
+use Carbon\Carbon;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
@@ -159,6 +160,19 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		{
 			return false;
 		}
+	}
+
+	public function getReplyWaitTimeAttribute() {
+		$reply = $this->replies()->latest()->first();
+		if($reply)
+		{
+			$diff = Carbon::now()->diffInSeconds($reply->created_at->addSeconds(60), false);
+			if($diff > 0)
+			{
+				return $diff;
+			}
+		}
+		return 0;
 	}
 
 	public function getFollowerListAttribute() {
