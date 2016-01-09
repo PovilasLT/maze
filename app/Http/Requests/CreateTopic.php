@@ -28,7 +28,8 @@ class CreateTopic extends Request {
 	 */
 	public function rules()
 	{
-		if(Auth::user()->can('manage_topics'))
+		$user = Auth::user();
+		if($user->can('manage_topics'))
 		{
 			$rules = [
 				'title'   => 'required|min:10',
@@ -45,6 +46,10 @@ class CreateTopic extends Request {
 				'node_id' => 'required|numeric',
 				'type'	  => 'required|in:0,2,3,4,5,6,7'
 	    	];
+	    	if($user->topic_count < 10)
+	    	{
+	    		$rules['g-recaptcha-response'] = 'required|recaptcha';
+	    	}
 	    }
     	return $rules;
 	}

@@ -11,6 +11,10 @@
 		<input type="password" class="form-control" id="password" name="password">
 	</div>
 	
+	<div class="form-group">
+		<label>Ar tu robotas?</label>
+		{!! Recaptcha::render() !!}
+	</div>	
 
 	<button type="submit" class="btn btn-primary">Prisijungti</button>
 </form>

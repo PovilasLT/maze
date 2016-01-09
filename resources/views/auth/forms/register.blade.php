@@ -30,7 +30,7 @@
 	</div>
 
 	<div class="form-group">
-		<label>Ar tu žmogus?</label>
+		<label>Ar tu robotas?</label>
 		{!! Recaptcha::render() !!}
 	</div>
 

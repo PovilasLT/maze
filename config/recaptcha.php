@@ -46,9 +46,8 @@ return [
     |
     */
     'options'     => [
-
         'curl_timeout' => 1,
-
+        'lang'          => 'lt',
     ],
 
     /*

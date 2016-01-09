@@ -40,5 +40,13 @@
 	<div class="form-group">
 		<textarea data-provide="markdown" class="form-control" name="body" rows="10" placeholder="Čia rašyk savo temos turinį..." required>{{ old('body') }}</textarea>
 	</div>
+
+	@if(!Auth::user()->can('manage_topic') && Auth::user()->topic_count < 10)
+	<div class="form-group">
+		<label>Ar tu robotas?</label>
+		{!! Recaptcha::render() !!}
+	</div>
+	@endif
+
 	<button type="submit" class="btn btn-primary">Rašyti</button>
 </form>

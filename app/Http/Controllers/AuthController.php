@@ -2,6 +2,7 @@
 
 use maze\Http\Requests;
 use maze\Http\Requests\CreateUser;
+use maze\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use Auth, Hash;
 use maze\User;
@@ -38,7 +39,7 @@ class AuthController extends Controller {
 		return view('auth.login');
 	}
 
-	public function postLogin(Request $request)
+	public function postLogin(LoginRequest $request)
 	{
 		$username = $request->input('username');
 		$password = $request->input('password');

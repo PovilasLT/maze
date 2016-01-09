@@ -104,7 +104,10 @@ return [
 	*/
 
 	'attributes' => [
-		'g-recaptcha-response' => 'Saugumo patikrinimas',
+		'g-recaptcha-response' => 'saugumo patikrinimas',
+		'username' 	=> 'vartotojo vardas',
+		'password'	=> 'slaptažodis',
+		'email'		=> 'el. paštas',
 	],
 
 ];
