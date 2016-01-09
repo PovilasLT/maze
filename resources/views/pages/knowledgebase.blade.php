@@ -56,7 +56,7 @@
 						<a href="#paminejimai">Kaip padaryti nario vardą nuoroda į jo profilį?</a>
 					</li>
 					<li>
-						<a href="#kontaktai">Ar galiu susisiekti kaip nors su maze komandos nariais ne per forumą?</a>
+						<a href="#kontaktai">Ar galiu kaip nors susisiekti su maze komandos nariais ne per forumą?</a>
 					</li>
 					<li>
 						<a href="#rangai">Ar yra daugiau rangų nei tik narys, moderatorius ir administratorius?</a>
@@ -148,9 +148,9 @@
 			<h3 id="paminejimai">Kaip padaryti nario vardą nuoroda į jo profilį?</h3>
 			<p>Tai vadinama paminėjimu. Tereikia prieš nario vardą padėti @ simbolį. Pvz: <a href="{{ route('user.show', 'edvinas') }}">@Edvinas</a>.</p>
 			<h3 id="n18-avataras">Užsidėjau nuotrauką, kuri yra n18, kas bus dabar?</h3>
-			<p>Nuotrauka bus pašalinta. Piktybiškas nuotraukos keitaliojimas atgal gali baigtis nario ar net lankytojo blokavimu.</p>
-			<h3 id="kontaktai">Ar galiu susisiekti kaip nors su maze komandos nariais ne per forumą?</h3>
-			<p>El. paštu. Tap pat didžioji dauguma komandos narių naudoja Skype, Steam ir Twitch.</p>
+			<p>Nuotrauka bus pašalinta. Piktybiškas nuotraukos kaitaliojimas atgal gali baigtis nario ar net lankytojo blokavimu.</p>
+			<h3 id="kontaktai">Ar galiu kaip nors susisiekti su maze komandos nariais ne per forumą?</h3>
+			<p>El. paštu.</p>
 			<h3 id="mobili-versija">Ar bus kokių nors nesklandumų jei prisijungsiu prie forumo per mobilų telefoną?</h3>
 			<p>Netūrėtų, bet jei bus - prašome pranešti administracijai.</p>
 			<h3 id="rangai">Ar yra daugiau rangų nei tik narys, moderatorius ir administratorius?</h3>
@@ -158,7 +158,7 @@
 			<h3 id="kodas">Kas buvo naudojama kuriant maze puslapį?</h3>
 			<p>Maze yra atviro kodo. Visada galima pažiūrėti <a href="https://github.com/SkepticalHippo/maze">čia</a>.</p>
 			<h3 id="atranka-i-komanda">Norėčiau tapti moderatoriumi, ar tai yra įmanoma?</h3>
-			<p>Atrankos į komandą visada yra skelbiamos viešai. Kartais, žmonės, prisidedantys prie bendruomenės gerinimo ir rodantys norą tapti bendruoenės prižiūrėtojais, gali būti paskirti moderatoriais be atrankos.</p>
+			<p>Atrankos į komandą visada yra skelbiamos viešai. Kartais, žmonės, prisidedantys prie bendruomenės gerinimo ir rodantys norą tapti bendruomenės prižiūrėtojais, gali būti paskirti moderatoriais be atrankos.</p>
 			<h3 id="pasalintas-turinys">Administratorius/moderatorius ištrynė mano temą/komentarą/būsenos atnaujinimą, kodėl?</h3>
 			<p>Nes jis pažeidė taisykles arba tiesiog buvo netinkamo turinio ar netinkamoje vietoje.</p>
 			<h3 id="atsakymas">Neradote savo klausimui atsakymo?</h3>
@@ -236,7 +236,7 @@ if (isAwesome){
 			<h2>Klaidos</h2>
 			<h3 id="testavimas">Testavimas</h3>
 			<p>Testavimams yra naudojama uždara portalo versija. Norintys prisijungti prie uždaro testavimo gali susisiekti su administracija.</p>
-			<p>Norintys testuoti lokalioje aplinkoje gali parsisųsti maze kodą iš <a href="https://github.com/SkepticalHippo/maze">maze GitHub paskyros</a>.</p>
+			<p>Norintys testuoti lokalioje aplinkoje gali parsisiųsti maze kodą iš <a href="https://github.com/SkepticalHippo/maze">maze GitHub paskyros</a>.</p>
 			<h3 id="pranesti-apie-klaida">Pranešti apie klaidą</h3>
 			<p>Visi pranešimai apie klaidas yra priimami <a href="https://github.com/SkepticalHippo/maze/issues">maze GitHub paskyroje</a>.</p>
 		</section>

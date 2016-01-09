@@ -40,7 +40,7 @@ Etiketas | @parent
 
 <li><b>Neskelbti pornografinio, warez, brukalų ar bet kokio kito turinio neatitinkančio Lietuvos Respublikos įstatymų.</b></li>
 	
-<li><b>Neskelbti jokio kopijuoto ar plagijuoto turinio be originalaus autoriaus sutikimo, nenurodant šaltinio ar nenurodant originalaus kodo, dizaino ar įdėjos autoriaus.</b></li>
+<li><b>Neskelbti jokio kopijuoto ar plagijuoto turinio be originalaus autoriaus sutikimo, nenurodant šaltinio ar nenurodant originalaus kodo, dizaino ar idėjos autoriaus.</b></li>
 
 <li><b>Nelaužyti svetainės ir nedaryti nieko kas trikdytų jos veikimą ar neatitiktų normalaus naudojimosi ja</b></li>
 
@@ -51,10 +51,10 @@ Etiketas | @parent
 	</ul>
 </li>
 <li>
-    <b>Neskelbti jokios informacijos apie MultiPlayer žaidimų "cheats" ir kitas kenkėjiškas programas, kurios vienaip ar kitaip gadintų žadimo kokybę.</b>
+    <b>Neskelbti jokios informacijos apie MultiPlayer žaidimų "cheats" ir kitas kenkėjiškas programas, kurios vienaip ar kitaip gadintų žaidimo kokybę.</b>
 </li>
 <li>
-	<b>Draudžiama iškelinėti temą į sąrašo viršu naudojant įvairius bereikšmius pranešimus kaip "Up", "Bump" bei kitus.</b>
+	<b>Draudžiama iškelti temą į sąrašo viršų naudojant įvairius bereikšmius pranešimus kaip "Up", "Bump" bei kitus.</b>
 </li>
 </ol>
 <p>Šalia šitų taisyklių yra tikimasi, kad diskusijose vadovausitės sveiku protu, būsite atsakingi ir elgsitės moraliai.</p>
