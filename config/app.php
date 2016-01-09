@@ -3,6 +3,8 @@
 return [
 	
 	//Maze config
+	
+	'version' => '2.0.1',
 
 	'front_page_nodes' => [
 		'15',

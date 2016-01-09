@@ -95,7 +95,12 @@
 				</div>
 				<div class="row">
 					<div class="col-lg-12 copyright">
-						&copy; Maze 2014-{{ date('Y') }}. Visos teisės saugomos.
+						<p>
+							&copy; Maze 2014-{{ date('Y') }}. Visos teisės saugomos.
+						</p>
+						<p>
+							Versija: {{ Config::get('app.version') }}
+						</p>
 					</div>
 				</div>
 			</div>
