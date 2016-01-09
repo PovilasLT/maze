@@ -43,6 +43,7 @@ class CreateUser extends Request {
             'legal'			=> 'accepted',
             'sex'           => 'boolean',
             'dob'           => 'date',
+            'g-recaptcha-response' => 'required|recaptcha',
         );
 		return $rules;
 	}

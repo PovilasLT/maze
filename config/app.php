@@ -200,6 +200,7 @@ return [
 		'DaveJamesMiller\Breadcrumbs\ServiceProvider',
 		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 		'DaveJamesMiller\Breadcrumbs\ServiceProvider',
+		'Greggilbert\Recaptcha\RecaptchaServiceProvider',
 
 	],
 
@@ -256,6 +257,7 @@ return [
 		'Breadcrumbs' 	=> 'DaveJamesMiller\Breadcrumbs\Facade',
 		'Form'          => 'Illuminate\Html\FormFacade', 
 		'HTML'          => 'Illuminate\Html\HtmlFacade',
+		'Recaptcha' 	=> 'Greggilbert\Recaptcha\Facades\Recaptcha',
 	],
 
 ];
