@@ -103,6 +103,8 @@ return [
 	|
 	*/
 
-	'attributes' => [],
+	'attributes' => [
+		'g-recaptcha-response' => 'Saugumo patikrinimas',
+	],
 
 ];
