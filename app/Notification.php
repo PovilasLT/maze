@@ -50,7 +50,7 @@ class Notification extends Model {
 	}
 
 	public function scopeStatuses($query) {
-		return $query->whereIn('object_type', ['status', 'status_comment']);
+		return $query->where('object_type', 'status');
 	}
 
 	function getNotifiedInAttribute() {
