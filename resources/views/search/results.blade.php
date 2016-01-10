@@ -4,19 +4,27 @@
 	{!! Breadcrumbs::render('search.results') !!}
 @stop
 
+@section('title')
+{{ $query }} Paieškos Rezultatai | 
+@stop
+
 @section('content')
 	
-	@foreach($results as $result)
-		@if($type == 'user')
-			@include('search.types.user')
-		@elseif($type == 'reply')
-			@include('search.types.reply')
-		@elseif($type == 'topic')
-			@include('search.types.topic')
-		@elseif($type == 'status')
-			@include('search.types.status')
-		@endif
-	@endforeach
+	@if(sizeof($results))
+		@foreach($results as $result)
+			@if($type == 'user')
+				@include('search.types.user')
+			@elseif($type == 'reply')
+				@include('search.types.reply')
+			@elseif($type == 'topic')
+				@include('search.types.topic')
+			@elseif($type == 'status')
+				@include('search.types.status')
+			@endif
+		@endforeach
+	@else
+		<p class="text-center">Tavo paieškos užklausa neturi rezultatų :( <a href="{{ route('search.index') }}">Bandyk dar kartą.</a></p>
+	@endif
 
 	{!! $results->appends(['query' => $query, 'type' => $type])->render() !!}
 
