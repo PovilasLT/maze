@@ -30,7 +30,6 @@ class Notification extends Model {
 
 	public function scopeFollowing($query) {
 		$users = Auth::user()->follower_list;
-		$users[] = Auth::user()->id;
 		return $query->whereIn('from_id', $users);
 	}
 

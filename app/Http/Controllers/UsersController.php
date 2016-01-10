@@ -179,7 +179,7 @@ class UsersController extends Controller {
 		}
 		else
 		{
-			$items = $user->activities()-latest()->latest()->paginate('20');
+			$items = $user->activities()-latest()->paginate('20');
 		}
 
 		return view('user.show', compact('user', 'items', 'sort'));
