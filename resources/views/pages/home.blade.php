@@ -2,6 +2,11 @@
 @section('breadcrumbs')
 	{!! Breadcrumbs::render('home') !!}
 @stop
+
+@section('description')
+<meta name="description" content="Vienas didžiausių ir moderniausių žaidimų forumų Lietuvoje. Nori atrasti kažką naujo arba pasidalinti savo kūryba? Prisijunk!">
+@stop
+
 @section('content')
 	<ul class="nav nav-tabs">
 	  <li role="presentation"@if($sort == 'populiariausi' || !$sort) class="active" @endif><a href="?rodyti=populiariausi">Populiariausi</a></li>
