@@ -2064,12 +2064,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pusher/pusher-http-php.git",
-                "reference": "e70d20b722d5160ce852b94f5f046902962f48dd"
+                "reference": "5beda038390f924ca8eff2c6ab4dca0250e0145a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/e70d20b722d5160ce852b94f5f046902962f48dd",
-                "reference": "e70d20b722d5160ce852b94f5f046902962f48dd",
+                "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/5beda038390f924ca8eff2c6ab4dca0250e0145a",
+                "reference": "5beda038390f924ca8eff2c6ab4dca0250e0145a",
                 "shasum": ""
             },
             "require": {
@@ -2100,7 +2100,7 @@
                 "rest",
                 "trigger"
             ],
-            "time": "2015-12-01 11:22:01"
+            "time": "2016-01-13 16:22:01"
         },
         {
             "name": "swiftmailer/swiftmailer",
