@@ -12,8 +12,6 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.copy('../font-awesome/fonts', 'public/fonts');
-    mix.copy('../bootstrap/fonts', 'public/fonts');
     mix.less([
         //'../emojify.js/dist/css/sprites/emojify-emoticons.css',
         '../emojify.js/dist/css/basic/emojify.css',
@@ -41,5 +39,7 @@ elixir(function(mix) {
         'highlight.js',
         'main.js'
     ], 'public/js/scripts.js');
-    mix.version(["public/css/style.css", "public/js/scripts.js"]);
+    mix.version(["public/css/style.css", "public/js/scripts.js"])
+    mix.copy('resources/assets/font-awesome/fonts', 'public/build/fonts')
+    mix.copy('resources/assets/bootstrap/fonts', 'public/build/fonts');
 });
