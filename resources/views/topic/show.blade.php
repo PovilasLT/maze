@@ -110,18 +110,3 @@
 @section('sidebar')
 	@include('includes.sidebar_topic')
 @stop
-
-@section('scripts')
-<script type="text/javascript">
-	// var create_reply_form = $('#create-reply-form');
-	// if(create_reply_form.length)
-	// {
-	// 	create_reply_form.affix({
-	// 		offset: create_reply_form.offset().top + create_reply_form.outerHeight()
-	// 	});
-	// 	$('.post-show:nth-child(n+2)')
-	// 	.css('margin-top', 0 - create_reply_form.outerHeight())
-	// 	.css('padding-top', create_reply_form.outerHeight());
-	// }
-</script>
-@stop

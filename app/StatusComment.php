@@ -22,6 +22,15 @@ class StatusComment extends Model {
 		return $this->belongsTo('maze\User');
 	}
 
+	public function notifications() {
+		return $this->morphMany('Notification', 'object');
+	}
+
+
+	public function mentions() {
+		return $this->morphMany('Mention', 'object');
+	}
+
 	public function getBodyOriginalAttribute($value) {
 		if($value)
 		{
@@ -31,23 +40,6 @@ class StatusComment extends Model {
 		{
 			return $this->body;
 		}
-	}
-
-	public function rules()
-	{
-		return [
-			'id'		=> 'required|exists:status_comments,id',
-			'body'		=> 'required|min:10'
-		];
-	}
-
-	public function attributes()
-	{
-		$nice_names = [
-            'id'  			=> 'būsenos komentaras',
-            'body'  		=> 'turinys',
-        ];
-        return $nice_names;
 	}
 
 	public function getParentContainerAttribute() {

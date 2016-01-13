@@ -30,13 +30,16 @@ class Status extends Model {
 		return $this->belongsTo('maze\User', 'edited_by', 'id');
 	}
 
-	public function latestComments() {
-		return $this->comments()->orderBy('created_at', 'ASC')->take(5)->get();
+	public function notifications() {
+		return $this->morphMany('Notification', 'object');
 	}
 
-	public function notifications() {
-		return Notification::where('object_type', 'status')
-							->where('object_id', $this->id);
+	public function mentions() {
+		return $this->morphMany('Mention', 'object');
+	}
+
+	public function latestComments() {
+		return $this->comments()->orderBy('created_at', 'ASC')->take(5)->get();
 	}
 
 	public function getExcerptAttribute()

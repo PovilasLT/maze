@@ -50,24 +50,23 @@ class NotifyUser
         if(isset($event->notifiable))
         {
             $notifiable_base = class_basename($event->notifiable);
-            $type = snake_case($notifiable_base);
 
             //patikrinam ar reikia notifinti save
             if(in_array($notifiable_base, $this->self_notifiable))
             {
-                Notifier::notify($type, $event->notifiable, Auth::user());
+                Notifier::notify($notifiable_base, $event->notifiable, Auth::user());
             }
             else
             {
                 //jeigu struktura turi containeri, notifinam containerio seimininka.
                 if(in_array($notifiable_base, $this->has_parent))
                 {
-                    Notifier::notify($type, $event->notifiable, $event->notifiable->parent_container->user);
+                    Notifier::notify($notifiable_base, $event->notifiable, $event->notifiable->parent_container->user);
                 }
                 //kitu atveju tiesiog notifikuojam strukturos savininka
                 else
                 {
-                    Notifier::notify($type, $event->notifiable, $event->notifiable->user);
+                    Notifier::notify($notifiable_base, $event->notifiable, $event->notifiable->user);
                 }
             }
         }

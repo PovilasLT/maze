@@ -252,7 +252,16 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 
+		//models
 		'User'			=> 'maze\User',
+		'Reply'			=> 'maze\Reply',
+		'Topic'			=> 'maze\Topic',
+		'Status'		=> 'maze\Status',		
+		'StatusComment'	=> 'maze\StatusComment',
+		'Mention'		=> 'maze\Mention',
+		'Notification'	=> 'maze\Notification',
+
+		//3rd party
 		'Flash' 		=> 'Laracasts\Flash\Flash',
 		'Entrust' 		=> 'Zizaco\Entrust\EntrustFacade',
 		'Image' 		=> 'Intervention\Image\Facades\Image',

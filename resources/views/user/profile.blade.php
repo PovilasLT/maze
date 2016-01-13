@@ -12,11 +12,11 @@
 	</ul>
 	@if(!$sort | $sort == 'sekamieji')
 	<ul class="nav nav-pills filter">
-	  <li role="presentation"><a href="?rodyti=sekamieji&sub=visi">Visi</a></li>
-	  <li role="presentation"><a href="?rodyti=sekamieji&sub=paminejimai">Paminėjimai</a></li>
-	  <li role="presentation"><a href="?rodyti=sekamieji&sub=temos">Temos</a></li>
-	  <li role="presentation"><a href="?rodyti=sekamieji&sub=pranesimai">Pranešimai</a></li>
-	  <li role="presentation"><a href="?rodyti=sekamieji&sub=busenos">Būsenų atnaujinimai</a></li>
+	  <li role="presentation"><a href="?rodyti=sekamieji&subsort=visi">Visi</a></li>
+	  <li role="presentation"><a href="?rodyti=sekamieji&subsort=paminejimai">Paminėjimai</a></li>
+	  <li role="presentation"><a href="?rodyti=sekamieji&subsort=temos">Temos</a></li>
+	  <li role="presentation"><a href="?rodyti=sekamieji&subsort=pranesimai">Pranešimai</a></li>
+	  <li role="presentation"><a href="?rodyti=sekamieji&subsort=busenos">Būsenų atnaujinimai</a></li>
 	</ul>
 	@endif
 	<div class="notification-list">

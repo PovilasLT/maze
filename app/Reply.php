@@ -24,14 +24,15 @@ class Reply extends Model {
 	public function topic() {
 		return $this->belongsTo('maze\Topic');
 	}
-	
+
 	public function notifications() {
-		return Notification::where('object_type', 'reply')
-							->orWhere('object_type', 'mention')
-							->where('object_id', $this->id)
-							;
+		return $this->morphMany('Notification', 'object');
 	}
 
+	public function mentions() {
+		return $this->morphMany('Mention', 'object');
+	}
+	
 	public function scopeLatest($query)
 	{
 		return $query->orderBy('created_at', 'DESC');
