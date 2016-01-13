@@ -8,7 +8,7 @@
 
 		@yield('description')
 
-		<link href="/css/style.css" rel="stylesheet">
+		<link href="{{ elixir("css/style.css") }}" rel="stylesheet">
 
 		<!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -103,7 +103,7 @@
 				</div>
 			</div>
 		</footer>
-		<script src="/js/scripts.js"></script>
+		<script src="{{ elixir("js/scripts.js") }}"></script>
 		@yield('scripts')
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -41,4 +41,5 @@ elixir(function(mix) {
         'highlight.js',
         'main.js'
     ], 'public/js/scripts.js');
+    mix.version(["public/css/style.css", "public/js/scripts.js"]);
 });
