@@ -124,11 +124,6 @@ class UsersController extends Controller {
 		$sort = $request->input('rodyti');
 		$subsort = $request->input('subsort');
 
-		\DB::connection()->enableQueryLog();
-
-		// Notification::mentions()->mentionExists()->latest()->paginate(10);
-		
-
 		if(!$sort || $sort == 'sekamieji')
 		{
 			switch ($subsort) {
@@ -164,8 +159,6 @@ class UsersController extends Controller {
 
 		$sort = $request->input('rodyti', 'visi');
 
-		\DB::connection()->enableQueryLog();
-
 		switch ($sort) {
 			case 'temos':
 				$items = Notification::activities($user->id)->has('topic')->with('object')->latest()->topics()->paginate('10');
@@ -180,8 +173,6 @@ class UsersController extends Controller {
 				$items = Notification::activities($user->id)->hasAll()->with('object')->latest()->paginate('10');
 				break;
 		}
-
-		// dd(\DB::getQueryLog());
 
 		return view('user.show', compact('user', 'items', 'sort'));
 	}
