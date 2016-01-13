@@ -3,6 +3,8 @@
 return [
 	
 	//Maze config
+	
+	'version' => '2.0.1',
 
 	'front_page_nodes' => [
 		'15',
@@ -34,6 +36,7 @@ return [
 		'78',
 		'79',
 		'80',
+		'63',
 	],
 
 	//Svorio paskirstymas
@@ -200,6 +203,7 @@ return [
 		'DaveJamesMiller\Breadcrumbs\ServiceProvider',
 		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 		'DaveJamesMiller\Breadcrumbs\ServiceProvider',
+		'Greggilbert\Recaptcha\RecaptchaServiceProvider',
 
 	],
 
@@ -249,13 +253,23 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 
+		//models
 		'User'			=> 'maze\User',
+		'Reply'			=> 'maze\Reply',
+		'Topic'			=> 'maze\Topic',
+		'Status'		=> 'maze\Status',		
+		'StatusComment'	=> 'maze\StatusComment',
+		'Mention'		=> 'maze\Mention',
+		'Notification'	=> 'maze\Notification',
+
+		//3rd party
 		'Flash' 		=> 'Laracasts\Flash\Flash',
 		'Entrust' 		=> 'Zizaco\Entrust\EntrustFacade',
 		'Image' 		=> 'Intervention\Image\Facades\Image',
 		'Breadcrumbs' 	=> 'DaveJamesMiller\Breadcrumbs\Facade',
 		'Form'          => 'Illuminate\Html\FormFacade', 
 		'HTML'          => 'Illuminate\Html\HtmlFacade',
+		'Recaptcha' 	=> 'Greggilbert\Recaptcha\Facades\Recaptcha',
 	],
 
 ];

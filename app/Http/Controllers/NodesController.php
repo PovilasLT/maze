@@ -32,23 +32,23 @@ class NodesController extends Controller {
 		$node = Node::where('slug', $slug)->firstOrFail();
 		if($node->parent_node)
 		{
-			$topics = $node->topics();
+			$topics = $node->topics()->withReplies();
 			$expandable = $node->parent_node;
 		}
 		else
 		{
 			$nodes = Node::where('parent_node', $node->id)->lists('id')->all();
-			$topics = Topic::whereIn('node_id', $nodes);
+			$topics = Topic::whereIn('node_id', $nodes)->withReplies();
 			$expandable = $node->id;
 		}
 
 		if($sort == 'populiariausi' || !$sort)
 		{
-			$topics = $topics->pinnedLocal()->popular();
+			$topics = $topics->pinnedLocal()->popular()->withReplies();
 		}
 		else
 		{
-			$topics->pinnedLocal()->latest();
+			$topics->pinnedLocal()->latest()->withReplies();
 		}
 
 		$topics = $topics->paginate(20);

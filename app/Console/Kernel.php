@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel {
 		'maze\Console\Commands\ConvertAvatarUploads',
 		'maze\Console\Commands\TopicsDecay',
 		'maze\Console\Commands\CleanReplies',
+		'maze\Console\Commands\RecountFollowers',
 	];
 
 	/**

@@ -122,32 +122,34 @@ class UsersController extends Controller {
 		$user->save();
 		
 		$sort = $request->input('rodyti');
-		$subsort = $request->input('sub');
+		$subsort = $request->input('subsort');
 
 		if(!$sort || $sort == 'sekamieji')
 		{
 			switch ($subsort) {
 				case 'temos':
-					$items = Notification::following()->topics()->latest()->paginate('10');
+					$items = Notification::following()->topicExists()->has('topic')->with('object')->latest()->paginate('10');
 					break;
 				case 'paminejimai':
-					$items = Notification::following()->mentions()->latest()->paginate('10');
+					$items = Notification::mentions()->mentionExists()->with('object')->latest()->paginate('10');
 					break;
 				case 'pranesimai':
-					$items = Notification::following()->replies()->latest()->paginate('10');
+					$items = Notification::following()->replyExists()->has('reply.topic')->with('object')->latest()->paginate('10');
 					break;
 				case 'busenos':
-					$items = Notification::following()->statuses()->latest()->paginate('10');
+					$items = Notification::following()->statusExists()->has('status')->with('object')->latest()->paginate('10');
 					break;
 				default:
-					$items = Notification::following()->latest()->where('object_type', 'NOT LIKE', 'mention')->paginate('10');
+					$items = Notification::following()->hasAll()->with('object')->latest()->paginate('10');
 					break;
 			}
 		}
 		else
 		{
-			$items = Notification::statuses()->latest()->paginate('10');
+			$items = Notification::statuses()->hasAll()->with('object')->latest()->paginate('10');
 		}
+
+		// dd(\DB::getQueryLog());
 
 		return view('user.profile', compact('user', 'items', 'sort', 'subsort'));
 	}
@@ -157,29 +159,19 @@ class UsersController extends Controller {
 
 		$sort = $request->input('rodyti', 'visi');
 
-		if($sort)
-		{
-			switch ($sort) {
-				case 'temos':
-					$items = $user->activities()->latest()->topics()->paginate('10');
-					break;
-				case 'paminejimai':
-					$items = $user->activities()->latest()->mentions()->paginate('10');
-					break;
-				case 'pranesimai':
-					$items = $user->activities()->latest()->replies()->paginate('10');
-					break;
-				case 'busenos':
-					$items = $user->activities()->latest()->statuses()->paginate('10');
-					break;
-				default:
-					$items = $user->activities()->latest()->paginate('10');
-					break;
-			}
-		}
-		else
-		{
-			$items = $user->activities()-latest()->latest()->paginate('20');
+		switch ($sort) {
+			case 'temos':
+				$items = Notification::activities($user->id)->has('topic')->with('object')->latest()->topics()->paginate('10');
+				break;
+			case 'pranesimai':
+				$items = Notification::activities($user->id)->has('reply.topic')->with('object')->latest()->replies()->paginate('10');
+				break;
+			case 'busenos':
+				$items = Notification::activities($user->id)->has('status')->with('object')->latest()->statuses()->paginate('10');
+				break;
+			default:
+				$items = Notification::activities($user->id)->hasAll()->with('object')->latest()->paginate('10');
+				break;
 		}
 
 		return view('user.show', compact('user', 'items', 'sort'));

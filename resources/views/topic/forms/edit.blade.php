@@ -40,5 +40,5 @@
 	<div class="form-group">
 		<textarea  data-provide="markdown" class="form-control" name="body" value="{{ $topic->body_original }}" required>{{ $topic->body_original }}</textarea>
 	</div>
-	<button type="submit" class="btn btn-primary">Submit</button>
+	<button type="submit" class="btn btn-primary">Išsaugoti</button>
 </form>

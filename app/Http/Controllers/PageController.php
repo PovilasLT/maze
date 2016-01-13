@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 use Markdown;
 
+use maze\Mention;
+
 class PageController extends Controller {
 
 	public function index(Request $request)

@@ -23,7 +23,6 @@ use Cache;
 
 use maze\Mentions\Mention;
 
-
 use Illuminate\Http\Request;
 
 class TopicsController extends Controller {
@@ -134,6 +133,8 @@ class TopicsController extends Controller {
 		{
 			$expandable = $topic->node_id;
 		}
+
+		$node = $topic->node;
 		
 		if(Auth::check())
 		{
@@ -150,7 +151,7 @@ class TopicsController extends Controller {
 		//padidina view counteri.
 		$topic->increment('view_count');
 
-		return view('topic.show', compact('topic', 'expandable'));
+		return view('topic.show', compact('topic', 'expandable', 'node'));
 	}
 
 	/**

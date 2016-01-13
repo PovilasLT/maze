@@ -17,6 +17,19 @@ class Mention extends Model
     	return $this->belongsTo('maze\User');
     }
 
+    public function object() {
+        return $this->morphTo();
+    }
+
+    public function notifications() {
+        return $this->morphMany('Notification', 'object');
+    }
+
+
+    public function mentions() {
+        return $this->morphMany('Mention', 'object');
+    }
+
     public function getUrlAttribute() {
         return $this->mentioned_in->url;
     }
@@ -52,9 +65,7 @@ class Mention extends Model
     }
 
     public function getMentionedInAttribute() {
-        $object_type = 'maze\\'.$this->object_type;
-        $object = $object_type::findOrFail($this->object_id);
-        return $object;
+        return $this->object;
     }
 
     public function getActivityAttribute() {

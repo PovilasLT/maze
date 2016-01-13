@@ -2,6 +2,7 @@
 
 use maze\Http\Requests;
 use maze\Http\Requests\CreateUser;
+use maze\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use Auth, Hash;
 use maze\User;
@@ -38,14 +39,22 @@ class AuthController extends Controller {
 		return view('auth.login');
 	}
 
-	public function postLogin(Request $request)
+	public function postLogin(LoginRequest $request)
 	{
 		$username = $request->input('username');
 		$password = $request->input('password');
-
+		$referrer = $request->input('ref');
+		
 		if (Auth::attempt(array('username' => $username, 'password' => $password), true))
 		{
-			return redirect($request->session()->pull('intended_url', '/'));
+			if(session()->has('intended_url'))
+			{
+				return redirect($request->session()->pull('intended_url', '/'));
+			}
+			else
+			{
+				return redirect($referrer);
+			}
 		}
 		else
 		{
