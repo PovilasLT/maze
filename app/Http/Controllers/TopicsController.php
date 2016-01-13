@@ -23,7 +23,6 @@ use Cache;
 
 use maze\Mentions\Mention;
 
-
 use Illuminate\Http\Request;
 
 class TopicsController extends Controller {

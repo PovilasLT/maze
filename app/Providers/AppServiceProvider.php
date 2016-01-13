@@ -3,7 +3,8 @@
 use Illuminate\Support\ServiceProvider;
 use Blade;
 use Carbon\Carbon;
-
+use Auth;
+use Request;
 class AppServiceProvider extends ServiceProvider {
 
 	/**

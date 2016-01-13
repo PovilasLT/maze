@@ -43,10 +43,18 @@ class AuthController extends Controller {
 	{
 		$username = $request->input('username');
 		$password = $request->input('password');
-
+		$referrer = $request->input('ref');
+		
 		if (Auth::attempt(array('username' => $username, 'password' => $password), true))
 		{
-			return redirect($request->session()->pull('intended_url', '/'));
+			if(session()->has('intended_url'))
+			{
+				return redirect($request->session()->pull('intended_url', '/'));
+			}
+			else
+			{
+				return redirect($referrer);
+			}
 		}
 		else
 		{

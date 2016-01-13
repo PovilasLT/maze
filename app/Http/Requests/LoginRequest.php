@@ -26,6 +26,7 @@ class LoginRequest extends Request
         $rules = array(
             'username'      => 'required',
             'password'      => 'required',
+            'referrer'      => 'url',
             'g-recaptcha-response' => 'required|recaptcha',
         );
         return $rules;
