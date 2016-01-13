@@ -644,10 +644,14 @@ h1.media-heading {
 	margin-bottom: 40px;
 }
 
-// .post-show:nth-child(n+2) {
-// 	margin-top: -160px;
-// 	padding-top: 160px;
-// }
+.create-form-wrapper {
+	height: 160px;
+}
+
+.post-show:nth-child(n+2) {
+	margin-top: -160px;
+	padding-top: 160px;
+}
 
 @media (min-width: 1200px) {
     #kb-nav {
@@ -719,5 +723,16 @@ h1.media-heading {
 		.media-object {
 			display: none;
 		}
+	}
+}
+
+@media (max-width: 430px) {
+	.create-form-wrapper {
+		height: 185px;
+	}
+
+	.post-show:nth-child(n+2) {
+		margin-top: -185px;
+		padding-top: 185px;
 	}
 }

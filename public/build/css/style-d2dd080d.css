@@ -6898,6 +6898,13 @@ h1.media-heading {
 .margin-bottom {
   margin-bottom: 40px;
 }
+.create-form-wrapper {
+  height: 160px;
+}
+.post-show:nth-child(n+2) {
+  margin-top: -160px;
+  padding-top: 160px;
+}
 @media (min-width: 1200px) {
   #kb-nav .affix,
   #kb-nav .affix-bottom {
@@ -6948,6 +6955,15 @@ h1.media-heading {
   }
   .markdown-form .media-object {
     display: none;
+  }
+}
+@media (max-width: 430px) {
+  .create-form-wrapper {
+    height: 185px;
+  }
+  .post-show:nth-child(n+2) {
+    margin-top: -185px;
+    padding-top: 185px;
   }
 }
 
