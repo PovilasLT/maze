@@ -131,7 +131,7 @@ class UsersController extends Controller {
 					$items = Notification::following()->topicExists()->has('topic')->with('object')->latest()->paginate('10');
 					break;
 				case 'paminejimai':
-					$items = Notification::mentions()->mentionExists()->latest()->paginate('10');
+					$items = Notification::mentions()->mentionExists()->with('object')->latest()->paginate('10');
 					break;
 				case 'pranesimai':
 					$items = Notification::following()->replyExists()->has('reply.topic')->with('object')->latest()->paginate('10');
