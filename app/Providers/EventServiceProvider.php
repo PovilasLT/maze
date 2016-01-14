@@ -82,6 +82,9 @@ class EventServiceProvider extends ServiceProvider {
 		'maze\Events\MessageWasSent' => [
 			'maze\Listeners\ProcessMessage',
 		],
+		'maze\Events\AvatarWasUploaded' => [
+
+		],
 	];
 
 	/**
