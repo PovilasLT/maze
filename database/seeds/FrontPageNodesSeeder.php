@@ -14,7 +14,7 @@ class FrontPageNodesSeeder extends Seeder
     public function run()
     {
         foreach(User::all() as $user) {
-        	if(empty($user->frontPageNodes())) {
+            if($user->frontPageNodes()->isEmpty()) {
         		FrontPageNode::reset($user);
         	}
         }
