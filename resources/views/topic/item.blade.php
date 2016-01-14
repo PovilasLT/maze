@@ -40,21 +40,27 @@
 			</a>
 		</h4>
 		<p class="topic-meta-container">
-			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Parašyta">
-				<i class="fa fa-clock-o"></i> 
-				<span class="date-when">{{ $topic->created_at->diffForHumans() }}</span>
-			</span>
-			@if(isset($topic->replies[0]))
 			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Paskutinis atsakymas">
 				<i class="fa fa-comment-o"></i> 
-				<span class="">{{ $topic->replies[0]->created_at->diffForHumans() }}</span>
+				@if(isset($topic->replies[0]))
+				{{ $topic->replies[0]->created_at->diffForHumans() }}
+				@else
+				{{ $topic->created_at->diffForHumans() }}				
+				@endif
 			</span>
-			@endif
-			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Atsakymų">
+			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Paskutinio Atsakymo Autorius">
+				<i class="fa fa-user"></i>
+				@if(isset($topic->replies[0]))
+				<a href="{{ $topic->replies[0]->user->url }}">{{ $topic->replies[0]->user->username }}</a>
+				@else
+				<a href="{{ $topic->user->url }}">{{ $topic->user->username }}</a>				
+				@endif
+			</span>
+			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Viso Atsakymų">
 				<i class="fa fa-comments-o"></i> 
 				{{ $topic->reply_count }}
 			</span>
-			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Peržiūrų">
+			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Viso Peržiūrų">
 			<i class="fa fa-eye"></i> 
 			{{ $topic->view_count }}
 			</span>
@@ -75,16 +81,6 @@
 			</span>
 			@endif
 			<span class="media-meta-element">{!! $topic->nodePath() !!}</span>
-			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Temos autorius">
-				<i class="fa fa-user"></i>
-				<a href="{{ $topic->user->url }}">{{ $topic->user->username }}</a>
-			</span>
-			@if(isset($topic->replies[0]))
-			<span class="media-meta-element"  data-toggle="tooltip" data-placement="top" title="Paskutinio atsakymo autorius">
-				<i class="fa fa-users"></i>
-				<a href="{{ $topic->replies[0]->user->url }}">{{ $topic->replies[0]->user->username }}</a>
-			</span>
-			@endif
 		</p>
 	</div>
 </div>

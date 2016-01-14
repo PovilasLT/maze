@@ -51,11 +51,23 @@
 		</div>
 		<div class="media-body">
 		<h1 class="media-heading">{{ $topic->title }}</h1>
-		<p>
-			<span class="media-meta-element">Parašyta: <strong>
-			<span class="date-when">{{ $topic->created_at->diffForHumans() }}</span></strong></span>
-			<span class="media-meta-element">Pranešimų: <strong>{{ $topic->reply_count }}</strong></span>
-			<span class="media-meta-element">Peržiūrų: <strong>{{ $topic->view_count }}</strong></span>
+		<p class="topic-meta-container">
+			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Tema Sukurta">
+				<i class="fa fa-clock-o"></i>
+				<span class="date-when">{{ $topic->created_at->diffForHumans() }}</span>
+			</span>
+			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Temos Autorius">
+				<i class="fa fa-user"></i> 
+				<a class="author" href="{{ route('user.show', $topic->user->slug) }}">{{ $topic->user->username }}</a>
+			</span>
+			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Viso Atsakymų">
+				<i class="fa fa-comments-o"></i> 
+				{{ $topic->reply_count }}
+			</span>
+			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Viso Peržiūrų">
+			<i class="fa fa-eye"></i> 
+			{{ $topic->view_count }}
+			</span>
 		</p>
 		<p>
 			{!! $topic->full_type !!}
@@ -73,7 +85,6 @@
 			</span>
 			@endif
 			<span class="media-meta-element">{!! $topic->nodePath() !!}</span>
-			<span class="media-meta-element">Autorius: <a class="author" href="{{ route('user.show', $topic->user->slug) }}">{{ $topic->user->username }}</a> </span>
 		</p>
 	</div>
 	</div>
