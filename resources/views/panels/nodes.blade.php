@@ -2,7 +2,9 @@
   <div class="panel-heading">
     <h3 class="panel-title">
       Forumo Skiltys
-      <a href><i class="fa fa-pencil-square-o pull-right edit-front-page-nodes"></i></a>
+      @if(Auth::check())
+        <a href><i class="fa fa-pencil-square-o pull-right edit-front-page-nodes"></i></a>
+      @endif
     </h3>
   </div>
   <div class="panel-body">
