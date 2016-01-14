@@ -10,6 +10,7 @@ use maze\Vote;
 use Auth;
 use Stringy\StaticStringy as S;
 use Cache;
+use Carbon\Carbon;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
@@ -83,21 +84,17 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	public function following() {
 		return $this->hasMany('maze\Follower', 'follower_id', 'id');
 	}
-
-	public function notifications() {
-		return $this->hasMany('maze\Notification');
-	}
-
-	public function activities() {
-		return $this->hasMany('maze\Notification')->whereNotIn('object_type', ['follow'])->where('from_id', $this->id);
-	}
-
+	
 	public function messages() {
 		return $this->hasMany('maze\Message');
 	}
 
 	public function conversations() {
 		return $this->belongsToMany('maze\Conversation')->withTimestamps()->withPivot('read_at');
+	}
+
+	public function notifications() {
+		return $this->hasMany('maze\Notification');
 	}
 
 	public function jointConversations($user)
@@ -163,6 +160,19 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		{
 			return false;
 		}
+	}
+
+	public function getReplyWaitTimeAttribute() {
+		$reply = $this->replies()->latest()->first();
+		if($reply)
+		{
+			$diff = Carbon::now()->diffInSeconds($reply->created_at->addSeconds(60), false);
+			if($diff > 0)
+			{
+				return $diff;
+			}
+		}
+		return 0;
 	}
 
 	public function getFollowerListAttribute() {

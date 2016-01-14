@@ -20,6 +20,7 @@ class RepliesController extends Controller {
 
 	function __construct() {
 		$this->middleware('loggedIn');
+		$this->middleware('ThrottleReply', ['only' => 'store']);
 	}
 
 	public function store(CreateReply $request)

@@ -1,7 +1,19 @@
 $(document).ready(function() {
+
 	$('pre code').each(function(i, block) {
 		hljs.highlightBlock(block);
 	});
+
+	var create_reply_form = $('#create-reply-form');
+	if(create_reply_form.length)
+	{
+		create_reply_form.affix({
+			offset: {     
+		      top: create_reply_form.offset().top,
+		      bottom: $('footer').outerHeight(true)
+		    }
+		});
+	}
 
 	$('#toggle-sidebar').click(function() {
 	var main_content = $('.main-content');
@@ -27,6 +39,7 @@ $(document).ready(function() {
 		}).addClass('is_visible');
 	}
 	});
+
 	$('[data-toggle="tooltip"]').tooltip();
 
 	$('.toggle-front-page-node').on('click', function() {

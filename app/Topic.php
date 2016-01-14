@@ -36,6 +36,15 @@ class Topic extends Model {
 		return $this->hasOne('maze\Poll');
 	}
 
+	public function notifications() {
+		return $this->morphMany('Notification', 'object');
+	}
+
+
+	public function mentions() {
+		return $this->morphMany('Mention', 'object');
+	}
+
 	//Scope
 
 	public function scopePopular($query) {
@@ -73,12 +82,6 @@ class Topic extends Model {
 		return $query->with(['replies' => function($replies_query) {
 			return $replies_query->orderBy('created_at', 'DESC');
 		}]);
-	}
-
-	public function notifications() {
-		return Notification::where('object_type', 'topic')
-							->where('object_id', $this->id)
-							;
 	}
 
 	//Pagrindinio puslapio topicai

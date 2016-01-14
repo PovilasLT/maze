@@ -8,21 +8,21 @@
 
 	<small class="date-when">{{ $item->created_at->diffForHumans() }}</small>
 	</h4>
-		@if($item->object_type != 'status')
+		@if($item->object_type != 'Status')
 		<p class="normal-body">{!! $item->notification !!}</p>
 		@else
-		{!! $item->notified_in->body !!}
+		{!! $item->object->body !!}
 		@endif
 	</div>
-	@if($item->object_type == 'status')
+	@if($item->object_type == 'Status')
 		@if(Auth::check())
-			@include('status.controls', ['status' => $item->notified_in])
+			@include('status.controls', ['status' => $item->object])
 		@endif
 		<div class="status-comments" id="comments-{{ $item->object_id }}">
-			@foreach($item->notified_in->latestComments() as $comment)
+			@foreach($item->object->latestComments() as $comment)
 				@include('status.comment')
 			@endforeach
-			@if($item->notified_in->comments->count())
+			@if($item->object->comments->count())
 				<div class="text-center">
 					<a href="{{ $item->url }}"><button class="btn btn-grey"><i class="fa fa-comments"></i> Visi Komentarai</button></a>
 				</div>

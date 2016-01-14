@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b58a8036a0e619bde4e3b9e159a6b59a",
-    "content-hash": "5a63f6f921586068bce96bef0957a6b3",
+    "hash": "f594f26d443a926da1c247eb1ee744b8",
+    "content-hash": "47a683be66a11367b4a79d8e932ed354",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -541,16 +541,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.5.3",
+            "version": "v2.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "2fbcea96eae34a53183377cdbb0b9bec33974648"
+                "reference": "abbdfd1cff43a7b99d027af3be709bc8fc7d4769"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/2fbcea96eae34a53183377cdbb0b9bec33974648",
-                "reference": "2fbcea96eae34a53183377cdbb0b9bec33974648",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/abbdfd1cff43a7b99d027af3be709bc8fc7d4769",
+                "reference": "abbdfd1cff43a7b99d027af3be709bc8fc7d4769",
                 "shasum": ""
             },
             "require": {
@@ -608,7 +608,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2015-12-25 16:28:24"
+            "time": "2016-01-05 22:11:12"
         },
         {
             "name": "doctrine/inflector",
@@ -730,6 +730,58 @@
                 "parser"
             ],
             "time": "2014-09-09 13:34:57"
+        },
+        {
+            "name": "greggilbert/recaptcha",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/greggilbert/recaptcha.git",
+                "reference": "b84d3b4800591f547d308578e98d21e7baf82944"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/greggilbert/recaptcha/zipball/b84d3b4800591f547d308578e98d21e7baf82944",
+                "reference": "b84d3b4800591f547d308578e98d21e7baf82944",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.1",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/migrations"
+                ],
+                "psr-4": {
+                    "Greggilbert\\Recaptcha\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Greg Gilbert",
+                    "email": "greg@greg-gilbert.com"
+                }
+            ],
+            "description": "reCAPTCHA Validator for Laravel 5",
+            "homepage": "http://github.com/greggilbert/recaptcha",
+            "keywords": [
+                "captcha",
+                "laravel",
+                "laravel5",
+                "recaptcha"
+            ],
+            "time": "2016-01-03 05:15:06"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1702,16 +1754,16 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "1.1.4",
+            "version": "1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "d762ee5b099a29044603cd4649851e81aa66cb47"
+                "reference": "dd8998b7c846f6909f4e7a5f67fabebfc412a4f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/d762ee5b099a29044603cd4649851e81aa66cb47",
-                "reference": "d762ee5b099a29044603cd4649851e81aa66cb47",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/dd8998b7c846f6909f4e7a5f67fabebfc412a4f7",
+                "reference": "dd8998b7c846f6909f4e7a5f67fabebfc412a4f7",
                 "shasum": ""
             },
             "require": {
@@ -1746,7 +1798,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2015-12-10 14:48:13"
+            "time": "2016-01-06 13:31:20"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -2012,12 +2064,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pusher/pusher-http-php.git",
-                "reference": "e70d20b722d5160ce852b94f5f046902962f48dd"
+                "reference": "5beda038390f924ca8eff2c6ab4dca0250e0145a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/e70d20b722d5160ce852b94f5f046902962f48dd",
-                "reference": "e70d20b722d5160ce852b94f5f046902962f48dd",
+                "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/5beda038390f924ca8eff2c6ab4dca0250e0145a",
+                "reference": "5beda038390f924ca8eff2c6ab4dca0250e0145a",
                 "shasum": ""
             },
             "require": {
@@ -2048,7 +2100,7 @@
                 "rest",
                 "trigger"
             ],
-            "time": "2015-12-01 11:22:01"
+            "time": "2016-01-13 16:22:01"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -4111,7 +4163,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "zizaco/entrust": 20,
-        "pusher/pusher-php-server": 20
+        "pusher/pusher-php-server": 20,
+        "greggilbert/recaptcha": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

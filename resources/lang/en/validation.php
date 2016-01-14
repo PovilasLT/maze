@@ -73,6 +73,7 @@ return [
 	"unique"               => ":attribute jau naudojamas.",
 	"url"                  => ":attribute formatas netinkamas.",
 	"timezone"             => ":attribute turi būti laiko juosta.",
+	"recaptcha"			   => "Nepraėjai saugumo patikrinimo!",
 
 	/*
 	|--------------------------------------------------------------------------
@@ -102,6 +103,11 @@ return [
 	|
 	*/
 
-	'attributes' => [],
+	'attributes' => [
+		'g-recaptcha-response' => 'saugumo patikrinimas',
+		'username' 	=> 'vartotojo vardas',
+		'password'	=> 'slaptažodis',
+		'email'		=> 'el. paštas',
+	],
 
 ];

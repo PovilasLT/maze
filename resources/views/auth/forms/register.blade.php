@@ -23,12 +23,16 @@
 		<label for="password_confirmation">Slaptažodžio Patvirtinimas</label>
 		<input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
 	</div>
-	
+
 	<div class="form-group">
 		<input type="checkbox" id="legal" name="legal" required>
 		<label for="legal">Aš sutinku su taisyklėmis</label>
 	</div>
-	
+
+	<div class="form-group">
+		<label>Ar tu robotas?</label>
+		{!! Recaptcha::render() !!}
+	</div>
 
 	<button type="submit" class="btn btn-primary">Registruotis</button>
 </form>

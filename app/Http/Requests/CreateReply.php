@@ -13,21 +13,14 @@ class CreateReply extends Request {
 	 */
 	public function authorize()
 	{
-		if (Auth::check())
+		$topic = Topic::findOrFail($this->input('topic_id'));
+		if($topic->is_blocked)
 		{
-			$topic = Topic::findOrFail($this->input('topic_id'));
-			if($topic->is_blocked)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
+			return false;
 		}
 		else
 		{
-			return false;
+			return true;
 		}
 	}
 

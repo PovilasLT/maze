@@ -12,6 +12,7 @@
 					<span>{{ $message_count }}</span>
 				@endif
 			</a>
+			<a href="{{ route('user.settings') }}"><i class="fa fa-cog"></i></a>
 			<a href="{{ route('auth.logout') }}"><i class="fa fa-sign-out"></i></a>
 		@else
 			<div class="logged-out-wrapper">
