@@ -27,7 +27,8 @@ class VerifyCsrfToken extends BaseVerifier {
 	{
 	    $routes = [
 	            'markdown',
-	            'balsuoti/*'
+	            'balsuoti/*',
+	            'nodes/*'
 	    ];
 
 	    foreach($routes as $route)
