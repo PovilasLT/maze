@@ -65,7 +65,7 @@
 				<div class="row">
 					<div class="col-lg-10">
 						<h4>Apie maze</h4>
-						<p>Maze yra būtybė, kurios tikslas yra suteikti "geimeriams" viską, ko gali reikėti propoguojant šį pomėgį. Vienas iš projekto siekių yra išlaikyti kompiuterinių žaidimų žaidėjus įvykių centre, suteikti jiems sąlygas diskutuoti, tobulėti, įgyti naujus įgūdžius, mokytis ir mokyti kitus.</p>
+						<p>Maze yra platforma, kurios tikslas yra suteikti "geimeriams" viską, ko gali reikėti propoguojant šį pomėgį. Vienas iš projekto siekių yra išlaikyti kompiuterinių žaidimų žaidėjus įvykių centre, suteikti jiems sąlygas diskutuoti, tobulėti, įgyti naujus įgūdžius, mokytis ir mokyti kitus.</p>
 					</div>
 					<div class="col-lg-2">
 						<h4>Nuorodos</h4>
