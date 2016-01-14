@@ -1,4 +1,13 @@
-var app = require('http').createServer(function (req, res) {
+var fs = require('fs');
+
+var ssl_conf = require('./ssl.json');
+
+var options = {
+  key: fs.readFileSync(ssl_conf.key),
+  cert: fs.readFileSync(ssl_conf.cert)
+};
+
+var app = require('https').createServer(function (req, res) {
 	res.writeHead(200, { 'Content-Type': 'text/html' });
 	res.end('<img src="https://s-media-cache-ak0.pinimg.com/736x/8b/e0/f8/8be0f8dd6d4a6ee1325c6d46297dd46e.jpg"></img>');
 });
