@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel panel-default" id="panel-nodes">
   <div class="panel-heading">
     <h3 class="panel-title">
       Forumo Skiltys

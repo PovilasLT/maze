@@ -138,23 +138,23 @@ class Topic extends Model {
 		$type = $this->type;
 
 		if($type == 0)
-			return '<span class="maze-label label-diskusija media-meta-element"><i class="fa fa-comments-o"></i> Diskusija</span>';
+			return '<span class="maze-label label-diskusija media-meta-element"><i class="fa fa-comments-o fa-fw"></i><span class="hidden-xs">Diskusija</span></span>';
 		elseif($type == 215)
-			return '<span class="maze-label label-pranesimas media-meta-element"><i class="fa fa-bullhorn"></i> Pranešimas</span>';
+			return '<span class="maze-label label-pranesimas media-meta-element"><i class="fa fa-exclamation fa-fw"></i><span class="hidden-xs">Pranešimas</span></span>';
 		elseif($type == 2)
-			return '<span class="maze-label label-klausimas media-meta-element"><i class="fa fa-question"></i> Klausimas</span>';
+			return '<span class="maze-label label-klausimas media-meta-element"><i class="fa fa-question fa-fw"></i><span class="hidden-xs">Klausimas</span></span>';
 		elseif($type == 3)
-			return '<span class="maze-label label-apklausa media-meta-element"><i class="fa fa-trophy"></i> Konkursas</span>';
+			return '<span class="maze-label label-apklausa media-meta-element"><i class="fa fa-trophy fa-fw"></i><span class="hidden-xs">Konkursas</span></span>';
 		elseif($type == 4)
-			return '<span class="maze-label label-video media-meta-element"><i class="fa fa-youtube-play"></i> Video</span>';
+			return '<span class="maze-label label-video media-meta-element"><i class="fa fa-youtube-play fa-fw"></i><span class="hidden-xs">Video</span></span>';
 		elseif($type == 5)
-			return '<span class="maze-label label-stream media-meta-element"><i class="fa fa-twitch"></i> Stream</span>';
+			return '<span class="maze-label label-stream media-meta-element"><i class="fa fa-twitch fa-fw"></i><span class="hidden-xs">Stream</span></span>';
 		elseif($type == 6)
-			return '<span class="maze-label label-play media-meta-element"><i class="fa fa-gamepad"></i> Kviečiu Žaisti</span>';
+			return '<span class="maze-label label-play media-meta-element"><i class="fa fa-gamepad fa-fw"></i><span class="hidden-xs">Kviečiu Žaisti</span></span>';
 		elseif($type == 7)
-			return '<span class="maze-label label-spam media-meta-element"><i class="fa fa-star"></i> Pristatymas</span>';
+			return '<span class="maze-label label-spam media-meta-element"><i class="fa fa-star fa-fw"></i><span class="hidden-xs">Pristatymas</span></span>';
 		else 
-			return '<span class="maze-label label-diskusija media-meta-element"><i class="fa fa-comments-o"></i> Diskusija</span>';
+			return '<span class="maze-label label-diskusija media-meta-element"><i class="fa fa-comments-o fa-fw"></i><span class="hidden-xs">Diskusija</span></span>';
 	}
 
 	public function voted($type) {
