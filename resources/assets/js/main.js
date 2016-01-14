@@ -58,7 +58,7 @@ $(document).ready(function() {
 
 		if(edit_btn.data('active')) {
 			edit_btn.data('active', 0).css('color', '');
-			$('.toggle-front-page-node').remove();
+			$('.toggle-front-page-node').addClass('hidden');
 		}
 		else {
 			edit_btn.data('active', 1).css('color', '#27AE60');
