@@ -62,8 +62,10 @@
 			}
 		});
 	});
-	
-	var socket = io('http://'+window.location.host+':6001');
+	var full_url = window.location.href;
+	var arr = url.split("/");
+
+	var socket = io(arr[0]+'//'+window.location.host+':6001');
 	socket.emit('join', {id: {{ $conversation->id }}, secret: '{{ $conversation->secret }}'});
 	
 	socket.on("message", function(data) {
