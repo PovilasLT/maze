@@ -63,7 +63,7 @@
 		});
 	});
 	var full_url = window.location.href;
-	var arr = url.split("/");
+	var arr = full_url.split("/");
 
 	var socket = io(arr[0]+'//'+window.location.host+':6001');
 	socket.emit('join', {id: {{ $conversation->id }}, secret: '{{ $conversation->secret }}'});
