@@ -41,4 +41,30 @@ $(document).ready(function() {
 	});
 
 	$('[data-toggle="tooltip"]').tooltip();
+
+	$('.toggle-front-page-node').on('click', function() {
+		$.ajax({
+			url: $('.node-list').data('update-url'),
+			method: 'post',
+			dataType: 'json',
+			data: {
+				node_id: $(this).data('node'),
+				state: $(this).is(':checked') ? 'on' : 'off'
+			}
+		});
+	});
+	$('.edit-front-page-nodes').on('click', function (e) {
+		var edit_btn = $(this);
+
+		if(edit_btn.data('active')) {
+			edit_btn.data('active', 0).css('color', '');
+			$('.toggle-front-page-node').addClass('hidden');
+		}
+		else {
+			edit_btn.data('active', 1).css('color', '#27AE60');
+			$('.toggle-front-page-node').removeClass('hidden');				
+		}
+
+		e.preventDefault();
+	});
 });

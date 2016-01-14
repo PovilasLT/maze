@@ -5,19 +5,35 @@ var app = require('http').createServer(function (req, res) {
 var io = require('socket.io')(app);
 var Redis = require('ioredis');
 var redis = new Redis();
+var Imagemin = require('imagemin');
+var path = require('path');
 
 redis.psubscribe('*', function(err, count) {
 });
 
 redis.on('pmessage', function(subscribed, channel, event) {
     event = JSON.parse(event);
-    io.sockets.in(event.data.channel).emit('message', event.data.message);
-    // io.emit(channel + ':' + message.event, message.data);
+	if(event.event == 'maze\\Events\\AvatarWasUploaded')
+	{
+		var dest = path.dirname(event.data.path);
+		new Imagemin()
+		.use(Imagemin.optipng({optimizationLevel: 3}))
+		.src(event.data.path)
+		.dest(dest)
+		.run(function(err, files) {
+			if(err)
+				console.log(err);
+		});
+	}
+	else
+	{
+	    io.sockets.in(event.data.channel).emit('message', event.data.message);
+	}
 });
 
 io.sockets.on('connection', function (socket) {
   socket.on('join', function (data) {
-    socket.join(data.id + '-' + data.secret); // We are using room of socket io
+    socket.join(data.id + '-' + data.secret);
   });
 });
 

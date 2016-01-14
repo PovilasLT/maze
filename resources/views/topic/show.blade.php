@@ -51,29 +51,40 @@
 		</div>
 		<div class="media-body">
 		<h1 class="media-heading">{{ $topic->title }}</h1>
-		<p>
-			<span class="media-meta-element">Parašyta: <strong>
-			<span class="date-when">{{ $topic->created_at->diffForHumans() }}</span></strong></span>
-			<span class="media-meta-element">Pranešimų: <strong>{{ $topic->reply_count }}</strong></span>
-			<span class="media-meta-element">Peržiūrų: <strong>{{ $topic->view_count }}</strong></span>
+		<p class="topic-meta-container">
+			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Tema Sukurta">
+				<i class="fa fa-clock-o"></i>
+				<span class="date-when">{{ $topic->created_at->diffForHumans() }}</span>
+			</span>
+			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Temos Autorius">
+				<i class="fa fa-user"></i> 
+				<a class="author" href="{{ route('user.show', $topic->user->slug) }}">{{ $topic->user->username }}</a>
+			</span>
+			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Viso Atsakymų">
+				<i class="fa fa-comments-o"></i> 
+				{{ $topic->reply_count }}
+			</span>
+			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Viso Peržiūrų">
+			<i class="fa fa-eye"></i> 
+			{{ $topic->view_count }}
+			</span>
 		</p>
 		<p>
 			{!! $topic->full_type !!}
 			@if($topic->is_blocked || $topic->order == 1 || $topic->pin_local)
 			<span class="media-meta-element maze-label label-misc">
 				@if($topic->is_blocked)
-				<i class="fa fa-fw fa-lock" data-toggle="tooltip" title="Tema yra užrakinta"></i>
-  				@endif
-  				@if($topic->order == 1)
-				<i class="fa fa-fw fa-bullhorn" data-toggle="tooltip" title="Išskirta tema"></i>
-  				@endif
-  				@if($topic->pin_local)
-				<i class="fa fa-fw fa-thumb-tack" data-toggle="tooltip" title="Prisegta tema"></i>
-  				@endif
+				<i class="fa fa-fw fa-lock fa-fw" data-toggle="tooltip" title="Tema užrakinta"></i>
+				@endif
+				@if($topic->order == 1)
+				<i class="fa fa-fw fa-bullhorn fa-fw" data-toggle="tooltip" title="Tema prisegta globaliai"></i>
+				@endif
+				@if($topic->pin_local)
+				<i class="fa fa-fw fa-thumb-tack fa-fw" data-toggle="tooltip" title="Tema prisegta skiltyje"></i>
+				@endif
 			</span>
 			@endif
 			<span class="media-meta-element">{!! $topic->nodePath() !!}</span>
-			<span class="media-meta-element">Autorius: <a class="author" href="{{ route('user.show', $topic->user->slug) }}">{{ $topic->user->username }}</a> </span>
 		</p>
 	</div>
 	</div>

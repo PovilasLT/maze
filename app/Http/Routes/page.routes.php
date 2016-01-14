@@ -1,13 +1,5 @@
 <?php
 
-Route::get('/test', function() {
-    \DB::connection()->enableQueryLog();
-
-    $t = \maze\Notification::mentions()->get();
-    // dd($t);
-    dd(\DB::getQueryLog());
-});
-
 Route::get('/', 'PageController@index');
 
 Route::get('/etiketas', [

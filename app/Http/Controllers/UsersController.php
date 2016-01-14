@@ -12,6 +12,8 @@ use Image;
 use Hash;
 use Storage;
 
+use maze\Events\AvatarWasUploaded;
+
 use Stringy\StaticStringy as S;
 
 use Illuminate\Http\Request;
@@ -72,6 +74,7 @@ class UsersController extends Controller {
 				{
 					Storage::disk('avatars')->delete($files);
 					$user->image_url = $filename.'.png';
+					event(new AvatarWasUploaded('public/images/avatars/'.$user->id.'/'.$filename.'.png'));
 				}
 			}
 
