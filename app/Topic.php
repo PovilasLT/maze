@@ -47,7 +47,15 @@ class Topic extends Model {
 	}
 
 	public function scopeGames($query) {
-		return $query->whereIn('node_id', Config::get('app.front_page_nodes'));
+		$user = Auth::user();
+
+		if($user) {
+			// dd($user->frontPageNodes());
+			return $query->whereIn('node_id', $user->frontPageNodes());
+		}
+		else {
+			return $query->whereIn('node_id', Config::get('app.front_page_nodes'));
+		}
 	}
 
 	public function scopePinnedLocal($query)

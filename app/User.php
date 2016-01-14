@@ -105,6 +105,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->conversations()->whereIn('id', $user->conversations()->lists('id'));
 	}
 
+	public function frontPageNodes() {
+		return $this->hasMany('maze\FrontPageNode')->lists('node_id');
+	}
+
 	//Patikrina ar User jau balsavo uz tam tikra turini.
 	//Jei balsavo - grazina Vote objekta
 	//Jei nebalsavo - grazina false
