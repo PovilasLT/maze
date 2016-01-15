@@ -19,15 +19,6 @@ use Stringy\StaticStringy as S;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller {
-
-	//Sukuria vartotoją
-	public function create(CreateUser $request)
-    {
-        //Kuriam naują vartotoją
-        $user = User::create($request->all());
-        return redirect()->back();
-    }
-
 	//Išsaugoja vartotoją.
 	public function update(UpdateUser $request) {
 		$settings = $request->input();
