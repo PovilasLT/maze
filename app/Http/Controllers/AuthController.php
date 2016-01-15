@@ -71,6 +71,8 @@ class AuthController extends Controller {
 			'password'		=> Hash::make($request->input('password'))
 		])
 		->attachRole(Role::where('name', '=', 'Narys')->get()->first());
+		
+		event(new UserWasCreated($user));
 
 		flash()->success('Tu sėkmingai užsiregistravai! Dabar gali prisijungti!');
 		return redirect('/');
