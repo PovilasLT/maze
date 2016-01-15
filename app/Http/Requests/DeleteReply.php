@@ -17,7 +17,7 @@ class DeleteReply extends Request {
 		$reply = Reply::findOrFail($this->route('id'));
 		$this->reply = $reply;
 
-		if($user && (($reply->user_id == $user->id && !$topic->is_blocked) || $user->can('manage_posts')))
+		if($user && (($reply->user_id == $user->id && !$reply->topic->is_blocked) || $user->can('manage_posts')))
 		{
 			return true;
 		}
