@@ -16,7 +16,7 @@ class EditTopic extends Request {
 		$this->topic = Topic::findOrFail($this->route('id'));
 
 		//patikrinam ar useris turi teise redaguoti tema.
-		if(Auth::check() && (Auth::user()->id == $this->topic->user_id) || Auth::user()->can('manage_topics') )
+		if(Auth::check() && (Auth::user()->id == $this->topic->user_id && !$topic->is_blocked) || Auth::user()->can('manage_topics') )
 		{
 			return true;
 		}

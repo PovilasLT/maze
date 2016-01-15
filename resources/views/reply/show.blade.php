@@ -52,7 +52,7 @@
     <div class="lightbox">
       {!! $reply->body !!}
     </div>
-    @if(Auth::check() && (Auth::user()->can('manage_posts') || Auth::user()->id == $reply->user_id))
+    @if(Auth::check() && (Auth::user()->can('manage_posts') || (Auth::user()->id == $reply->user_id) && !$reply->topic->is_blocked))
   	  @include('reply.controls')
     @endif
   </div>
