@@ -70,8 +70,9 @@ class AuthController extends Controller {
 			'username'		=> $request->input('username'),
 			'email'			=> $request->input('email'),
 			'password'		=> Hash::make($request->input('password'))
-		])
-		->attachRole(Role::where('name', '=', 'Narys')->get()->first());
+		]);
+
+		$user->attachRole(Role::where('name', '=', 'Narys')->get()->first());
 
 		event(new UserWasCreated($user));
 
