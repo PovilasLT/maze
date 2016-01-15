@@ -3,6 +3,7 @@
 use maze\Http\Requests;
 use maze\Http\Requests\CreateUser;
 use maze\Http\Requests\LoginRequest;
+use maze\Events\UserWasCreated;
 use Illuminate\Http\Request;
 use Auth, Hash;
 use maze\User;
@@ -71,7 +72,7 @@ class AuthController extends Controller {
 			'password'		=> Hash::make($request->input('password'))
 		])
 		->attachRole(Role::where('name', '=', 'Narys')->get()->first());
-		
+
 		event(new UserWasCreated($user));
 
 		flash()->success('Tu sėkmingai užsiregistravai! Dabar gali prisijungti!');
