@@ -10,8 +10,6 @@ use maze\Events\ReplyWasDeleted;
 
 use maze\Reply;
 
-use Auth;
-
 class CleanTopic
 {
     /**
@@ -35,7 +33,7 @@ class CleanTopic
        foreach($event->topic->replies as $reply)
        {
             $reply->delete();
-            event(new ReplyWasDeleted($reply, $event->topic, Auth::user()));
+            event(new ReplyWasDeleted($reply, $event->topic, $event->user));
        } 
     }  
 }
