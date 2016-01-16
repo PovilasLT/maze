@@ -206,7 +206,7 @@ class TopicsController extends Controller {
 	{
 		$topic = $request->topic;
 		$user = Auth::user();
-		
+
 		event(new TopicWasDeleted($topic, $user));
 
 		$topic->delete();

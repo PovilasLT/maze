@@ -38,6 +38,7 @@
 <script type="text/javascript">
 
 	var messages_container = $('#messages-container');
+	var url;
 
 	$( "#send-message" ).submit(function( event ) {
 	 
@@ -51,7 +52,7 @@
 
 		var posting = $.post( url, { _token: csrf, conversation_id: conversation_id, body: body } );
 
-		posting.done(function( data ) {
+			posting.done(function( data ) {
 			if(data !== 'OK')
 			{
 				alert('Įvyko klaida siunčiant žinutę. Pabandykite šiek tiek vėliau.');
