@@ -43,7 +43,7 @@
     <h4 class="media-heading">
     	<a href="{{ route('user.show', $reply->user->slug) }}" class="author">{{ $reply->user->username }}</a>
     	<small class="date-when">{{ $reply->created_at->diffForHumans() }}</small><a href="#pranesimas-{{ $reply->id }}" class="pull-right btn btn-xs btn-grey"><i class="fa fa-link"></i></a>
-		@if($topic->type == 2 && !$topic->is_answered)
+		@if($topic->type == 2 && !$topic->is_answered && $topic->user->id == Auth::user()->id)
 			<small class="pull-right"><a href="{{ route('reply.answer', $reply->id) }}">Atsakymas</a></small>
     @elseif($topic->type == 2 && $topic->is_answered && $reply->is_answer)
       <span class="pull-right label label-success"><i class="fa fa-check-circle"></i> Atsakymas</span>
