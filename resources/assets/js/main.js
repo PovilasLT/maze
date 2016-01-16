@@ -70,6 +70,7 @@ $(document).ready(function() {
 	$('.lightbox a').each(function() {
 		if($(this).attr('href').length) {
 			$(this).attr('target', '_blank');
+			$(this).attr('rel', 'nofollow');
 		}
 	});
 });
