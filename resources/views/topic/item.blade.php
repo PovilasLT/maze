@@ -31,7 +31,7 @@
 		</div>
 	</div>
 	<div class="media-left media-top">
-	    <a href="{{ $topic->user->url }}"><img class="media-object topic-avatar" src="{{ $topic->user->avatar }}" title="{{ $topic->user->username }}"></a>
+	    <a href="{{ $topic->user->url }}"><img class="media-object topic-avatar" src="{{ $topic->user->avatar }}" alt="Avataras" data-toggle="tooltip" data-placement="right" title="{{ $topic->user->username }}" /></a>
 	</div>
 	<div class="media-body">
 		<h4 class="media-heading">
