@@ -37,6 +37,7 @@ return [
 		'79',
 		'80',
 		'63',
+		'59',
 	],
 
 	//Svorio paskirstymas
