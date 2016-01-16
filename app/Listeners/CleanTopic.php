@@ -32,8 +32,8 @@ class CleanTopic
     {
        foreach($event->topic->replies as $reply)
        {
-            $reply->delete();
             event(new ReplyWasDeleted($reply, $event->topic, $event->user));
+            $reply->delete();
        }
     }
 }
