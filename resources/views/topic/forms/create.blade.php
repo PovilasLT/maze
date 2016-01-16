@@ -35,10 +35,10 @@
 	</div>
 	<label for="title">Temos pavadinimas</label>
 	<div class="form-group">
-		<input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}" required="required">
+		<input tabindex="0" type="text" name="title" id="title" class="form-control" value="{{ old('title') }}" required="required">
 	</div>
 	<div class="form-group">
-		<textarea data-provide="markdown" class="form-control" name="body" rows="10" placeholder="Čia rašyk savo temos turinį..." required>{{ old('body') }}</textarea>
+		<textarea tabindex="0" data-provide="markdown" class="form-control" name="body" rows="10" placeholder="Čia rašyk savo temos turinį..." required>{{ old('body') }}</textarea>
 	</div>
 
 	@if(!Auth::user()->can('manage_topic') && Auth::user()->topic_count < 10)
@@ -48,5 +48,5 @@
 	</div>
 	@endif
 
-	<button type="submit" class="btn btn-primary">Rašyti</button>
+	<button tabindex="0" type="submit" class="btn btn-primary">Rašyti</button>
 </form>

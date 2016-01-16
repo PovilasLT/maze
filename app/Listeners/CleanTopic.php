@@ -34,6 +34,6 @@ class CleanTopic
        {
             $reply->delete();
             event(new ReplyWasDeleted($reply, $event->topic, $event->user));
-       } 
-    }  
+       }
+    }
 }
