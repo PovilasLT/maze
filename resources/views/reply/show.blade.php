@@ -36,24 +36,24 @@
   </div>
   <div class="media-left media-top">
     <a href="{{ route('user.show', $reply->user->slug) }}">
-    	<img class="media-object reply-avatar" src="{{ $reply->user->avatar }}" alt="{{ $reply->user->username }} Profilis">
+      <img class="media-object reply-avatar" src="{{ $reply->user->avatar }}" alt="{{ $reply->user->username }} Profilis">
     </a>
   </div>
   <div class="media-body">
     <h4 class="media-heading">
-    	<a href="{{ route('user.show', $reply->user->slug) }}" class="author">{{ $reply->user->username }}</a>
-    	<small class="date-when">{{ $reply->created_at->diffForHumans() }}</small><a href="#pranesimas-{{ $reply->id }}" class="pull-right btn btn-xs btn-grey"><i class="fa fa-link"></i></a>
-		@if($topic->type == 2 && !$topic->is_answered && $topic->user->id == Auth::user()->id)
-			<small class="pull-right"><a href="{{ route('reply.answer', $reply->id) }}">Atsakymas</a></small>
+      <a href="{{ route('user.show', $reply->user->slug) }}" class="author">{{ $reply->user->username }}</a>
+      <small class="date-when">{{ $reply->created_at->diffForHumans() }}</small><a href="#pranesimas-{{ $reply->id }}" class="pull-right btn btn-xs btn-grey"><i class="fa fa-link"></i></a>
+    @if(Auth::check() && $topic->user->id == Auth::user()->id && $topic->type == 2 && !$topic->is_answered)
+      <small class="pull-right"><a href="{{ route('reply.answer', $reply->id) }}">Atsakymas</a></small>
     @elseif($topic->type == 2 && $topic->is_answered && $reply->is_answer)
       <span class="pull-right label label-success"><i class="fa fa-check-circle"></i> Atsakymas</span>
-		@endif
+    @endif
     </h4>
     <div class="lightbox">
       {!! $reply->body !!}
     </div>
     @if(Auth::check() && (Auth::user()->can('manage_posts') || (Auth::user()->id == $reply->user_id) && !$reply->topic->is_blocked))
-  	  @include('reply.controls')
+      @include('reply.controls')
     @endif
   </div>
 </div>
