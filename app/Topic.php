@@ -60,10 +60,10 @@ class Topic extends Model {
 
 		if($user) {
 			// dd($user->frontPageNodes());
-			return $query->whereIn('node_id', $user->frontPageNodes());
+			return $query->with('user')->with('replies.user')->whereIn('node_id', $user->frontPageNodes());
 		}
 		else {
-			return $query->whereIn('node_id', Config::get('app.front_page_nodes'));
+			return $query->with('user')->with('replies.user')->whereIn('node_id', Config::get('app.front_page_nodes'));
 		}
 	}
 

@@ -23,3 +23,9 @@ Route::get('/api/users/twitch', function() {
 		return maze\User::whereNotNull('twitch')->get();
 	// });
 });
+
+
+
+
+Route::resource('api/page', 'ApiPageController');
+Route::resource('api/users', 'ApiUsersController');

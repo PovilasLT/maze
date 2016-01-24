@@ -206,6 +206,8 @@ return [
 		'DaveJamesMiller\Breadcrumbs\ServiceProvider',
 		'Greggilbert\Recaptcha\RecaptchaServiceProvider',
 
+		LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class,
+		LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class,
 	],
 
 	/*
@@ -271,6 +273,7 @@ return [
 		'Form'          => 'Illuminate\Html\FormFacade', 
 		'HTML'          => 'Illuminate\Html\HtmlFacade',
 		'Recaptcha' 	=> 'Greggilbert\Recaptcha\Facades\Recaptcha',
+		'Authorizer' 	=> LucaDegasperi\OAuth2Server\Facades\Authorizer::class,
 	],
 
 ];
