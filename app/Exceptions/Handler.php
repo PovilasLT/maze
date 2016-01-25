@@ -2,6 +2,7 @@
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Log;
 
 class Handler extends ExceptionHandler {
 
@@ -24,17 +25,30 @@ class Handler extends ExceptionHandler {
 	 */
 	public function render($request, Exception $e)
 	{
-
 		if(env('APP_DEBUG', true))
 		{
-			return parent::render($request, $e);
+			if($request->wantsJson())
+			{
+				return response()->json($e->getStatusCode());
+			}
+			else 
+			{
+				return parent::render($request, $e);
+			}
 		}
 
 		if($this->isHttpException($e))
 		{
 			if($e->getStatusCode() == 404)
 			{
-				return response()->view('errors.404');
+				if($request->wantsJson())
+				{
+					return response()->json("Page not found");
+				}
+				else 
+				{
+					return response()->view('errors.404');
+				}
 			}
 			elseif($e->getStatusCode() == 503)
 			{

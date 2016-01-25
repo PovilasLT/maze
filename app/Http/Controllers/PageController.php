@@ -18,13 +18,6 @@ class PageController extends Controller {
 	{
 		$sort = $request->input('rodyti');
 		$topics = Topic::frontPage($sort);
-		Log::debug("HEAD".$request->header('accept'));
-		if($request->ajax())
-		{
-			Log::debug("Its ajax");
-			$topics = Topic::with('user')->paginate(20);
-			return response()->json($topics);
-		}
 		return view('pages.home', compact('topics', 'sort'));
 	}
 

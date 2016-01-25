@@ -33,12 +33,14 @@ class Kernel extends HttpKernel {
 		'loggedIn' => \maze\Http\Middleware\LogIn::class,
 		'UserCanVote' => \maze\Http\Middleware\UserCanVote::class,
 		'ThrottleReply' => \maze\Http\Middleware\ThrottleReply::class,
-		'csrf' => \maze\Http\Middleware\VerifyCsrfToken::class,
+		
 
 		'oauth' => \LucaDegasperi\OAuth2Server\Middleware\OAuthMiddleware::class,
 		'oauth-user' => \LucaDegasperi\OAuth2Server\Middleware\OAuthUserOwnerMiddleware::class,
 		'oauth-client' => \LucaDegasperi\OAuth2Server\Middleware\OAuthClientOwnerMiddleware::class,
 		'check-authorization-params' => \LucaDegasperi\OAuth2Server\Middleware\CheckAuthCodeRequestMiddleware::class,
+
+		'csrf' => \maze\Http\Middleware\VerifyCsrfToken::class,
 	];
 
 }

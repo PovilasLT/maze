@@ -26,6 +26,15 @@ Route::get('/api/users/twitch', function() {
 
 
 
+Route::post('api/oauth/access_token', function() {
+ return Response::json(Authorizer::issueAccessToken());
+});
 
-Route::resource('api/page', 'ApiPageController');
-Route::resource('api/users', 'ApiUsersController');
+
+Route::group(['prefix'=>'api','before' => 'oauth', 'middleware' => ['oauth']], function()
+{
+	Route::get('popular', 'ApiPageController@popular');
+	Route::get('new', 'ApiPageController@newest');
+	Route::resource('users', 'ApiUsersController');
+
+});

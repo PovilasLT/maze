@@ -8,6 +8,9 @@ use maze\Http\Requests;
 use maze\Http\Controllers\Controller;
 
 use maze\User;
+use Log;
+
+use LucaDegasperi\OAuth2Server\Authorizer;
 
 class ApiUsersController extends Controller
 {
@@ -16,9 +19,11 @@ class ApiUsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Authorizer $authorizer)
     {
-        $users = User::paginate(100);
+        $user_id = $authorizer->getResourceOwnerId(); // the token user_id
+        $user = User::find($user_id);// get the user data from database
+        $users = User::paginate(50);
         return response()->json($users);
     }
 
