@@ -16,7 +16,7 @@
 		<![endif]-->
 	</head>
 	<body>
-		<nav class="navbar navbar-default" role="navigation">
+		<nav class="navbar navbar-default">
 			<div class="container">
 				<div class="row">
 					<div class="navbar-header">
@@ -26,7 +26,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="/"><img src="/images/logo.svg"></a>
+						<a class="navbar-brand" href="/"><img src="/images/logo.svg" alt="Logotipas" title="Eiti į pagrindinį"></a>
 					</div>
 					<div class="collapse navbar-collapse" id="maze-navbar-collapse">
 						<ul class="nav navbar-nav navbar-right">
