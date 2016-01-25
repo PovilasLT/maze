@@ -1,5 +1,6 @@
 /vendor
 /node_modules
+/letsencrypt.config
 /public/css/*
 /public/js/*
 /public/build/*
