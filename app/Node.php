@@ -6,6 +6,14 @@ use Stringy\StaticStringy as S;
 
 class Node extends Model {
 
+	protected $visible = [
+		'id',
+		'parent',
+		'name',
+		'description',
+		
+	];
+
 	public function topics() {
 		return $this->hasMany('maze\Topic');
 	}

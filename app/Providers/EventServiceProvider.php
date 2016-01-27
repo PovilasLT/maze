@@ -7,6 +7,8 @@ use maze\Vote;
 use maze\Topic;
 use maze\Modules\News\News as ModuleNews;
 use maze\Modules\CacheBuster\CacheBuster as ModuleCacheBuster;
+use Log;
+use maze\User;
 
 class EventServiceProvider extends ServiceProvider {
 
@@ -96,6 +98,11 @@ class EventServiceProvider extends ServiceProvider {
 	public function boot(DispatcherContract $events)
 	{
 		parent::boot($events);
+
+		User::creating(function($user)
+	    {
+	      	Log::debug("creating. ".$user);
+	    });
 	}
 
 }

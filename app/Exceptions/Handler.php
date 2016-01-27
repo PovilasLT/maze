@@ -27,8 +27,10 @@ class Handler extends ExceptionHandler {
 	{
 		if(env('APP_DEBUG', true))
 		{
+			Log::debug("YES, this is data");
 			if($request->wantsJson())
 			{
+				var_dump($e);
 				return response()->json($e->getStatusCode());
 			}
 			else 

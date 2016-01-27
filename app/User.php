@@ -47,6 +47,31 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		'name_changes',
 	];
 
+	protected $visible = [
+		'id', 
+		'username', 
+		'city', 
+		'about_me', 
+		'sex', 
+		'twitter', 
+		'steam', 
+		'twitch', 
+		'website', 
+		'image_url', 
+		'cover_url', 
+		'topic_count', 
+		'reply_count', 
+		'status_count', 
+		'follower_count', 
+		'karma_count', 
+		'skype', 
+		'youtube', 
+		'hitbox', 
+		'origin', 
+		'deviantart',
+		'roles',
+	];
+
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *

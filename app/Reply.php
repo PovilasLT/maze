@@ -17,6 +17,21 @@ class Reply extends Model {
 		'updated_at',
 	];
 
+	protected $visible = [
+		'id',
+		'body',
+		'user_id',
+		'topic_id',
+		'is_block',
+		'vote_count',
+		'created_at', 
+		'is_answer',
+
+		'user',
+		'topic',
+		
+	];
+
 	public function user() {
 		return $this->belongsTo('maze\User');
 	}

@@ -273,7 +273,7 @@ return [
 		'Form'          => 'Illuminate\Html\FormFacade', 
 		'HTML'          => 'Illuminate\Html\HtmlFacade',
 		'Recaptcha' 	=> 'Greggilbert\Recaptcha\Facades\Recaptcha',
-		'Authorizer' 	=> LucaDegasperi\OAuth2Server\Facades\Authorizer::class,
+		'Authorizer' 	=> 'LucaDegasperi\OAuth2Server\Facades\Authorizer',
 	],
 
 ];

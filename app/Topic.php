@@ -6,6 +6,8 @@ use Auth;
 use Config;
 use Stringy\StaticStringy as S;
 
+use maze\Mentions\Mention;
+
 class Topic extends Model {
 
 	protected $fillable = [
@@ -18,7 +20,34 @@ class Topic extends Model {
 		// 'updated_at',
 	];
 
+	protected $hidden = [
+
+	];
+
+	protected $visible = [
+		'id', 
+		'title', 
+		'body', 
+		'reply_count', 
+		'view_count', 
+		'favorite_count', 
+		'vote_count', 
+		'is_answered', 
+		'is_blocked', 
+		'pin_local',
+		'updated_at',
+		'user_id', 
+		'node_id',
+		'type',
+
+		'user',
+		'node',
+		'replies',
+		'poll',
+	];
+
 	use SoftDeletes;
+
 
 	public function replies() {
 		return $this->hasMany('maze\Reply');

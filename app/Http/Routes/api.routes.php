@@ -35,6 +35,27 @@ Route::group(['prefix'=>'api','before' => 'oauth', 'middleware' => ['oauth']], f
 {
 	Route::get('popular', 'ApiPageController@popular');
 	Route::get('new', 'ApiPageController@newest');
-	Route::resource('users', 'ApiUsersController');
+	Route::resource('users', 'ApiUsersController', ['only' => ['index', 'show', 'edit', 'update']]);
+	Route::resource('topics', 'ApiTopicsController', ['except' => ['delete']]);
+
+	Route::post('topics/{topicid}/reply/store', [
+		'as'	=> 'replies.store',
+		'uses'	=> 'ApiRepliesController@store'
+	]);
+	Route::post('replies/{id}/update', [
+		'as'	=> 'replies.update',
+		'uses'	=>'ApiRepliesController@update'
+	]);
+
+	Route::get('replies/rules', [
+		'as'	=> 'replies.rules',
+		'uses'	=>'ApiRepliesController@rules'
+	]);
+
+	Route::get('replies/{id}', [
+		'as'	=> 'replies.show',
+		'uses'	=>'ApiRepliesController@show'
+	]);
+
 
 });

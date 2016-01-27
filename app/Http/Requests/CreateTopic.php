@@ -2,6 +2,7 @@
 
 use maze\Http\Requests\Request;
 use Auth;
+use Authorizer;
 
 class CreateTopic extends Request {
 
@@ -29,6 +30,8 @@ class CreateTopic extends Request {
 	public function rules()
 	{
 		$user = Auth::user();
+		if(!$user)
+			$user = User::find(Authorizer::getResourceOwnerId());
 		if($user->can('manage_topics'))
 		{
 			$rules = [
