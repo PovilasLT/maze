@@ -22,15 +22,15 @@
 		<p class="helpblock">Temų tipai padeda kitiems lankytojams atskirti kokia tai tema. Kiekvienas temos tipas suteikia jūsų temai papildomas galimybes. <a href="{{ route('page.knowledgebase').'#temu-tipai' }}" target="_blank">[Skaityti Daugiau]</a></p>
 		<select name="type" id="type" class="form-control" required="required">
 			<option value="0" @if($topic->type == 1) {{ 'selected '}} @endif >Diskusija</option>
-			@if(Auth::user()->can('manage_topics'))
-			<option value="215" @if($topic->type == 215) {{ 'selected '}} @endif >Pranešimas</option>
-			@endif
 			<option value="2" @if($topic->type == 2) {{ 'selected '}} @endif >Klausimas</option>
 			<option value="3" @if($topic->type == 3) {{ 'selected '}} @endif >Konkursas</option>
 			<option value="4" @if($topic->type == 4) {{ 'selected '}} @endif >Video</option>
 			<option value="5" @if($topic->type == 5) {{ 'selected '}} @endif >Stream</option>
 			<option value="6" @if($topic->type == 6) {{ 'selected '}} @endif >Kviečiu Žaisti</option>
 			<option value="7" @if($topic->type == 7) {{ 'selected '}} @endif >Pristatymas</option>
+			@if(Auth::user()->can('manage_topics'))
+			<option value="215" @if($topic->type == 215) {{ 'selected '}} @endif >Pranešimas</option>
+			@endif
 		</select>
 	</div>
 	<label for="title">Temos pavadinimas</label>
