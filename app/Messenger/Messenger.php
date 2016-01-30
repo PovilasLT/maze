@@ -15,7 +15,7 @@ class Messenger {
 			'user_id' 			=> $user->id,
 			'conversation_id'	=> $conversation->id,
 			'body_original'		=> $contents,
-			'body'				=> e($contents),
+			'body'				=> markdown($contents),
 		]);
 
 		event(new MessageWasSent($message, $user));
