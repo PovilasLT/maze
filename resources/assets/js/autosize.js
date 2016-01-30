@@ -1,3 +1,3 @@
 $( document ).ready(function() {
-    $('textarea').autosize();
+    $('textarea:not(.create-reply-textarea)').autosize();
 });
