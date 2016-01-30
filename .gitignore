@@ -5,6 +5,6 @@
 /public/js/*
 /public/build/*
 /public/images/avatars
-ssl.json
+redis.json
 .env
 _ide_helper.php

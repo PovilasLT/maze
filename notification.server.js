@@ -1,16 +1,26 @@
 var lex = require('letsencrypt-express');
 var express = require('express');
 var app = express();
-var server = require('https').Server(app);
-var io = require('socket.io')(server);
+var redisConfig = require('./redis.json');
+
+var servers = lex.create({
+	configDir: '/etc/letsencrypt',
+	onRequest: app,
+}).listen([], [6001], function onListening() {
+	console.log("SERVERIS IJUNGTAS!");
+});
+
+var io = require('socket.io')(servers.tlsServers[0]);
 var Redis = require('ioredis');
-var redis = new Redis();
+var redis = new Redis({
+	password: redisConfig.password
+});
 var Imagemin = require('imagemin');
 var path = require('path');
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', 'https://maze.lt');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST', 'PATCH', 'PUT', 'DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
@@ -47,12 +57,4 @@ io.sockets.on('connection', function (socket) {
   socket.on('join', function (data) {
     socket.join(data.id + '-' + data.secret);
   });
-});
-
-lex.create({
-	configDir: '/etc/letsencrypt',
-	onRequest: app,
-	letsencrypt: null
-}).listen([], [6001], function () {
-  console.log("SERVERIS IJUNGTAS!");
 });
