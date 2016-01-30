@@ -17,7 +17,7 @@ class DeleteTopic extends Request {
 		$topic = Topic::findOrFail($this->route('id'));
 		$this->topic = $topic;
 
-		if($user && (($topic->user_id == $user->id && !$topic->is_blocked) || $user->can('manage_topics')))
+		if($user && (($topic->user_id == $user->id && !$this->topic->is_blocked) || $user->can('manage_topics')))
 		{
 			return true;
 		}
