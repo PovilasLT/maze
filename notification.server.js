@@ -45,15 +45,10 @@ io.sockets.on('connection', function (socket) {
   });
 });
 
-<<<<<<< HEAD
 lex.create({
 	configDir: '/etc/letsencrypt',
 	onRequest: app,
 	letsencrypt: null
 }).listen([], [6001], function () {
   console.log("SERVERIS IJUNGTAS!");
-=======
-lex.create('./letsencrypt.config', app).listen([], [6001], function () {
-  console.log("ENCRYPT __ALL__ THE DOMAINS!");
->>>>>>> 9a24dc8a83af6ed1a719d80ccbf2ad6f51f4074b
 });
