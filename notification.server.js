@@ -8,6 +8,14 @@ var redis = new Redis();
 var Imagemin = require('imagemin');
 var path = require('path');
 
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', 'https://maze.lt');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
+
 app.get('/', function (req, res) {
   res.send('NOTIFICATIONS');
 });
@@ -33,10 +41,6 @@ redis.on('pmessage', function(subscribed, channel, event) {
 	{
 	    io.sockets.in(event.data.channel).emit('message', event.data.message);
 	}
-});
-
-app.get('/', function (req, res) {
-	res.send('...');
 });
 
 io.sockets.on('connection', function (socket) {
