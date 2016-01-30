@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel {
 		'maze\Console\Commands\TopicsDecay',
 		'maze\Console\Commands\CleanReplies',
 		'maze\Console\Commands\RecountFollowers',
+		'maze\Console\Commands\EmailNews',
 	];
 
 	/**
