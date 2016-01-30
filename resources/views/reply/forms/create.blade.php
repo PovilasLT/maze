@@ -8,7 +8,7 @@
 			@include('includes.csrf')
 				<input type="hidden" name="topic_id" value="{{ $topic->id }}">
 				<div class="form-group">
-					<textarea data-provide="markdown" class="form-control" name="body" rows="1" placeholder="Čia rašyk savo išmintingo pranešimo turinį..." required>{{ old('body') }}</textarea>
+					<textarea data-provide="markdown" class="form-control create-reply-textarea" name="body" rows="1" placeholder="Čia rašyk savo išmintingo pranešimo turinį..." required>{{ old('body') }}</textarea>
 				</div>
 
 				<button type="submit" class="btn btn-primary pull-right">Rašyti</button>

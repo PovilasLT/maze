@@ -37,16 +37,17 @@ return [
 		'79',
 		'80',
 		'63',
+		'59',
 	],
 
 	//Svorio paskirstymas
 
-	'topics_decay'			=> 10,
+	'topics_decay'			=> 2,
 
-	'reply_gain_weight' 	=> 4,
+	'reply_gain_weight' 	=> 6,
 
-	'upvote_gain_weight'	=> 7,
-	'downvote_lose_weight'	=> 7,
+	'upvote_gain_weight'	=> 10,
+	'downvote_lose_weight'	=> 8,
 
 	/*
 	|--------------------------------------------------------------------------

@@ -30,11 +30,10 @@ class CleanTopic
      */
     public function handle(TopicWasDeleted $event)
     {
-       $replies = Reply::where('topic_id', $event->topic->id)->get();
-       foreach($replies as $reply)
+       foreach($event->topic->replies as $reply)
        {
+            event(new ReplyWasDeleted($reply, $event->topic, $event->user));
             $reply->delete();
-            event(new ReplyWasDeleted($reply, $event->topic, Auth::user()));
-       } 
-    }  
+       }
+    }
 }

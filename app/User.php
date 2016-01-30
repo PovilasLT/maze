@@ -363,14 +363,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 				'follower_id' => Auth::user()->id
 			]);
 
-			$this->increment('follower_count');
-
 			return true;
 		}
 		else
 		{
 			$follower->delete();
-			$this->decrement('follower_count');
 			return false;
 		}
 	}

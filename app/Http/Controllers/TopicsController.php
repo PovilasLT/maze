@@ -205,10 +205,11 @@ class TopicsController extends Controller {
 	public function destroy(DeleteTopic $request)
 	{
 		$topic = $request->topic;
-		$topic->delete();
 		$user = Auth::user();
 
 		event(new TopicWasDeleted($topic, $user));
+
+		$topic->delete();
 
 		flash()->success('Tema sėkmingai ištrinta!');
 
