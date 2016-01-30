@@ -21,7 +21,7 @@
 		<label for="type">Temos Tipas</label>
 		<p class="helpblock">Temų tipai padeda kitiems lankytojams atskirti kokia tai tema. Kiekvienas temos tipas suteikia jūsų temai papildomas galimybes. <a href="{{ route('page.knowledgebase').'#temu-tipai' }}" target="_blank">[Skaityti Daugiau]</a></p>
 		<select name="type" id="type" class="form-control" required="required">
-			<option value="0" @if($topic->type == 1) {{ 'selected '}} @endif >Diskusija</option>
+			<option value="0" @if($topic->type == 0) {{ 'selected '}} @endif >Diskusija</option>
 			<option value="2" @if($topic->type == 2) {{ 'selected '}} @endif >Klausimas</option>
 			<option value="3" @if($topic->type == 3) {{ 'selected '}} @endif >Konkursas</option>
 			<option value="4" @if($topic->type == 4) {{ 'selected '}} @endif >Video</option>

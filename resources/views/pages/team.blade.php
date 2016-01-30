@@ -15,12 +15,12 @@ Komanda | @parent
 @section('content')
 	<h1>Maze Komanda</h1>
 	<h2>Administratoriai</h2>
-	<p><b><a href="/vartotojas/edvinas">Edvinas</a></b></p>
-	<p><b><a href="/vartotojas/yiin">Yiin</a></b></p>
-	<p><b><a href="/vartotojas/bebras">Bebras</a></b></p>
+	<p><b><a href="/vartotojas/skepticalhippo1">Edvinas</a></b></p>
+	<p><b><a href="/vartotojas/yiin4">Yiin</a></b></p>
+	<p><b><a href="/vartotojas/bebras3">Bebras</a></b></p>
 	<h2>Moderatoriai</h2>
-	<p><b><a href="/vartotojas/codemenas">CodeMenas</a></b></p>
-	<p><b><a href="/vartotojas/rin">Rin</a></b></p>
+	<p><b><a href="/vartotojas/codemenas12">CodeMenas</a></b></p>
+	<p><b><a href="/vartotojas/rin47">Rin</a></b></p>
 @stop
 
 @section('sidebar')
