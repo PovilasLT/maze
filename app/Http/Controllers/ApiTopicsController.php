@@ -60,7 +60,7 @@ class ApiTopicsController extends Controller
     {
         $data       = $request->all();
         $mention    = new Mention();
-        $token      = $authorizer->getAccessToken();
+        $token      = (string)$authorizer->getAccessToken();
 
         //Susitvarkom su Markdown
         $data['body_original']  = $data['body']; 
@@ -79,7 +79,6 @@ class ApiTopicsController extends Controller
         event(new TopicWasCreated($topic, $user));
 
         return redirect()->route('api.topics.show', ['id' => $topic->id, 'access_token' => $token]);
-        //return redirect('api/topics/'.$topic->id.'?access_token='.$token);
     }
 
     /**
@@ -124,9 +123,9 @@ class ApiTopicsController extends Controller
      */
     public function update(UpdateTopic $request, $id)
     {
-        $data        = $request->all();
+        $data       = $request->all();
         $mention    = new Mention();
-
+        $token      = (string)Authorizer::getAccessToken();
 
         //Susitvarkom su Markdown
         $topic = $request->topic;

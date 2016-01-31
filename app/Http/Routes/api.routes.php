@@ -26,19 +26,24 @@ Route::get('/api/users/twitch', function() {
 
 
 
-Route::post('api/oauth/access_token', function() {
+Route::post('api/access_token', function() {
  return Response::json(Authorizer::issueAccessToken());
 });
+
+Route::get('api', [
+	'as'	=> 'page.api',
+	'uses'	=> 'ApiPageController@index'
+]);	
 
 
 Route::group(['prefix'=>'api','before' => 'oauth', 'middleware' => ['oauth']], function()
 {
 	Route::get('popular', 'ApiPageController@popular');
 	Route::get('new', 'ApiPageController@newest');
-	Route::resource('users', 'ApiUsersController', ['only' => ['index', 'show', 'edit', 'update']]);
+	Route::resource('users', 'ApiUsersController', ['only' => ['index', 'show', 'edit']]);
 	Route::resource('topics', 'ApiTopicsController', ['except' => ['delete']]);
 
-	Route::post('topics/{topicid}/reply/store', [
+	Route::post('replies/store', [
 		'as'	=> 'replies.store',
 		'uses'	=> 'ApiRepliesController@store'
 	]);
@@ -56,6 +61,5 @@ Route::group(['prefix'=>'api','before' => 'oauth', 'middleware' => ['oauth']], f
 		'as'	=> 'replies.show',
 		'uses'	=>'ApiRepliesController@show'
 	]);
-
 
 });

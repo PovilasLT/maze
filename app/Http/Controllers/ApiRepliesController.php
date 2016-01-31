@@ -5,8 +5,10 @@ namespace maze\Http\Controllers;
 use maze\Http\Requests\UpdateReply;
 use maze\Http\Requests\CreateReply;
 
-use maze\Http\Requests;
 use maze\Http\Controllers\Controller;
+
+use maze\Events\ReplyWasCreated;
+use maze\Events\UserWasMentioned;
 
 use maze\Topic;
 use maze\Reply;
@@ -17,6 +19,7 @@ use Authorizer;
 
 class ApiRepliesController extends Controller
 {
+
 
     public function rules()
     {
@@ -53,6 +56,8 @@ class ApiRepliesController extends Controller
         }
         
         event(new ReplyWasCreated($reply, $topic, $user));
+
+        return redirect()->route('replies.show', ['id' => $reply->id, 'access_token' => $request->input('access_token')]);
     }
 
     /**
@@ -94,7 +99,7 @@ class ApiRepliesController extends Controller
 
         $reply->save();
 
-        return redirect()->route('replies.show', [$id, 'access_token' => Authorizer::getAccessToken()]);
+        return redirect()->route('replies.show', [$id, 'access_token' => $request->input('access_token')]);
     }
 
 }

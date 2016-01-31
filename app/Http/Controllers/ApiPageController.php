@@ -11,6 +11,11 @@ use maze\Topic;
 class ApiPageController extends Controller
 {
 
+    public function index()
+    {
+        return view('pages.api');
+    }
+
     public function popular()
     {
         $topics = Topic::frontPage("populiariausi");
@@ -22,5 +27,6 @@ class ApiPageController extends Controller
          $topics = Topic::frontPage("naujausi");
         return response()->json($topics);
     }
+
 
 }
