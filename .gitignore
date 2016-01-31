@@ -1,8 +1,10 @@
 /vendor
 /node_modules
+/letsencrypt.config
 /public/css/*
 /public/js/*
 /public/build/*
 /public/images/avatars
+ssl.json
 .env
 _ide_helper.php
