@@ -5,8 +5,8 @@ function utf8_urldecode($str) {
 }
 
 function markdown($string) {
-	$converter = new League\CommonMark\CommonMarkConverter(['safe' => true]);
-	return $converter->convertToHtml($string);
+	$markdown = new maze\Extras\Markdown();
+	return $markdown->convert($string);
 }
 
 function ex($string)

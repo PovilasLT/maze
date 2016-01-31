@@ -67,10 +67,4 @@ $(document).ready(function() {
 
 		e.preventDefault();
 	});
-	$('.lightbox > p > a').each(function() {
-		if($(this).attr('href').length) {
-			$(this).attr('target', '_blank');
-			$(this).attr('rel', 'nofollow');
-		}
-	});
 });

@@ -1,6 +1,8 @@
 <?php namespace maze\Exceptions;
 
 use Exception;
+use Log;
+use Route;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler {
@@ -22,6 +24,14 @@ class Handler extends ExceptionHandler {
 	 * @param  \Exception  $e
 	 * @return \Illuminate\Http\Response
 	 */
+
+	public function report(Exception $e)
+	{
+		if ($this->shouldReport($e)) {
+            $this->log->error($e);
+        }
+	}
+
 	public function render($request, Exception $e)
 	{
 
