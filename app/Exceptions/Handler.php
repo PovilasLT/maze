@@ -25,49 +25,47 @@ class Handler extends ExceptionHandler {
 	 */
 	public function render($request, Exception $e)
 	{
-		if(env('APP_DEBUG', true))
+		if($request->wantsJson())
 		{
-			if($request->wantsJson())
-			{
-				var_dump($e);
-				return response()->json(['code' => $e->getStatusCode()]);
-			}
-			else 
+			return response()->json(['error' => $e->getMessage()]);
+		}
+		else 
+		{
+			if(env('APP_DEBUG', true))
 			{
 				return parent::render($request, $e);
 			}
-		}
-
-		if($this->isHttpException($e))
-		{
-			if($e->getStatusCode() == 404)
+			if($this->isHttpException($e))
 			{
-				if($request->wantsJson())
+				if($e->getStatusCode() == 404)
 				{
-					return response()->json("Page not found");
+					if($request->wantsJson())
+					{
+						return response()->json("Page not found");
+					}
+					else 
+					{
+						return response()->view('errors.404');
+					}
 				}
-				else 
+				elseif($e->getStatusCode() == 503)
 				{
-					return response()->view('errors.404');
+					return response()->view('errors.503');
+				}
+				else
+				{
+					return response()->view('errors.internal');
 				}
 			}
-			elseif($e->getStatusCode() == 503)
+			if(class_basename($e) == 'ModelNotFoundException')
 			{
-				return response()->view('errors.503');
+				return response()->view('errors.404');
 			}
 			else
 			{
 				return response()->view('errors.internal');
 			}
 		}
-		if(class_basename($e) == 'ModelNotFoundException')
-		{
-			return response()->view('errors.404');
 		}
-		else
-		{
-			return response()->view('errors.internal');
-		}
-	}
 
 }
