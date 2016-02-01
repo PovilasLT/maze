@@ -21,7 +21,6 @@ class NotifyUser
     public $self_notifiable = [
         'Topic',
         'Status',
-        'Reply',
     ];
 
     public $has_parent = [
@@ -56,18 +55,15 @@ class NotifyUser
             {
                 Notifier::notify($notifiable_base, $event->notifiable, Auth::user());
             }
+            //jeigu struktura turi containeri, notifinam containerio seimininka.
+            if(in_array($notifiable_base, $this->has_parent))
+            {
+                Notifier::notify($notifiable_base, $event->notifiable, $event->notifiable->parent_container->user);
+            }
+            //kitu atveju tiesiog notifikuojam strukturos savininka
             else
             {
-                //jeigu struktura turi containeri, notifinam containerio seimininka.
-                if(in_array($notifiable_base, $this->has_parent))
-                {
-                    Notifier::notify($notifiable_base, $event->notifiable, $event->notifiable->parent_container->user);
-                }
-                //kitu atveju tiesiog notifikuojam strukturos savininka
-                else
-                {
-                    Notifier::notify($notifiable_base, $event->notifiable, $event->notifiable->user);
-                }
+                Notifier::notify($notifiable_base, $event->notifiable, $event->notifiable->user);
             }
         }
     }

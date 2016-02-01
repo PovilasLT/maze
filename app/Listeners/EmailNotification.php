@@ -7,6 +7,8 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use maze\User;
 use maze\Reply;
+use Mail;
+use Carbon\Carbon;
 
 class EmailNotification
 {
@@ -28,36 +30,28 @@ class EmailNotification
      */
     public function handle(UserWasNotified $event)
     {
-
         $user = $event->user;
-
         //TODO: pakeisti i universalesni sprendima.
         if($event->object instanceof Reply)
         {
             $reply = $event->object;
+            if(($reply->user_id != $reply->topic->user_id) && $reply->topic->user->email_replies) {
+                $data = [
+                    'user'      => $reply->topic->user->username,
+                    'title'     => $reply->topic->title,
+                    'content'   => $reply->body,
+                    'slug'      => $reply->topic->slug,
+                    'id'        => $reply->topic->id
+                ];
 
-            if($user->id != $reply->topic->user_id) {
-                $last_reply = $reply->topic->replies()->where('user_id', '<>', $user->id)->orderBy('created_at', 'desc')->first();
-                if(!$last_reply || ($last_reply && $last_reply->created_at->diffInHours() > 1 && $reply->topic->user->email_replies))
+                $topic = $reply->topic;
+                $topic_user = $reply->topic->user;
+
+                Mail::queue('emails.reply', $data, function($message) use($topic_user, $topic, $user)
                 {
-                    $data = [
-                        'user'      => $reply->topic->user->username,
-                        'title'     => $reply->topic->title,
-                        'content'   => $reply->body,
-                        'slug'      => $reply->topic->slug,
-                        'id'        => $reply->topic->id
-                    ];
-
-                    $topic = $reply->topic;
-                    $topic_user = $reply->topic->user;
-
-                    Mail::queue('emails.reply', $data, function($message) use($topic_user, $topic, $user)
-                    {
-                        $user->last_reply_emailed = Carbon::now();
-                        $user->save();
-                        $message->to($topic_user->email)->subject('Naujas pranešimas temoje '.utf8_urldecode($topic->title));
-                    });
-                }
+                    $user->save();
+                    $message->to($topic_user->email)->subject('Naujas pranešimas temoje '.utf8_urldecode($topic->title));
+                });
             }
         }
     }
