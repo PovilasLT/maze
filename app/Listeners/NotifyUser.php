@@ -14,8 +14,6 @@ class NotifyUser
 {
 
     public $followers_notifiable = [
-        'Topic',
-        'Status',
     ];
 
     public $self_notifiable = [
