@@ -35,6 +35,10 @@ Route::get('api', [
 	'uses'	=> 'ApiPageController@index'
 ]);	
 
+Route::get('api/register', [
+	'as'	=> 'api.app.register',
+	'uses'	=> 'ApiController@register'
+]);	
 
 Route::group(['prefix'=>'api','before' => 'oauth', 'middleware' => ['oauth']], function()
 {

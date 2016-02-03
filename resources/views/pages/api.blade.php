@@ -6,7 +6,7 @@
 
 
 @section('breadcrumbs')
-	{!! Breadcrumbs::render('page.rules') !!}
+	{!! Breadcrumbs::render('page.api') !!}
 @stop
 
 
@@ -18,7 +18,6 @@ API | @parent
 <h1>Maze API</h1>
 <h3>Turinys</h3>
 <ol>
-	<li><a href='#intro'>Įžanga</a></li>
 	<li><a href='#vartotojai'>Vartotojų duomenys</a></li>
 	<ol>
 		<li><a href='#vartotoju-sarasas'>Vartotojų sąrašas</a></li>
@@ -45,23 +44,6 @@ API | @parent
 	</ol>
 </ol>
 
-<section>
-	<h2 id='intro'>Įžanga</h2>
-
-	<p>
-		Maze palengviną bendruomenės programų kūrime pateikdami priėjimą prie duomenų patogiu formatu. 
-		Šiuo API gali naudotis bet kas, tačiau pirmiausia reikia susigeneruoti porą kodų. 
-		Tai padaryti galite <a href='todo'>čia</a>
-	</p>
-	<p>
-		Šis API leidžia pasiekti įvairius duomenis apie vartotoją, temas, pranešimus bei juos kurti siunčiant ir gaunant HTTP užklausas. 
-		Prie visų užklausų(išskyrus žetono gavimo užklausą) reikia pridėti prieigos žetoną(angl. access token). 
-		Duomenys grąžinami JSON formatu, kad išvengti įprasto HTML, kurį matote naudojantis naršykle rekomenduojama pridėti antraštę
-		<code>
-			Accept: application/json
-		</code>
-	</p>
-</section>
 <hr>
 <section>
 	<h2 id='vartotojai'>Vartotojų duomenys</h2>
