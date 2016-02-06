@@ -90,7 +90,7 @@ class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterfa
 
     private function buildTwitch($inline, $htmlRenderer, $channel) {
         $attrs = [
-            'src' => 'http://player.twitch.tv/?channel='.$channel.'&!autoplay',
+            'src' => 'https://player.twitch.tv/?channel='.$channel.'&!autoplay',
             'frameborder' => 0,
             'scrolling' => 'no',
             'autoplay' => 'false',
