@@ -13,14 +13,6 @@ use Auth;
 class NotifyUser
 {
 
-    public $followers_notifiable = [
-    ];
-
-    public $self_notifiable = [
-        'Topic',
-        'Status',
-    ];
-
     public $has_parent = [
         'Reply',
         'StatusComment',
@@ -48,11 +40,6 @@ class NotifyUser
         {
             $notifiable_base = class_basename($event->notifiable);
 
-            //patikrinam ar reikia notifinti save
-            if(in_array($notifiable_base, $this->self_notifiable))
-            {
-                Notifier::notify($notifiable_base, $event->notifiable, Auth::user());
-            }
             //jeigu struktura turi containeri, notifinam containerio seimininka.
             if(in_array($notifiable_base, $this->has_parent))
             {

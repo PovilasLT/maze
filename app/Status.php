@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 use maze\Notification;
 use \maze\Traits\Notifiable;
 use Markdown;
-
+use Auth;
 
 class Status extends Model {
 
@@ -13,6 +13,8 @@ class Status extends Model {
 		'body',
 		'body_original'
 	];
+
+	public $view = 'status.item';
 
 	public function statusComments() {
 		return $this->hasMany('maze\StatusComment');
@@ -40,6 +42,20 @@ class Status extends Model {
 
 	public function latestComments() {
 		return $this->comments()->orderBy('created_at', 'ASC')->take(5)->get();
+	}
+
+	public function scopeFollowing($query) {
+		$users = Auth::user()->follower_list;
+		return $query->whereIn('user_id', $users);
+	}
+
+	public function scopeLatest($query) {
+		return $query->orderBy('created_at', 'DESC');
+	}
+
+	public function scopePaged($query)
+	{
+		return $query->paginate(10);
 	}
 
 	public function getExcerptAttribute()

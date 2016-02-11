@@ -74,7 +74,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	}
 	
 	public function statuses() {
-		return $this->hasMany('maze\Notification')->where('object_type', 'status');
+		return $this->hasMany('maze\Status');
 	}
 
 	public function followers() {

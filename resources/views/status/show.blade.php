@@ -11,6 +11,9 @@
 			@if($status->editor && (Auth::user()->can('manage_statuses') || Auth::user()->id == $status->editor_id ))
 			| Redagavo: <a href="{{ route('user.show', $status->editor->slug) }}">{{ $status->editor->username }}</a> (<span class="date-when">{{ $status->updated_at->diffForHumans() }}</span>)
 			@endif
+			@if(Auth::check())
+				@include('status.controls')
+			@endif
 		</div>
 	</div>
 	<div class="row">
@@ -18,9 +21,6 @@
 			{!! $status->body !!}
 		</div>
 	</div>
-	@if(Auth::check())
-		@include('status.controls')
-	@endif
 	<div class="status-comments display">
 		@include('status.forms.comment.create')
 		@foreach($status->comments as $comment)

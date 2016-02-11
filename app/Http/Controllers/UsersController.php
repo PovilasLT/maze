@@ -7,6 +7,7 @@ use maze\Http\Requests\UserProfile;
 use maze\Http\Requests\ChangeUsername;
 use maze\User;
 use maze\Notification;
+use maze\Status;
 use Auth;
 use Image;
 use Hash;
@@ -131,7 +132,7 @@ class UsersController extends Controller {
 					$items = Notification::following()->replyExists()->has('reply.topic')->with('object')->latest()->paginate('10');
 					break;
 				case 'busenos':
-					$items = Notification::following()->statusExists()->has('status')->with('object')->latest()->paginate('10');
+					$items = Status::following()->with('comments')->latest()->paged();
 					break;
 				default:
 					$items = Notification::following()->hasAll()->with('object')->latest()->paginate('10');
@@ -140,7 +141,7 @@ class UsersController extends Controller {
 		}
 		else
 		{
-			$items = Notification::statuses()->hasAll()->with('object')->latest()->paginate('10');
+			$items = Status::latest()->paginate('10');
 		}
 
 		// dd(\DB::getQueryLog());
@@ -155,16 +156,16 @@ class UsersController extends Controller {
 
 		switch ($sort) {
 			case 'temos':
-				$items = Notification::activities($user->id)->has('topic')->with('object')->latest()->topics()->paginate('10');
+				$items = $user->topics()->orderBy('created_at', 'DESC')->paginate('10');
 				break;
 			case 'pranesimai':
-				$items = Notification::activities($user->id)->has('reply.topic')->with('object')->latest()->replies()->paginate('10');
+				$items = $user->replies()->orderBy('created_at', 'DESC')->paginate('10');
 				break;
 			case 'busenos':
-				$items = Notification::activities($user->id)->has('status')->with('object')->latest()->statuses()->paginate('10');
+				$items = $user->statuses()->orderBy('created_at', 'DESC')->paginate('10');
 				break;
 			default:
-				$items = Notification::activities($user->id)->hasAll()->with('object')->latest()->paginate('10');
+				$items = $user->topics()->paginate('10');
 				break;
 		}
 

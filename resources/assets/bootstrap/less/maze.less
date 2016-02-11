@@ -384,9 +384,10 @@ h1.media-heading {
 }
 
 .post-show,
-.notification-show {
+.notification-show,
+.status-show {
 	margin: 0;
-	padding: 0 0 20px 0;
+	padding: 0 0 0 0;
 	// &:nth-child(odd) {
 	//   background: @maze-border-faded;
 	// }
@@ -422,10 +423,6 @@ h1.media-heading {
 	margin-left: 10px;
 }
 
-.notification-list {
-	margin-top: 40px;
-}
-
 .btn-grey {
 	background-color: @maze-background;
 	color: @maze-grey;
@@ -454,10 +451,6 @@ h1.media-heading {
 
 .green-text {
 	color: @maze-primary;
-}
-
-.notification-filler {
-	height: 21px;
 }
 
 .status-comments {
@@ -676,6 +669,25 @@ h1.media-heading {
 	    height: 100%;
     }
 
+}
+
+.notification-list {
+	.post-show,
+	.status-show,
+	.notification-show {
+		padding: 20px 0 0 0;
+		margin: 0;
+		.media-body {
+			padding: 0 0 10px 0;
+			border-bottom: 1px dashed @maze-border;
+		}
+	}
+	.status-comments {
+		padding-bottom: 20px;
+		.media-body {
+			border-bottom: none;
+		}
+	}
 }
 
 @media (min-width: 1200px) {
