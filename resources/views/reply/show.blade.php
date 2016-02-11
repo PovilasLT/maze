@@ -42,18 +42,16 @@
   <div class="media-body">
     <h4 class="media-heading">
       <a href="{{ route('user.show', $reply->user->slug) }}" class="author">{{ $reply->user->username }}</a>
-      <small class="date-when">{{ $reply->created_at->diffForHumans() }}</small><a href="#pranesimas-{{ $reply->id }}" class="pull-right btn btn-xs btn-grey"><i class="fa fa-link"></i></a>
-    @if(Auth::check() && $topic->user->id == Auth::user()->id && $topic->type == 2 && !$topic->is_answered)
-      <small class="pull-right"><a href="{{ route('reply.answer', $reply->id) }}">Atsakymas</a></small>
-    @elseif($topic->type == 2 && $topic->is_answered && $reply->is_answer)
-      <span class="pull-right label label-success"><i class="fa fa-check-circle"></i> Atsakymas</span>
-    @endif
+      <small class="date-when">{{ $reply->created_at->diffForHumans() }}</small>
+      @include('reply.controls')
+      @if(Auth::check() && (!isset($votes) || $votes) && $reply->topic->user->id == Auth::user()->id && $reply->topic->type == 2 && !$reply->topic->is_answered)
+        <small class="pull-right"><a href="{{ route('reply.answer', $reply->id) }}">Atsakymas</a></small>
+      @elseif($reply->topic->type == 2 && $reply->topic->is_answered && $reply->is_answer)
+        <span class="pull-right label label-success"><i class="fa fa-check-circle"></i> Atsakymas</span>
+      @endif
     </h4>
     <div class="lightbox">
       {!! $reply->body !!}
     </div>
-    @if(Auth::check() && (Auth::user()->can('manage_posts') || (Auth::user()->id == $reply->user_id) && !$reply->topic->is_blocked))
-      @include('reply.controls')
-    @endif
   </div>
 </div>

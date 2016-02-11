@@ -17,6 +17,8 @@ class Reply extends Model {
 		'updated_at',
 	];
 
+	public $view = 'reply.show';
+
 	public function user() {
 		return $this->belongsTo('maze\User');
 	}

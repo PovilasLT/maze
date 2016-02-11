@@ -20,7 +20,7 @@
 		<a href="{{ route('conversation.create', [$user->id]) }}" class="btn btn-primary full-width user-button"><i class="fa fa-envelope"></i> Asmeninė Žinutė</a>
 	@endif
 </div>
-@if(Auth::check() && Auth::user()->is_staff)
+@if(Auth::check() && Auth::user()->id != $user->id && Auth::user()->is_staff)
 	@include('panels.user_admin')
 @endif
 @include('panels.about')

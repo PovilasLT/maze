@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row pull-right">
 	<div class="col-lg-12 text-right">
 		<button class="btn btn-grey show-status-comments" status-id="{{ $status->id }}"><i class="fa fa-comments-o"></i> Komentarų: {{ $status->comments->count() }}</button>
 		<a href="{{ route('status.show', $status->id) }}"><button class="btn btn-grey"><i class="fa fa-link"></i></button></a>

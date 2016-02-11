@@ -20,6 +20,8 @@ class Topic extends Model {
 
 	use SoftDeletes;
 
+	public $view = 'topic.item';
+
 	public function replies() {
 		return $this->hasMany('maze\Reply');
 	}
