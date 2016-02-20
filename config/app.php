@@ -6,6 +6,8 @@ return [
 	
 	'version' => '2.0.2',
 
+	'advertisements' => env('APP_SIDEBAR_ADVERTISEMENTS', 8),
+
 	'front_page_nodes' => [
 		'15',
 		'18',

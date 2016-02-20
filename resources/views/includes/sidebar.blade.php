@@ -10,3 +10,4 @@
 @include('panels.nodes')
 @include('panels.facebook')
 @include('panels.statistics')
+@include('panels.advertisements')

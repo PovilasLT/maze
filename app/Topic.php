@@ -86,8 +86,7 @@ class Topic extends Model {
 		}]);
 	}
 
-	//Pagrindinio puslapio topicai
-
+	// Pagrindinio puslapio topicai
 	public static function frontPage($sort) {
 		if($sort == 'populiariausi' || !$sort)
 		{
@@ -98,6 +97,12 @@ class Topic extends Model {
 			$topics = Topic::games()->pinned()->latest()->withReplies()->paginate(20);
 		}
 		return $topics;
+	}
+
+	// Sidebar skelbimai
+	public static function advertisements()
+	{
+		return self::where('type', 7)->orderBy('id', 'desc')->limit(config('app.advertisements'))->get();
 	}
 
 	public function sameNodeTopics() {
