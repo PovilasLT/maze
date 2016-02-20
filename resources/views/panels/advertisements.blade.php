@@ -4,11 +4,11 @@
 		  <div class="panel-heading">
 				<h3 class="panel-title">Skelbimai</h3>
 		  </div>
-		  <div class="panel-body">
+		  <ul class="panel-body">
 				@foreach($advertisements as $topic)
 					@include('topic.sidebar-item')
 				@endforeach
-		  </div>
+		  </ul>
 	</div>
 
 @endif
