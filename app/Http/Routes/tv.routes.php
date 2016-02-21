@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['domain' => 'tv.maze.lt'], function () {
+Route::group(['domain' => 'tv.'.env('DOMAIN', 'maze.lt')], function () {
     Route::get('/', [
 	    'as' => 'tv.index',
 	    'uses' => 'TvPagesController@home'
