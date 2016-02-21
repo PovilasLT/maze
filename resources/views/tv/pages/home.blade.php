@@ -12,6 +12,7 @@
 @stop
 
 @section('content')
+
 	@include('streamer.includes.stream', ['streamer' => $featured])
 	<hr class="no-margin"></hr>
 	<div class="row">
