@@ -52,7 +52,7 @@ class StreamsRegenerate extends Command {
                 }
                 else
                 {
-                    $url = public_path().'/images/no_video.jpg';
+                    $url = 'http://wallpoper.com/images/00/37/80/13/abstract-test_00378013.jpg';
                 }
                 
                 $streamer->createBanner($url);

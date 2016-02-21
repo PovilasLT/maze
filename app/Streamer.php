@@ -75,7 +75,7 @@ class Streamer extends Model
 	        }
 	        else
 	        {
-	        	$this->createBanner(public_path().'/images/no_video.jpg');
+	        	$this->createBanner('http://wallpoper.com/images/00/37/80/13/abstract-test_00378013.jpg');
 	        }
         }
         else
@@ -90,7 +90,7 @@ class Streamer extends Model
 		        }
 		        else
 		        {
-		        	$this->createBanner(public_path().'/images/no_video.jpg');
+		        	$this->createBanner('http://wallpoper.com/images/00/37/80/13/abstract-test_00378013.jpg');
 		        }
 	        }
 	        $this->setOffline();
