@@ -22,8 +22,9 @@ class PageController extends Controller {
 			$topics = $topics->withVotes();
 		}
 		$topics = $topics->with('node.parent')->paginate(20);
-		// return $topics;
-		return view('pages.home', compact('topics', 'sort'));
+		$advertisements = Topic::advertisements();
+
+		return view('pages.home', compact('topics', 'sort', 'advertisements'));
 	}
 
 	public function team()

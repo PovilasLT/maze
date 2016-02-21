@@ -110,6 +110,12 @@ class Topic extends Model {
 		}]);
 	}
 
+	// Sidebar skelbimai
+	public static function advertisements()
+	{
+		return self::where('type_id', 7)->orderBy('id', 'desc')->limit(config('app.advertisements'))->get();
+	}
+
 	public function sameNodeTopics() {
 		$topics = Topic::where('node_id', $this->node_id)->where('id', '<>', $this->id)->take('10')->get();
 		return $topics;

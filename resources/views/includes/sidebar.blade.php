@@ -10,3 +10,4 @@
 @include('panels.nodes', ['front_page_nodes' => Auth::check() ? Auth::user()->frontPageNodes()->toArray() : false ])
 @include('panels.facebook')
 @include('panels.statistics')
+@include('panels.advertisements')

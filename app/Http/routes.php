@@ -1,6 +1,6 @@
 ﻿<?php
 
-Route::group(['domain' => 'maze.lt'], function () {
+Route::group(['domain' => 'maze.app'], function () {
 
 	//API
 	require_once('Routes/api.routes.php');
@@ -43,7 +43,7 @@ Route::group(['domain' => 'maze.lt'], function () {
 
 });
 
-Route::group(['domain' => 'tv.maze.lt'], function () {
+Route::group(['domain' => 'tv.maze.app'], function () {
 	//TV
 	require_once('Routes/tv.routes.php');
 });
