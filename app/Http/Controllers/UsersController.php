@@ -2,7 +2,6 @@
 
 use maze\Http\Requests;
 use maze\Http\Requests\CreateUser;
-use maze\Http\Requests\UpdateUser;
 use maze\Http\Requests\UserProfile;
 use maze\Http\Requests\ChangeUsername;
 use maze\User;
@@ -20,82 +19,6 @@ use Stringy\StaticStringy as S;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller {
-	//Išsaugoja vartotoją.
-	public function update(UpdateUser $request) {
-		$settings = $request->input();
-
-		$user = Auth::user();
-
-		$_settings = [];
-
-		$protected = [
-			'username',
-			'password',
-			'npassword',
-		];
-
-		foreach($settings as $key => $setting)
-		{
-
-			if(!array_key_exists($key, $protected))
-			{
-				$_settings[$key] = $setting;
-			}
-			
-			//processinam avatara
-			if($request->file('avatar'))
-			{
-
-				//isvalom direktorija.
-				
-				$files = Storage::disk('avatars')->files($user->id);
-
-				$filename = str_random(40);
-
-				if(!Storage::disk('public')->has('images/avatars/'.$user->id))
-				{
-					Storage::disk('public')->makeDirectory('images/avatars/'.$user->id);
-				}
-
-				$saved = Image::make($request->file('avatar'))->fit(150,150)->encode('png')->encode('png', 100)->save(public_path('images/avatars/'.$user->id.'/'.$filename.'.png'));
-
-				//jeigu nieko nepridirbo su failu
-				//istrinam pries tai buvusius failus
-				//ir nustatom nauja avatara
-				if($saved)
-				{
-					Storage::disk('avatars')->delete($files);
-					$user->image_url = $filename.'.png';
-					event(new AvatarWasUploaded('public/images/avatars/'.$user->id.'/'.$filename.'.png'));
-				}
-			}
-
-			if($key == 'password')
-			{
-				if(Hash::check($setting, $user->password))
-				{
-					$user->password = Hash::make($settings['npassword']);
-				}
-				else
-				{
-					flash()->error('Blogas slaptažodis!');
-					return redirect()->back();
-				}
-			}
-		}
-
-		//nelabai geras sprendimas
-		//veliau sugalvoti ka nors kito
-		unset($_settings['password']);
-		unset($_settings['npassword']);
-
-		$user->update($_settings);
-		$user->save();
-
-		flash()->success('Pakeitimai išsaugoti!');
-
-		return redirect()->back();
-	}
 
 	// Žinutės
 	public function messages() {
@@ -199,12 +122,6 @@ class UsersController extends Controller {
 		$followers = $user->followers()->latest()->paginate(100);
 
 		return view('user.followers', compact('user', 'followers'));
-	}
-
-	public function settings()
-	{
-		$user = Auth::user();
-		return view('user.settings', compact('user'));
 	}
 
 	public function changeUsername()

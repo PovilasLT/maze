@@ -205,7 +205,7 @@ return [
 		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 		'DaveJamesMiller\Breadcrumbs\ServiceProvider',
 		'Greggilbert\Recaptcha\RecaptchaServiceProvider',
-
+		Barryvdh\Debugbar\ServiceProvider::class,
 	],
 
 	/*
@@ -262,6 +262,7 @@ return [
 		'StatusComment'	=> 'maze\StatusComment',
 		'Mention'		=> 'maze\Mention',
 		'Notification'	=> 'maze\Notification',
+		'Vote'			=> 'maze\Vote',
 
 		//3rd party
 		'Flash' 		=> 'Laracasts\Flash\Flash',
@@ -271,6 +272,8 @@ return [
 		'Form'          => 'Illuminate\Html\FormFacade', 
 		'HTML'          => 'Illuminate\Html\HtmlFacade',
 		'Recaptcha' 	=> 'Greggilbert\Recaptcha\Facades\Recaptcha',
+		'Debugbar' => Barryvdh\Debugbar\Facade::class,
+
 	],
 
 ];

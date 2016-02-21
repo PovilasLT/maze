@@ -4,6 +4,7 @@ use maze\Reply;
 use maze\User;
 use maze\Topic;
 use maze\Vote;
+use maze\Streamer;
 use Illuminate\Support\Facades\Cache;
 
 class Statistics {
@@ -36,6 +37,30 @@ class Statistics {
 		$value = Cache::remember('statistics_karma', 5, function()
 				{
 				    return Vote::count();
+				});
+		return $value;
+	}
+
+	public static function streams() {
+		$value = Cache::remember('statistics_streams', 5, function()
+				{
+				    return Streamer::count();
+				});
+		return $value;
+	}
+
+	public static function online_streams() {
+		$value = Cache::remember('statistics_online_streams', 5, function()
+				{
+				    return Streamer::where('is_online', 1)->count();
+				});
+		return $value;
+	}
+
+	public static function watching_now() {
+		$value = Cache::remember('statistics_watching_now', 5, function()
+				{
+				    return Streamer::sum('current_viewers');
 				});
 		return $value;
 	}

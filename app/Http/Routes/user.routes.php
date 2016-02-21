@@ -30,17 +30,6 @@ Route::get('/zinutes', [
 	'uses' => 'UsersController@messages'
 ]);
 
-Route::get('/profilis/nustatymai', [
-	'as'	=> 'user.settings',
-	'uses'	=> 'UsersController@settings'
-]);
-
-
-Route::post('/profilis/nustatymai/issaugoti', [
-	'as'	=> 'user.settings.save',
-	'uses'	=> 'UsersController@update'
-]);
-
 Route::get('/slapyvardis/keisti', [
 	'as'	=> 'user.change.username',
 	'uses'	=> 'UsersController@changeUsername',

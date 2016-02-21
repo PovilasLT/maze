@@ -6,6 +6,11 @@
 
 @section('content')
 
+	<ul class="nav nav-tabs">
+	  <li role="presentation" class="active"><a href="?rodyti=populiariausi">Pagrindiniai</a></li>
+	  <li role="presentation"><a href="/tv">TV</a></li>
+	</ul>
+
 	<div class="panel panel-primary">
 		  <div class="panel-heading">
 				<h3 class="panel-title"><i class="fa fa-user"></i> Pagrindiniai Duomenys</h3>

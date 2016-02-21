@@ -12,4 +12,8 @@ class Vote extends Model {
 		'is'
 	];
 
+	public function votable() {
+		return $this->morphTo();
+	}
+
 }

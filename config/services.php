@@ -14,11 +14,6 @@ return [
 	|
 	*/
 
-	'mailgun' => [
-		'domain' => 'sandbox3c114f67499a4cecbda84350454e89fd.mailgun.org',
-		'secret' => 'key-6832325d0566e76ffc2841d3bd202144',
-	],
-
 	'mandrill' => [
 		'secret' => '',
 	],
@@ -33,12 +28,6 @@ return [
 		'model'  => 'maze\User',
 		'key' => '',
 		'secret' => '',
-	],
-
-	'pusher' => [
-		'public' => '06b235bec57c39a6b57d',
-		'secret' => '6680ad5752c70bcb5f09',
-		'app_id' => '137162'
 	],
 
 ];

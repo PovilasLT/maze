@@ -17,6 +17,10 @@ class Kernel extends ConsoleKernel {
 		'maze\Console\Commands\CleanReplies',
 		'maze\Console\Commands\RecountFollowers',
 		'maze\Console\Commands\EmailNews',
+		'maze\Console\Commands\StreamsUpdate',
+		'maze\Console\Commands\StreamsRegenerate',
+		'maze\Console\Commands\StreamsLoad',
+		'maze\Console\Commands\StreamsLoadAll',
 	];
 
 	/**
@@ -28,6 +32,8 @@ class Kernel extends ConsoleKernel {
 	protected function schedule(Schedule $schedule)
 	{
 		$schedule->command('topics:decay')->hourly();
+		$schedule->command('streamer:update')->everyMinute();
+		$schedule->command('streamer:regenerateimage')->weekly();
 	}
 
 }

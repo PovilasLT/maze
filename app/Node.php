@@ -6,6 +6,10 @@ use Stringy\StaticStringy as S;
 
 class Node extends Model {
 
+	protected $appends = [
+		'parent'
+	];
+
 	public function topics() {
 		return $this->hasMany('maze\Topic');
 	}
