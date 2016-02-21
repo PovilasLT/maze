@@ -36,7 +36,7 @@ class SettingsController extends Controller
                 'body' => 
                     'client_id='.urlencode(env('TWITCH_CLIENT_ID')).
                     '&client_secret='.urlencode(env('TWITCH_CLIENT_SECRET')).
-                    '&grant_type=authorization_code&redirect_uri=http://maze.app/nustatymai/tv&code='.$request->get('code')
+                    '&grant_type=authorization_code&redirect_uri=https://maze.lt/nustatymai/tv&code='.$request->get('code')
                     ,
             ]);
             $token = json_decode($response->getBody())->access_token;

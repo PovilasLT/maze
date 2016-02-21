@@ -20,7 +20,7 @@
 					<p>Norint, kad tavo kanalas atsirastų <a href="http://tv.maze.lt" target="_blank">Maze TV puslapyje</a>, privalai prisijungti naudodamas savo Twitch.tv paskyrą.</p>
 				</div>
 				<div class="col-md-6 text-center">
-					<a href="https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=3po29w3iv7lxnqt4fweykx0vlwfr92u&redirect_uri=http://maze.app/nustatymai/tv&scope=user_read" class="btn btn-lg btn-success"><i class="fa fa-twitch"></i> Prisijungti su Twitch</a>					
+					<a href="https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=3po29w3iv7lxnqt4fweykx0vlwfr92u&redirect_uri=https://maze.lt/nustatymai/tv&scope=user_read" class="btn btn-lg btn-success"><i class="fa fa-twitch"></i> Prisijungti su Twitch</a>					
 				</div>
 			</div>
 
