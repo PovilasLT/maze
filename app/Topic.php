@@ -8,6 +8,12 @@ use Stringy\StaticStringy as S;
 
 class Topic extends Model {
 
+	protected $morphClass = 'Topic';
+
+	protected $appends = [
+		'node',
+	];
+
 	protected $fillable = [
 		'node_id',
 		'title',
@@ -15,7 +21,6 @@ class Topic extends Model {
 		'body_original',
 		'user_id',
 		'type',
-		// 'updated_at',
 	];
 
 	use SoftDeletes;
@@ -42,12 +47,13 @@ class Topic extends Model {
 		return $this->morphMany('Notification', 'object');
 	}
 
-
 	public function mentions() {
 		return $this->morphMany('Mention', 'object');
 	}
 
-	//Scope
+	public function votes() {
+		return $this->morphMany('Vote', 'votable');
+	}
 
 	public function scopePopular($query) {
 		return $query->orderBy('weight', 'DESC')->latest();
@@ -61,7 +67,6 @@ class Topic extends Model {
 		$user = Auth::user();
 
 		if($user) {
-			// dd($user->frontPageNodes());
 			return $query->whereIn('node_id', $user->frontPageNodes());
 		}
 		else {
@@ -83,26 +88,32 @@ class Topic extends Model {
 	{
 		return $query->with(['replies' => function($replies_query) {
 			return $replies_query->orderBy('created_at', 'DESC');
-		}]);
+		}, 'replies.user']);
 	}
 
-	// Pagrindinio puslapio topicai
-	public static function frontPage($sort) {
+	//Pagrindinio puslapio topicai
+
+	public static function scopeFrontPage($query, $sort) {
 		if($sort == 'populiariausi' || !$sort)
 		{
-			$topics = Topic::games()->pinned()->popular()->withReplies()->paginate(20);
+			return $query->games()->pinned()->popular()->withReplies();
 		}
 		else
 		{
-			$topics = Topic::games()->pinned()->latest()->withReplies()->paginate(20);
+			return $query->games()->pinned()->latest()->withReplies();
 		}
-		return $topics;
+	}
+
+	public function scopeWithVotes($query) {
+		return $query->with(['votes' => function($votes) {
+			return $votes->where('user_id', Auth::user()->id);
+		}]);
 	}
 
 	// Sidebar skelbimai
 	public static function advertisements()
 	{
-		return self::where('type', 7)->orderBy('id', 'desc')->limit(config('app.advertisements'))->get();
+		return self::where('type_id', 7)->orderBy('id', 'desc')->limit(config('app.advertisements'))->get();
 	}
 
 	public function sameNodeTopics() {
@@ -167,9 +178,8 @@ class Topic extends Model {
 	public function voted($type) {
 		if(Auth::check())
 		{
-			$user = Auth::user();
-			$vote = Vote::where('votable_id', $this->id)->where('votable_type', 'Topic')->where('user_id', $user->id)->where('is', $type.'vote')->first();
-			if($vote)
+			$vote = $this->votes->first();
+			if($vote && $vote->is == $type.'vote')
 			{
 				return true;
 			}

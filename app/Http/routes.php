@@ -1,45 +1,49 @@
 ﻿<?php
 
-require_once('Routes/api.routes.php');
+Route::group(['domain' => 'maze.lt'], function () {
 
-//Bendriniai puslapiai
-require_once('Routes/page.routes.php');
+	//API
+	require_once('Routes/api.routes.php');
 
-//Autentikavimas
-require_once('Routes/auth.routes.php');
+	//Bendriniai puslapiai
+	require_once('Routes/page.routes.php');
 
-//Vartotojai
-require_once('Routes/user.routes.php');
+	//Autentikavimas
+	require_once('Routes/auth.routes.php');
 
-//Balsavimas
-require_once('Routes/vote.routes.php');
+	//Vartotojai
+	require_once('Routes/user.routes.php');
 
-//Nustatymai
-require_once('Routes/settings.routes.php');
+	//Balsavimas
+	require_once('Routes/vote.routes.php');
 
-//Temos
-require_once('Routes/topic.routes.php');
+	//Nustatymai
+	require_once('Routes/settings.routes.php');
 
-//Skiltys
-require_once('Routes/node.routes.php');
+	//Temos
+	require_once('Routes/topic.routes.php');
 
-//Pranesimai
-require_once('Routes/reply.routes.php');
+	//Skiltys
+	require_once('Routes/node.routes.php');
 
-//Busenos
-require_once('Routes/status.routes.php');
+	//Pranesimai
+	require_once('Routes/reply.routes.php');
 
-//Paieška
-require_once('Routes/search.routes.php');
+	//Busenos
+	require_once('Routes/status.routes.php');
 
-//AZ
-require_once('Routes/messenger.routes.php');
+	//Paieška
+	require_once('Routes/search.routes.php');
 
-//TV
-// require_once('Routes/tv.routes.php');
+	//AZ
+	require_once('Routes/messenger.routes.php');
 
-//Blog'ai
-// require_once('Routes/blog.routes.php');
+	//Senų route 301 redirectai.
+	require_once('Routes/legacy.routes.php');
 
-//Senų route 301 redirectai.
-require_once('Routes/legacy.routes.php');
+});
+
+Route::group(['domain' => 'tv.maze.lt'], function () {
+	//TV
+	require_once('Routes/tv.routes.php');
+});

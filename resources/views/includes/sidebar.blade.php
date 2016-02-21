@@ -7,7 +7,7 @@
 <button type="button" class="btn btn-success full-width new-topic"><i class="fa fa-plus-square"></i> Kurti naują temą</button>
 </a>
 @endif
-@include('panels.nodes')
+@include('panels.nodes', ['front_page_nodes' => Auth::check() ? Auth::user()->frontPageNodes()->toArray() : false ])
 @include('panels.facebook')
 @include('panels.statistics')
 @include('panels.advertisements')

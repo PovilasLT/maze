@@ -84,6 +84,12 @@ class EventServiceProvider extends ServiceProvider {
 		'maze\Events\AvatarWasUploaded' => [
 
 		],
+		'maze\Events\StreamerChannelWasUpdated' => [
+
+		],
+		'maze\Events\StreamerStreamWasUpdated' => [
+			
+		]
 	];
 
 	/**

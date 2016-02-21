@@ -1,6 +1,9 @@
 <?php
 
-Route::get('/', 'PageController@index');
+Route::get('/', [
+    'as' => 'page.index',
+    'uses' => 'PageController@index'
+]);
 
 Route::get('/etiketas', [
     'as' => 'page.rules',

@@ -23,6 +23,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $table = 'users';
 
+	protected $appends = [
+		'slug',
+	];
+
 	/**
 	 * The attributes that are mass assignable.
 	 *
@@ -95,6 +99,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	public function notifications() {
 		return $this->hasMany('maze\Notification');
+	}
+
+	public function streamer() {
+		return $this->hasOne('maze\Streamer');
 	}
 
 	public function jointConversations($user)
@@ -229,14 +237,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 			}
 		}
 		else {
-			$slugs = User::where('slug', $value)->count();
 			$slug = $value;
-			if($slugs > 0)
-			{
-				$slug = S::slugify($this->username).$this->id;
-				$this->slug = $slug;
-				$this->save();
-			}
 			return $slug;
 		}
 	}

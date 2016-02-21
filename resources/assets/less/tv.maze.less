@@ -1,0 +1,141 @@
+#tv {
+	
+	.main-content {
+		min-height: 90vh;
+	}
+
+	.responsive-embed-wrapper {
+	    padding-bottom: 60.8%;
+	}
+
+	.tv-no-border {
+		border-right: none;
+		.content-box {
+			padding-right: 15px;
+		}
+	}
+
+	#tv-sidebar {
+	    padding: 40px 15px 40px 40px;
+		border-left: 1px solid @maze-border-faded;
+	}
+
+	#stream-info {
+		padding: 25px 0;
+		.col-stream-meta {
+			height: 70px;
+			height: 100%;
+			.stream-meta {
+				text-align: right;
+				line-height: 70px;
+			}
+		}
+		.stream-avatar {
+			height: 70px;
+			width: 70px;
+		}
+		.media {
+			padding: 0;
+			.media-body {
+				padding: 0;
+				margin: 0;
+				border-bottom: none;
+			}
+			.stream-info-body p {
+				font-size: 16px;
+			}
+		}
+	}
+
+	.fa-green {
+		color: @maze-primary;
+	}
+
+	.fa-stream-meta {
+		padding: 5px;
+	}
+
+	hr.no-margin {
+		margin: 0;
+	}
+
+	.stream-box-container {
+		margin-bottom: 25px;
+		.stream-box {
+			.watch-now {
+				display: none;
+				position: absolute;
+			}
+			img {
+				width: 100%;
+			}
+			&:hover {
+				background: @maze-negative-bg;
+				.watch-now {
+					display: block;
+					color: white;
+				}
+				img {
+					opacity: 0.2;
+				}
+			}
+		}
+		.stream-bottom-info,
+		.stream-top-info {
+			background: @maze-negative-bg;
+			color: @maze-negative-text;
+			width: 100%;
+			padding: 5px;
+			overflow: hidden;
+		}
+	}
+
+	.tv-heading {
+		height: 70px;
+		line-height: 70px;
+		h2 {
+			margin: 0;
+			line-height: 70px;
+		}
+	}
+
+	.icon-square {
+		height: 20px;
+		width: 20px;
+		background-color: @maze-primary;
+		color: @maze-negative-text;
+	    padding: 3px 9px;
+	}
+
+	@media (min-width: @screen-sm-max)
+	{
+		.twitch-chat {
+			padding-left: 0;
+		}
+		.twitch-video {
+			padding-right: 0;
+		}
+	}
+
+	@media (max-width: @screen-md-max)
+	{
+		.responsive-embed-wrapper {
+			padding-bottom: 73.6%;
+		}
+	}
+
+	@media (max-width: @screen-sm-max)
+	{
+		.stream-meta {
+			text-align: left !important;
+		}
+	}
+
+	@media (min-width: @screen-xs-max)
+	{
+		.tv-more {
+			text-align: right;
+		}
+	}
+
+}

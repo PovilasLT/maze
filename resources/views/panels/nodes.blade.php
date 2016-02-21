@@ -24,7 +24,7 @@
           <li @if(isset($node) && $node->id == $child->id) class="active-node" @endif >
             <a href="{{ route('node.show', $child->slug) }}">{{ $child->name }}</a>
             @if(Auth::check())
-            <input @if(in_array($child->id, Auth::user()->frontPageNodes()->toArray())) checked @endif type="checkbox" data-node="{{ $child->id }}" class="toggle-front-page-node pull-left hidden">
+            <input @if(isset($front_page_nodes) && $front_page_nodes && in_array($child->id, $front_page_nodes)) checked @endif type="checkbox" data-node="{{ $child->id }}" class="toggle-front-page-node pull-left hidden">
             @endif
           </li>
         @endforeach

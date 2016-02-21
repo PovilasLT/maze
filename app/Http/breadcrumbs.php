@@ -3,7 +3,7 @@
 //Pagrindinis
 Breadcrumbs::register('home', function($breadcrumbs)
 {
-    $breadcrumbs->push('Pagrindinis', '/');
+    $breadcrumbs->push('Pagrindinis', route('page.index'));
 });
 
 //Statiniai puslapiai
@@ -121,10 +121,28 @@ Breadcrumbs::register('user.followers', function($breadcrumbs, $user)
     $breadcrumbs->push('Prenumeratoriai', route('user.followers', $user->slug));
 });
 
-Breadcrumbs::register('user.settings', function($breadcrumbs, $user)
+/**
+ *  Nustatymai
+ */
+
+Breadcrumbs::register('settings.user', function($breadcrumbs, $user)
 {
     $breadcrumbs->parent('user.show', $user);
-    $breadcrumbs->push('Nustatymai', route('user.settings', $user->slug));
+    $breadcrumbs->push('Vartotojo Nustatymai', route('settings.user', $user->slug));
+});
+
+
+Breadcrumbs::register('settings.tv', function($breadcrumbs, $user)
+{
+    $breadcrumbs->parent('user.show', $user);
+    $breadcrumbs->push('TV Nustatymai', route('settings.tv', $user->slug));
+});
+
+
+Breadcrumbs::register('settings.password', function($breadcrumbs, $user)
+{
+    $breadcrumbs->parent('user.show', $user);
+    $breadcrumbs->push('Slaptažodžio Nustatymai', route('settings.password', $user->slug));
 });
 
 //Busenu atnaujinimai
@@ -159,4 +177,24 @@ Breadcrumbs::register('search.results', function($breadcrumbs)
 {
     $breadcrumbs->parent('search.index');
     $breadcrumbs->push('Rezultatai', route('search.results'));
+});
+
+//TV
+
+Breadcrumbs::register('tv.index', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('TV', route('tv.index'));
+});
+
+Breadcrumbs::register('streamer.all', function($breadcrumbs)
+{
+    $breadcrumbs->parent('tv.index');
+    $breadcrumbs->push('Visi Streamai', route('streamer.all'));
+});
+
+Breadcrumbs::register('streamer.show', function($breadcrumbs, $streamer)
+{
+    $breadcrumbs->parent('tv.index');
+    $breadcrumbs->push(e($streamer->twitch).' Streamas', route('streamer.show', [$streamer->twitch]));
 });

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Markdown;
 
 use maze\Mention;
+use Auth;
 
 class PageController extends Controller {
 
@@ -16,7 +17,11 @@ class PageController extends Controller {
 	{
 		$sort = $request->input('rodyti');
 		$topics = Topic::frontPage($sort);
-
+		if(Auth::check())
+		{
+			$topics = $topics->withVotes();
+		}
+		$topics = $topics->with('node.parent')->paginate(20);
 		$advertisements = Topic::advertisements();
 
 		return view('pages.home', compact('topics', 'sort', 'advertisements'));

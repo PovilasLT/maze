@@ -116,7 +116,7 @@
 			<h3 id="pamirsau-slaptazodi">Pamiršau slaptažodį, ką daryti?</h3>
 			<p>Slaptažodį gali pasikeisti apsilankęs <a href="">čia</a>. Norint pakeisti slaptažodį, vartotojas privalo būti registruotas su <strong>veikiančiu</strong> el. pašto adresu.</p>
 			<h3 id="el-pasto-atnaujinimai">Aš nebenoriu gauti pranešimų į el. paštą, ką daryti?</h3>
-			<p>Norint atsisakyti el. laiškų siuntimo tau reikia prisijungti į savo vartotoją ir apsilankyti <a href="{{ route('user.settings') }}">nustatymų</a> skiltyje. Apačioje bus galima pasirinkti kokius laiškus gauti nori ir kokių laiškų siuntimą geriau išjungti.</p>
+			<p>Norint atsisakyti el. laiškų siuntimo tau reikia prisijungti į savo vartotoją ir apsilankyti <a href="{{ route('settings.user') }}">nustatymų</a> skiltyje. Apačioje bus galima pasirinkti kokius laiškus gauti nori ir kokių laiškų siuntimą geriau išjungti.</p>
 			<h3 id="parasas">Kodėl negaliu užsidėti parašo?</h3>
 			<p>Maze platforma nepalaiko parašų. Vietoje parašų, leidžiame lankytojams užsirašyti trumpą "apie mane" tekstą <a href="{{ route('user.profile') }}">profilyje</a>.</p>
 			<h3 id="neigiama-karma">Aš dedu visiems neigiamą karmą, kokios gali būti pasekmės?</h3>
