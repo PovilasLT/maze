@@ -47,7 +47,6 @@ class SettingsController extends Controller
             if($streamer)
             {
                 $streamer->twitch = e($twitch_user->display_name); 
-                $streamer->fullLoad();
             }
             else
             {
@@ -56,6 +55,8 @@ class SettingsController extends Controller
                     'twitch' => e($twitch_user->display_name),
                 ]);
             }
+
+            $streamer->fullLoad();
 
             flash()->success('Twitch kanalas sėkmingai užregistruotas!');
 
