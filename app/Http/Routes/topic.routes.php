@@ -60,6 +60,11 @@ Route::get('/tema/{id}/nuskandinti', [
 	'uses'	=> 'TopicsController@sink'
 ]);
 
+Route::get('/tema/{id}/atgaivinti', [
+	'as'	=> 'topic.unsink',
+	'uses'	=> 'TopicsController@unsink'
+]);
+
 Route::get('/tema/{slug}', [
 	'as' 	=> 'topic.show',
 	'uses'	=> 'TopicsController@show' 

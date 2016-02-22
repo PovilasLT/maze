@@ -13,8 +13,14 @@
 	  <ul class="dropdown-menu">
 	    <li><a href="{{ route('topic.pinLocal', [$topic->id]) }}"><i class="fa fa-thumb-tack"></i> Prisegti skiltyje</a></li>
 	    <li><a href="{{ route('topic.pinGlobal', [$topic->id]) }}"><i class="fa fa-bullhorn"></i> Prisegti globaliai</a></li>
-	    <li><a href="{{ route('topic.unpin', [$topic->id]) }}"><i class="fa fa-undo"></i> Atsegti</a></li>	    
-	    <li><a href="{{ route('topic.sink', [$topic->id]) }}"><i class="fa fa-anchor"></i> Nuskandinti</a></li>
+	    @if ($topic->order == 1 || $topic->pin_local == 1)
+	    	<li><a href="{{ route('topic.unpin', [$topic->id]) }}"><i class="fa fa-undo"></i> Atsegti</a></li>
+	    @endif
+	    @if ($topic->order == -1 && $topic->pin_local == -1)
+	    	<li><a href="{{ route('topic.unsink', [$topic->id]) }}"><i class="fa fa-anchor"></i> Atgaivinti</a></li>
+	    @else
+	    	<li><a href="{{ route('topic.sink', [$topic->id]) }}"><i class="fa fa-anchor"></i> Nuskandinti</a></li>
+	    @endif
 	    <li class="divider"></li>
 	    <li><a href="{{ route('topic.delete', [$topic->id]) }}"><i class="fa fa-trash"></i> Ištrinti</a></li>
 	    <li><a href="{{ route('topic.lock', [$topic->id]) }}"><i class="fa fa-lock"></i> Užrakinti</a></li>

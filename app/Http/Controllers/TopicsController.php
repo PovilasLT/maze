@@ -261,9 +261,19 @@ class TopicsController extends Controller {
 		return redirect()->back();
 	}
 
+	public function unsink(AdminTopic $request, $id)
+	{
+		$topic = $request->topic;
+		$topic->order = 0;
+		$topic->pin_local = 0;
+		$topic->save();
+		flash()->success('Tema sėkmingai atgaivinta!');
+
+		return redirect()->back();
+	}
+
 	public function sink(AdminTopic $request, $id)
 	{
-
 		$topic = $request->topic;
 		$topic->order = -1;
 		$topic->pin_local = -1;

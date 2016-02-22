@@ -21,6 +21,11 @@ Route::group(['before' => 'manage_topics'], function(){
         'uses' => 'TopicsController@destroy',
     ]);
 
+    Route::post('topics/unsink/{id}',  [
+        'as' => 'topics.unsink',
+        'uses' => 'TopicsController@unsink',
+    ]);
+
     Route::post('topics/sink/{id}',  [
         'as' => 'topics.sink',
         'uses' => 'TopicsController@sink',
