@@ -32,8 +32,8 @@ class Kernel extends ConsoleKernel {
 	protected function schedule(Schedule $schedule)
 	{
 		$schedule->command('topics:decay')->hourly();
-		$schedule->command('streamer:update')->everyMinute();
-		$schedule->command('streamer:regenerateimage')->weekly();
+		$schedule->command('streams:update')->everyMinute();
+		$schedule->command('streams:regenerateimage')->weekly();
 	}
 
 }
