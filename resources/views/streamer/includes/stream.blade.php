@@ -1,7 +1,7 @@
 <div class="row" id="stream">
 	<div class="col-md-8 no-padding twitch-video">
 		<div class="stream-container responsive-embed-wrapper">
-			<iframe src="https://player.twitch.tv/?channel={{ strtolower($streamer->twitch) }}" class="responsive-embed" frameborder="0" scrolling="no"></iframe>
+			<iframe src="https://player.twitch.tv/?channel={{ strtolower($streamer->twitch) }}" class="responsive-embed" frameborder="0" scrolling="no" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
 		</div>
 	</div>
 	<div class="col-md-4 visible-md visible-lg no-padding twitch-chat">
