@@ -1,11 +1,11 @@
 <div class="row" id="stream">
 	<div class="col-md-8 no-padding twitch-video">
 		<div class="stream-container responsive-embed-wrapper">
-			<iframe src="https://player.twitch.tv/?channel={{ $streamer->twitch }}" class="responsive-embed" frameborder="0" scrolling="no"></iframe>
+			<iframe src="https://player.twitch.tv/?channel={{ strtolower($streamer->twitch) }}" class="responsive-embed" frameborder="0" scrolling="no"></iframe>
 		</div>
 	</div>
 	<div class="col-md-4 visible-md visible-lg no-padding twitch-chat">
-		<iframe src="https://www.twitch.tv/{{ $streamer->twitch }}/chat?popout=" frameborder="0" scrolling="no" height="500" width="375"></iframe>
+		<iframe src="https://www.twitch.tv/{{ strtolower($streamer->twitch) }}/chat?popout=" frameborder="0" scrolling="no" height="500" width="375"></iframe>
 	</div>
 </div>
 <div class="row" id="stream-info">
