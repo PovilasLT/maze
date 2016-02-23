@@ -8,6 +8,7 @@
 
 		@yield('description')
 
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:600,600italic,300,300italic,400,400italic,700,700italic,800,800italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 		<link href="{{ elixir("css/style.css") }}" rel="stylesheet">
 
 		<!--[if lt IE 9]>
