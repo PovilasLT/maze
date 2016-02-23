@@ -75,7 +75,7 @@
 				@if($topic->order == 1)
 				<i class="fa fa-fw fa-bullhorn fa-fw" data-toggle="tooltip" title="Tema prisegta globaliai"></i>
 				@endif
-				@if($topic->pin_local)
+				@if($topic->pin_local == 1)
 				<i class="fa fa-fw fa-thumb-tack fa-fw" data-toggle="tooltip" title="Tema prisegta skiltyje"></i>
 				@endif
 			</span>
