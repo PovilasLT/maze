@@ -105,9 +105,7 @@ class Topic extends Model {
 	}
 
 	public function scopeWithVotes($query) {
-		return $query->with(['votes' => function($votes) {
-			return $votes->where('user_id', Auth::user()->id);
-		}]);
+		return $query->with(['votes']);
 	}
 
 	// Sidebar skelbimai
@@ -178,7 +176,7 @@ class Topic extends Model {
 	public function voted($type) {
 		if(Auth::check())
 		{
-			$vote = $this->votes->first();
+			$vote = $this->votes->where('user_id', Auth::user()->id)->first();
 			if($vote && $vote->is == $type.'vote')
 			{
 				return true;
