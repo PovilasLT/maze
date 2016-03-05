@@ -8,6 +8,7 @@ use maze\Http\Requests\UpdatePasswordSettings;
 use Illuminate\Http\Request;
 use maze\Http\Requests;
 use maze\Http\Controllers\Controller;
+use maze\Events\AvatarWasUploaded;
 use GuzzleHttp\Client;
 use Auth;
 use Image;
