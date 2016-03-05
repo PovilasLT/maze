@@ -10,6 +10,7 @@ use maze\Http\Requests;
 use maze\Http\Controllers\Controller;
 use GuzzleHttp\Client;
 use Auth;
+use Image;
 use maze\User;
 use Storage;
 use maze\Streamer;
