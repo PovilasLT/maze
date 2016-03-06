@@ -78,9 +78,6 @@ class UsersController extends Controller {
 		$sort = $request->input('rodyti', 'visi');
 
 		switch ($sort) {
-			case 'temos':
-				$items = $user->topics()->orderBy('created_at', 'DESC')->paginate('10');
-				break;
 			case 'pranesimai':
 				$items = $user->replies()->orderBy('created_at', 'DESC')->paginate('10');
 				break;
@@ -88,7 +85,7 @@ class UsersController extends Controller {
 				$items = $user->statuses()->orderBy('created_at', 'DESC')->paginate('10');
 				break;
 			default:
-				$items = $user->topics()->paginate('10');
+				$items = $user->topics()->latest()->paginate('10');
 				break;
 		}
 
