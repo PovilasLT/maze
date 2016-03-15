@@ -94,6 +94,7 @@
 			{!! $topic->body !!}
 			@include('topic.controls')
 		</div>
+		@include('topic.modals.delete')
 	</div>
 	
 	@if(!$topic->is_blocked)

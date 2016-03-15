@@ -4,7 +4,7 @@
 	  </div>
 	  <div class="panel-body">
 	  		@if(!$user->is_banned)
-	  		<a href="{{ route('user.disable.user', $user->id) }}" class="btn btn-danger user-button full-width"><i class="fa fa-ban"></i> Užblokuoti</a>
+	  		<a href='#' class='btn btn-danger user-button full-width' data-toggle='modal' data-target='#user-confirm-ban-{{ $user->id }}'><i class="fa fa-ban"></i> Užblokuoti</a>
 	  		@else
 			<a href="{{ route('user.disable.user', $user->id) }}" class="btn btn-success user-button full-width"><i class="fa fa-ban"></i> Atblokuoti</a>
 	  		@endif
@@ -15,3 +15,4 @@
 	  		@endif
 	  </div>
 </div>
+@include('user.modals.ban')
