@@ -6,11 +6,12 @@
         <h4 class="modal-title" id="myModalLabel">Vartotojo blokavimas</h4>
       </div>
       <div class="modal-body">
-        <p>Vartotojui bus uždrausta egzistuoti.</p>
+        <p>Ar tikrai norite užblokuoti vartotoją?</p>
+        <p>Jo egzistencija forume bus užblokuotai ir nebegalės atlikti jokių veiksmų.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Atšaukti</button>
-        <a href="{{ route('user.disable.user', $user->id) }}" class='btn btn-success'>Blokuoti</a>
+        <a href="{{ route('user.disable.user', $user->id) }}" class='btn btn-success'>Patvirtinti</a>
       </div>
     </div>
   </div>
