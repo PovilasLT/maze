@@ -20,6 +20,8 @@
 				@include('search.types.topic')
 			@elseif($type == 'status')
 				@include('search.types.status')
+			@elseif($type == 'stream')
+				@include('search.types.stream')
 			@endif
 		@endforeach
 	@else

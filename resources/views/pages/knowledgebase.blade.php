@@ -175,7 +175,13 @@
 			<ol>
 				<li>Diskusija - naudojama pažymėti paprastas diskusijas.</li>
 				<li>Klausimas - naudojama pažymėti temoms, kurios yra klausiamo pobūdžio. Temos autorius gali išrinkti tinkamą atsakymą ir jį pažymėti.</li>
+				<li>Konkursas - naudojamas pažymėti Jūsų vykdomą konkursą.</li>
+				<li>Video - naudojamas pažymtėi, kad temos pagrindas yra video.</li>
+				<li>Stream - naudojama pažymėti autoriaus stream.</li>
+				<li>Kviečiu žaisti - naudojamas ieškant narių žaidimams.</li>
+				<li>Pristatymas - naudojamas pristatyti žaidimų, technologijos ar kitas naujienas.</li>
 				<li>Pranešimas - naudojama tik maze komandos. Skirta informuoti bendruomenės narius.</li>
+
 			</ol>
 		</section>
         <section id="markdown">

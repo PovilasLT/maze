@@ -790,3 +790,35 @@ h1.media-heading {
 		padding-top: 185px;
 	}
 }
+
+
+.stream-box-container {
+		margin-bottom: 25px;
+		.stream-box {
+			.watch-now {
+				display: none;
+				position: absolute;
+			}
+			img {
+				width: 100%;
+			}
+			&:hover {
+				background: @maze-negative-bg;
+				.watch-now {
+					display: block;
+					color: white;
+				}
+				img {
+					opacity: 0.2;
+				}
+			}
+		}
+		.stream-bottom-info,
+		.stream-top-info {
+			background: @maze-negative-bg;
+			color: @maze-negative-text;
+			width: 100%;
+			padding: 5px;
+			overflow: hidden;
+		}
+	}
