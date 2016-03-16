@@ -1,6 +1,8 @@
 @extends('layouts.master')
 @section('breadcrumbs')
-	{!! Breadcrumbs::render('topic.show', $topic) !!}
+	<div class='no-emojify'>
+		{!! Breadcrumbs::render('topic.show', $topic) !!}
+	</div>
 @stop
 
 @section('title')
@@ -50,7 +52,7 @@
 	    	</a>
 		</div>
 		<div class="media-body">
-		<h1 class="media-heading">{{ $topic->title }}</h1>
+		<h1 class="media-heading no-emojify">{{ $topic->title }}</h1>
 		<p class="topic-meta-container">
 			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Tema Sukurta">
 				<i class="fa fa-clock-o"></i>
