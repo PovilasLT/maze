@@ -6,6 +6,7 @@ use maze\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use maze\Node;
 use maze\Topic;
+use Auth;
 
 class NodesController extends Controller {
 	/**
@@ -45,6 +46,14 @@ class NodesController extends Controller {
 		if($sort == 'populiariausi' || !$sort)
 		{
 			$topics = $topics->pinnedLocal()->popular()->withReplies();
+		}
+		else if($sort == 'mano-turinys')
+		{
+			$topics = $topics->pinnedLocal()->user(Auth::user())->latestPost()->withReplies();
+		}
+		else if($sort == 'naujausi-pranesimai')
+		{
+			$topics = $topics->pinnedLocal()->latestPost()->withReplies();
 		}
 		else
 		{
