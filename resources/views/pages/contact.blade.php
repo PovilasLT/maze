@@ -15,12 +15,13 @@ Susisiekti | @parent
 @section('content')
 	<h1>Susisiekti</h1>
 	<h2>Administratoriai</h2>
-	<p><b><a href="/vartotojas/edvinas">Edvinas</a></b> - {{ HTML::obfuscate('edvinasrp@gmail.com') }}</p>
-	<p><b><a href="/vartotojas/yiin">Yiin</a></b> - {{ HTML::obfuscate('stanislovas.janonis@gmail.com') }}</p>
-	<p><b><a href="/vartotojas/bebras">Bebras</a></b> - {{ HTML::obfuscate('justas963@gmail.com') }}</p>
+	<p><b><a href="/vartotojas/skepticalhippo1">Edvinas</a></b> - {{ HTML::obfuscate('edvinasrp@gmail.com') }}</p>
+	<p><b><a href="/vartotojas/yiin4">Yiin</a></b> - {{ HTML::obfuscate('stanislovas.janonis@gmail.com') }}</p>
+	<p><b><a href="/vartotojas/bebras3">Bebras</a></b> - {{ HTML::obfuscate('justas963@gmail.com') }}</p>
 	<h2>Moderatoriai</h2>
-	<p><b><a href="/vartotojas/codemenas">CodeMenas</a></b> - {{ HTML::obfuscate('sauliusaulys@gmail.com') }}</p>
-	<p><b><a href="/vartotojas/rin">Rin</a></b> - {{ HTML::obfuscate('arnasswede@gmail.com') }}</p>
+	<p><b><a href="/vartotojas/codemenas12">CodeMenas</a></b> - {{ HTML::obfuscate('sauliusaulys@gmail.com') }}</p>
+	<p><b><a href="/vartotojas/rin47">Rin</a></b> - {{ HTML::obfuscate('arnasswede@gmail.com') }}</p>
+	<p><b><a href="/vartotojas/farwalker2755">farwalker</a></b> - {{ HTML::obfuscate('saimon13@me.com') }}</p>
 @stop
 
 @section('sidebar')
