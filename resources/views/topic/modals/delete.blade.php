@@ -7,12 +7,13 @@
       </div>
       <div class="modal-body">
         <p>
-        	Ar tikrai norite ištrint temą?
+        	Ar tikrai norite pašalinti temą?
         </p>
+        <p>Primename, kad pašalinus temą jos atkurti nebus įmanoma. </p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Uždaryti</button>
-        <a href="{{ route('topic.delete', [$topic->id]) }}" class='btn btn-success'>Ištrinti</a>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Atšaukti</button>
+        <a href="{{ route('topic.delete', [$topic->id]) }}" class='btn btn-success'>Patvirtinti</a>
       </div>
     </div>
   </div>
