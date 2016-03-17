@@ -203,6 +203,11 @@
 			<p>Kodas: <code>![alt tekstas](http://i.imgur.com/fOmgQkv.png)</code></p>
 			{!! markdown('Rezultatas: ![alt tekstas](http://i.imgur.com/fOmgQkv.png)') !!}
 
+			<h4>Vaizdo įrašų įdėjimas</h4>
+			<p><i>Norint įdėti vaizdo įrašą būtina nurodyti tiesioginę nuorodą į vaizdo įrašą.</i></p>
+			<p>Kodas: <code>[alt tekstas](https://www.youtube.com/watch?v=KK9bwTlAvgo)</code></p>
+			{!! markdown('Rezultatas: [](https://www.youtube.com/watch?v=KK9bwTlAvgo)') !!}
+
 			<h4>Kodo Blokas (Code)</h4>
 			<p>Yra keletas skirtingų būdų formatuoti tekstą su markdown'u. Jeigu nori kodą suformatuoti viduryje teksto, naudok ` kabutes: <code>`var example = true`</code>.
 			Taip pat kodo pradžioje ir pabaigoje gali parašyti ``` arba ~~~:
@@ -235,8 +240,24 @@ if (isAwesome){
 ###### Čia yra h6 tag\'as')) !!}
 			
 			<h4>Citavimas (Blockquotes)</h4>
+			<p>Kodas: <code>>Citata</code></p>
+			{!! markdown('Rezultatas: >Citata') !!}
+
 			<h4>Sąrašai (Lists)</h4>
+			<p><i>Norint, kad veiktų sąrašas brūkšnelis turi būti pats pirmas eilutėje ir po jo privalo būti tarpas.</i></p>
+			<p>Kodas: <code>
+			- pirmas taškas
+			- antras taškas
+			</code></p>
+			{!! markdown('Rezultatas: 
+			- pirmas taškas
+			- antras taškas') !!}
+
 			<h4>Nuorodos (Links)</h4>
+			<p><i>Tekstas tarp [] bus pakeistas į kitą spalvą ir paspaudus ant jo nukreips vartotoją į nurodytą puslapį. Būtina įrašyti pilną nuorodą.</i></p>
+			<p>Kodas: <code>[alt tekstas](https://www.maze.lt)</code></p>
+			{!! markdown('Rezultatas: [alt tekstas](https://www.maze.lt') !!}
+
         </section>
         <section id="klaidos">
 			<h2>Klaidos</h2>
