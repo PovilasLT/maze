@@ -21,7 +21,7 @@ Susisiekti | @parent
 	<h2>Moderatoriai</h2>
 	<p><b><a href="/vartotojas/codemenas12">CodeMenas</a></b> - {{ HTML::obfuscate('sauliusaulys@gmail.com') }}</p>
 	<p><b><a href="/vartotojas/rin47">Rin</a></b> - {{ HTML::obfuscate('arnasswede@gmail.com') }}</p>
-	<p><b><a href="/vartotojas/farwalker2755">farwalker</a></b> - {{ HTML::obfuscate('saimon13@me.com') }}</p>
+	<p><b><a href="/vartotojas/farwalker2755">Sheriff</a></b> - {{ HTML::obfuscate('saimon13@me.com') }}</p>
 @stop
 
 @section('sidebar')

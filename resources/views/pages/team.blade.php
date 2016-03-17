@@ -21,7 +21,7 @@ Komanda | @parent
 	<h2>Moderatoriai</h2>
 	<p><b><a href="/vartotojas/codemenas12">CodeMenas</a></b></p>
 	<p><b><a href="/vartotojas/rin47">Rin</a></b></p>
-	<p><b><a href="/vartotojas/farwalker2755">farwalker</a></b></p>
+	<p><b><a href="/vartotojas/farwalker2755">Sheriff</a></b></p>
 @stop
 
 @section('sidebar')
