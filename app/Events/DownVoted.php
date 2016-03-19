@@ -39,8 +39,9 @@ class DownVoted extends Event
         }
 
         // Jeigu useris downvotina entity, kuriam prieš tai buvo davęs upvote
-        // atimam jo karmos tašką
-        if($double) {
+        // arba atšaukė savo seną upvote (ir todėl buvo iškviestas šis event)
+        // - atimam jo karmos tašką
+        if($double || ! Vote::find($vote->id)) {
             $user->karma_count -= 1;
             $user->save();
         }
