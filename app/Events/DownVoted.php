@@ -38,6 +38,14 @@ class DownVoted extends Event
             $this->topic = $entity;
         }
 
+        // Jeigu useris downvotina entity, kuriam prieš tai buvo davęs upvote
+        // atimam jo karmos tašką
+        if($double) {
+            $user->karma_count -= 1;
+            $user->save();
+        }
+
+        // ir žinau kad čia toks pat if'as, bet noriu skirtingą stuff laikyti atskirai
         if($double)
         {
             $this->karma = 1 * 2;

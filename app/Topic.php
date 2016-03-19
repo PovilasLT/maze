@@ -193,10 +193,10 @@ class Topic extends Model {
 			return '<span class="maze-label label-diskusija media-meta-element"><i class="fa fa-comments-o fa-fw"></i><span class="hidden-xs">Diskusija</span></span>';
 	}
 
-	public function voted($type) {
-		if(Auth::check())
+	public function voted($type, $user = null) {
+		if($user || $user = Auth::user())
 		{
-			$vote = $this->votes->where('user_id', Auth::user()->id)->first();
+			$vote = $this->votes->where('user_id', $user->id)->first();
 			if($vote && $vote->is == $type.'vote')
 			{
 				return true;
