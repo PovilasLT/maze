@@ -241,20 +241,19 @@ if (isAwesome){
 			
 			<h4>Citavimas (Blockquotes)</h4>
 			<p>Kodas: <code>>Citata</code></p>
-			{!! markdown('Rezultatas:
-
-			>Citata') !!}
+			<p>Rezultatas:</p> {!! markdown('>Citata'); !!}
 
 			<h4>Sąrašai (Lists)</h4>
 			<p><i>Norint, kad veiktų sąrašas brūkšnelis turi būti pats pirmas eilutėje ir po jo privalo būti tarpas.</i></p>
-			<p>Kodas:<code>
-
+			<p>Kodas: <code>
 			- pirmas taškas
 
 			- antras taškas
 			</code></p>
-			{!! markdown('Rezultatas:
+			<p>Rezultatas:</p> {!! markdown('- pirmas taškas
 
+			- antras taškas'); !!}
+			{!! markdown('Rezultatas:
 			- pirmas taškas
 
 			- antras taškas
