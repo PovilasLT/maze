@@ -241,22 +241,29 @@ if (isAwesome){
 			
 			<h4>Citavimas (Blockquotes)</h4>
 			<p>Kodas: <code>>Citata</code></p>
-			{!! markdown('Rezultatas: >Citata') !!}
+			{!! markdown('Rezultatas:
+
+			>Citata') !!}
 
 			<h4>Sąrašai (Lists)</h4>
 			<p><i>Norint, kad veiktų sąrašas brūkšnelis turi būti pats pirmas eilutėje ir po jo privalo būti tarpas.</i></p>
-			<p>Kodas: <code>
+			<p>Kodas:<code>
+
 			- pirmas taškas
+
 			- antras taškas
 			</code></p>
-			{!! markdown('Rezultatas: 
+			{!! markdown('Rezultatas:
+
 			- pirmas taškas
-			- antras taškas') !!}
+
+			- antras taškas
+			') !!}
 
 			<h4>Nuorodos (Links)</h4>
 			<p><i>Tekstas tarp [] bus pakeistas į kitą spalvą ir paspaudus ant jo nukreips vartotoją į nurodytą puslapį. Būtina įrašyti pilną nuorodą.</i></p>
 			<p>Kodas: <code>[alt tekstas](https://www.maze.lt)</code></p>
-			{!! markdown('Rezultatas: [alt tekstas](https://www.maze.lt') !!}
+			{!! markdown('Rezultatas: [alt tekstas](https://www.maze.lt)') !!}
 
         </section>
         <section id="klaidos">

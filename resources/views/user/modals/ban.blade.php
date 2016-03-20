@@ -7,7 +7,7 @@
       </div>
       <div class="modal-body">
         <p>Ar tikrai norite užblokuoti vartotoją?</p>
-        <p>Jo egzistencija forume bus užblokuota ir nebegalės atlikti jokių veiksmų.</p>
+        <p>Užblokuotas vartotojas nebegalės atlikti jokių veiskmų ar net prisijungti prie forumo.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Atšaukti</button>
