@@ -245,15 +245,10 @@ if (isAwesome){
 
 			<h4>Sąrašai (Lists)</h4>
 			<p><i>Norint, kad veiktų sąrašas brūkšnelis turi būti pats pirmas eilutėje ir po jo privalo būti tarpas.</i></p>
-			markdown('
-			```
-			-pirmas taskas
-			-antras taskas
-			```
-			');
+			<p>Kodas: <code>
+			- pirmas taškas
 			</code></p>
-			<p>Rezultatas:</p> {!! markdown('- pirmas taškas
-			- antras taškas'); !!}
+			<p>Rezultatas:</p> {!! markdown('- pirmas taškas'); !!}
 
 			<h4>Nuorodos (Links)</h4>
 			<p><i>Tekstas tarp [] bus pakeistas į kitą spalvą ir paspaudus ant jo nukreips vartotoją į nurodytą puslapį. Būtina įrašyti pilną nuorodą.</i></p>
