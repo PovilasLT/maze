@@ -3,31 +3,9 @@ var elixir = require('laravel-elixir');
 var imagemin = require('gulp-imagemin');
 
 elixir(function(mix) {
-
-    mix.less([
-        'app.less'
-    ], 'public/css/style.css');
-    mix.scripts([
-        '../jquery/dist/jquery.js',
-        '../bootstrap/dist/js/bootstrap.js',
-        '../emojify.js/dist/js/emojify.js',
-        'emoji.js',
-        'markdown_parser.js',
-        'markdown.js',
-        'lightbox.js',
-        'lightbox_call.js',
-        'textcomplete.js',
-        'autocomplete.js',
-        'jquery.autosize.min.js',
-        'autosize.js',
-        'vote.js',
-        'node_expand.js',
-        'highlight.js',
-        'main.js'
-    ], 'public/js/scripts.js');
-    mix.version(["public/css/style.css", "public/js/scripts.js"])
-    mix.copy('resources/assets/font-awesome/fonts', 'public/build/fonts')
-    mix.copy('resources/assets/bootstrap/fonts', 'public/build/fonts');
+    mix.less('app.less');
+    mix.browserify('app.js', 'public/js/app.js');
+    mix.version(["public/css/app.css", "public/js/app.js"]).copy('resources/assets/fonts', 'public/build/fonts')
 });
 
 gulp.task('imagemin', function() {
