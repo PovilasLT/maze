@@ -18,10 +18,10 @@ class FrontPageNode extends Model
         $nodes = [];
 
         // Priskiriam default subscribe kategorijas
-        foreach(Config::get('app.front_page_nodes') as $node) {
+        foreach(Node::get() as $node) {
             $nodes [] = [
                 'user_id' => $user->id,
-                'node_id' => $node
+                'node_id' => $node->id
             ];
         }
         self::insert($nodes);
