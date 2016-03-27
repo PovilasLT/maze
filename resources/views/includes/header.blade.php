@@ -34,6 +34,8 @@
 							<li><a href="{{ route('page.index') }}">Forumas</a></li>
 							<li><a href="{{ route('tv.index') }}">TV <span class="label maze-label label-video">Nauja!</span></a></li>
 							<li><a href="{{ route('search.index') }}">Paieška</a></li>
+							<li><a href="{{ route('page.rules') }}">Etiketas</a></li>
+							<li><a href="{{ route('page.knowledgebase') }}">Žinynas</a></li>
 						</ul>
 					</div>
 				</div>
