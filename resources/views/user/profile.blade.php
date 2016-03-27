@@ -7,16 +7,19 @@
 @section('content')
 	@include('status.forms.create')
 	<ul class="nav nav-tabs">
-	  <li role="presentation"@if($sort == 'sekamieji' || !$sort) class="active" @endif><a href="?rodyti=sekamieji">Sekamieji</a></li>
-	  <li role="presentation"@if($sort == 'visi') class="active" @endif><a href="?rodyti=visi">Būsenų atnaujinimai</a></li>
+	  <li role="presentation"@if($sort == 'mano' || !$sort) class="active" @endif><a href="?rodyti=mano">Mano</a></li>
+	  <li role="presentation"@if($sort == 'sekamieji') class="active" @endif><a href="?rodyti=sekamieji">Sekamieji</a></li>
+	  <li role="presentation"@if($sort == 'busenos-atnaujinimai') class="active" @endif><a href="?rodyti=busenos-atnaujinimai">Visi Būsenų atnaujinimai</a></li>
 	</ul>
-	@if(!$sort | $sort == 'sekamieji')
+	@if(!$sort | $sort == 'sekamieji' || $sort == 'mano')
 	<ul class="nav nav-pills filter">
-	  <li role="presentation"><a href="?rodyti=sekamieji&subsort=visi">Visi</a></li>
-	  <li role="presentation"><a href="?rodyti=sekamieji&subsort=paminejimai">Paminėjimai</a></li>
-	  <li role="presentation"><a href="?rodyti=sekamieji&subsort=temos">Temos</a></li>
-	  <li role="presentation"><a href="?rodyti=sekamieji&subsort=pranesimai">Pranešimai</a></li>
-	  <li role="presentation"><a href="?rodyti=sekamieji&subsort=busenos">Būsenų atnaujinimai</a></li>
+	  <li role="presentation"@if($subsort == "visi" || !$subsort) class='active' @endif><a href="?rodyti={{ $sort or 'mano' }}&subrodyti=visi">Visi</a></li>
+	  <li role="presentation"@if($subsort == 'temos') class="active" @endif><a href="?rodyti={{ $sort or 'mano' }}&subrodyti=temos">Temos</a></li>
+	  <li role="presentation"@if($subsort == 'pranesimai') class="active" @endif><a href="?rodyti={{ $sort or 'mano' }}&subrodyti=pranesimai">Pranešimai</a></li>
+	  <li role="presentation"@if($subsort == 'busenos-atnaujinimai') class="active" @endif><a href="?rodyti={{ $sort or 'mano' }}&subrodyti=busenos-atnaujinimai">Būsenų atnaujinimai</a></li>
+	  @if($sort != 'sekamieji')
+	  <li role="presentation"@if($subsort == 'paminejimai') class="active" @endif><a href="?rodyti={{ $sort or 'mano' }}&subrodyti=paminejimai">Paminėjimai</a></li>
+	  @endif
 	</ul>
 	@endif
 	<div class="notification-list">

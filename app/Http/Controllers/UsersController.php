@@ -40,8 +40,54 @@ class UsersController extends Controller {
 		$user->save();
 		
 		$sort = $request->input('rodyti');
-		$subsort = $request->input('subsort');
+		$subsort = $request->input('subrodyti');
 
+
+		if(!$sort || $sort == 'mano')
+		{
+			$items = Notification::where('user_id', '=', $user->id);
+			switch($subsort) {
+				case 'temos':
+					$items = $items->has('topic')->latest()->paginate('10');
+					break;
+				case 'pranesimai':
+					$items = $items->has('reply')->latest()->paginate('10');
+					break;
+				case 'busenos-atnaujinimai':
+					$items = $items->has('status')->latest()->paginate('10');
+					break;
+				case 'paminejimai':
+					$items = $items->has('mention')->latest()->paginate('10');
+					break;
+				default:
+					$items = $items->hasAll()->with('object')->latest()->paginate('10');
+					break;
+			}
+		}
+		else if($sort == 'sekamieji')
+		{
+			$items = Notification::following();
+			switch($subsort) {
+				case 'temos':
+					$items = $items->has('topic')->latest()->paginate('10');
+					break;
+				case 'pranesimai':
+					$items = $items->has('reply')->latest()->paginate('10');
+					break;
+				case 'busenos-atnaujinimai':
+					$items = $items->has('status')->latest()->paginate('10');
+					break;
+				default:
+					$items = $items->hasAll()->with('object')->latest()->paginate('10');
+					break;
+			}
+		}
+		else if($sort == 'busenos-atnaujinimai')
+		{
+			$items = Status::latest()->paginate('10');
+		}
+		
+		/*
 		if(!$sort || $sort == 'sekamieji')
 		{
 			switch ($subsort) {
@@ -66,6 +112,7 @@ class UsersController extends Controller {
 		{
 			$items = Status::latest()->paginate('10');
 		}
+		*/
 
 		// dd(\DB::getQueryLog());
 

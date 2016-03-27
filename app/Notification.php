@@ -35,7 +35,7 @@ class Notification extends Model {
 
 	public function mention()
 	{
-		return $this->belongsTo('Mention', 'object_id', 'id')->where('object_type', 'Mention');
+		return $this->belongsTo('Mention', 'object_id', 'id')->whereRaw("notifications.object_type = 'Mention'");
 	}
 
 	public function status()
