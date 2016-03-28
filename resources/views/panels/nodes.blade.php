@@ -4,6 +4,9 @@
       Forumo Skiltys
       @if(Auth::check())
         <a href><i class="fa fa-pencil-square-o pull-right edit-front-page-nodes"></i></a>
+        @if(Auth::user()->can('manage_nodes'))
+        <a href="{{ route('node.create') }}"><i class="glyphicon glyphicon-plus pull-right"></i></a>
+        @endif
       @endif
     </h3>
   </div>
