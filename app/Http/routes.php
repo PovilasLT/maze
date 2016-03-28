@@ -38,6 +38,9 @@ Route::group(['domain' => env('DOMAIN', 'maze.lt')], function () {
 	//AZ
 	require_once('Routes/messenger.routes.php');
 
+	//Pranesimu valdymas
+	require_once('Routes/notification.routes.php');
+
 	//Senų route 301 redirectai.
 	require_once('Routes/legacy.routes.php');
 
