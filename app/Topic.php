@@ -70,7 +70,7 @@ class Topic extends Model {
 			return $query->whereIn('node_id', $user->frontPageNodes());
 		}
 		else {
-			return $query->whereIn('node_id', Config::get('app.front_page_nodes'));
+			return $query->whereIn('node_id', Node::frontPageNodes());
 		}
 	}
 
@@ -111,9 +111,9 @@ class Topic extends Model {
 	}
 
 	// Sidebar skelbimai
-	public static function advertisements()
+	public static function scopeMarket($query)
 	{
-		return self::where('type', 7)->orderBy('id', 'desc')->limit(config('app.advertisements'))->get();
+		return $query->whereIn('node_id', Node::marketNodes())->orderBy('id', 'desc')->limit(config('app.advertisements'));
 	}
 
 	public function sameNodeTopics() {
