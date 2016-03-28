@@ -143,9 +143,6 @@ class TopicsController extends Controller {
 			// dd(Auth::user()->notifications()->whereIn('object_id', $replies)->where('object_type', 'reply')->get());
 
 			Auth::user()->notifications()->whereIn('object_id', $replies)->where('object_type', 'reply')->update(['read_at' => new \DateTime()]);
-
-			//bust da cache
-			Cache::forget(Auth::user()->id.'_notification_count');
 		}
 
 		//padidina view counteri.
