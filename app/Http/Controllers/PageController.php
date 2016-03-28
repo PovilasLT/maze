@@ -22,7 +22,7 @@ class PageController extends Controller {
 			$topics = $topics->withVotes();
 		}
 		$topics = $topics->with('node.parent')->paginate(20);
-		$advertisements = Topic::advertisements();
+		$advertisements = Topic::market()->get();
 
 		return view('pages.home', compact('topics', 'sort', 'advertisements'));
 	}
