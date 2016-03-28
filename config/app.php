@@ -40,6 +40,7 @@ return [
 		'80',
 		'63',
 		'59',
+		'81',
 	],
 
 	//Svorio paskirstymas
@@ -265,6 +266,7 @@ return [
 		'Mention'		=> 'maze\Mention',
 		'Notification'	=> 'maze\Notification',
 		'Vote'			=> 'maze\Vote',
+		'Streamer' 		=> 'maze\Streamer',
 
 		//3rd party
 		'Flash' 		=> 'Laracasts\Flash\Flash',
