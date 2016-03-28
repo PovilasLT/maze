@@ -32,12 +32,7 @@ class UsersController extends Controller {
 	//Profilis
 
 	public function profile(UserProfile $request) {
-		$user = Auth::user();
-
-		//atnaujinam notificationu perskaitymo data
-		$user->notifications_read = new \DateTime();
-		$user->notification_count = 0;
-		$user->save();
+		$user = Auth::user();	
 		
 		$sort = $request->input('rodyti');
 		$subsort = $request->input('subsort');
@@ -88,7 +83,7 @@ class UsersController extends Controller {
 				$items = $user->statuses()->orderBy('created_at', 'DESC')->paginate('10');
 				break;
 			default:
-				$items = $user->topics()->paginate('10');
+				$items = $user->topics()->orderBy('created_at', 'DESC')->paginate('10');
 				break;
 		}
 
