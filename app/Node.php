@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use maze\Node;
+use Cache;
 use Stringy\StaticStringy as S;
 
 class Node extends Model {
@@ -55,4 +56,21 @@ class Node extends Model {
 			return $value;
 		}
 	}
+
+	public static function frontPageNodes() 
+	{	
+		$nodes = Cache::rememberForever('frontpage_nodes', function() {
+			return self::where('is_frontpage', true)->lists('id');
+		});
+		return $nodes;
+	}
+
+	public static function marketNodes()
+	{
+		$nodes = Cache::rememberForever('market_nodes', function() {
+			return self::where('is_market', true)->lists('id');
+		});
+		return $nodes;
+	}
+
 }
