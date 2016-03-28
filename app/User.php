@@ -11,6 +11,7 @@ use Auth;
 use Stringy\StaticStringy as S;
 use Cache;
 use Carbon\Carbon;
+use Redis;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
@@ -112,6 +113,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	public function frontPageNodes() {
 		return $this->hasMany('maze\FrontPageNode')->lists('node_id');
+	}
+
+	public function quickNotifications() {
+		return $this->notifications()->whereNotIn('object_type', ['status', 'status_comment'])
+		->where('from_id', '<>', $this->id)
+		->orderBy('created_at', 'DESC')
+		->limit(5)->get();
 	}
 
 	//Patikrina ar User jau balsavo uz tam tikra turini.
@@ -371,6 +379,21 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 			$follower->delete();
 			return false;
 		}
+	}
+
+	/**
+	 * Patikrina ar user yra online.
+	 * Kreipiasi į Redis ir klausia, ar dabartinis user yra online_users sąraše.
+	 * @return [int] 0|1
+	 */
+	public function getIsOnlineAttribute() 
+	{
+		return Redis::sismember('online_users', $this->secret);
+	}
+
+	public function getNotificationCountAttribute()
+	{
+		return $this->notifications()->where('from_id', '<>', $this->id)->where('is_read', false)->count();
 	}
 	
 }
