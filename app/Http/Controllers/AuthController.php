@@ -71,8 +71,9 @@ class AuthController extends Controller {
 			'email'			=> $request->input('email'),
 			'password'		=> Hash::make($request->input('password'))
 		]);
-
+		$user->secret = $this->generateSecret($user->id);
 		$user->attachRole(Role::where('name', '=', 'Narys')->get()->first());
+		$user->save();
 
 		event(new UserWasCreated($user));
 
@@ -85,6 +86,15 @@ class AuthController extends Controller {
 		Auth::logout();
 		flash()->success('Tu sėkmingai atsijungei!');
 		return redirect('/');
+	}
+
+	private function generateSecret($id) {
+		$secret = str_random(50).$id;
+        while(User::where('secret', $secret)->count())
+        {
+            $secret = str_random(50).$id;
+        }
+        return $secret;
 	}
 
 }
