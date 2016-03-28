@@ -99,7 +99,7 @@ class Notification extends Model {
 	}
 
 	public function scopeLatest($query) {
-		return $query->orderBy('created_at', 'DESC');
+		return $query->orderBy('created_at', 'DESC')->orderBy('is_read', 'DESC');
 	}
 
 	public function scopeMentions($query) {

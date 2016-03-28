@@ -1,4 +1,4 @@
-<div class="notification-show @if(!$item->is_read) notification-unread @endif media">
+<div class="notification-show notification-item-{{ $item->id }} @if(!$item->is_read) notification-unread @endif media">
 	<a class="pull-left" href="{{ $item->fromUser->url }}">
 		<img class="media-object avatar-object" src="{{ $item->fromUser->avatar }}" alt="Image">
 	</a>

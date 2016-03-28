@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/pranesimai/zymeti/pranesima/{id}', [
+Route::get('/pranesimai/zymeti/pranesimas/{id}', [
 	'as' 	=> 'notification.mark',
 	'uses'	=> 'NotificationsController@markAsRead'
 ]);

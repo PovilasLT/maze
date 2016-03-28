@@ -26,11 +26,20 @@
 						<div class="col-xs-6 text-right"><span class="like-link action-mark-read-notifications"><i class="fa fa-check" data-toggle="tooltip" data-placement="top" title="Žymėti visus perskaitytais"></i></span></div>
 					</div>
 				</div>
-				<div class="notification-list">
+				<div class="notification-list quick-notification-list">
 					@foreach(Auth::user()->quickNotifications() as $notification)
-						<div class="media notification-list-item">
+						<div 
+						class="
+						media 
+						notification-list-item
+						notification-item-{{ $notification->id }}
+						@if(!$notification->is_read)
+						notification-unread
+						@endif
+						"
+						>
 							<a class="pull-left" href="{{ $notification->fromUser->url }}">
-								<img class="media-object small-avatar" src="{{ $notification->fromUser->avatar }}" alt="Image">
+								<img class="media-object small-avatar" src="{{ $notification->fromUser->avatar }}">
 							</a>
 							<div class="media-body">
 								<p>
