@@ -7,6 +7,15 @@
 p {
 	word-wrap: break-word;
 	word-break: break-word;
+	img {
+		max-width: 100%;
+	}
+}
+
+#content {
+	.container {
+		padding-bottom: 40px;
+	}
 }
 
 .replies-wrapper {
@@ -102,6 +111,14 @@ footer {
 		color: #68696a;
 		font-size: 12px;
 	}
+	.panel {
+		h4 {
+			color: @maze-negative-text;
+		}
+	}
+	.panel-heading {
+		border-bottom: none !important;
+	}
 }
 
 //Generic Stuff
@@ -141,7 +158,7 @@ ul {
 	border-bottom: 1px solid @maze-border-faded;
 
 	.fa { 
-		margin-right: 10px;
+		margin: 0 5px;
 	}
 	img.avatar {
 		border-radius: 90px;
@@ -553,12 +570,12 @@ h1.media-heading {
 	cursor: pointer;
 }
 
-#fb-container {
+#fb-container,
+#steam-container {
     background: #3b5998;
     color: #fff;
     font-size: 21px;
     padding: 10px;
-    text-align: center;
     font-weight: bold;
     display: block;
     &:hover {
@@ -568,6 +585,10 @@ h1.media-heading {
 	.fa {
 		color: #fff;
 	}
+}
+
+#steam-container {
+	background: #000000;
 }
 
 //Offcanvas
@@ -658,11 +679,16 @@ h1.media-heading {
 }
 
 .create-form-wrapper {
-	height: 160px;
+	z-index: 1;
+	
+	&.affix {
+		position: fixed;
+	    bottom: -1px;
+	}
 }
 
-.create-reply-textarea {
-	height: 62px !important;
+.reply-form-fix {
+	padding-top: 20px;
 }
 
 .post-show:nth-child(n+2) {
@@ -711,6 +737,59 @@ h1.media-heading {
 
 .alert a {
 	color: white;
+}
+
+.small-text {
+	font-size: 12px;
+}
+
+#notifications-container {
+	display: none;
+}
+
+.notifications-helper {
+	border-top: 1px solid @maze-border;
+	margin: 0 -14px;
+	padding-top: 9px;
+}
+
+.small-avatar {
+	border-radius: 90px;
+	width: 40px;
+	height: 40px;
+}
+
+.notification-list-item {
+	border-bottom: 1px solid @maze-border-faded;
+	p {
+		margin-bottom: 0;
+	}
+	.media-body {
+		border-bottom: none;
+	}
+}
+
+.notification-list-controls {
+	line-height: 40px;
+}
+
+.notification-controls-wrapper {
+	border-bottom: 1px solid @maze-border;
+	padding-bottom: 9px;
+	padding: 0 14px 9px 14px;
+}
+
+.like-link {
+	color: @maze-primary;
+	cursor: pointer;
+	&:hover {
+		color: @maze-negative-bg;
+	}
+}
+
+.notification-unread {
+    border-left: 2px solid @maze-primary;
+    padding-left: 10px !important;
 }
 
 @media (min-width: 1200px) {
@@ -781,9 +860,6 @@ h1.media-heading {
 }
 
 @media (max-width: 430px) {
-	.create-form-wrapper {
-		height: 185px;
-	}
 
 	.post-show:nth-child(n+2) {
 		margin-top: -185px;

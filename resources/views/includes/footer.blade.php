@@ -1,32 +1,15 @@
+		</div>
 		<footer>
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-10">
-						<h4>Apie maze</h4>
-						<p>Maze yra platforma, kurios tikslas yra suteikti "geimeriams" viską, ko gali reikėti propoguojant šį pomėgį. Vienas iš projekto siekių yra išlaikyti kompiuterinių žaidimų žaidėjus įvykių centre, suteikti jiems sąlygas diskutuoti, tobulėti, įgyti naujus įgūdžius, mokytis ir mokyti kitus.</p>
+					<div class="col-md-4">
+						@include('panels.footer.statistics')
 					</div>
-					<div class="col-lg-2">
-						<h4>Nuorodos</h4>
-						<ul>
-							<li>
-								<a href="{{ route('page.team') }}">Komanda</a>
-							</li>
-							<li>
-								<a href="{{ route('page.about') }}">Apie</a>
-							</li>
-							<li>
-								<a href="{{ route('node.show', 'naujienos') }}">Naujienos</a>
-							</li>
-							<li>
-								<a href="{{ route('page.contact') }}">Susisiekti</a>
-							</li>
-							<li>
-								<a href="{{ route('page.knowledgebase') }}">Žinynas</a>
-							</li>
-							<li>
-								<a href="{{ route('page.rules') }}">Etiketas</a>
-							</li>
-						</ul>
+					<div class="col-md-4">
+						@include('panels.footer.links')
+					</div>
+					<div class="col-md-4">
+						@include('panels.footer.social')
 					</div>
 				</div>
 				<div class="row">
@@ -41,7 +24,7 @@
 				</div>
 			</div>
 		</footer>
-		<script src="{{ elixir("js/scripts.js") }}"></script>
+		<script src="{{ elixir("js/app.js") }}"></script>
 		@yield('scripts')
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

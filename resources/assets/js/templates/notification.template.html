@@ -1,0 +1,11 @@
+<div class="media notification-list-item">
+	<a class="pull-left" href="<%- notification.fromUser.url %>">
+		<img class="media-object small-avatar" src="<%- notification.fromUser.avatar %>" alt="Image">
+	</a>
+	<div class="media-body">
+		<p>
+			<a href="<%- notification.fromUser.url %>"><%- notification.fromUser.url %></a>
+			<%= notification.body %>
+		</p>
+	</div>
+</div>

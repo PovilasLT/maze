@@ -12,7 +12,7 @@
 @stop
 
 @section('content')
-	<div class="media topic-show">
+	<div class="media topic-show topic-item-container">
 		<div class="votes @if(Auth::check() && !Auth::user()->can_vote) votes-disabled @endif pull-left" id="votes-{{ $topic->id }}">
 			<div class="upvote-container vote-action" type="tema" vote="upvote" id="{{ $topic->id }}">
 				@if(!$topic->voted('up'))
@@ -90,7 +90,7 @@
 	</div>
 	
 	<div class="row">
-		<div class="col-lg-12 topic-content lightbox">
+		<div class="col-lg-12 topic-content lightbox emojify">
 			{!! $topic->body !!}
 			@include('topic.controls')
 		</div>
@@ -115,6 +115,8 @@
 			<p class="text-center">Šita tema neturi atsakymų! Būk pirmas!</p>
 		@endif
 	</div>
+
+	<div class="reply-form-fix"></div>
 
 @stop
 

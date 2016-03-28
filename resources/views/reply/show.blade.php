@@ -1,7 +1,7 @@
 @if(!$reply->is_answer)
 <div class="media post-show" id="pranesimas-{{ $reply->id }}">
 @else
-<div class="media post-show post-answer" id="pranesimas-{{ $reply->id }}">
+<div class="media post-show post-answer emojify" id="pranesimas-{{ $reply->id }}">
 @endif
   <div class="votes reply-votes @if(Auth::check() && !Auth::user()->can_vote) votes-disabled @endif pull-left" id="votes-{{ $reply->id }}">
     <div class="upvote-container vote-action" type="pranesimas" vote="upvote" id="{{ $reply->id }}">

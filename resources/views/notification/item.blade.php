@@ -1,4 +1,4 @@
-<div class="notification-show media">
+<div class="notification-show @if(!$item->is_read) notification-unread @endif media">
 	<a class="pull-left" href="{{ $item->fromUser->url }}">
 		<img class="media-object avatar-object" src="{{ $item->fromUser->avatar }}" alt="Image">
 	</a>
@@ -9,6 +9,15 @@
 		@if(Auth::check() && $item->object_type == 'Status')
 			@include('status.controls', ['status' => $item->object])
 		@endif
+		<span class="pull-right">
+		@if(!$item->is_read)
+			<span 
+			class="like-link action-mark-read-notification" 
+			data-id="{{ $item->id }}"
+			data-toggle="tooltip" title="Žymėti Perskaitytą"
+			><i class="fa fa-check"></i></span>
+		@endif
+		</span>
 	</h4>
 		@if($item->object_type != 'Status')
 		<p class="normal-body">{!! $item->notification !!}</p>
