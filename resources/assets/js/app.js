@@ -5,14 +5,9 @@ var init = require('./init');
 init();
 
 /**
- * Globalus socket.
- */
-var Socket = require('./services/Socket');
-global.socket = new Socket(token);
-
-/**
  * Priklausomybės.
  */
+var _ = require('underscore');
 var Backbone = require('backbone');
 var Sidebar = require('./views/Sidebar');
 var Status = require('./views/Status');
@@ -21,6 +16,19 @@ var Voter = require('./services/Voter');
 var Notifications = require('./views/Notifications');
 var Progress = require('nprogress');
 var Pjax = require('pjax');
+
+/**
+ * Globalus socket.
+ */
+var Socket = require('./services/Socket');
+global.socket = new Socket(token);
+
+/**
+ * Globalus eventų kanalas.
+ */
+global.events = {};
+_.extend(events, Backbone.Events);
+
 /**
  * Pagrindinis app.
  * Naudojamas paprastas Backbone View, kaip containeris visai aplikacijai.
