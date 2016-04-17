@@ -41,7 +41,9 @@ class MessageWasSent extends Event implements ShouldBroadcast {
     		'data' => [
                 'body'              => $this->view,
                 'conversation_id'   => $this->conversation->id,
-                'message_id'        => $this->message->id
+                'message_id'        => $this->message->id,
+                'user_online'       => $this->message->user->is_online,
+                'user_id'           => $this->message->user_id,
             ]
     	];
     }

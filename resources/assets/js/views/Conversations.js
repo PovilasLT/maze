@@ -40,6 +40,11 @@ var Conversations = Backbone.View.extend({
 			var $indicator = this.$el.find('#conversation-indicator-'+data.conversation_id);
 			$indicator.find('span').attr('title', 'Yra naujų pranešimų').attr('data-original-title', 'Yra naujų pranešimų').data('original-title', 'Yra naujų pranešimų');
 			$indicator.find('i').removeClass('fa-comments-o').removeClass('fa-grey').addClass('fa-comments').addClass('fa-primary');
+
+			if(data.user_online) {
+				var $online = this.$el.find('#user-status-'+data.user_id);
+				$online.removeClass('fa-circle-o').removeClass('fa-grey').addClass('fa-circle').addClass('fa-primary').attr('data-original-title', 'Prisijungęs').data('original-title', 'Prisijungęs');
+			}
 		}
 	}
 });
