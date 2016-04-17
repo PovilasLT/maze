@@ -41,6 +41,7 @@
   </div>
   <div class="media-body">
     <h4 class="media-heading">
+      @include('includes.tv_icon', ['user' => $reply->user])
       <a href="{{ route('user.show', $reply->user->slug) }}" class="author">{{ $reply->user->username }}</a>
       <small class="date-when">{{ $reply->created_at->diffForHumans() }}</small>
       @include('reply.controls')

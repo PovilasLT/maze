@@ -17,42 +17,23 @@ var Notifications = Backbone.View.extend({
 	},
 
 	_markAsRead: function(e) {
-		var self = this;
-
 		e.preventDefault();
 		var $target = $(e.currentTarget);		
 		NotificationsService.markAsRead($target.data('id')).success(function() {
 			$('.notification-item-'+$target.data('id')).removeClass('notification-unread');
-			var $container = $('.user-notifications-icon span');
-			var currentCount = $container.text();
-			var shouldBe = parseInt(currentCount) - 1;
-			$container.text(shouldBe);
 			$target.remove();
 			$('.tooltip').remove();
-			self._toggleNotifications();
+			NotificationsService.decrement();
 		});
 	},
 
 	_markAllAsRead: function(e) {
-		var self = this;
-
 		e.preventDefault();
 		NotificationsService.markAllAsRead().success(function() {
-			$('.user-notifications-icon span').text(0);
 			$('.notification-list-item').removeClass('notification-unread');
-			self._toggleNotifications();
+			NotificationsService.clear();
 		});
-	},
-
-	_toggleNotifications: function() {
-		var $container = $('.user-notifications-icon span');
-		if(parseInt($container.text()) > 0) {
-			$container.show();
-		} else {
-			$container.hide();
-		}
 	}
-
 });
 
 module.exports = Notifications;

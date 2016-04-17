@@ -12,9 +12,7 @@ var Socket = function(token) {
 	this.port = this.getPort();
 	this.token = token;
 	this.socketIO = SocketIO.connect(this.getConnectionUri());
-
-	//Prisijungiam prie savo secret kanalo.
-	this.socketIO.emit('join', {type: 'user', token: token});
+	this.socketIO.emit('join', token);
 };
 
 /**
@@ -79,6 +77,10 @@ Socket.prototype.send = function(data) {
 
 Socket.prototype.on = function(type, cb) {
 	this.socketIO.on(type, cb);
+};
+
+Socket.prototype.leave = function() {
+	this.socketIO.emit('leave', this.token);
 };
 
 module.exports = Socket;

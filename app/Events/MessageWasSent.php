@@ -37,8 +37,12 @@ class MessageWasSent extends Event implements ShouldBroadcast {
 
     public function broadcastWith() {
     	return [
-    		'channel' => $this->conversation->id.'-'.$this->conversation->secret,
-    		'message' => $this->view,
+    		'channel' => $this->user->secret,
+    		'data' => [
+                'body'              => $this->view,
+                'conversation_id'   => $this->conversation->id,
+                'message_id'        => $this->message->id
+            ]
     	];
     }
 

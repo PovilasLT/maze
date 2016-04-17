@@ -12,6 +12,7 @@ var Backbone = require('backbone');
 var Sidebar = require('./views/Sidebar');
 var Status = require('./views/Status');
 var Topic = require('./views/Topic');
+var Conversations = require('./views/Conversations');
 var Voter = require('./services/Voter');
 var Notifications = require('./views/Notifications');
 var Progress = require('nprogress');
@@ -24,17 +25,10 @@ var Socket = require('./services/Socket');
 global.socket = new Socket(token);
 
 /**
- * Globalus eventų kanalas.
- */
-global.events = {};
-_.extend(events, Backbone.Events);
-
-/**
  * Pagrindinis app.
  * Naudojamas paprastas Backbone View, kaip containeris visai aplikacijai.
  */
 var App = Backbone.View.extend({
-
 	el: "body",
 	views: {
 		topics: [],
@@ -44,7 +38,6 @@ var App = Backbone.View.extend({
 		"click .toggle-sidebar": "toggleSidebar",
 		"click .vote-action": "_vote"
 	},
-
 	/**
 	 * Paleidžiam pagrindines app'o funkcijas.
 	 */
@@ -57,14 +50,12 @@ var App = Backbone.View.extend({
 		this._onGetNextPage();
 		this._onCompleteNextPage();
 	},
-
 	/**
 	 * Šoninės panelės junginėmijas mobiliuosiuose prietaisuose.
 	 */
 	toggleSidebar: function() {
 		this.views.sidebar.toggleSidebar(); //kreipiasi tiesiai į kitą view ir jo funkciją.
 	},
-
 	/**
 	 * Vykdoma, kai lankytojas paspaudžia nuorodą į kitą puslapį sistemoje.
 	 */
@@ -73,7 +64,6 @@ var App = Backbone.View.extend({
 			Progress.start(); 
 		});
 	},
-
 	/**
 	 * Vykdoma, kai vartotojas pereina į kitą puslapį.
 	 */
@@ -87,7 +77,6 @@ var App = Backbone.View.extend({
 			init();
 		});
 	},
-
 	/**
 	 * Sukuriam pagrindinius puslapio elementus.
 	 * Puslapyje gali egzistuoti ne visi elementai.
@@ -109,16 +98,19 @@ var App = Backbone.View.extend({
 		});
 
 		$('.status-show').each(function() {
-			that.view.statuses.push(new Status());
+			that.views.statuses.push(new Status());
 		});
 
 		$('.status-show-page').each(function() {
-			this.views.status = new Status();
+			that.views.status = new Status();
 		});
+
+		if($('#conversations').length) {
+			that.views.conversations = new Conversations();
+		}
 
 		this.views.notifications = new Notifications();
 	},
-
 	/**
 	 * Balsavimas
 	 * @param  {Event} e click'o eventas.
@@ -126,7 +118,6 @@ var App = Backbone.View.extend({
 	_vote: function(e) {
 		Voter.vote($(e.currentTarget));
 	},
-
 	/**
 	 * Išvalom visus views.
 	 * Reikalinga, kad tie patys views nepasiliktų perėjus į kitą puslapį ir neužkištų atminties.
@@ -136,11 +127,9 @@ var App = Backbone.View.extend({
 		this.views.topics = [];
 		this.views.statuses = [];
 	},
-
 	_notificationMarkAsRead: function() {
 		Notifications.markAsRead();
 	},
-
 	_notificationsMarkAsRead: function() {
 		Notifications.markAllAsRead();
 	}

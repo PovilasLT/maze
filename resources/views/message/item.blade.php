@@ -7,7 +7,7 @@
   <div class="media-body">
     <h4 class="media-heading">
     	<a href="{{ route('user.show', $message->user->slug) }}" class="author">{{ $message->user->username }}</a>
-    	<small class="pull-right">{{ $message->created_at }}</small>
+    	<small class="pull-right" data-toggle="tooltip" title="{{ $message->created_at }}">{{ $message->created_at->diffForHumans() }}</small>
     </h4>
     <div class="lightbox">
       {!! $message->body !!}

@@ -13,23 +13,28 @@ class Conversation extends Model
 		'secret',
 	];
 
-	public function users() {
+	public function users() 
+	{
 		return $this->belongsToMany('maze\User')->withTimestamps();
 	}
 
-	public function messages() {
+	public function messages() 
+	{
 		return $this->hasMany('maze\Message');
 	}
 
-	public function pivots() {
+	public function pivots() 
+	{
 		return $this->hasMany('maze\UserConversationPivot');
 	}
 
-	public function pivot(User $user) {
+	public function pivot(User $user) 
+	{
 		return $this->hasMany('maze\UserConversationPivot')->where('user_id', $user->id);
 	}
 
-	public function scopeLatest($query) {
+	public function scopeLatest($query) 
+	{
 		return $query->orderBy('updated_at', 'DESC');
 	}
 
@@ -56,15 +61,12 @@ class Conversation extends Model
 
 	public function getSecretAttribute($value)
 	{
-		if(!$value)
-		{
+		if(!$value) {
 			$secret = str_random(70);
 			$this->secret = str_random(70);
 			$this->save();
 			return $secret;
-		}
-		else
-		{
+		} else {
 			return $value;
 		}
 	}

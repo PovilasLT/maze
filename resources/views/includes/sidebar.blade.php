@@ -9,4 +9,4 @@
 @endif
 @include('panels.nodes', ['front_page_nodes' => Auth::check() ? Auth::user()->frontPageNodes()->toArray() : false ])
 @include('panels.streams')
-@include('panels.advertisements')
+@include('panels.statuses')

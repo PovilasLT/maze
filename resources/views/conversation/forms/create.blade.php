@@ -1,7 +1,4 @@
 <div class="media markdown-form messenger-form" id="create-message-form">
-	<a class="pull-left" href="{{ route('user.show', Auth::user()->slug) }}">
-		<img class="media-object markdown-avatar" src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->username }} avataras">
-	</a>
 	<div class="media-body">
 		<form action="{{ route('conversation.store') }}" method="POST" role="form">
 		@include('includes.csrf')
@@ -13,7 +10,7 @@
 				<textarea data-provide="markdown" class="form-control" name="body" rows="1" placeholder="Čia rašyk savo išmintingos žinutės turinį..." required>{{ old('body') }}</textarea>
 			</div>
 
-			<button type="submit" class="btn btn-primary pull-right">Rašyti</button>
+			<button type="submit" class="btn btn-primary pull-right">Siųsti <i class="fa fa-paper-plane-o"></i></button>
 			<div class="clearfix"></div>
 		</form>
 	</div>

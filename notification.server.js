@@ -1,3 +1,9 @@
+/**
+ * TODO:
+ * 1. Perkelti Notification serveri i atskira repo.
+ * 2. Sutvarkyti bendra struktura. Isskaidyti i atskirus failus/servisus.
+ */
+
 var lex = require('letsencrypt-express').testing();
 var express = require('express');
 var app = express();
@@ -7,7 +13,7 @@ var servers = lex.create({
 	configDir: '/etc/letsencrypt',
 	onRequest: app,
 }).listen([6002], [6001], function onListening() {
-	console.log("SERVERIS IJUNGTAS!");
+	console.log('listening');
 });
 
 var io = require('socket.io')(servers.plainServers[0]);
@@ -30,33 +36,16 @@ app.use(function (req, res, next) {
 });
 
 app.get('/', function (req, res) {
-  res.send('NOTIFICATIONS');
+  res.send('...');
 });
 
 redis.psubscribe('*', function(err, count) {
+	if(err) console.log(err);
 });
 
 redis.on('pmessage', function(subscribed, channel, event) {
-	console.log('message received');
     event = JSON.parse(event);
-    console.log(subscribed);
-    console.log(event);
-    console.log(channel);
-	if(channel == 'avatars') {
-		var dest = path.dirname(event.data.path);
-		new Imagemin()
-		.use(Imagemin.optipng({optimizationLevel: 3}))
-		.src(event.data.path)
-		.dest(dest)
-		.run(function(err, files) {
-			if(err)
-				console.log(err);
-		});
-	} else if(channel == 'notifications') {
-		io.sockets.in(event.data.user.secret).emit('notification', event.data.notification);
-	} else {
-	    io.sockets.in(event.data.channel).emit('message', event.data.message);
-	}
+	io.sockets.in(event.data.channel).emit(channel, event.data.data);
 });
 
 /**
@@ -69,25 +58,12 @@ io.sockets.on('connection', function (socket) {
 
 	// Prisijungimas į savo secret kanalą.
 	socket.on('join', function(channel) {
-		if(channel.type == 'user') {
-			console.log(channel.token + ' connected');
-			secret = channel.token;
-			redisServer.sadd('online_users', secret);
-			socket.join(secret);
-		} else if (channel.type == 'message') {
-			console.log('joining message channel');
-
-		}
+		secret = channel;
+		socket.join(channel);
+		redisServer.sadd('online_users', secret);
 	});
 
 	socket.on('disconnect', function() {
-		console.log(secret + 'disconnected');
 		redisServer.srem('online_users', secret);
 	});
-
-
-	//TODO: Chat
-	// socket.on('join', function (data) {
-	// 	socket.join(data.id + '-' + data.secret);
-	// });
 });

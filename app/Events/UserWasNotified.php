@@ -43,16 +43,16 @@ class UserWasNotified extends Event implements ShouldBroadcast
         $from = $this->notification->fromUser;
 
         return [
-            'user' => [
-                'secret' => $this->user->secret,
-            ],
-            'notification' => [
+            'channel' => $this->user->secret,
+            'data' => [
                 'fromUser' => [
                     'username' => $from->username,
                     'avatar' => $from->avatar,
                     'url' => $from->url,
                 ],
                 'body' => $this->notification->object->notification,
+                'is_read' => $this->notification->is_read,
+                'id' => $this->notification->id
             ],
         ];
     }

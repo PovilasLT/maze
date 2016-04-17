@@ -1,12 +1,10 @@
 var Backbone = require('backbone');
 var _ = require('underscore');
 var notification_template = require('./../templates/notification.template.html');
+var NotificationsService = require('./../services/Notifications');
 
 var NotificationsPopover = Backbone.View.extend({
 	
-	events: {
-		'click #the-content': '_addNotification'
-	},
 	el: '#notifications-container',
 
 	initialize: function() {
@@ -21,13 +19,23 @@ var NotificationsPopover = Backbone.View.extend({
 			html: true,
 			placement: "bottom"
 		});
+
+		this._notificationListener();
+	},
+
+	_notificationListener: function() {
+		var self = this;
+
+		socket.on('data', function(notification) {
+			self._addNotification(notification);
+		});
 	},
 
 	/**
 	 * Prideda naują notification objektą į popoverį.
 	 * @param {Notification} notification notification objektas gautas iš socketo.
 	 */
-	addNotification: function(notification) {
+	_addNotification: function(notification) {
 		var $items = $('.notification-list-item');
 		
 		if($items.length >= 5) {
@@ -35,6 +43,7 @@ var NotificationsPopover = Backbone.View.extend({
 		}
 
 		$('.notification-list').prepend(_.template(notification_template)({notification: notification}));
+		NotificationsService.increment();
 	},
 });
 

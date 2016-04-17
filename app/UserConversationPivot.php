@@ -24,4 +24,9 @@ class UserConversationPivot extends Model
     	return $this->belongsTo('maze\Conversation')->where('user_id', $user->id);
     }
 
+    public function user()
+    {
+        return $this->belongsTo('maze\User');
+    }
+
 }

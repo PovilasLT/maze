@@ -17,7 +17,6 @@ var Sidebar = Backbone.View.extend({
 	initialize: function() {
 		this.views.NotificationsPopover = new NotificationsPopover();
 		this._initNodes();
-		this._notifications();
 	},
 
 	toggleSidebar: function(e) {
@@ -91,14 +90,6 @@ var Sidebar = Backbone.View.extend({
 				node_id: target_node.data('node'),
 				state: target_node.is(':checked') ? 'on' : 'off'
 			}
-		});
-	},
-
-	_notifications: function() {
-		var self = this;
-
-		socket.on('notification', function(data) {
-			self.views.NotificationsPopover.addNotification(data);
 		});
 	},
 

@@ -23,25 +23,29 @@ class ConversationsController extends Controller {
 	public function index(Request $request)
 	{
 		$user = Auth::user();
-		$conversations = $user->conversations()->latest()->withUsersAndMessages($user)->limit(30)->get();
 		
+		$conversations = $user->conversations()->latest()->withUsersAndMessages($user)->limit(30)->get();
+
 		$user->update(['message_count' => 0]);
 		$username = $request->input('username');
 
-		return view('conversation.index', compact('conversations', 'username'));
+		return view('conversation.index', compact('conversations', 'username', 'conversation'));
 	}
 
 	public function show(ShowConversation $request, $id)
 	{
-
+		$user = Auth::user();
+		
+		$conversations = $user->conversations()->latest()->withUsersAndMessages($user)->limit(30)->get();
 		$conversation = $request->conversation;
+		
 		$messages = $conversation->messages()->latest()->paginate(30);
 		$users = $conversation->users;
 		$receiver = $conversation->receiver;
 
-		$conversation->pivot(Auth::user())->update(['read_at' => new \DateTime]);
+		$conversation->pivot($user)->update(['read_at' => new \DateTime]);
 
-		return view('conversation.show', compact('conversation', 'messages', 'users', 'receiver'));
+		return view('conversation.show', compact('conversation', 'messages', 'users', 'user', 'receiver', 'conversations'));
 	}
 
 	public function create($id) {

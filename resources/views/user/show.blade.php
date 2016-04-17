@@ -22,6 +22,7 @@
 		{!! $items->appends(['rodyti' => $sort])->render() !!}
 	@endif
 	</div>
+	@include('conversation.create_popover', ['username' => $user->username])
 @stop
 @section('sidebar')
 @include('includes.user_show_sidebar')

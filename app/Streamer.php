@@ -152,4 +152,9 @@ class Streamer extends Model
 		return $streams;
 	}
 
+	public function url()
+	{
+		return route('streamer.show', $this->twitch);
+	}
+
 }

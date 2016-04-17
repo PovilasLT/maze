@@ -27,6 +27,7 @@ module.exports = function() {
         },
         index: 1,
     	appendTo: 'body',
+        zIndex: 9999
     }, { 
         match: /\B:([\-+\w]*)$/,
         search: function (term, callback) {
@@ -40,8 +41,10 @@ module.exports = function() {
         replace: function (value) {
             return ':' + value + ': ';
         },
-        index: 1
+        index: 1,
+        zIndex: 9999
     }], {
-        maxCount: 10
+        maxCount: 5,
+        zIndex: 9999
     });
 };
