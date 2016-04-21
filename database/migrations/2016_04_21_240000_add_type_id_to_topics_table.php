@@ -13,16 +13,17 @@ class AddTypeIdToTopicsTable extends Migration
     public function up()
     {
         Schema::table('topics', function (Blueprint $table) {
-            $table->integer('type_id');
-        });
-        Schema::table('topics', function($table) {
-            $table->foreign('type_id')->references('id')->on('topic_types')->onDelete('cascade');
+            $table->integer('type_id')->unsigned();
         });
         DB::table('topics')
             ->where('type', 0)
             ->update(['type_id' => 1]);
 
         DB::statement('update topics set type_id = type where type != 0');
+
+        Schema::table('topics', function($table) {
+            $table->foreign('type_id')->references('id')->on('topic_types')->onDelete('cascade');
+        });
     }
 
     /**
