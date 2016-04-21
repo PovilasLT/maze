@@ -16,6 +16,7 @@ use maze\Topic;
 use maze\Node;
 use maze\Poll;
 use maze\Answer;
+use maze\TopicType;
 
 use Auth;
 use Markdown;
@@ -56,11 +57,11 @@ class TopicsController extends Controller {
 	{
 		$nodes = Node::parents();
 		$node_id = false;
-
+		$topic_types = TopicType::get();
 		if($request->has('skiltis'))
 			$node_id = $request->input('skiltis');
 
-		return view('topic.create', compact('nodes', 'node_id'));
+		return view('topic.create', compact('nodes', 'node_id', 'topic_types'));
 	}
 
 	/**
@@ -164,7 +165,8 @@ class TopicsController extends Controller {
 	{
 		$nodes = Node::parents();
 		$topic = $request->topic;
-		return view('topic.edit', compact('topic', 'nodes'));
+		$topic_types = TopicType::get();
+		return view('topic.edit', compact('topic', 'nodes', 'topic_types'));
 	}
 
 	/**
@@ -186,7 +188,7 @@ class TopicsController extends Controller {
 		$topic->body_original	= $data['body'];
 		$data['body']			= $mention->parse($data['body']);
 		$topic->body			= markdown($data['body']);
-		$topic->type 			= $data['type'];
+		$topic->type_id 		= $data['type_id'];
 		$topic->node_id			= $data['node_id'];
 
 		$topic->save();

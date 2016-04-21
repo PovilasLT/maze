@@ -3,6 +3,8 @@
 use maze\Http\Requests\Request;
 use Auth;
 
+use maze\TopicType;
+
 class CreateTopic extends Request {
 
 	/**
@@ -35,7 +37,7 @@ class CreateTopic extends Request {
 				'title'   => 'required|min:10',
 				'body'    => 'required|min:10',
 				'node_id' => 'required|numeric',
-				'type'	  => 'required|in:0,2,215,3,4,5,6,7'
+				'type_id' => 'required|in:'TopicType::get()->implode('id', ',')
 	    	];
 	    }
 	    else
@@ -44,7 +46,7 @@ class CreateTopic extends Request {
 				'title'   => 'required|min:10',
 				'body'    => 'required|min:10',
 				'node_id' => 'required|numeric',
-				'type'	  => 'required|in:0,2,3,4,5,6,7'
+				'type_id' => 'required|in:'.TopicType::where('is_admin', '=', '0')->get()->implode('id', ',')
 	    	];
 	    	if($user->topic_count < 10)
 	    	{
@@ -59,7 +61,7 @@ class CreateTopic extends Request {
 		$nice_names = [
             'title'  => 'temos pavadinimas',
             'body'  => 'temos turinys',
-            'type'	=> 'temos tipas'
+            'type_id'	=> 'temos tipas'
         ];
         return $nice_names;
 	}

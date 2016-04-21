@@ -66,7 +66,12 @@
 			</span>
 		</p>
 		<p class="topic-meta-container">
-			{!! $topic->full_type !!}
+			<!-- {!! $topic->full_type !!} -->
+			@if($topic->type != null)
+				<span class="maze-label {{ $topic->type->label_style }} media-meta-element"><i class="{{ $topic->type->icon }}"></i><span class="hidden-xs">{{ $topic->type->name }}</span></span>
+			@else
+				<span class="maze-label label-diskusija media-meta-element"><i class="fa fa-comments-o fa-fw"></i><span class="hidden-xs">Diskusija</span></span>
+			@endif
 			@if($topic->is_blocked || $topic->order == 1 || $topic->pin_local)
 			<span class="media-meta-element maze-label label-misc">
 				@if($topic->is_blocked)

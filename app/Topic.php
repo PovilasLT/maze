@@ -6,6 +6,7 @@ use Auth;
 use Config;
 use Stringy\StaticStringy as S;
 
+
 class Topic extends Model {
 
 	protected $morphClass = 'Topic';
@@ -20,7 +21,7 @@ class Topic extends Model {
 		'body',
 		'body_original',
 		'user_id',
-		'type',
+		'type_id',
 	];
 
 	use SoftDeletes;
@@ -41,6 +42,10 @@ class Topic extends Model {
 
 	public function poll() {
 		return $this->hasOne('maze\Poll');
+	}
+
+	public function type() {
+		return $this->hasOne('maze\TopicType', 'id', 'type_id');
 	}
 
 	public function notifications() {
@@ -131,7 +136,7 @@ class Topic extends Model {
 	// Sidebar skelbimai
 	public static function advertisements()
 	{
-		return self::where('type', 7)->orderBy('id', 'desc')->limit(config('app.advertisements'))->get();
+		return self::whereIn('type_id', TopicType::ads()->get())->orderBy('id', 'desc')->limit(config('app.advertisements'))->get();
 	}
 
 	public function sameNodeTopics() {
@@ -168,7 +173,7 @@ class Topic extends Model {
 			return $value;
 		}
 	}
-
+/*
 	public function getFullTypeAttribute($value)
 	{
 		$type = $this->type;
@@ -191,7 +196,7 @@ class Topic extends Model {
 			return '<span class="maze-label label-spam media-meta-element"><i class="fa fa-star fa-fw"></i><span class="hidden-xs">Pristatymas</span></span>';
 		else 
 			return '<span class="maze-label label-diskusija media-meta-element"><i class="fa fa-comments-o fa-fw"></i><span class="hidden-xs">Diskusija</span></span>';
-	}
+	}*/
 
 	public function voted($type, $user = null) {
 		if($user || $user = Auth::user())

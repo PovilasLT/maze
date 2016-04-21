@@ -2,6 +2,7 @@
 
 use maze\Http\Requests\Request;
 use maze\Topic;
+use maze\TopicType;
 use Auth;
 
 class UpdateTopic extends Request {
@@ -39,7 +40,7 @@ class UpdateTopic extends Request {
 				'title'   => 'required|min:10',
 				'body'    => 'required|min:10',
 				'node_id' => 'required|numeric',
-				'type'	  => 'required|in:0,2,215,3,4,5,6,7'
+				'type_id' => 'required|in:'.TopicType::get()->implode('id', ',')
 	    	];
 	    }
 	    else
@@ -48,7 +49,7 @@ class UpdateTopic extends Request {
 				'title'   => 'required|min:10',
 				'body'    => 'required|min:10',
 				'node_id' => 'required|numeric',
-				'type'	  => 'required|in:0,2,3,4,5,6,7'
+				'type_id' => 'required|in:'.TopicType::where('is_admin', '=', '0')->get()->implode('id', ',')
 	    	];
 	    }
 		return $rules;
@@ -60,7 +61,7 @@ class UpdateTopic extends Request {
 		$nice_names = [
             'title'  => 'temos pavadinimas',
             'body'  => 'temos turinys',
-            'type'	=> 'temos tipas'
+            'type_id'	=> 'temos tipas'
         ];
         return $nice_names;
 	}
