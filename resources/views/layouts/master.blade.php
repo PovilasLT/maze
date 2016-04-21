@@ -6,7 +6,7 @@
 					<button class="btn btn-success btn-lg btn-block visible-sm visible-xs toggle-sidebar"><i class="fa fa-bars"></i></button>
 					<div class="col-md-9 main-content is_visible">
 						@yield('breadcrumbs')
-						<div class="col-lg-12 content-box">
+						<div class="content-box">
 							@yield('content')
 						</div>
 					</div>
