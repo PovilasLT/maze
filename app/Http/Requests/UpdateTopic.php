@@ -39,7 +39,7 @@ class UpdateTopic extends Request {
 				'title'   => 'required|min:10',
 				'body'    => 'required|min:10',
 				'node_id' => 'required|numeric',
-				'type'	  => 'required|in:0,2,215,3,4,5,6,7'
+				'type'	  => 'required|in:0,2,215,3,4,5,6,7,8,9'
 	    	];
 	    }
 	    else
@@ -48,7 +48,7 @@ class UpdateTopic extends Request {
 				'title'   => 'required|min:10',
 				'body'    => 'required|min:10',
 				'node_id' => 'required|numeric',
-				'type'	  => 'required|in:0,2,3,4,5,6,7'
+				'type'	  => 'required|in:0,2,3,4,5,6,7,8,9'
 	    	];
 	    }
 		return $rules;

@@ -171,6 +171,10 @@ class Topic extends Model {
 			return '<span class="maze-label label-play media-meta-element"><i class="fa fa-gamepad fa-fw"></i><span class="hidden-xs">Kviečiu Žaisti</span></span>';
 		elseif($type == 7)
 			return '<span class="maze-label label-spam media-meta-element"><i class="fa fa-star fa-fw"></i><span class="hidden-xs">Pristatymas</span></span>';
+		elseif($type == 8)
+			return '<span class="maze-label label-gallery media-meta-element"><i class="fa fa-picture-o fa-fw"></i><span class="hidden-xs">Paveikslėliai</span></span>';
+		elseif($type == 9)
+			return '<span class="maze-label label-lesson media-meta-element"><i class="fa fa-graduation-cap fa-fw"></i><span class="hidden-xs">Pamoka</span></span>';
 		else 
 			return '<span class="maze-label label-diskusija media-meta-element"><i class="fa fa-comments-o fa-fw"></i><span class="hidden-xs">Diskusija</span></span>';
 	}

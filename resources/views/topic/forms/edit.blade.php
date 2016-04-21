@@ -28,6 +28,8 @@
 			<option value="5" @if($topic->type == 5) {{ 'selected '}} @endif >Stream</option>
 			<option value="6" @if($topic->type == 6) {{ 'selected '}} @endif >Kviečiu Žaisti</option>
 			<option value="7" @if($topic->type == 7) {{ 'selected '}} @endif >Pristatymas</option>
+			<option value="8" @if($topic->type == 8) {{ 'selected '}} @endif >Paveikslėliai</option>
+			<option value="9" @if($topic->type == 9) {{ 'selected '}} @endif >Pamoka</option>
 			@if(Auth::user()->can('manage_topics'))
 			<option value="215" @if($topic->type == 215) {{ 'selected '}} @endif >Pranešimas</option>
 			@endif

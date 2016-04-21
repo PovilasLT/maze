@@ -31,6 +31,8 @@
 					<option value="5">Stream</option>
 					<option value="6">Kviečiu Žaisti</option>
 					<option value="7">Pristatymas</option>
+					<option value="8">Paveikslėliai</option>
+					<option value="9">Pamoka</option>
 					@if(Auth::user()->can('manage_topics'))
 					<option value="215">Pranešimas</option>
 					@endif
