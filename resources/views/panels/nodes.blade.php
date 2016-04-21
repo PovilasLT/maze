@@ -3,7 +3,7 @@
     <h3 class="panel-title">
       <i class="fa fa-bars fa-fw"></i> Forumo Skiltys
       @if(Auth::check())
-        <a href><i class="fa fa-pencil-square-o pull-right edit-front-page-nodes"></i></a>
+        <i class="fa fa-pencil-square-o pull-right edit-front-page-nodes clickable-object"></i>
       @endif
     </h3>
   </div>
