@@ -1,16 +1,16 @@
 <?php namespace maze\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 use maze\Http\Requests;
 use maze\Http\Controllers\Controller;
 use maze\Http\Requests\ShowConversation;
 use maze\Http\Requests\CreateConversation;
-
 use maze\User;
 use maze\Message;
 use maze\Conversation;
 use maze\Messenger\Messenger;
 
-use Illuminate\Http\Request;
 use Auth;
 
 class ConversationsController extends Controller {
@@ -52,12 +52,9 @@ class ConversationsController extends Controller {
 		$user = Auth::user();
 		$receiver = User::findOrFail($id);
 		$conversation = $user->jointConversations($receiver)->first();
-		if($conversation)
-		{
+		if($conversation) {
 			return redirect()->route('conversation.show', $conversation->id);
-		}
-		else
-		{
+		} else {
 			return redirect()->route('conversation.index', ['username' => $receiver->username]);
 		}
 	}
@@ -67,13 +64,10 @@ class ConversationsController extends Controller {
 		$user = Auth::user();
 		$receiver = User::where('username', $request->input('username'))->first();
 
-		if(!$receiver || $receiver->id == $user->id)
-		{
+		if(!$receiver || $receiver->id == $user->id) {
 			flash()->error('Gavėjas nerastas!');
 			return redirect()->back()->withInput();
-		}
-		else
-		{
+		} else {
 			$conversation = $user->jointConversations($receiver)->first();
 			if(!$conversation)
 			{
@@ -87,5 +81,4 @@ class ConversationsController extends Controller {
 			return redirect()->route('conversation.show', $conversation->id);
 		}
 	}
-
 }
