@@ -12,6 +12,7 @@ use Stringy\StaticStringy as S;
 use Cache;
 use Carbon\Carbon;
 use Redis;
+use Identicon\Identicon;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
@@ -91,11 +92,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	}
 	
 	public function messages() {
-		return $this->hasMany('maze\Message');
+		return $this->hasMany('maze\Messenger\Message');
 	}
 
 	public function conversations() {
-		return $this->belongsToMany('maze\Conversation')->withTimestamps()->withPivot('read_at');
+		return $this->belongsToMany('maze\Messenger\Conversation');
 	}
 
 	public function notifications() {
@@ -198,21 +199,23 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	public function getAvatarAttribute($value)
 	{
 		$value = $this->image_url;
-		if($value)
-		{
+		if($value) {
 			$url = '/images/avatars/'.$this->id.'/'.$value;
-			if(file_exists('../public/images/avatars/'.$this->id.'/'.$value))
-			{
+			if(file_exists('../public/images/avatars/'.$this->id.'/'.$value)) {
 				return $url;
-			}
-			else 
-			{
-				return '/images/avatars/no_avatar.png';
+			} else {
+				return Cache::remember($this->id.'_avatar', 300, function() {
+				    $avatar = new Identicon();
+				    return $avatar->getImageDataUri($this->username, 150);
+				});
 			}
 		}
-		else
-		{
-			$url = '/images/avatars/no_avatar.png';
+		else {
+			//identicon
+			$url = Cache::remember($this->id.'_avatar', 300, function() {
+			    $avatar = new Identicon();
+			    return $avatar->getImageDataUri($this->username, 150);
+			});
 		}
 
 		return $url;
@@ -365,17 +368,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 		$follower = $this->is_following;
 
-		if(!$follower)
-		{
+		if(!$follower) {
 			Follower::create([
 				'user_id' => $this->id,
 				'follower_id' => Auth::user()->id
 			]);
 
 			return true;
-		}
-		else
-		{
+		} else {
 			$follower->delete();
 			return false;
 		}
