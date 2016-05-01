@@ -19,6 +19,7 @@
 		@if(Auth::check())
 			<script type="text/javascript">
 				var token = "{{ Auth::user()->secret }}";
+				var auth_id = {{ Auth::user()->id }};
 			</script>
 		@endif
 	</head>

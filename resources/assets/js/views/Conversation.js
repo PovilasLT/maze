@@ -12,10 +12,7 @@ var Conversation = Backbone.View.extend({
 		this._bindEvends();
 	},
 	_bindEvends: function() {
-		var self = this;
-		socket.on('messages', function(data) {
-			self._onMessage(data);
-		});
+		socket.on('messages', this._onMessage.bind(this));
 	},
 	_sendMessage: function(e) {
 		e.preventDefault();
@@ -39,7 +36,9 @@ var Conversation = Backbone.View.extend({
 			if($container.length) {
 				$container.prepend(data.body);
 				this._emojify();
-				$.get('/pokalbiai/'+data.conversation_id+'/'+data.message_id+'/perskaityta');
+				if(auth_id != data.user_id) {
+					$.get('/pokalbiai/'+data.conversation_id+'/'+data.message_id+'/perskaityta');
+				}
 			}
 		}
 	},

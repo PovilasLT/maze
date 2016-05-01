@@ -41,6 +41,8 @@ class ConversationsController extends Controller {
 		$messages = $conversation->messages()->latest()->paginate(30);
 		$receiver = $conversation->users()->where('user_id', 'NOT LIKE', $user->id)->first();
 
+		$conversation->messages()->where('user_id', '<>', $user->id)->update(['is_read' => 1]);
+
 		return view('conversation.show', compact('conversation', 'messages', 'users', 'user', 'receiver', 'conversations'));
 	}
 
