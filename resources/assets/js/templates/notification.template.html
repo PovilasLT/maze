@@ -1,0 +1,20 @@
+<div 
+	class="
+	media 
+	notification-list-item
+	notification-item-<%= notification.id %>
+	<% if(!notification.is_read) { %>
+	notification-unread
+	<% } %>
+	"
+>
+	<a class="pull-left" href="<%- notification.fromUser.url %>">
+		<img class="media-object small-avatar" src="<%- notification.fromUser.avatar %>" alt="Image">
+	</a>
+	<div class="media-body">
+		<p>
+			<a href="<%- notification.fromUser.url %>"><%- notification.fromUser.username %></a>
+			<%= notification.body %>
+		</p>
+	</div>
+</div>

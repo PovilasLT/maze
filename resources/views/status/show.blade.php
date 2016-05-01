@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-	<div class="row">
+	<div class="row status-show-page">
 		<div class="col-lg-12 status-meta">
 			Parašyta <span class="date-when">{{ $status->created_at->diffForHumans() }}</span>
 			@if($status->editor && (Auth::user()->can('manage_statuses') || Auth::user()->id == $status->editor_id ))

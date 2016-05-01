@@ -21,10 +21,12 @@ class RouteServiceProvider extends ServiceProvider {
 	 * @return void
 	 */
 	public function boot(Router $router)
-	{
-		//
-		
+	{		
 		parent::boot($router);
+
+		$router->model('user', 'maze\User');
+		$router->model('conversation', 'maze\Messenger\Conversation');
+		$router->model('message', 'maze\Messenger\Message');
 	}
 
 	/**

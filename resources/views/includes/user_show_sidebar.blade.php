@@ -17,7 +17,7 @@
 			Prenumeruoti
 			@endif
 		</a>
-		<a href="{{ route('conversation.create', [$user->id]) }}" class="btn btn-primary full-width user-button"><i class="fa fa-envelope"></i> Asmeninė Žinutė</a>
+		<a href="{{ route('conversation.index', ['username' => $user->username]) }}" class="btn btn-primary full-width user-button"><i class="fa fa-envelope"></i> Asmeninė Žinutė</a>
 	@endif
 </div>
 @if(Auth::check() && Auth::user()->id != $user->id && Auth::user()->is_staff)

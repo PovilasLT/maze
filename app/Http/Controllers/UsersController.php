@@ -32,19 +32,13 @@ class UsersController extends Controller {
 	//Profilis
 
 	public function profile(UserProfile $request) {
-		$user = Auth::user();
-
-		//atnaujinam notificationu perskaitymo data
-		$user->notifications_read = new \DateTime();
-		$user->notification_count = 0;
-		$user->save();
+		$user = Auth::user();	
 		
 		$sort = $request->input('rodyti');
 		$subsort = $request->input('subrodyti');
 
 
-		if(!$sort || $sort == 'mano')
-		{
+		if(!$sort || $sort == 'mano') {
 			$items = Notification::where('user_id', '=', $user->id);
 			switch($subsort) {
 				case 'temos':
@@ -64,8 +58,7 @@ class UsersController extends Controller {
 					break;
 			}
 		}
-		else if($sort == 'sekamieji')
-		{
+		else if($sort == 'sekamieji') {
 			$items = Notification::following();
 			switch($subsort) {
 				case 'temos':
@@ -82,39 +75,9 @@ class UsersController extends Controller {
 					break;
 			}
 		}
-		else if($sort == 'busenos-atnaujinimai')
-		{
+		else if($sort == 'busenos-atnaujinimai') {
 			$items = Status::latest()->paginate('10');
 		}
-		
-		/*
-		if(!$sort || $sort == 'sekamieji')
-		{
-			switch ($subsort) {
-				case 'temos':
-					$items = Notification::following()->topicExists()->has('topic')->with('object')->latest()->paginate('10');
-					break;
-				case 'paminejimai':
-					$items = Notification::mentions()->mentionExists()->with('object')->latest()->paginate('10');
-					break;
-				case 'pranesimai':
-					$items = Notification::following()->replyExists()->has('reply.topic')->with('object')->latest()->paginate('10');
-					break;
-				case 'busenos':
-					$items = Status::following()->with('comments')->latest()->paged();
-					break;
-				default:
-					$items = Notification::following()->hasAll()->with('object')->latest()->paginate('10');
-					break;
-			}
-		}
-		else
-		{
-			$items = Status::latest()->paginate('10');
-		}
-		*/
-
-		// dd(\DB::getQueryLog());
 
 		return view('user.profile', compact('user', 'items', 'sort', 'subsort'));
 	}

@@ -111,7 +111,13 @@ class SettingsController extends Controller
                     Storage::disk('public')->makeDirectory('images/avatars/'.$user->id);
                 }
 
-                $saved = Image::make($request->file('avatar'))->fit(150,150)->encode('png')->encode('png', 100)->save(public_path('images/avatars/'.$user->id.'/'.$filename.'.png'));
+                if($request->file('avatar')->getMimeType() != 'image/gif') {
+                    $saved = Image::make($request->file('avatar'))->fit(150,150)->encode('png')->encode('png', 100)->save(public_path('images/avatars/'.$user->id.'/'.$filename.'.png'));
+                    $ext = 'png';
+                } else {
+                    $saved = Storage::disk('public')->put('images/avatars/'.$user->id.'/'.$filename.'.gif', file_get_contents($request->file('avatar')));
+                    $ext = 'gif';
+                }
 
                 //jeigu nieko nepridirbo su failu
                 //istrinam pries tai buvusius failus
@@ -119,8 +125,10 @@ class SettingsController extends Controller
                 if($saved)
                 {
                     Storage::disk('avatars')->delete($files);
-                    $user->image_url = $filename.'.png';
-                    event(new AvatarWasUploaded('public/images/avatars/'.$user->id.'/'.$filename.'.png'));
+                    $user->image_url = $filename.'.'.$ext;
+                    if($ext != 'gif') {
+                        event(new AvatarWasUploaded('public/images/avatars/'.$user->id.'/'.$filename.'.'.$ext));
+                    }
                 }
             }
         }

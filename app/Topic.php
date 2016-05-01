@@ -82,7 +82,7 @@ class Topic extends Model {
 			return $query->whereIn('node_id', $user->frontPageNodes());
 		}
 		else {
-			return $query->whereIn('node_id', Config::get('app.front_page_nodes'));
+			return $query->whereIn('node_id', Node::frontPageNodes());
 		}
 	}
 
@@ -129,9 +129,9 @@ class Topic extends Model {
 	}
 
 	// Sidebar skelbimai
-	public static function advertisements()
+	public static function scopeMarket($query)
 	{
-		return self::where('type', 7)->orderBy('id', 'desc')->limit(config('app.advertisements'))->get();
+		return $query->whereIn('node_id', Node::marketNodes())->orderBy('id', 'desc')->limit(config('app.advertisements'));
 	}
 
 	public function sameNodeTopics() {
@@ -189,6 +189,10 @@ class Topic extends Model {
 			return '<span class="maze-label label-play media-meta-element"><i class="fa fa-gamepad fa-fw"></i><span class="hidden-xs">Kviečiu Žaisti</span></span>';
 		elseif($type == 7)
 			return '<span class="maze-label label-spam media-meta-element"><i class="fa fa-star fa-fw"></i><span class="hidden-xs">Pristatymas</span></span>';
+		elseif($type == 8)
+			return '<span class="maze-label label-gallery media-meta-element"><i class="fa fa-picture-o fa-fw"></i><span class="hidden-xs">Paveikslėliai</span></span>';
+		elseif($type == 9)
+			return '<span class="maze-label label-lesson media-meta-element"><i class="fa fa-graduation-cap fa-fw"></i><span class="hidden-xs">Pamoka</span></span>';
 		else 
 			return '<span class="maze-label label-diskusija media-meta-element"><i class="fa fa-comments-o fa-fw"></i><span class="hidden-xs">Diskusija</span></span>';
 	}

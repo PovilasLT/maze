@@ -11,6 +11,8 @@ use Auth;
 use Stringy\StaticStringy as S;
 use Cache;
 use Carbon\Carbon;
+use Redis;
+use Identicon\Identicon;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
@@ -90,18 +92,21 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	}
 	
 	public function messages() {
-		return $this->hasMany('maze\Message');
+		return $this->hasMany('maze\Messenger\Message');
 	}
 
-	public function conversations() {
-		return $this->belongsToMany('maze\Conversation')->withTimestamps()->withPivot('read_at');
+	public function conversations() 
+	{
+		return $this->belongsToMany('maze\Messenger\Conversation');
 	}
 
-	public function notifications() {
+	public function notifications() 
+	{
 		return $this->hasMany('maze\Notification');
 	}
 
-	public function streamer() {
+	public function streamer() 
+	{
 		return $this->hasOne('maze\Streamer');
 	}
 
@@ -110,15 +115,25 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->conversations()->whereIn('id', $user->conversations()->lists('id'));
 	}
 
-	public function frontPageNodes() {
+	public function frontPageNodes() 
+	{
 		return $this->hasMany('maze\FrontPageNode')->lists('node_id');
+	}
+
+	public function quickNotifications() 
+	{
+		return $this->notifications()->whereNotIn('object_type', ['status', 'status_comment'])
+		->where('from_id', '<>', $this->id)
+		->orderBy('created_at', 'DESC')
+		->limit(5)->get();
 	}
 
 	//Patikrina ar User jau balsavo uz tam tikra turini.
 	//Jei balsavo - grazina Vote objekta
 	//Jei nebalsavo - grazina false
 
-	public function hasVoted($id, $votable) {
+	public function hasVoted($id, $votable) 
+	{
 		$vote = Vote::where('votable_type', $votable)
 		->where('votable_id', $id)
 		->where('user_id', $this->id)
@@ -172,11 +187,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	public function getReplyWaitTimeAttribute() {
 		$reply = $this->replies()->latest()->first();
-		if($reply)
-		{
+		if($reply) {
 			$diff = Carbon::now()->diffInSeconds($reply->created_at->addSeconds(60), false);
-			if($diff > 0)
-			{
+			if($diff > 0) {
 				return $diff;
 			}
 		}
@@ -190,21 +203,23 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	public function getAvatarAttribute($value)
 	{
 		$value = $this->image_url;
-		if($value)
-		{
+		if($value) {
 			$url = '/images/avatars/'.$this->id.'/'.$value;
-			if(file_exists('../public/images/avatars/'.$this->id.'/'.$value))
-			{
+			if(file_exists('../public/images/avatars/'.$this->id.'/'.$value)) {
 				return $url;
-			}
-			else 
-			{
-				return '/images/avatars/no_avatar.png';
+			} else {
+				return Cache::remember($this->id.'_avatar', 300, function() {
+				    $avatar = new Identicon();
+				    return $avatar->getImageDataUri($this->username, 150);
+				});
 			}
 		}
-		else
-		{
-			$url = '/images/avatars/no_avatar.png';
+		else {
+			//identicon
+			$url = Cache::remember($this->id.'_avatar', 300, function() {
+			    $avatar = new Identicon();
+			    return $avatar->getImageDataUri($this->username, 150);
+			});
 		}
 
 		return $url;
@@ -286,6 +301,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->roles->first()->name;
 	}
 
+	public function getRoleIdAttribute()
+	{
+		return $this->roles()->firstOrFail()->id;
+	}
+
 	public function getIsStaffAttribute()
 	{
 		$role = $this->roles->first();
@@ -357,20 +377,42 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 		$follower = $this->is_following;
 
-		if(!$follower)
-		{
+		if(!$follower) {
 			Follower::create([
 				'user_id' => $this->id,
 				'follower_id' => Auth::user()->id
 			]);
 
 			return true;
-		}
-		else
-		{
+		} else {
 			$follower->delete();
 			return false;
 		}
+	}
+
+	/**
+	 * Patikrina ar user yra online.
+	 * Kreipiasi į Redis ir klausia, ar dabartinis user yra online_users sąraše.
+	 * @return [int] 0|1
+	 */
+	public function getIsOnlineAttribute()
+	{
+		return Redis::sismember('online_users', $this->secret);
+	}
+
+	public function getNotificationCountAttribute()
+	{
+		return $this->notifications()->where('from_id', '<>', $this->id)->where('is_read', false)->count();
+	}
+
+	public function getMessageCountAttribute()
+	{
+		return $this
+		->conversations()
+		->rightJoin('messages', 'messages.conversation_id', '=', 'conversations.id')
+		->where('messages.is_read', 0)
+		->where('messages.user_id', '<>', $this->id)
+		->count('messages.id');
 	}
 	
 }

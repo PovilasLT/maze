@@ -11,12 +11,8 @@ class Notification extends Model {
 		'object_id',
 		'object_type',
 		'updated_at',
+		'is_read',
 	];
-
-	public static function getCount()
-	{
-		return Auth::user()->notification_count;
-	}
 
 	public function user()
 	{
@@ -103,7 +99,7 @@ class Notification extends Model {
 	}
 
 	public function scopeLatest($query) {
-		return $query->orderBy('created_at', 'DESC');
+		return $query->orderBy('created_at', 'DESC')->orderBy('is_read', 'DESC');
 	}
 
 	public function scopeMentions($query) {
@@ -136,16 +132,4 @@ class Notification extends Model {
 	{
 		return $this->object->activity;
 	}
-
-	function getIsReadAttribute() {
-		$user = Auth::user();
-		if($this->created_at->gte($user->notifications_read))
-		{
-			return false;
-		}
-		else {
-			return true;
-		}
-	}
-
 }

@@ -3,13 +3,14 @@
 namespace maze\Messenger;
 
 use maze\User;
-use maze\Message;
-use maze\Conversation;
+use maze\Messenger\Message;
+use maze\Messenger\Conversation;
 use maze\Events\MessageWasSent;
 
 class Messenger {
 
-	public static function send(User $user, Conversation $conversation, $contents) {
+	public static function send(User $user, Conversation $conversation, $contents) 
+	{
 
 		$message = Message::create([
 			'user_id' 			=> $user->id,
@@ -18,7 +19,13 @@ class Messenger {
 			'body'				=> markdown($contents),
 		]);
 
-		event(new MessageWasSent($message, $user));
+		$receiver = $conversation->users()->where('user_id', 'NOT LIKE', $user->id)->firstOrFail();
+
+		/**
+		 * Issaunam du eventus. Vienas zinutes autoriui, kitas zinutes gavejui.
+		 */
+		event(new MessageWasSent($message, $user)); //autoriui
+		event(new MessageWasSent($message, $receiver)); //gavejui
 
 		return $message;
 	}

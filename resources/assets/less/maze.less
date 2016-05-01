@@ -4,9 +4,38 @@
 	-webkit-font-smoothing: antialiased;
 }
 
+*:hover {
+	transition: 0.2s all linear;
+}
+
+.fa-primary {
+	color: @maze-primary;
+}
+
+.fa-grey {
+	color: @maze-border;
+}
+
+.hidden {
+	display: none !important;
+}
+
+.breadcrumb {
+	margin-bottom: 0;
+}
+
 p {
 	word-wrap: break-word;
 	word-break: break-word;
+	img {
+		max-width: 100%;
+	}
+}
+
+#content {
+	.container {
+		padding-bottom: 40px;
+	}
 }
 
 .replies-wrapper {
@@ -102,6 +131,14 @@ footer {
 		color: #68696a;
 		font-size: 12px;
 	}
+	.panel {
+		h4 {
+			color: @maze-negative-text;
+		}
+	}
+	.panel-heading {
+		border-bottom: none !important;
+	}
 }
 
 //Generic Stuff
@@ -135,42 +172,31 @@ ul {
 }
 
 .navbar-user-info {
-	
-	padding-bottom: 30px;
+	text-align: center;
+	padding-bottom: 18px;
 	margin-bottom: 30px;
 	border-bottom: 1px solid @maze-border-faded;
 
 	.fa { 
-		margin-right: 10px;
+		margin: 0 5px;
 	}
 	img.avatar {
 		border-radius: 90px;
-		margin: 0 20px;
+		margin: 0 10px 0 0;
 		height: 40px;
 		width: 40px;
 	}
 	.logged-out-wrapper {
-		// padding-top: 5px;
-		// margin-left: 15px;
 		margin: 0 -15px 0 -15px;
 	}
 }
 
 .main-content {
 	border-right: 1px solid @maze-border-faded;
-	padding: 0;
-}
-
-.content-box {
-	padding-right: 40px;
 }
 
 .main-sidebar {
-	padding-left: 40px;
-	padding-top: 40px;
-}
-
-.main-sidebar {
+	padding-top: 18px;
 	.media-heading {
 	    font-size: 13px;
 	    padding-top: 10px;
@@ -213,6 +239,7 @@ ul.similar-topics > li {
 .markdown-form {
 	margin: 0;
 	padding-left: 30px;
+	padding-top: 0;
 	.media-body {
 		border-bottom: none;
 	}
@@ -233,7 +260,8 @@ ul.similar-topics > li {
 	font-size: 11px;
 }
 
-.vote {
+.vote,
+.clickable-object {
 	cursor: pointer;
 }
 
@@ -287,6 +315,14 @@ ul.similar-topics > li {
 
 .label-play {
 	background: #1abc9c;
+}
+
+.label-gallery {
+	background: #16a085;
+}
+
+.label-lesson {
+	background: #e67e22;
 }
 
 .media-meta-element {
@@ -553,12 +589,12 @@ h1.media-heading {
 	cursor: pointer;
 }
 
-#fb-container {
+#fb-container,
+#steam-container {
     background: #3b5998;
     color: #fff;
     font-size: 21px;
     padding: 10px;
-    text-align: center;
     font-weight: bold;
     display: block;
     &:hover {
@@ -568,6 +604,10 @@ h1.media-heading {
 	.fa {
 		color: #fff;
 	}
+}
+
+#steam-container {
+	background: #000000;
 }
 
 //Offcanvas
@@ -658,11 +698,16 @@ h1.media-heading {
 }
 
 .create-form-wrapper {
-	height: 160px;
+	z-index: 1;
+	box-shadow: 0px -15px 33px -7px rgba(0, 0, 0, 0.07);
+	&.affix {
+		position: fixed;
+	    bottom: -1px;
+	}
 }
 
-.create-reply-textarea {
-	height: 62px !important;
+.reply-form-fix {
+	padding-top: 20px;
 }
 
 .post-show:nth-child(n+2) {
@@ -709,8 +754,118 @@ h1.media-heading {
 	}
 }
 
+.quick-notification-list {
+	margin: 0 -15px;
+	.notification-list-item {
+		padding: 15px 15px 0 15px;
+	}
+	.notification-unread {
+		padding-left: 13px !important;		
+	}
+}
+
 .alert a {
 	color: white;
+}
+
+.small-text {
+	font-size: 12px;
+}
+
+#notifications-container {
+	display: none;
+}
+
+.notifications-helper {
+	border-top: 1px solid @maze-border;
+	margin: 0 -14px;
+	padding-top: 9px;
+}
+
+.small-avatar {
+	border-radius: 90px;
+	width: 40px;
+	height: 40px;
+}
+
+.notification-list-item {
+	border-bottom: 1px solid @maze-border-faded;
+	p {
+		margin-bottom: 0;
+	}
+	.media-body {
+		border-bottom: none;
+	}
+}
+
+.notification-list-controls {
+	line-height: 40px;
+}
+
+.notification-controls-wrapper {
+	border-bottom: 1px solid @maze-border;
+	padding-bottom: 9px;
+	padding: 0 14px 9px 14px;
+}
+
+.like-link {
+	color: @maze-primary;
+	cursor: pointer;
+	&:hover {
+		color: @maze-negative-bg;
+	}
+}
+
+.no-underline:hover {
+	text-decoration: none;
+}
+
+.notification-unread {
+    border-left: 2px solid @maze-primary;
+    padding-left: 10px !important;
+}
+
+.sidebar-status-heading {
+	padding-top: 0 !important;
+}
+
+.sidebar-status-controls {
+	font-weight: normal;
+}
+
+a.stream-online {
+	color: @brand-success !important;
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+a.stream-offline {
+	color: @brand-danger !important;
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+.participants {
+	list-style-type: none;
+	padding: 0;
+	a > li {
+		padding: 10px 10px;
+		&:hover {
+			background: @maze-border-faded;
+		}
+	}
+	a {
+		color: @maze-text !important;
+		&:hover {
+			text-decoration: none !important;
+		}
+	}
+}
+
+#create-conversation-container {
+	display: none;
 }
 
 @media (min-width: 1200px) {
@@ -721,7 +876,7 @@ h1.media-heading {
     	}
     }
     #create-reply-form {
-    	width: 821px;
+    	width: 850px;
     }
 }
 
@@ -729,13 +884,6 @@ h1.media-heading {
 @media (max-width: 1200px) {
 	#create-reply-form {
 		width: 696px;
-	}
-	.content-box {
-		padding-right: 15px;
-		padding-bottom: 15px;
-		> h2 {
-			display: none;
-		}
 	}
 }
 
@@ -781,10 +929,6 @@ h1.media-heading {
 }
 
 @media (max-width: 430px) {
-	.create-form-wrapper {
-		height: 185px;
-	}
-
 	.post-show:nth-child(n+2) {
 		margin-top: -185px;
 		padding-top: 185px;
@@ -822,3 +966,4 @@ h1.media-heading {
 			overflow: hidden;
 		}
 	}
+>>>>>>> ab787dc470df52a9f2dce6f7475be21a33e2e78d

@@ -1,4 +1,4 @@
-<div class="media @if($topic->order == 1) global-pin @endif">
+<div class="topic-item topic-item-container media @if($topic->order == 1) global-pin @endif">
 	<div class="votes @if(Auth::check() && !Auth::user()->can_vote) votes-disabled @endif pull-left" id="votes-{{ $topic->id }}">
 		<div class="upvote-container vote-action" type="tema" vote="upvote" id="{{ $topic->id }}">
 			@if(!$topic->voted('up'))
@@ -59,10 +59,6 @@
 			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Viso Atsakymų">
 				<i class="fa fa-comments-o"></i> 
 				{{ $topic->reply_count }}
-			</span>
-			<span class="media-meta-element" data-toggle="tooltip" data-placement="top" title="Viso Peržiūrų">
-			<i class="fa fa-eye"></i> 
-			{{ $topic->view_count }}
 			</span>
 		</p>
 		<p class="topic-meta-container">

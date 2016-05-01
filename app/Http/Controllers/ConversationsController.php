@@ -1,16 +1,16 @@
 <?php namespace maze\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 use maze\Http\Requests;
 use maze\Http\Controllers\Controller;
 use maze\Http\Requests\ShowConversation;
 use maze\Http\Requests\CreateConversation;
-
 use maze\User;
-use maze\Message;
-use maze\Conversation;
+use maze\Messenger\Message;
+use maze\Messenger\Conversation;
 use maze\Messenger\Messenger;
 
-use Illuminate\Http\Request;
 use Auth;
 
 class ConversationsController extends Controller {
@@ -23,37 +23,35 @@ class ConversationsController extends Controller {
 	public function index(Request $request)
 	{
 		$user = Auth::user();
-		$conversations = $user->conversations()->latest()->withUsersAndMessages($user)->limit(30)->get();
 		
+		$conversations = $user->conversations()->latest()->withUsersAndMessages($user)->limit(30)->get();
+
 		$user->update(['message_count' => 0]);
 		$username = $request->input('username');
 
-		return view('conversation.index', compact('conversations', 'username'));
+		return view('conversation.index', compact('conversations', 'username', 'conversation'));
 	}
 
-	public function show(ShowConversation $request, $id)
+	public function show(ShowConversation $request, Conversation $conversation)
 	{
-
-		$conversation = $request->conversation;
+		$user = Auth::user();
+		
+		$conversations = $user->conversations()->latest()->withUsersAndMessages($user)->limit(30)->get();
+				
 		$messages = $conversation->messages()->latest()->paginate(30);
-		$users = $conversation->users;
-		$receiver = $conversation->receiver;
+		$receiver = $conversation->users()->where('user_id', 'NOT LIKE', $user->id)->first();
 
-		$conversation->pivot(Auth::user())->update(['read_at' => new \DateTime]);
+		$conversation->messages()->where('user_id', '<>', $user->id)->update(['is_read' => 1]);
 
-		return view('conversation.show', compact('conversation', 'messages', 'users', 'receiver'));
+		return view('conversation.show', compact('conversation', 'messages', 'users', 'user', 'receiver', 'conversations'));
 	}
 
-	public function create($id) {
+	public function create(User $receiver) {
 		$user = Auth::user();
-		$receiver = User::findOrFail($id);
-		$conversation = $user->jointConversations($receiver)->first();
-		if($conversation)
-		{
+		$conversation = Conversation::joint([$user->id, $receiver->id])->first();
+		if($conversation) {
 			return redirect()->route('conversation.show', $conversation->id);
-		}
-		else
-		{
+		} else {
 			return redirect()->route('conversation.index', ['username' => $receiver->username]);
 		}
 	}
@@ -63,17 +61,13 @@ class ConversationsController extends Controller {
 		$user = Auth::user();
 		$receiver = User::where('username', $request->input('username'))->first();
 
-		if(!$receiver || $receiver->id == $user->id)
-		{
+		if(!$receiver || $receiver->id == $user->id) {
 			flash()->error('Gavėjas nerastas!');
 			return redirect()->back()->withInput();
-		}
-		else
-		{
-			$conversation = $user->jointConversations($receiver)->first();
-			if(!$conversation)
-			{
-				$conversation = Conversation::create(['secret' => str_random(70)]);
+		} else {
+			$conversation = Conversation::joint([$user->id, $receiver->id])->first();
+			if(!$conversation) {
+				$conversation = Conversation::create();
 				$user->conversations()->attach($conversation->id);
 				$receiver->conversations()->attach($conversation->id);
 			}
@@ -83,5 +77,4 @@ class ConversationsController extends Controller {
 			return redirect()->route('conversation.show', $conversation->id);
 		}
 	}
-
 }

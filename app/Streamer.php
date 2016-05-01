@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use Image;
 use maze\Events\StreamerChannelWasUpdated;
 use maze\Events\StreamerStreamWasUpdated;
+use Cache;
 
 class Streamer extends Model
 {
@@ -140,6 +141,20 @@ class Streamer extends Model
 		$image = $image->fit(640, 360)->save(public_path().$file_name);
 		$this->banner = $file_name;
 		$this->save();
+	}
+
+	public static function getFrontPage()
+	{
+		$streams = Cache::remember('frontpage_streams', 3, function() {
+			return self::recommended()->get();
+		});
+
+		return $streams;
+	}
+
+	public function url()
+	{
+		return route('streamer.show', $this->twitch);
 	}
 
 }

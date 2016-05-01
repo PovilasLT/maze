@@ -5,6 +5,7 @@ use maze\Notification;
 use \maze\Traits\Notifiable;
 use Markdown;
 use Auth;
+use Cache;
 
 class Status extends Model {
 
@@ -85,6 +86,12 @@ class Status extends Model {
 
 	public function getActivityAttribute() {
 		return $this->body;
+	}
+
+	public static function getSidebarStatuses() {
+		return Cache::remember('sidebar_statuses', 1, function() {
+		    return self::orderBy('created_at', 'DESC')->with('comments')->take(5)->get();
+		});
 	}
 
 }

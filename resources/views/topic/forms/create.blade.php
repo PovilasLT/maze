@@ -1,37 +1,44 @@
 <form action="{{ route('topic.store') }}" method="POST" role="form">
 @include('includes.csrf')
-	<div class="form-group">
-		<label for="node">Diskusijų Skiltis</label>
-		<select name="node_id" id="node" class="form-control" required="required">
-		@foreach($nodes as $node)
-			<option value="" disabled>{{ $node->name }}</option>
-			@foreach($node->children as $child)
-			@if(($child->id != 15) || ($child->id == 15 && Auth::user()->can('manage_topics')))
-				@if((old('node_id') == $child->id) || $node_id == $child->id)
-				<option value="{{ $child->id }}" selected>-- {{ $child->name }}</option>
-				@else
-				<option value="{{ $child->id }}">-- {{ $child->name }}</option>
-				@endif
-			@endif
-			@endforeach
-		@endforeach
-		</select>
-	</div>
-	<div class="form-group">
-		<label for="type">Temos Tipas</label>
-		<p class="helpblock">Temų tipai padeda kitiems lankytojams atskirti kokia tai tema. Kiekvienas temos tipas suteikia jūsų temai papildomas galimybes. <a href="{{ route('page.knowledgebase').'#temu-tipai' }}" target="_blank">[Skaityti Daugiau]</a></p>
-		<select name="type" id="type" class="form-control" required="required">
-			<option value="0">Diskusija</option>
-			<option value="2">Klausimas</option>
-			<option value="3">Konkursas</option>
-			<option value="4">Video</option>
-			<option value="5">Stream</option>
-			<option value="6">Kviečiu Žaisti</option>
-			<option value="7">Pristatymas</option>
-			@if(Auth::user()->can('manage_topics'))
-			<option value="215">Pranešimas</option>
-			@endif
-		</select>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="node">Diskusijų Skiltis</label>
+				<select name="node_id" id="node" class="form-control" required="required">
+				@foreach($nodes as $node)
+					<option value="" disabled>{{ $node->name }}</option>
+					@foreach($node->children as $child)
+					@if(($child->id != 15) || ($child->id == 15 && Auth::user()->can('manage_topics')))
+						@if((old('node_id') == $child->id) || $node_id == $child->id)
+						<option value="{{ $child->id }}" selected>-- {{ $child->name }}</option>
+						@else
+						<option value="{{ $child->id }}">-- {{ $child->name }}</option>
+						@endif
+					@endif
+					@endforeach
+				@endforeach
+				</select>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="type">Temos Tipas <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="Temų tipai padeda kitiems lankytojams atskirti kokia tai tema. Kiekvienas temos tipas suteikia jūsų temai papildomas galimybes."></i></label>
+				<select name="type" id="type" class="form-control" required="required">
+					<option value="0">Diskusija</option>
+					<option value="2">Klausimas</option>
+					<option value="3">Konkursas</option>
+					<option value="4">Video</option>
+					<option value="5">Stream</option>
+					<option value="6">Kviečiu Žaisti</option>
+					<option value="7">Pristatymas</option>
+					<option value="8">Paveikslėliai</option>
+					<option value="9">Pamoka</option>
+					@if(Auth::user()->can('manage_topics'))
+					<option value="215">Pranešimas</option>
+					@endif
+				</select>
+			</div>
+		</div>
 	</div>
 	<label for="title">Temos pavadinimas</label>
 	<div class="form-group">

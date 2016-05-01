@@ -1,7 +1,7 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">
-      Streaminami Žaidimai
+      <i class="fa fa-gamepad fa-fw"></i> Streaminami Žaidimai
     </h3>
   </div>
   <div class="panel-body">
@@ -13,12 +13,14 @@
         </a>
       </li>
     @foreach($games as $game)
+      @if($game)
       <li @if(strtolower($current_game) == strtolower($game)) class="active-node" @endif>
         <i class="fa fa-circle-thin parent-icon"></i>
         <a href="{{ route('streamer.all', ['zaidimas' => $game]) }}">
           {{ ucwords($game) }}
         </a>
       </li>
+      @endif
     @endforeach
 	</ul>
   </div>

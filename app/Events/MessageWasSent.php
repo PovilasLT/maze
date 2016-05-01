@@ -4,7 +4,7 @@ namespace maze\Events;
 
 use maze\Events\Event;
 
-use maze\Message;
+use maze\Messenger\Message;
 use maze\User;
 
 use Illuminate\Queue\SerializesModels;
@@ -37,8 +37,14 @@ class MessageWasSent extends Event implements ShouldBroadcast {
 
     public function broadcastWith() {
     	return [
-    		'channel' => $this->conversation->id.'-'.$this->conversation->secret,
-    		'message' => $this->view,
+    		'channel' => $this->user->secret,
+    		'data' => [
+                'body'              => $this->view,
+                'conversation_id'   => $this->conversation->id,
+                'message_id'        => $this->message->id,
+                'user_online'       => $this->message->user->is_online,
+                'user_id'           => $this->message->user_id,
+            ]
     	];
     }
 

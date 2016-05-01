@@ -22,6 +22,10 @@
 		@endforeach
 	</div>
 	<div class="maze-pagination text-right">
-		{!! $streamers->appends(['zaidimas' => $current_game])->render() !!}
+		@if($current_game)
+			{!! $streamers->appends(['zaidimas' => $current_game])->render() !!}
+		@else
+			{!! $streamers->render() !!}
+		@endif
 	</div>
 @stop

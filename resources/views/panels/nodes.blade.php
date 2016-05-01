@@ -1,11 +1,13 @@
 <div class="panel panel-default" id="panel-nodes">
   <div class="panel-heading">
     <h3 class="panel-title">
-      Forumo Skiltys
+      <i class="fa fa-bars fa-fw"></i> Forumo Skiltys
       @if(Auth::check())
-        <a href><i class="fa fa-pencil-square-o pull-right edit-front-page-nodes"></i></a>
+        <i class="fa fa-pencil-square-o pull-right edit-front-page-nodes clickable-object"></i>
         @if(Auth::user()->can('manage_nodes'))
-        <a href="{{ route('node.create') }}"><i class="glyphicon glyphicon-plus pull-right"></i></a>
+        <a href="{{ route('node.create') }}">
+          <i class="glyphicon glyphicon-plus pull-right"></i>
+        </a>
         @endif
       @endif
     </h3>

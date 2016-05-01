@@ -6,23 +6,26 @@ use maze\Events\Event;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use maze\User;
+use maze\Notification;
 
-class UserWasNotified extends Event
+class UserWasNotified extends Event implements ShouldBroadcast
 {
     use SerializesModels;
 
     public $object;
     public $user;
+    public $notification;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($object, User $user)
+    public function __construct($object, User $user, Notification $notification)
     {
         $this->object = $object;
         $this->user = $user;
+        $this->notification = $notification;
     }
 
     /**
@@ -32,6 +35,25 @@ class UserWasNotified extends Event
      */
     public function broadcastOn()
     {
-        return [];
+        return ['notifications'];
+    }
+
+    public function broadcastWith()
+    {
+        $from = $this->notification->fromUser;
+
+        return [
+            'channel' => $this->user->secret,
+            'data' => [
+                'fromUser' => [
+                    'username' => $from->username,
+                    'avatar' => $from->avatar,
+                    'url' => $from->url,
+                ],
+                'body' => $this->notification->object->notification,
+                'is_read' => $this->notification->is_read,
+                'id' => $this->notification->id
+            ],
+        ];
     }
 }

@@ -1,7 +1,7 @@
 @if(!$reply->is_answer)
 <div class="media post-show" id="pranesimas-{{ $reply->id }}">
 @else
-<div class="media post-show post-answer" id="pranesimas-{{ $reply->id }}">
+<div class="media post-show post-answer emojify" id="pranesimas-{{ $reply->id }}">
 @endif
   <div class="votes reply-votes @if(Auth::check() && !Auth::user()->can_vote) votes-disabled @endif pull-left" id="votes-{{ $reply->id }}">
     <div class="upvote-container vote-action" type="pranesimas" vote="upvote" id="{{ $reply->id }}">
@@ -41,6 +41,7 @@
   </div>
   <div class="media-body">
     <h4 class="media-heading">
+      @include('includes.tv_icon', ['user' => $reply->user])
       <a href="{{ route('user.show', $reply->user->slug) }}" class="author">{{ $reply->user->username }}</a>
       <small class="date-when">{{ $reply->created_at->diffForHumans() }}</small>
       @include('reply.controls')
