@@ -82,6 +82,26 @@ class PopulateTopicTypesTable extends Migration
 
             ],
             [
+                'id'        => 8,
+                'name'      => 'Paveikslėlis',
+                'icon'      => 'fa fa-picture-o fa-fw',
+                'label_style'=> 'label-gallery',
+                'is_selflock' => 0,
+                'is_admin'  => 0,
+                'is_ad'     => 0
+
+            ],
+            [
+                'id'        => 9,
+                'name'      => 'Pamoka',
+                'icon'      => 'fa fa-graduation-cap fa-fw',
+                'label_style'=> 'label-lesson',
+                'is_selflock' => 0,
+                'is_admin'  => 0,
+                'is_ad'     => 0
+
+            ],
+            [
                 'id'        => 215,
                 'name'      => 'Pranešimas',
                 'icon'      => 'fa fa-exclamation fa-fw',
@@ -89,7 +109,6 @@ class PopulateTopicTypesTable extends Migration
                 'is_selflock' => 0,
                 'is_admin'  => 1,
                 'is_ad'     => 0
-
             ],
         ]);
     }

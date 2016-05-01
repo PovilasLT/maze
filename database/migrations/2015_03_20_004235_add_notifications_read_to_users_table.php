@@ -28,7 +28,7 @@ class AddNotificationsReadToUsersTable extends Migration {
 	{
 		Schema::table('users', function(Blueprint $table)
 		{
-			$table->dropColumn('notifications_read');
+	        $table->dateTime('notifications_count')->index();
 		});
 	}
 

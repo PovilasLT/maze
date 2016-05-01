@@ -12,6 +12,7 @@ class AddTopicTypeTable extends Migration
      */
     public function up()
     {
+        Schema::drop('topic_types');
         Schema::create('topic_types', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');

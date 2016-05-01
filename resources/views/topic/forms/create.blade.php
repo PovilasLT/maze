@@ -30,6 +30,7 @@
 					@endif
 				@endforeach
 				</select>
+			</div>
 		</div>
 	</div>
 	<label for="title">Temos pavadinimas</label>
