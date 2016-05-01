@@ -1,6 +1,6 @@
-## Maze Forumas
+## Maze Forumas [![Build Status](https://travis-ci.org/SkepticalHippo/maze.svg?branch=master)](https://travis-ci.org/SkepticalHippo/maze)
 
-[http://maze.lt/](http://maze.lt) platformos kodas.
+[http://maze.lt/](http://maze.lt).
 
 ***
 
