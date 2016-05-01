@@ -1,6 +1,6 @@
 <?php
 
-namespace maze;
+namespace maze\Messenger;
 
 use Illuminate\Database\Eloquent\Model;
 use maze\User;
@@ -15,31 +15,30 @@ class Conversation extends Model
 
 	public function users() 
 	{
-		return $this->belongsToMany('maze\User')->withTimestamps();
+		return $this->belongsToMany('maze\User');
 	}
 
 	public function messages() 
 	{
-		return $this->hasMany('maze\Message');
+		return $this->hasMany('maze\Messenger\Message');
 	}
 
-	public function pivots() 
+	public function scopeJoint($query, array $user_ids)
 	{
-		return $this->hasMany('maze\UserConversationPivot');
-	}
-
-	public function pivot(User $user) 
-	{
-		return $this->hasMany('maze\UserConversationPivot')->where('user_id', $user->id);
+		return $query
+		->rightJoin('conversation_user', 'conversation_user.conversation_id', '=', 'conversations.id')
+		->where('conversation_user.user_id', $user_ids[0])
+		->whereIn('conversation_user.conversation_id', function($query) use($user_ids) {
+			return $query
+			->select('conversation_user.conversation_id')
+			->from('conversation_user')
+			->where('conversation_user.user_id', $user_ids[1]);
+		});
 	}
 
 	public function scopeLatest($query) 
 	{
 		return $query->orderBy('updated_at', 'DESC');
-	}
-
-	public function hasUnread() {
-		
 	}
 
 	public function scopeWithUsersAndMessages($query, $user)
@@ -59,16 +58,8 @@ class Conversation extends Model
 		return $this->users()->where('user_id', 'NOT LIKE', Auth::user()->id)->first();
 	}
 
-	public function getSecretAttribute($value)
+	public function getUnreadCountAttribute()
 	{
-		if(!$value) {
-			$secret = str_random(70);
-			$this->secret = str_random(70);
-			$this->save();
-			return $secret;
-		} else {
-			return $value;
-		}
+		
 	}
-
 }

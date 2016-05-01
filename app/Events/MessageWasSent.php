@@ -4,7 +4,7 @@ namespace maze\Events;
 
 use maze\Events\Event;
 
-use maze\Message;
+use maze\Messenger\Message;
 use maze\User;
 
 use Illuminate\Queue\SerializesModels;

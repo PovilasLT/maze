@@ -7,8 +7,8 @@ use maze\Http\Controllers\Controller;
 use maze\Http\Requests\ShowConversation;
 use maze\Http\Requests\CreateConversation;
 use maze\User;
-use maze\Message;
-use maze\Conversation;
+use maze\Messenger\Message;
+use maze\Messenger\Conversation;
 use maze\Messenger\Messenger;
 
 use Auth;
@@ -32,26 +32,21 @@ class ConversationsController extends Controller {
 		return view('conversation.index', compact('conversations', 'username', 'conversation'));
 	}
 
-	public function show(ShowConversation $request, $id)
+	public function show(ShowConversation $request, Conversation $conversation)
 	{
 		$user = Auth::user();
 		
 		$conversations = $user->conversations()->latest()->withUsersAndMessages($user)->limit(30)->get();
-		$conversation = $request->conversation;
-		
+				
 		$messages = $conversation->messages()->latest()->paginate(30);
-		$users = $conversation->users;
-		$receiver = $conversation->receiver;
-
-		$conversation->pivot($user)->update(['read_at' => new \DateTime]);
+		$receiver = $conversation->users()->where('user_id', 'NOT LIKE', $user->id)->first();
 
 		return view('conversation.show', compact('conversation', 'messages', 'users', 'user', 'receiver', 'conversations'));
 	}
 
-	public function create($id) {
+	public function create(User $receiver) {
 		$user = Auth::user();
-		$receiver = User::findOrFail($id);
-		$conversation = $user->jointConversations($receiver)->first();
+		$conversation = Conversation::joint([$user->id, $receiver->id])->first();
 		if($conversation) {
 			return redirect()->route('conversation.show', $conversation->id);
 		} else {
@@ -68,10 +63,9 @@ class ConversationsController extends Controller {
 			flash()->error('Gavėjas nerastas!');
 			return redirect()->back()->withInput();
 		} else {
-			$conversation = $user->jointConversations($receiver)->first();
-			if(!$conversation)
-			{
-				$conversation = Conversation::create(['secret' => str_random(70)]);
+			$conversation = Conversation::joint([$user->id, $receiver->id])->first();
+			if(!$conversation) {
+				$conversation = Conversation::create();
 				$user->conversations()->attach($conversation->id);
 				$receiver->conversations()->attach($conversation->id);
 			}

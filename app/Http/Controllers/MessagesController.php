@@ -4,8 +4,8 @@ use maze\Http\Requests;
 use maze\Http\Controllers\Controller;
 use maze\Http\Requests\CreateMessage;
 use maze\User;
-use maze\Message;
-use maze\Conversation;
+use maze\Messenger\Message;
+use maze\Messenger\Conversation;
 use maze\Messenger\Messenger;
 
 use Illuminate\Http\Request;
@@ -27,13 +27,17 @@ class MessagesController extends Controller {
 
 		$message = Messenger::send($user, $conversation, $request->input('body'));
 
-		if($request->ajax())
-		{
+		if($request->ajax()) {
 			return 'OK';
-		}
-		else
-		{
+		} else {
 			return redirect()->back();
+		}
+	}
+
+	public function read(Conversation $conversation, Message $message)
+	{
+		if($message->conversation_id == $conversation->id) {
+			$message->update(['is_read' => 1]);
 		}
 	}
 

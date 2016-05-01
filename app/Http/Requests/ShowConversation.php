@@ -3,7 +3,7 @@
 namespace maze\Http\Requests;
 
 use maze\Http\Requests\Request;
-use maze\Conversation;
+use maze\Messenger\Conversation;
 
 use Auth;
 
@@ -17,14 +17,11 @@ class ShowConversation extends Request
     public function authorize()
     {
         //patikrinam ar zmogus dalyvauja pokalbyje kuri bando perziureti.
-        $this->conversation = Conversation::findOrFail($this->route('id'));
+        $this->conversation = $this->route('conversation');
 
-        if($this->conversation->users()->where('user_id', Auth::user()->id)->first())
-        {
+        if($this->conversation->users()->where('user_id', Auth::user()->id)->first()) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }

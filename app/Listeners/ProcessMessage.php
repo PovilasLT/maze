@@ -26,8 +26,6 @@ class ProcessMessage
      */
     public function handle(MessageWasSent $event)
     {
-        $event->conversation->pivot($event->user)->update(['read_at' => new \DateTime]);
-        $event->conversation->receiver->increment('message_count');
-        $event->conversation->touch();
+        
     }
 }

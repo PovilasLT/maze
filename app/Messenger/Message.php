@@ -1,6 +1,6 @@
 <?php
 
-namespace maze;
+namespace maze\Messenger;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,10 +11,11 @@ class Message extends Model
     	'conversation_id',
     	'body',
     	'body_original',
+        'is_read',
     ];
 
     public function conversation() {
-    	return $this->belongsTo('maze\Conversation');
+    	return $this->belongsTo('maze\Messenger\Conversation');
     }
 
     public function user() {

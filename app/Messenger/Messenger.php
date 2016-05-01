@@ -3,9 +3,8 @@
 namespace maze\Messenger;
 
 use maze\User;
-use maze\Message;
-use maze\Conversation;
-use maze\UserConversationPivot;
+use maze\Messenger\Message;
+use maze\Messenger\Conversation;
 use maze\Events\MessageWasSent;
 
 class Messenger {
@@ -20,11 +19,7 @@ class Messenger {
 			'body'				=> markdown($contents),
 		]);
 
-		$receiver = UserConversationPivot::where('conversation_id', $conversation->id)
-		->where('user_id', 'NOT LIKE', $user->id)
-		->firstOrFail();
-
-		$receiver = $receiver->user;
+		$receiver = $conversation->users()->where('user_id', 'NOT LIKE', $user->id)->firstOrFail();
 
 		/**
 		 * Issaunam du eventus. Vienas zinutes autoriui, kitas zinutes gavejui.

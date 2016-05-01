@@ -3,7 +3,7 @@
 namespace maze\Http\Requests;
 
 use maze\Http\Requests\Request;
-use maze\Conversation;
+use maze\Messenger\Conversation;
 
 class CreateConversation extends Request
 {
