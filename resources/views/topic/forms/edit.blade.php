@@ -20,19 +20,12 @@
 	<div class="form-group">
 		<label for="type">Temos Tipas</label>
 		<p class="helpblock">Temų tipai padeda kitiems lankytojams atskirti kokia tai tema. Kiekvienas temos tipas suteikia jūsų temai papildomas galimybes. <a href="{{ route('page.knowledgebase').'#temu-tipai' }}" target="_blank">[Skaityti Daugiau]</a></p>
-		<select name="type" id="type" class="form-control" required="required">
-			<option value="0" @if($topic->type == 0) {{ 'selected '}} @endif >Diskusija</option>
-			<option value="2" @if($topic->type == 2) {{ 'selected '}} @endif >Klausimas</option>
-			<option value="3" @if($topic->type == 3) {{ 'selected '}} @endif >Konkursas</option>
-			<option value="4" @if($topic->type == 4) {{ 'selected '}} @endif >Video</option>
-			<option value="5" @if($topic->type == 5) {{ 'selected '}} @endif >Stream</option>
-			<option value="6" @if($topic->type == 6) {{ 'selected '}} @endif >Kviečiu Žaisti</option>
-			<option value="7" @if($topic->type == 7) {{ 'selected '}} @endif >Pristatymas</option>
-			<option value="8" @if($topic->type == 8) {{ 'selected '}} @endif >Paveikslėliai</option>
-			<option value="9" @if($topic->type == 9) {{ 'selected '}} @endif >Pamoka</option>
-			@if(Auth::user()->can('manage_topics'))
-			<option value="215" @if($topic->type == 215) {{ 'selected '}} @endif >Pranešimas</option>
+		<select name="type_id" id="type_id" class="form-control" required="required">
+		@foreach($topic_types as $topic_type)
+			@if(!$topic_type->is_admin || Auth::user()->can('manage_topics'))
+				<option value="{{ $topic_type->id }}" @if($topic->type->id == $topic_type->id) selected="1" @endif>{{ $topic_type->name }}</option>
 			@endif
+		@endforeach
 		</select>
 	</div>
 	<label for="title">Temos pavadinimas</label>

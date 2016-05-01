@@ -4,7 +4,7 @@ return [
 	
 	//Maze config
 	
-	'version' => '2.0.2',
+	'version' => '2.1.0',
 
 	'advertisements' => env('APP_SIDEBAR_ADVERTISEMENTS', 8),
 
