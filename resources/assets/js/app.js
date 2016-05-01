@@ -17,11 +17,11 @@ var Voter = require('./services/Voter');
 var Notifications = require('./views/Notifications');
 var Progress = require('nprogress');
 var Pjax = require('pjax');
+var Socket = require('./services/Socket');
 
 /**
  * Globalus socket.
  */
-var Socket = require('./services/Socket');
 global.socket = new Socket(token);
 
 /**

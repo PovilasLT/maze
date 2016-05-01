@@ -21,6 +21,10 @@
 				var token = "{{ Auth::user()->secret }}";
 				var auth_id = {{ Auth::user()->id }};
 			</script>
+		@else
+			<script type="text/javascript">
+				var token = '';
+			</script>
 		@endif
 	</head>
 	<body>
