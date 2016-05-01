@@ -16,72 +16,78 @@ class TopicTypeTableSeeder extends Seeder
 	        	'id'		=> 1,
 	        	'name'		=> 'Diskusija',
 	        	'icon'		=> 'fa fa-comments-o fa-fw',
-	        	'color'	=> 'peter-river',
+	        	'label_style'	=> 'label-diskusija',
 	        	'is_selflock' => 0,
-	        	'is_admin'	=> 0
+	        	'is_admin'	=> 0,
+	        	'is_ad'		=> 0
 
         	],
         	[
         		'id'		=> 2,
 	        	'name'		=> 'Klausimas',
 	        	'icon'		=> 'fa fa-question fa-fw',
-	        	'color'	=> 'orange',
+	        	'label_style'	=> 'label-klausimas',
 	        	'is_selflock' => 1,
-	        	'is_admin'	=> 0
-
+	        	'is_admin'	=> 0,
+	        	'is_ad'		=> 0
         	],
         	[
         		'id'		=> 3,
 	        	'name'		=> 'Konkursas',
 	        	'icon'		=> 'fa fa-trophy fa-fw',
-	        	'color'	=> 'dark-red',
+	        	'label_style'=> 'label-apklausa',
 	        	'is_selflock' => 0,
-	        	'is_admin'	=> 0
+	        	'is_admin'	=> 0,
+	        	'is_ad'		=> 0
 
         	],
         	[
         		'id'		=> 4,
 	        	'name'		=> 'Video',
 	        	'icon'		=> 'fa fa-youtube-play fa-fw',
-	        	'color'	=> 'youtube-red',
+	        	'label_style'=> 'label-video',
 	        	'is_selflock' => 0,
-	        	'is_admin'	=> 0
+	        	'is_admin'	=> 0,
+	        	'is_ad'		=> 0
 
         	],
         	[
         		'id'		=> 5,
 	        	'name'		=> 'Stream',
 	        	'icon'		=> 'fa fa-twitch fa-fw',
-	        	'color'	=> 'twitch-purple',
+	        	'label_style'=> 'label-stream',
 	        	'is_selflock' => 0,
-	        	'is_admin'	=> 0
+	        	'is_admin'	=> 0,
+	        	'is_ad'		=> 0
 
         	],
         	[
         		'id'		=> 6,
 	        	'name'		=> 'Kviečiu Žaisti',
 	        	'icon'		=> 'fa fa-gamepad fa-fw',
-	        	'color'	=> 'turquoise',
+	        	'label_style'=> 'label-play',
 	        	'is_selflock' => 0,
-	        	'is_admin'	=> 0
-
+	        	'is_admin'	=> 0,
+	        	'is_ad'		=> 0
         	],
         	[
         		'id'		=> 7,
 	        	'name'		=> 'Pristatymas',
 	        	'icon'		=> 'fa fa-star fa-fw',
-	        	'color'	=> 'grey',
+	        	'label_style'=> 'label-spam',
 	        	'is_selflock' => 0,
-	        	'is_admin'	=> 0
+	        	'is_admin'	=> 0,
+	        	'is_ad'		=> 0
 
         	],
         	[
         		'id'		=> 215,
 	        	'name'		=> 'Pranešimas',
 	        	'icon'		=> 'fa fa-exclamation fa-fw',
-	        	'color'	=> 'emerald',
+	        	'label_style'=> 'label-pranesimas',
 	        	'is_selflock' => 0,
-	        	'is_admin'	=> 1
+	        	'is_admin'	=> 1,
+	        	'is_ad'		=> 0
 
         	],
         ]);

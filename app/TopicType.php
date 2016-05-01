@@ -11,7 +11,12 @@ class TopicType extends Model {
 		'name',
 		'color',
 		'is_selflock',
-		'is_admin'
+		'is_admin',
+		'is_ad'
 	];
+
+	public function scopeAds($query) {
+		return $query->where('is_ad', '=', '1');
+	}
 
 }

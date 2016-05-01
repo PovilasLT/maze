@@ -45,15 +45,18 @@
       <a href="{{ route('user.show', $reply->user->slug) }}" class="author">{{ $reply->user->username }}</a>
       <small class="date-when">{{ $reply->created_at->diffForHumans() }}</small>
       @include('reply.controls')
-      @if(Auth::check() && (!isset($votes) || $votes) && $reply->topic->user->id == Auth::user()->id && $reply->topic->type == 2 && !$reply->topic->is_answered)
-        <small class="pull-right">
-        <!--<a href="{{ route('reply.answer', $reply->id) }}">Atsakymas</a> -->
-          <a href='#' data-toggle="modal" data-target="#confirm-answer-{{ $reply->id }}">Atsakymas</a>
-          @include('reply.modals.answer')
-        </small>
-      @elseif($reply->topic->type == 2 && $reply->topic->is_answered && $reply->is_answer)
-        <span class="pull-right label label-success"><i class="fa fa-check-circle"></i> Atsakymas</span>
+      @if(isset($reply->topic->type))
+        @if(Auth::check() && (!isset($votes) || $votes) && $reply->topic->user->id == Auth::user()->id && $reply->topic->type->is_selflock && !$reply->topic->is_answered)
+          <small class="pull-right">
+          <!--<a href="{{ route('reply.answer', $reply->id) }}">Atsakymas</a> -->
+            <a href='#' data-toggle="modal" data-target="#confirm-answer-{{ $reply->id }}">Atsakymas</a>
+            @include('reply.modals.answer')
+          </small>
+        @elseif($reply->topic->type->is_selflock && $reply->topic->is_answered && $reply->is_answer)
+          <span class="pull-right label label-success"><i class="fa fa-check-circle"></i> Atsakymas</span>
+        @endif
       @endif
+    
     </h4>
     <div class="lightbox">
       {!! $reply->body !!}

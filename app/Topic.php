@@ -6,6 +6,7 @@ use Auth;
 use Config;
 use Stringy\StaticStringy as S;
 
+
 class Topic extends Model {
 
 	protected $morphClass = 'Topic';
@@ -20,7 +21,7 @@ class Topic extends Model {
 		'body',
 		'body_original',
 		'user_id',
-		'type',
+		'type_id',
 	];
 
 	use SoftDeletes;
@@ -41,6 +42,10 @@ class Topic extends Model {
 
 	public function poll() {
 		return $this->hasOne('maze\Poll');
+	}
+
+	public function type() {
+		return $this->hasOne('maze\TopicType', 'id', 'type_id');
 	}
 
 	public function notifications() {
@@ -167,34 +172,6 @@ class Topic extends Model {
 		else {
 			return $value;
 		}
-	}
-
-	public function getFullTypeAttribute($value)
-	{
-		$type = $this->type;
-
-		if($type == 0)
-			return '<span class="maze-label label-diskusija media-meta-element"><i class="fa fa-comments-o fa-fw"></i><span class="hidden-xs">Diskusija</span></span>';
-		elseif($type == 215)
-			return '<span class="maze-label label-pranesimas media-meta-element"><i class="fa fa-exclamation fa-fw"></i><span class="hidden-xs">Pranešimas</span></span>';
-		elseif($type == 2)
-			return '<span class="maze-label label-klausimas media-meta-element"><i class="fa fa-question fa-fw"></i><span class="hidden-xs">Klausimas</span></span>';
-		elseif($type == 3)
-			return '<span class="maze-label label-apklausa media-meta-element"><i class="fa fa-trophy fa-fw"></i><span class="hidden-xs">Konkursas</span></span>';
-		elseif($type == 4)
-			return '<span class="maze-label label-video media-meta-element"><i class="fa fa-youtube-play fa-fw"></i><span class="hidden-xs">Video</span></span>';
-		elseif($type == 5)
-			return '<span class="maze-label label-stream media-meta-element"><i class="fa fa-twitch fa-fw"></i><span class="hidden-xs">Stream</span></span>';
-		elseif($type == 6)
-			return '<span class="maze-label label-play media-meta-element"><i class="fa fa-gamepad fa-fw"></i><span class="hidden-xs">Kviečiu Žaisti</span></span>';
-		elseif($type == 7)
-			return '<span class="maze-label label-spam media-meta-element"><i class="fa fa-star fa-fw"></i><span class="hidden-xs">Pristatymas</span></span>';
-		elseif($type == 8)
-			return '<span class="maze-label label-gallery media-meta-element"><i class="fa fa-picture-o fa-fw"></i><span class="hidden-xs">Paveikslėliai</span></span>';
-		elseif($type == 9)
-			return '<span class="maze-label label-lesson media-meta-element"><i class="fa fa-graduation-cap fa-fw"></i><span class="hidden-xs">Pamoka</span></span>';
-		else 
-			return '<span class="maze-label label-diskusija media-meta-element"><i class="fa fa-comments-o fa-fw"></i><span class="hidden-xs">Diskusija</span></span>';
 	}
 
 	public function voted($type, $user = null) {

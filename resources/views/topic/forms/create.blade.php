@@ -23,21 +23,13 @@
 		<div class="col-md-6">
 			<div class="form-group">
 				<label for="type">Temos Tipas <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="Temų tipai padeda kitiems lankytojams atskirti kokia tai tema. Kiekvienas temos tipas suteikia jūsų temai papildomas galimybes."></i></label>
-				<select name="type" id="type" class="form-control" required="required">
-					<option value="0">Diskusija</option>
-					<option value="2">Klausimas</option>
-					<option value="3">Konkursas</option>
-					<option value="4">Video</option>
-					<option value="5">Stream</option>
-					<option value="6">Kviečiu Žaisti</option>
-					<option value="7">Pristatymas</option>
-					<option value="8">Paveikslėliai</option>
-					<option value="9">Pamoka</option>
-					@if(Auth::user()->can('manage_topics'))
-					<option value="215">Pranešimas</option>
+				<select name="type_id" id="type_id" class="form-control" required="required">
+				@foreach($topic_types as $topic_type)
+					@if(!$topic_type->is_admin || Auth::user()->can('manage_topics'))
+						<option value="{{ $topic_type->id }}">{{ $topic_type->name }}</option>
 					@endif
+				@endforeach
 				</select>
-			</div>
 		</div>
 	</div>
 	<label for="title">Temos pavadinimas</label>
