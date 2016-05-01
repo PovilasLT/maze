@@ -1,7 +1,7 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">
-      Maze Rekomenduoja
+      <i class="fa fa-trophy fa-fw"></i> Maze Rekomenduoja
     </h3>
   </div>
   <div class="panel-body">

@@ -1,7 +1,7 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">
-      Streaminami Žaidimai
+      <i class="fa fa-gamepad fa-fw"></i> Streaminami Žaidimai
     </h3>
   </div>
   <div class="panel-body">
