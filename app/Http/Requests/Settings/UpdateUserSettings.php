@@ -6,6 +6,8 @@ use maze\User;
 
 class UpdateUserSettings extends Request {
 
+	private $gif_role_ids = [1, 2, 3, 4];
+
 	/**
 	 * Determine if the user is authorized to make this request.
 	 *
@@ -32,14 +34,20 @@ class UpdateUserSettings extends Request {
 	public function rules()
 	{
 
-		return [
+		$rules = [
 			'email'		=> 'email',
 			'steam'		=> 'url',
 			'youtube'	=> 'url',
 			'twitch'	=> 'alpha_num',
 			'twitter'	=> 'alpha_dash',
-			'avatar'	=> 'mimes:jpeg,png',
+			'avatar'	=> 'mimes:jpeg,png'
 		];
+
+		// Modifikuojam vartotojui leidžiamus avatarus, jeigu jam galima naudoti GIF'us.
+		$role_id = Auth::user()->role_id;
+		if(in_array($role_id, $this->gif_role_ids)) $rules['avatar'] = 'mimes:jpeg,png,gif';
+
+		return $rules;
 	}
 
 	public function attributes()
