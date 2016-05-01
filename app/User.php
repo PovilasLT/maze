@@ -181,11 +181,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	public function getReplyWaitTimeAttribute() {
 		$reply = $this->replies()->latest()->first();
-		if($reply)
-		{
+		if($reply) {
 			$diff = Carbon::now()->diffInSeconds($reply->created_at->addSeconds(60), false);
-			if($diff > 0)
-			{
+			if($diff > 0) {
 				return $diff;
 			}
 		}
@@ -295,6 +293,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 			$this->attachRole(Role::where('name', '=', 'Narys')->get()->first());
 		}
 		return $this->roles->first()->name;
+	}
+
+	public function getRoleIdAttribute()
+	{
+		return $this->roles()->firstOrFail()->id;
 	}
 
 	public function getIsStaffAttribute()
