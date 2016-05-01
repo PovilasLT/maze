@@ -57,7 +57,8 @@ var Conversations = Backbone.View.extend({
 	 */
 	_shouldStart: function() {
 		var query = window.location.href.split("?").slice(1).join("?");
-		if(QueryStringParser.parseQuery(query)) {
+		var parameters = QueryStringParser.parseQuery(query);
+		if(parameters.username) {
 			this._newConversation();
 		}
 	}
