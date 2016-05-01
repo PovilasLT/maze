@@ -60,6 +60,6 @@ class Conversation extends Model
 
 	public function getUnreadCountAttribute()
 	{
-		
+		return $this->messages()->where('user_id', '<>', Auth::user()->id)->where('is_read', 0)->count();
 	}
 }

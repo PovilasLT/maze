@@ -7,7 +7,7 @@
 		@endif
 		{{ $participant->username }}
 		<small class="pull-right" id="conversation-indicator-{{ $conversation->id }}">
-		@if(isset($conversation->messages[0]) && $conversation->pivot->read_at < $conversation->messages[0]->created_at)
+		@if($conversation->unread_count)
 			<span data-toggle="tooltip" title="Yra naujų pranešimų"><i class="fa fa-comments fa-primary"></i></span>
 		@else
 			<span data-toggle="tooltip" title="Nėra naujų pranešimų"><i class="fa fa-comments-o fa-grey"></i></span>
