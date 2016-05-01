@@ -6,9 +6,9 @@
   </div>
   <div class="panel-body">
     @if(Auth::check())
-    <button class="btn btn-success full-width update-status">
+    <a class="btn btn-success full-width update-status" href="{{ route('user.profile') }}">
       <i class="fa fa-pencil"></i> Atnaujinti Būseną
-    </button>
+    </a>
     @endif
     @foreach(Status::getSidebarStatuses() as $status)
       <div class="media sidebar-status-item">
@@ -29,7 +29,7 @@
     @if(Auth::check())
     <div class="row text-center">
       <div class="col-lg-12">
-        <p><a href="{{ route('user.profile') }}">Rodyti Visus</a></p>
+        <p><a href="{{ route('user.profile', ['rodyti' => 'visi']) }}">Rodyti Visus</a></p>
       </div>
     </div>
     @endif
