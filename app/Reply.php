@@ -40,10 +40,9 @@ class Reply extends Model {
 		return $query->orderBy('created_at', 'DESC');
 	}
 
-	public function voted($type) {
-		if(Auth::check())
+	public function voted($type, $user = null) {
+		if($user || $user = Auth::user())
 		{
-			$user = Auth::user();
 			$vote = Vote::where('votable_id', $this->id)->where('votable_type', 'Reply')->where('user_id', $user->id)->where('is', $type.'vote')->first();
 			if($vote)
 			{

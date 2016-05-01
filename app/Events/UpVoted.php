@@ -38,6 +38,17 @@ class UpVoted extends Event
             $this->topic = $entity;
         }
 
+        // Jeigu useris upvotina entity, už kurį prieš tai nebuvo votines,
+        // duodam jam +1 karmos
+        if(Vote::find($vote->id)) {
+            $user->karma_count += 1;
+            $user->save();
+        }
+        else {
+            // Priešingu atveju nedarom nieko (nes useris buvo downvotinęs entity,
+            // ir šitas event call tiesiog resetina entity vote_count nuo šio userio į 0)
+        }
+
         if($double)
         {
             $this->karma = 1 * 2;

@@ -175,7 +175,13 @@
 			<ol>
 				<li>Diskusija - naudojama pažymėti paprastas diskusijas.</li>
 				<li>Klausimas - naudojama pažymėti temoms, kurios yra klausiamo pobūdžio. Temos autorius gali išrinkti tinkamą atsakymą ir jį pažymėti.</li>
+				<li>Konkursas - naudojamas pažymėti Jūsų vykdomą konkursą.</li>
+				<li>Video - naudojamas pažymtėi, kad temos pagrindas yra video.</li>
+				<li>Stream - naudojama pažymėti autoriaus stream.</li>
+				<li>Kviečiu žaisti - naudojamas ieškant narių žaidimams.</li>
+				<li>Pristatymas - naudojamas pristatyti žaidimų, technologijos ar kitas naujienas.</li>
 				<li>Pranešimas - naudojama tik maze komandos. Skirta informuoti bendruomenės narius.</li>
+
 			</ol>
 		</section>
         <section id="markdown">
@@ -196,6 +202,11 @@
 			<p><i>Tekstas tarp [] simbolių bus matomas su pelyte užvedus ant paveikslėlio. Jis gali būti tuščias.</i></p>
 			<p>Kodas: <code>![alt tekstas](http://i.imgur.com/fOmgQkv.png)</code></p>
 			{!! markdown('Rezultatas: ![alt tekstas](http://i.imgur.com/fOmgQkv.png)') !!}
+
+			<h4>Vaizdo įrašų įdėjimas</h4>
+			<p><i>Norint įdėti vaizdo įrašą būtina nurodyti tiesioginę nuorodą į vaizdo įrašą.</i></p>
+			<p>Kodas: <code>[alt tekstas](https://www.youtube.com/watch?v=KK9bwTlAvgo)</code></p>
+			{!! markdown('Rezultatas: [](https://www.youtube.com/watch?v=KK9bwTlAvgo)') !!}
 
 			<h4>Kodo Blokas (Code)</h4>
 			<p>Yra keletas skirtingų būdų formatuoti tekstą su markdown'u. Jeigu nori kodą suformatuoti viduryje teksto, naudok ` kabutes: <code>`var example = true`</code>.
@@ -229,8 +240,21 @@ if (isAwesome){
 ###### Čia yra h6 tag\'as')) !!}
 			
 			<h4>Citavimas (Blockquotes)</h4>
+			<p>Kodas: <code>>Citata</code></p>
+			<p>Rezultatas:</p> {!! markdown('>Citata'); !!}
+
 			<h4>Sąrašai (Lists)</h4>
+			<p><i>Norint, kad veiktų sąrašas brūkšnelis turi būti pats pirmas eilutėje ir po jo privalo būti tarpas.</i></p>
+			<p>Kodas: <code>
+			- pirmas taškas
+			</code></p>
+			<p>Rezultatas:</p> {!! markdown('- pirmas taškas'); !!}
+
 			<h4>Nuorodos (Links)</h4>
+			<p><i>Tekstas tarp [] bus pakeistas į kitą spalvą ir paspaudus ant jo nukreips vartotoją į nurodytą puslapį. Būtina įrašyti pilną nuorodą.</i></p>
+			<p>Kodas: <code>[alt tekstas](https://www.maze.lt)</code></p>
+			{!! markdown('Rezultatas: [alt tekstas](https://www.maze.lt)') !!}
+
         </section>
         <section id="klaidos">
 			<h2>Klaidos</h2>

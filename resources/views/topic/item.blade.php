@@ -35,7 +35,7 @@
 	</div>
 	<div class="media-body">
 		<h4 class="media-heading">
-			<a href="{{ route('topic.show', [$topic->slug]) }}">
+			<a href="{{ route('topic.show', [$topic->slug]) }}" class='no-emojify'>
 				{{ $topic->title }}
 			</a>
 		</h4>

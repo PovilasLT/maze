@@ -11,6 +11,7 @@ use maze\User;
 use maze\Reply;
 use maze\Topic;
 use maze\Status;
+use maze\Streamer;
 
 class SearchController extends Controller
 {
@@ -38,6 +39,10 @@ class SearchController extends Controller
         elseif($type == 'status')
         {
             $results = Status::where('body_original', 'LIKE', '%'.$query.'%')->paginate(20);
+        }
+        elseif($type == 'stream')
+        {
+            $results = Streamer::where('twitch', 'LIKE', '%'.$query.'%')->paginate(20);
         }
 
         return view('search.results', compact('type', 'query', 'results'));

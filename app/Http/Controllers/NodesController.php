@@ -1,22 +1,52 @@
 <?php namespace maze\Http\Controllers;
 
 use maze\Http\Requests;
+use maze\Http\Requests\CreateNode;
 use maze\Http\Controllers\Controller;
 
+
+use maze\Events\NodeWasCreated;
 use Illuminate\Http\Request;
 use maze\Node;
 use maze\Topic;
+use Auth;
 
 class NodesController extends Controller {
+
+
+	public function create()
+	{
+		$nodes = Node::parents();
+		return view('node.create', compact('nodes'));	
+	}
+
 	/**
 	 * Sukuria naują skiltį.
 	 *
-	 * @return Response
+
 	 */
 	public function store(CreateNode $request)
 	{
-		Node::create($request->all());
-		return redirect()->back();
+		$parentnode = $request->parentNode;
+		if($parentnode)
+			$parentnode = $parentnode->id;
+		else
+			$parentnode = null;
+
+
+		$description = $request->input('description');
+		$name = $request->input('name');
+
+
+		$node = Node::create([
+				'name'			=> $name,
+				'description'	=> $description,
+				'parent_node'	=> $parentnode
+			]);
+
+		event(new NodeWasCreated($node, Auth::user()));
+
+		return redirect()->route('node.show', $node->slug);
 	}
 
 	/**
@@ -45,6 +75,14 @@ class NodesController extends Controller {
 		if($sort == 'populiariausi' || !$sort)
 		{
 			$topics = $topics->pinnedLocal()->popular()->withReplies();
+		}
+		else if($sort == 'mano-turinys')
+		{
+			$topics = $topics->pinnedLocal()->user(Auth::user())->latestPost()->withReplies();
+		}
+		else if($sort == 'naujausi-pranesimai')
+		{
+			$topics = $topics->pinnedLocal()->latestPost()->withReplies();
 		}
 		else
 		{

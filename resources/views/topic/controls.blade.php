@@ -22,7 +22,9 @@
 	    	<li><a href="{{ route('topic.sink', [$topic->id]) }}"><i class="fa fa-anchor"></i> Nuskandinti</a></li>
 	    @endif
 	    <li class="divider"></li>
-	    <li><a href="{{ route('topic.delete', [$topic->id]) }}"><i class="fa fa-trash"></i> Ištrinti</a></li>
+	    <li>
+	    	<a href="#" data-toggle="modal" data-target='#topic-confirm-delete-{{ $topic->id }}'><i class="fa fa-trash"></i> Ištrinti</a>
+	    </li>
 	    <li><a href="{{ route('topic.lock', [$topic->id]) }}"><i class="fa fa-lock"></i> Užrakinti</a></li>
 	  </ul>
 	</div>

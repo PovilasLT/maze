@@ -35,34 +35,49 @@ class UsersController extends Controller {
 		$user = Auth::user();	
 		
 		$sort = $request->input('rodyti');
-		$subsort = $request->input('subsort');
+		$subsort = $request->input('subrodyti');
 
-		if(!$sort || $sort == 'sekamieji')
-		{
-			switch ($subsort) {
+
+		if(!$sort || $sort == 'mano') {
+			$items = Notification::where('user_id', '=', $user->id);
+			switch($subsort) {
 				case 'temos':
-					$items = Notification::following()->topicExists()->has('topic')->with('object')->latest()->paginate('10');
-					break;
-				case 'paminejimai':
-					$items = Notification::mentions()->mentionExists()->with('object')->latest()->paginate('10');
+					$items = $items->has('topic')->latest()->paginate('10');
 					break;
 				case 'pranesimai':
-					$items = Notification::following()->replyExists()->has('reply.topic')->with('object')->latest()->paginate('10');
+					$items = $items->has('reply')->latest()->paginate('10');
 					break;
-				case 'busenos':
-					$items = Status::following()->with('comments')->latest()->paged();
+				case 'busenos-atnaujinimai':
+					$items = $items->has('status')->latest()->paginate('10');
+					break;
+				case 'paminejimai':
+					$items = $items->has('mention')->latest()->paginate('10');
 					break;
 				default:
-					$items = Notification::following()->hasAll()->with('object')->latest()->paginate('10');
+					$items = $items->hasAll()->with('object')->latest()->paginate('10');
 					break;
 			}
 		}
-		else
-		{
+		else if($sort == 'sekamieji') {
+			$items = Notification::following();
+			switch($subsort) {
+				case 'temos':
+					$items = $items->has('topic')->latest()->paginate('10');
+					break;
+				case 'pranesimai':
+					$items = $items->has('reply')->latest()->paginate('10');
+					break;
+				case 'busenos-atnaujinimai':
+					$items = $items->has('status')->latest()->paginate('10');
+					break;
+				default:
+					$items = $items->hasAll()->with('object')->latest()->paginate('10');
+					break;
+			}
+		}
+		else if($sort == 'busenos-atnaujinimai') {
 			$items = Status::latest()->paginate('10');
 		}
-
-		// dd(\DB::getQueryLog());
 
 		return view('user.profile', compact('user', 'items', 'sort', 'subsort'));
 	}
@@ -73,9 +88,6 @@ class UsersController extends Controller {
 		$sort = $request->input('rodyti', 'visi');
 
 		switch ($sort) {
-			case 'temos':
-				$items = $user->topics()->orderBy('created_at', 'DESC')->paginate('10');
-				break;
 			case 'pranesimai':
 				$items = $user->replies()->orderBy('created_at', 'DESC')->paginate('10');
 				break;
@@ -83,7 +95,7 @@ class UsersController extends Controller {
 				$items = $user->statuses()->orderBy('created_at', 'DESC')->paginate('10');
 				break;
 			default:
-				$items = $user->topics()->orderBy('created_at', 'DESC')->paginate('10');
+				$items = $user->topics()->latest()->paginate('10');
 				break;
 		}
 

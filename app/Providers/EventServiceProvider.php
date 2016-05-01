@@ -89,6 +89,10 @@ class EventServiceProvider extends ServiceProvider {
 		],
 		'maze\Events\StreamerStreamWasUpdated' => [
 			
+		],
+		'maze\Events\NodeWasCreated' => [
+			'maze\Listeners\AddFrontPageNode',
+			'maze\Listeners\LogAction'
 		]
 	];
 

@@ -43,16 +43,20 @@ class VotesController extends Controller {
 				->where('user_id', $user->id)
 				->first();
 
-		//Ištrinam visus balsus, jei netyčia susibugintų.
+		// Useris jau yra prabalsavęs už šitą entity
 		if($_vote)
 		{
+			// Trinam lauk seną vote
 			Vote::where('votable_type', $type)
 				->where('votable_id', $id)
 				->where('user_id', $user->id)
 				->delete();
 
+			// Jeigu buvo up, o dabar yra down, 
+			// arba buvo down, o dabar yra up
 			if($_vote->is != $vote)
 			{
+				// Sukuriam naują vote
 				$created_vote = Vote::create([
 					'user_id'		=> $user->id,
 					'votable_type'	=> $type,
@@ -60,43 +64,53 @@ class VotesController extends Controller {
 					'is'			=> $vote
 				]);
 
-				//cancel old vote and give new vote
+				// Kangi seną vote ištrynėm, bet entity liko su senu vote,
+				// reikia duoti priešingą vote dvigubai.
+				// Jeigu entity buvo +1, tai davus -1*2 entity taps -1,
+				// o duomenų bazėje vistiek bus tik vienas -1 vote.
 				if($vote == 'upvote')
 				{
-					event(new UpVoted($_votable, $created_vote , $_votable->user, true));
+					event(new UpVoted($_votable, $created_vote, $_votable->user, true));
 				}
 				else
 				{
-					event(new DownVoted($_votable, $created_vote , $_votable->user, true));
+					event(new DownVoted($_votable, $created_vote, $_votable->user, true));
 				}
 			}
 			else
 			{
-				//cancel current vote
+				// Jeigu vote tipai vienodi, tiek seno tiek naujo,
+				// tiesiog atšaukiam seną vote
+
+				// Paduodami seno vote model objektą, padarom fake vote 
+				// kuris yra priešingas negu paspaudėm, todėl jeigu 2 kartus
+				// paspausi up, gausis
+				// up -- created, +1 entity
+				// down -- faked (already delete), -1 entity
+				// todėl gale lieka entity su +0, ir pačio vote duomenų bazėje nebebūna.
 				if($vote == 'upvote')
 				{
-					event(new DownVoted($_votable, $_vote , $_votable->user, false));
+					event(new DownVoted($_votable, $_vote, $_votable->user, false));
 				}
 				else
 				{
-					event(new UpVoted($_votable, $_vote , $_votable->user, false));
+					event(new UpVoted($_votable, $_vote, $_votable->user, false));
 				}
 			}
 		}
 		else
 		{
 			$created_vote = Vote::create([
-					'user_id'		=> $user->id,
-					'votable_type'	=> $type,
-					'votable_id'	=> $id,
-					'is'			=> $vote
+				'user_id'		=> $user->id,
+				'votable_type'	=> $type,
+				'votable_id'	=> $id,
+				'is'			=> $vote
 			]);
 
 			//just vote
 
 			if($vote == 'upvote')
 			{
-
 				event(new UpVoted($_votable, $created_vote , $_votable->user, false));
 			}
 			else
@@ -104,9 +118,7 @@ class VotesController extends Controller {
 				event(new DownVoted($_votable, $created_vote , $_votable->user, false));
 			}
 		}
-
 		return response('success', 200);
 
 	}
-
 }

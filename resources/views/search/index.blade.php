@@ -38,6 +38,13 @@
 				būsenos atnaujinimų
 			</label>
 		</div>
+
+		<div class="radio">
+			<label>
+				<input type="radio" name="type" id="inputType" value="stream">
+				stream
+			</label>
+		</div>
 	
 		<div class="input-group">
 			<input type="text" class="form-control" name="query" placeholder="Ieškomas turinys...">

@@ -11,6 +11,12 @@ class Node extends Model {
 		'parent'
 	];
 
+	protected $fillable = [
+		'parent_node',
+		'name',
+		'description'
+	];
+
 	public function topics() {
 		return $this->hasMany('maze\Topic');
 	}

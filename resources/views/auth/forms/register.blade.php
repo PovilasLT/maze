@@ -26,7 +26,7 @@
 
 	<div class="form-group">
 		<input type="checkbox" id="legal" name="legal" required>
-		<label for="legal">Aš sutinku su taisyklėmis</label>
+		<label for="legal">Aš sutinku su <a href="{{ route('page.rules') }}">taisyklėmis</a></label>
 	</div>
 
 	<div class="form-group">

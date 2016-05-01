@@ -16,11 +16,11 @@ Etiketas | @parent
 <h1>Maze Etiketas</h1>
 <p>Maze etiketas yra bendrų taisyklių sąrašas, kurių privalo laikytis kiekvienas narys.</p>
 <ol>
-<li><b>Nešiukšlinti</b>
+<li><b>Nešiukšlinti.</b>
 	<ul>
 		<li>Kurti temas tik tinkamose kategorijose</li>
 		  <ul>
-			  <li><i>Jeigu netinka nei viena kategorija, nekurti temos.</i></li>
+			  <li><i>Jeigu netinka nei viena kategorija, kurti "Viskas ir Nieko" skiltyje.</i></li>
 			  <li><i>Jeigu netyčia sukūrei temą blogoje kategorijoje, paprašyti moderatorių ar administratorių ją perkelti.</i></li>
 		  </ul>
 		<li>Kurti pranešimus atitinkančius diskusijos temą.</li>
@@ -29,25 +29,25 @@ Etiketas | @parent
 </li>
 
 <li>
-<b>Neprašyti balsų ir jais nemanipuliuoti</b>		
+<b>Neprašyti balsų ir jais nemanipuliuoti.</b>		
 	<ul>
-		<li>Nepirkti balsų</li>
-		<li>Nesiūlyti ir nereikalauti balsų</li>
+		<li>Nepirkti balsų.</li>
+		<li>Nesiūlyti ir nereikalauti balsų.</li>
 	</ul>
 
 </li>
-<li><b>Neskelbti asmeninės informacijos</b></li>
+<li><b>Neskelbti asmeninės informacijos.</b></li>
 
 <li><b>Neskelbti pornografinio, warez, brukalų ar bet kokio kito turinio neatitinkančio Lietuvos Respublikos įstatymų.</b></li>
 	
 <li><b>Neskelbti jokio kopijuoto ar plagijuoto turinio be originalaus autoriaus sutikimo, nenurodant šaltinio ar nenurodant originalaus kodo, dizaino ar idėjos autoriaus.</b></li>
 
-<li><b>Nelaužyti svetainės ir nedaryti nieko kas trikdytų jos veikimą ar neatitiktų normalaus naudojimosi ja</b></li>
+<li><b>Nelaužyti svetainės ir nedaryti nieko kas trikdytų jos veikimą ar neatitiktų normalų naudojimusi ja.</b></li>
 
-<li><b>Laikytis etiketo</b>
+<li><b>Laikytis etiketo.</b>
 	<ul>
-		<li>Neįžeidinėti forumo narių</li>
-		<li>Nešmeižti forumo narių</li>
+		<li>Neįžeidinėti forumo narių.</li>
+		<li>Nešmeižti forumo narių.</li>
 	</ul>
 </li>
 <li>

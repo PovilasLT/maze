@@ -55,12 +55,24 @@ class Topic extends Model {
 		return $this->morphMany('Vote', 'votable');
 	}
 
+	public function scopeUser($query, $user) {
+		return $query->whereNested(function($query) use ($user) {
+				$query->where('user_id', '=', $user->id)->orWhereExists(function($query) use ($user) {
+				$query->select('id')->from('replies')->where('replies.user_id', '=', $user->id)->whereRaw('topics.id = replies.topic_id');
+			});
+		});
+	}
+
 	public function scopePopular($query) {
 		return $query->orderBy('weight', 'DESC')->latest();
 	}
 
 	public function scopeLatest($query) {
 		return $query->orderBy('created_at', 'DESC');
+	}
+
+	public function scopeLatestPost($query) {
+		return $query->orderByRaw('(select created_at from replies where topic_id = topics.id order by created_at desc limit 1) desc');
 	}
 
 	public function scopeGames($query) {
@@ -98,6 +110,14 @@ class Topic extends Model {
 		{
 			return $query->games()->pinned()->popular()->withReplies();
 		}
+		else if($sort == 'mano-turinys')
+		{
+			return $query->games()->pinned()->user(Auth::user())->latestPost()->withReplies();
+		}
+		else if($sort == 'naujausi-pranesimai')
+		{
+			return $query->games()->pinned()->latestPost()->withReplies();
+		}
 		else
 		{
 			return $query->games()->pinned()->latest()->withReplies();
@@ -105,9 +125,7 @@ class Topic extends Model {
 	}
 
 	public function scopeWithVotes($query) {
-		return $query->with(['votes' => function($votes) {
-			return $votes->where('user_id', Auth::user()->id);
-		}]);
+		return $query->with(['votes']);
 	}
 
 	// Sidebar skelbimai
@@ -179,10 +197,10 @@ class Topic extends Model {
 			return '<span class="maze-label label-diskusija media-meta-element"><i class="fa fa-comments-o fa-fw"></i><span class="hidden-xs">Diskusija</span></span>';
 	}
 
-	public function voted($type) {
-		if(Auth::check())
+	public function voted($type, $user = null) {
+		if($user || $user = Auth::user())
 		{
-			$vote = $this->votes->first();
+			$vote = $this->votes->where('user_id', $user->id)->first();
 			if($vote && $vote->is == $type.'vote')
 			{
 				return true;

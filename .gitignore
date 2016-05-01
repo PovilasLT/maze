@@ -8,3 +8,8 @@
 redis.json
 .env
 _ide_helper.php
+_ide_helper_models.php
+composer.lock
+npm-debug.log.*
+Thumbs.db
+composer.lock

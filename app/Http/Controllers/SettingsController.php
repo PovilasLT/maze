@@ -11,6 +11,7 @@ use maze\Http\Controllers\Controller;
 use maze\Events\AvatarWasUploaded;
 use GuzzleHttp\Client;
 use Auth;
+use Image;
 use maze\User;
 use Storage;
 use maze\Streamer;
