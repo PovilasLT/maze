@@ -1,5 +1,6 @@
 var Backbone = require('backbone');
 var Conversation = require('./Conversation');
+var QueryStringParser = require('query-string-parser');
 
 /**
  * Pokalbių manageris.
@@ -18,6 +19,7 @@ var Conversations = Backbone.View.extend({
 			this.active = new Conversation(this.active_id);
 		}
 		this._bindEvends();
+		this._shouldStart();
 	},
 	_showAllConversations: function() {
 		var $container = $('#all-conversations-container');
@@ -34,6 +36,10 @@ var Conversations = Backbone.View.extend({
 			self._onMessage(data);
 		});
 	},
+	/**
+	 * Naujai atsiustos zinutes aptikimas bendrame pokalbiu pus
+	 * @param  {Object} data zinutes duomenys.
+	 */
 	_onMessage: function(data) {
 		if(data.conversation_id != this.active_id) {
 			var $indicator = this.$el.find('#conversation-indicator-'+data.conversation_id);
@@ -44,6 +50,15 @@ var Conversations = Backbone.View.extend({
 				var $online = this.$el.find('#user-status-'+data.user_id);
 				$online.removeClass('fa-circle-o').removeClass('fa-grey').addClass('fa-circle').addClass('fa-primary').attr('data-original-title', 'Prisijungęs').data('original-title', 'Prisijungęs');
 			}
+		}
+	},
+	/**
+	 * Patikrinam ar reikia pradeti nauja pokalbi.
+	 */
+	_shouldStart: function() {
+		var query = window.location.href.split("?").slice(1).join("?");
+		if(QueryStringParser.parseQuery(query)) {
+			this._newConversation();
 		}
 	}
 });

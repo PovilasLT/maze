@@ -8,7 +8,6 @@ var Status = Backbone.View.extend({
 	},
 
 	initialize: function() {
-		console.log('init status');
 		this.views = {};
 		this.body = $('.topic-content');
 		emojify.setConfig({

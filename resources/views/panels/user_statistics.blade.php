@@ -1,6 +1,6 @@
 <div class="panel panel-default">
 	  <div class="panel-heading">
-			<h3 class="panel-title">Statistika</h3>
+			<h3 class="panel-title"><i class="fa fa-bar-chart fa-fw"></i> Statistika</h3>
 	  </div>
 	  <div class="panel-body">
 			<ul>
