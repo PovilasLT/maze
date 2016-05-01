@@ -156,8 +156,6 @@ class SettingsController extends Controller
     /**
      *  Slaptazodzio nustatymai
      */
-
-
     public function passwordSettingsSave(UpdatePasswordSettings $request) {
         $user = Auth::user();
         if(Auth::check($user->password, $request->get('password')))

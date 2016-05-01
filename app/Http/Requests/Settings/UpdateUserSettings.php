@@ -15,15 +15,7 @@ class UpdateUserSettings extends Request {
 	 */
 	public function authorize()
 	{
-		$user = Auth::user();
-
-		if($user)
-		{
-			return true;
-		}
-		else {
-			return false;
-		}
+		return Auth::check();
 	}
 
 	/**
