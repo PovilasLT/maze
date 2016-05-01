@@ -39,6 +39,7 @@ var Conversation = Backbone.View.extend({
 			if($container.length) {
 				$container.prepend(data.body);
 				this._emojify();
+				$.get('/pokalbiai/'+data.conversation_id+'/'+data.message_id+'/perskaityta');
 			}
 		}
 	},

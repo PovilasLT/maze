@@ -3,6 +3,7 @@
 use maze\Http\Requests;
 use maze\Http\Controllers\Controller;
 use maze\Http\Requests\CreateMessage;
+use maze\Http\Requests\MarkReadMessage;
 use maze\User;
 use maze\Messenger\Message;
 use maze\Messenger\Conversation;
@@ -34,11 +35,9 @@ class MessagesController extends Controller {
 		}
 	}
 
-	public function read(Conversation $conversation, Message $message)
+	public function read(MarkReadMessage $request, Conversation $conversation, Message $message)
 	{
-		if($message->conversation_id == $conversation->id) {
-			$message->update(['is_read' => 1]);
-		}
+		$message->update(['is_read' => 1]);
 	}
 
 }

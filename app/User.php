@@ -95,15 +95,18 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->hasMany('maze\Messenger\Message');
 	}
 
-	public function conversations() {
+	public function conversations() 
+	{
 		return $this->belongsToMany('maze\Messenger\Conversation');
 	}
 
-	public function notifications() {
+	public function notifications() 
+	{
 		return $this->hasMany('maze\Notification');
 	}
 
-	public function streamer() {
+	public function streamer() 
+	{
 		return $this->hasOne('maze\Streamer');
 	}
 
@@ -112,11 +115,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->conversations()->whereIn('id', $user->conversations()->lists('id'));
 	}
 
-	public function frontPageNodes() {
+	public function frontPageNodes() 
+	{
 		return $this->hasMany('maze\FrontPageNode')->lists('node_id');
 	}
 
-	public function quickNotifications() {
+	public function quickNotifications() 
+	{
 		return $this->notifications()->whereNotIn('object_type', ['status', 'status_comment'])
 		->where('from_id', '<>', $this->id)
 		->orderBy('created_at', 'DESC')
@@ -127,7 +132,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	//Jei balsavo - grazina Vote objekta
 	//Jei nebalsavo - grazina false
 
-	public function hasVoted($id, $votable) {
+	public function hasVoted($id, $votable) 
+	{
 		$vote = Vote::where('votable_type', $votable)
 		->where('votable_id', $id)
 		->where('user_id', $this->id)
@@ -389,7 +395,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * Kreipiasi į Redis ir klausia, ar dabartinis user yra online_users sąraše.
 	 * @return [int] 0|1
 	 */
-	public function getIsOnlineAttribute() 
+	public function getIsOnlineAttribute()
 	{
 		return Redis::sismember('online_users', $this->secret);
 	}
@@ -397,6 +403,16 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	public function getNotificationCountAttribute()
 	{
 		return $this->notifications()->where('from_id', '<>', $this->id)->where('is_read', false)->count();
+	}
+
+	public function getMessageCountAttribute()
+	{
+		return $this
+		->conversations()
+		->rightJoin('messages', 'messages.conversation_id', '=', 'conversations.id')
+		->where('messages.is_read', 0)
+		->where('messages.user_id', '<>', $this->id)
+		->count('messages.id');
 	}
 	
 }

@@ -36,7 +36,6 @@ var Conversations = Backbone.View.extend({
 	},
 	_onMessage: function(data) {
 		if(data.conversation_id != this.active_id) {
-			console.log('if passed');
 			var $indicator = this.$el.find('#conversation-indicator-'+data.conversation_id);
 			$indicator.find('span').attr('title', 'Yra naujų pranešimų').attr('data-original-title', 'Yra naujų pranešimų').data('original-title', 'Yra naujų pranešimų');
 			$indicator.find('i').removeClass('fa-comments-o').removeClass('fa-grey').addClass('fa-comments').addClass('fa-primary');
