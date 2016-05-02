@@ -19,7 +19,7 @@
           <div class="media-heading sidebar-status-heading">
             <a href="{{ $status->url }}">{{ $status->user->username }}</a>
             <div class="pull-right sidebar-status-controls">
-              <a data-toggle="tooltip" title="Komentarai" class="no-underline" href="{{ $status->url }}"><i class="fa fa-comments-o"></i> {{ $status->comment_count }}</a>
+              <a data-toggle="tooltip" title="Komentarai" class="no-underline" href="{{ $status->url }}"><i class="fa fa-comments-o"></i> {{ $status->comments->count() }}</a>
             </div>
           </div>
           {!! $status->body !!}
