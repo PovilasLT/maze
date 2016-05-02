@@ -12,8 +12,8 @@ var redisConfig = require('./redis.json');
 var servers = lex.create({
 	configDir: '/etc/letsencrypt',
 	onRequest: app,
-}).listen([6002], [6001], function onListening() {
-	console.log('listening');
+}).listen([], [6001], function onListening() {
+	console.log('SERVERIS IJUNGTAS!');
 });
 
 var io = require('socket.io')(servers.tlsServers[0]);
@@ -28,7 +28,7 @@ var Imagemin = require('imagemin');
 var path = require('path');
 
 app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'https://maze.app');
+    res.setHeader('Access-Control-Allow-Origin', 'https://maze.lt');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST', 'PATCH', 'PUT', 'DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
