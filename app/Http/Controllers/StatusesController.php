@@ -62,7 +62,7 @@ class StatusesController extends Controller {
 		event(new StatusWasCreated($status, Auth::user()));
 
 		flash()->success('Būsena sėkmingai atnaujinta!');
-		return redirect()->route('user.profile', ['rodyti' => 'visi']);
+		return redirect()->route('user.profile', ['rodyti' => 'busenos-atnaujinimai']);
 	}
 
 	public function edit(EditStatus $request, $id)
