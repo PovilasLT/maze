@@ -17,8 +17,17 @@ var Sidebar = Backbone.View.extend({
 	initialize: function() {
 		this.views.NotificationsPopover = new NotificationsPopover();
 		this._initNodes();
+		socket.on('messages', this._onMessage.bind(this));
 	},
-
+	_onMessage: function(data) {
+		var $counter = this.$el.find('.user-messages-icon span');
+		if((token && auth_id) && auth_id != data.user_id) {
+			var current = parseInt($counter.text());
+			if(current) {
+				this.$el.find('.user-messages-icon span').text(current + 1).show();
+			}
+		}
+	},
 	toggleSidebar: function(e) {
 		var main_content = $('.main-content');
 		var main_sidebar = $('.main-sidebar');
@@ -39,7 +48,6 @@ var Sidebar = Backbone.View.extend({
 			}).addClass('is_visible');
 		}
 	},
-
 	toggleNode: function(e) {
 		var current = $(e.currentTarget);
 		var id = current.attr('id');
@@ -59,7 +67,6 @@ var Sidebar = Backbone.View.extend({
 			.addClass('fa-plus');
 		}
 	},
-
 	editFrontPageNodes: function(e) {
 		var edit_btn = $(e.currentTarget);
 		var that = this;
@@ -79,7 +86,6 @@ var Sidebar = Backbone.View.extend({
 
 		e.preventDefault();
 	},
-
 	toggleFrontPageNode: function(e) {
 		var target_node = $(e.currentTarget);
 		$.ajax({
@@ -92,7 +98,6 @@ var Sidebar = Backbone.View.extend({
 			}
 		});
 	},
-
 	_initNodes: function() {
 		var is_expanded = $('.is-expanded .parent-icon');
 
