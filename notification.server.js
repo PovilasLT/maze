@@ -13,7 +13,7 @@ var servers = lex.create({
 	configDir: '/etc/letsencrypt',
 	onRequest: app,
 }).listen([], [6001], function onListening() {
-	console.log('SERVERIS IJUNGTAS!');
+	console.log("SERVERIS IJUNGTAS!");
 });
 
 var io = require('socket.io')(servers.tlsServers[0]);

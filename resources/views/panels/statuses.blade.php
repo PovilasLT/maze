@@ -29,7 +29,7 @@
     @if(Auth::check())
     <div class="row text-center">
       <div class="col-lg-12">
-        <p><a href="{{ route('user.profile', ['rodyti' => 'visi']) }}">Rodyti Visus</a></p>
+        <p><a href="{{ route('user.profile', ['rodyti' => 'busenos-atnaujinimai']) }}">Rodyti Visus</a></p>
       </div>
     </div>
     @endif
