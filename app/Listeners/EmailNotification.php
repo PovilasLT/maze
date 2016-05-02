@@ -34,6 +34,7 @@ class EmailNotification
 
         //TODO: pakeisti i universalesni sprendima.
         if($event->object instanceof Reply && $user->email_replies && !$user->is_online)  {
+            $reply = $event->object;
             if(($reply->user_id != $reply->topic->user_id) && $reply->topic->user->email_replies) {
                 $data = [
                     'user'      => $reply->topic->user->username,
