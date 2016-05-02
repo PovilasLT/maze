@@ -32,9 +32,7 @@ var Conversations = Backbone.View.extend({
 	},
 	_bindEvends: function() {
 		var self = this;
-		socket.on('messages', function(data) {
-			self._onMessage(data);
-		});
+		socket.on('messages', this._onMessage.bind(this));
 	},
 	/**
 	 * Naujai atsiustos zinutes aptikimas bendrame pokalbiu pus
