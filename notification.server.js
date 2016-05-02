@@ -16,7 +16,7 @@ var servers = lex.create({
 	console.log('listening');
 });
 
-var io = require('socket.io')(servers.plainServers[0]);
+var io = require('socket.io')(servers.tlsServers[0]);
 var Redis = require('ioredis');
 var redis = new Redis({
 	password: redisConfig.password
