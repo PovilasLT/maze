@@ -4,7 +4,7 @@
  * 2. Sutvarkyti bendra struktura. Isskaidyti i atskirus failus/servisus.
  */
 
-var lex = require('letsencrypt-express').testing();
+var lex = require('letsencrypt-express');
 var express = require('express');
 var app = express();
 var redisConfig = require('./redis.json');
