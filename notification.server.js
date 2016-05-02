@@ -7,7 +7,6 @@
 var lex = require('letsencrypt-express');
 var express = require('express');
 var app = express();
-var redisConfig = require('./redis.json');
 
 var servers = lex.create({
 	configDir: '/etc/letsencrypt',
@@ -18,12 +17,8 @@ var servers = lex.create({
 
 var io = require('socket.io')(servers.tlsServers[0]);
 var Redis = require('ioredis');
-var redis = new Redis({
-	password: redisConfig.password
-});
-var redisServer = new Redis({
-	password: redisConfig.password
-});
+var redis = new Redis();
+var redisServer = new Redis();
 var Imagemin = require('imagemin');
 var path = require('path');
 
