@@ -13,3 +13,4 @@ composer.lock
 npm-debug.log.*
 Thumbs.db
 composer.lock
+/letsencrypt.config
