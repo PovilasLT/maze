@@ -22,8 +22,7 @@ class TvStreamerController extends Controller
         $streamers = Streamer::sorted();
         $sidebar = true;
 
-        if($request->has('zaidimas'))
-        {
+        if($request->has('zaidimas')) {
             $current_game = $request->get('zaidimas');
             $streamers->where('game', 'LIKE', '%'.e($current_game).'%');
         }

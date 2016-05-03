@@ -28,7 +28,7 @@ class Streamer extends Model
 	}
 
 	public function scopeSorted($query) {
-		return $query->orderBy('is_online', 'DESC')->orderBy('current_viewers', 'DESC')->orderBy('is_partner', 'DESC');
+		return $query->orderBy('created_at', 'DESC')->orderBy('is_partner', 'DESC')->orderBy('is_online', 'DESC');
 	}
 
 	public function scopeRecommended($query) {
