@@ -18,7 +18,7 @@ class TvPagesController extends Controller
 
         $streamers = Streamer::sorted()->take(9)->get();
 
-        $featured = $streamers->shift();
+        $featured = $streamers->shuffle()->random();
 
         return view('tv.pages.home', compact('streamers', 'featured'));
     }
