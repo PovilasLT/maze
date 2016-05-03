@@ -47,7 +47,7 @@ class EmailNotification
                 $topic = $reply->topic;
                 $topic_user = $reply->topic->user;
 
-                Mail::queue('emails.reply', $data, function($message) use($topic_user, $topic, $user)
+                Mail::queue('emails.notifications.reply', $data, function($message) use($topic_user, $topic, $user)
                 {
                     $user->save();
                     $message->to($topic_user->email)->subject('Naujas pranešimas temoje '.utf8_urldecode($topic->title));
