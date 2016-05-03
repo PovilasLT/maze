@@ -26,12 +26,14 @@ class Streamer extends Model
 	public function user() {
 		return $this->belongsTo('maze\User');
 	}
-
-	public function scopeSorted($query) {
-		return $query->orderBy('created_at', 'DESC')->orderBy('is_partner', 'DESC')->orderBy('is_online', 'DESC');
+	
+	public function scopeSorted($query) 
+	{
+		return $query->orderBy('is_partner', 'DESC')->orderBy('is_online', 'DESC')->orderBy('created_at', 'DESC');
 	}
 
-	public function scopeRecommended($query) {
+	public function scopeRecommended($query) 
+	{
 		return $query->orderBy('is_online', 'DESC')->orderBy('current_viewers', 'DESC')->orderBy('is_partner', 'DESC')->limit(10);
 	}
 
