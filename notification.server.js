@@ -4,14 +4,13 @@
  * 2. Sutvarkyti bendra struktura. Isskaidyti i atskirus failus/servisus.
  */
 
-var lex = require('letsencrypt-express');
 var fs = require('fs');
 var express = require('express');
 var app = express();
 var https = require('https');
 var keys = {
-		key: fs.readFileSync('/etc/nginx/ssl/maze.lt/87263/server.key'),
-		cert: fs.readFileSync('/etc/nginx/ssl/maze.lt/87263/server.crt')
+	key: fs.readFileSync('/etc/nginx/ssl/maze.lt/87263/server.key'),
+	cert: fs.readFileSync('/etc/nginx/ssl/maze.lt/87263/server.crt')
 };
 var server = https.createServer(keys, app).listen(6001);
 
@@ -31,12 +30,12 @@ app.use(function (req, res, next) {
 });
 
 redis.psubscribe('*', function(err, count) {
-		if(err) console.log(err);
+	if(err) console.log(err);
 });
 
 redis.on('pmessage', function(subscribed, channel, event) {
 	event = JSON.parse(event);
-		io.sockets.in(event.data.channel).emit(channel, event.data.data);
+	io.sockets.in(event.data.channel).emit(channel, event.data.data);
 });
 
 /**
@@ -45,16 +44,16 @@ redis.on('pmessage', function(subscribed, channel, event) {
  * Potencialiai gali valgyti daug atminties.
  */
 io.sockets.on('connection', function (socket) {
-		var secret;
+	var secret;
 
-		// Prisijungimas į savo secret kanalą.
-		socket.on('join', function(channel) {
-				secret = channel;
-				socket.join(channel);
-				redisServer.sadd('online_users', secret);
-		});
+	// Prisijungimas į savo secret kanalą.
+	socket.on('join', function(channel) {
+		secret = channel;
+		socket.join(channel);
+		redisServer.sadd('online_users', secret);
+	});
 
-		socket.on('disconnect', function() {
-				redisServer.srem('online_users', secret);
-		});
+	socket.on('disconnect', function() {
+		redisServer.srem('online_users', secret);
+	});
 });
