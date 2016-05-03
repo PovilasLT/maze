@@ -2,7 +2,8 @@
   "private": true,
   "devDependencies": {
     "gulp": "^3.8.8",
-    "laravel-elixir": "*"
+    "laravel-elixir": "*",
+    "gulp-imagemin": "^2.4.0",
   },
   "name": "notifications-server",
   "description": "[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework) [![Total Downloads](https://poser.pugx.org/laravel/framework/downloads.svg)](https://packagist.org/packages/laravel/framework) [![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework) [![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework) [![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)",
@@ -16,8 +17,7 @@
     "browserify": "^13.0.0",
     "browserify-shim": "^3.8.12",
     "emojify.js": "^1.1.0",
-    "gulp": "^3.9.0",
-    "gulp-imagemin": "^2.4.0",
+    "express": "^4.13.4",
     "highlight.js": "^9.2.0",
     "imagemin": "^4.0.0",
     "ioredis": "^1.7.1",
