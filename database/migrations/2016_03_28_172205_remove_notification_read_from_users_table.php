@@ -25,7 +25,7 @@ class RemoveNotificationReadFromUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dateTime('notifications_count')->index();
+            $table->dateTime('notifications_read')->index();
         });
     }
 }
