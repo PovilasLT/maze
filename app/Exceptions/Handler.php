@@ -4,6 +4,7 @@ use Exception;
 use Log;
 use Route;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler {
 
@@ -15,6 +16,7 @@ class Handler extends ExceptionHandler {
 	protected $dontReport = [
         HttpException::class,
         ModelNotFoundException::class,
+        NotFoundHttpException::class,
 	];
 
 	/**
@@ -34,33 +36,23 @@ class Handler extends ExceptionHandler {
 
 	public function render($request, Exception $e)
 	{
-
-		if(env('APP_DEBUG', true))
-		{
+		if(env('APP_DEBUG', true)) {
 			return parent::render($request, $e);
 		}
 
-		if($this->isHttpException($e))
-		{
-			if($e->getStatusCode() == 404)
-			{
+		if($this->isHttpException($e)) {
+			if($e->getStatusCode() == 404) {
 				return response()->view('errors.404');
-			}
-			elseif($e->getStatusCode() == 503)
-			{
+			} elseif($e->getStatusCode() == 503) {
 				return response()->view('errors.503');
-			}
-			else
-			{
+			} else {
 				return response()->view('errors.internal');
 			}
 		}
-		if(class_basename($e) == 'ModelNotFoundException')
-		{
+
+		if(class_basename($e) == 'ModelNotFoundException') {
 			return response()->view('errors.404');
-		}
-		else
-		{
+		} else {
 			return response()->view('errors.internal');
 		}
 	}
