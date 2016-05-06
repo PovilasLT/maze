@@ -60,9 +60,11 @@ class Topic extends Model {
 		return $this->morphMany('Vote', 'votable');
 	}
 
+	//wtf does this do?
 	public function scopeUser($query, $user) {
+		if (!$user) return $query;
 		return $query->whereNested(function($query) use ($user) {
-				$query->where('user_id', '=', $user->id)->orWhereExists(function($query) use ($user) {
+			$query->where('user_id', '=', $user->id)->orWhereExists(function($query) use ($user) {
 				$query->select('id')->from('replies')->where('replies.user_id', '=', $user->id)->whereRaw('topics.id = replies.topic_id');
 			});
 		});
