@@ -1,6 +1,6 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
-	    <h4 class="panel-title">Socialiniai Tinklai</h4>
+	    <h4 class="panel-title">Bendraukim!</h4>
 	</div>
 	<div class="panel-body">
 		<a id="fb-container" href="https://www.facebook.com/MazeLT-1427608720826778" class="social-container" target="_blank">
