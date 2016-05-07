@@ -5,10 +5,10 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
-
 use maze\Streamer;
 
-class StreamsUpdate extends Command {
+class StreamsUpdate extends Command
+{
 
     /**
      * The console command name.
@@ -41,10 +41,9 @@ class StreamsUpdate extends Command {
      */
     public function fire()
     {
-
         $client = new Client(['base_uri' => 'https://api.twitch.tv/kraken/']);
 
-        $streamers = Streamer::sorted()->chunk(30, function($streamers) use($client) {
+        $streamers = Streamer::sorted()->chunk(30, function ($streamers) use ($client) {
 
             $twitch_names = join(',', $streamers->lists('twitch')->toArray());
             //gaunam streamu ir channeliu info is twitch
@@ -53,12 +52,9 @@ class StreamsUpdate extends Command {
             $streams = json_decode($streams_response->getBody());
             $streams = collect($streams->streams);
 
-            foreach($streamers as $k => $streamer)
-            {
-                foreach($streams as $i => $stream)
-                {
-                    if(strtolower($stream->channel->name) == strtolower($streamer->twitch))
-                    {
+            foreach ($streamers as $k => $streamer) {
+                foreach ($streams as $i => $stream) {
+                    if (strtolower($stream->channel->name) == strtolower($streamer->twitch)) {
                         $streamer->updateChannel($stream->channel);
                         $streamer->updateStream($stream);
                         $streams->pull($i); //isimam streama is collection.
@@ -68,10 +64,9 @@ class StreamsUpdate extends Command {
             }
 
             //kas liko sudedam offline.
-            foreach($streamers as $streamer)
-            {
+            foreach ($streamers as $streamer) {
                 $streamer->setOffline();
-            }   
+            }
         });
     }
 
@@ -96,5 +91,4 @@ class StreamsUpdate extends Command {
         return [
         ];
     }
-
 }

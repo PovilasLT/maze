@@ -16,8 +16,7 @@ class CheckIfUserIsBanned
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check() && Auth::user()->is_banned)
-        {
+        if (Auth::check() && Auth::user()->is_banned) {
             flash()->error('Vartotojas užblokuotas.');
             Auth::logout();
 

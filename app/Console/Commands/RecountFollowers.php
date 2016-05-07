@@ -6,7 +6,8 @@ use Symfony\Component\Console\Input\InputArgument;
 use maze\User;
 use maze\Follower;
 
-class RecountFollowers extends Command {
+class RecountFollowers extends Command
+{
 
     /**
      * The console command name.
@@ -39,8 +40,7 @@ class RecountFollowers extends Command {
      */
     public function fire()
     {
-        foreach(User::all() as $user)
-        {
+        foreach (User::all() as $user) {
             $user->follower_count = $user->followers()->count();
             $user->save();
         }
@@ -67,5 +67,4 @@ class RecountFollowers extends Command {
         return [
         ];
     }
-
 }

@@ -5,10 +5,10 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
-
 use maze\Streamer;
 
-class StreamsRegenerate extends Command {
+class StreamsRegenerate extends Command
+{
 
     /**
      * The console command name.
@@ -43,15 +43,11 @@ class StreamsRegenerate extends Command {
     {
         $client = new Client(['base_uri' => 'https://api.twitch.tv/kraken/']);
 
-        $streamers = Streamer::sorted()->chunk(30, function($streamers) use($client) {
-            foreach($streamers as $streamer)
-            {
-                if($streamer->video_background)
-                {
+        $streamers = Streamer::sorted()->chunk(30, function ($streamers) use ($client) {
+            foreach ($streamers as $streamer) {
+                if ($streamer->video_background) {
                     $url = $streamer->video_background;
-                }
-                else
-                {
+                } else {
                     $url = 'http://wallpoper.com/images/00/37/80/13/abstract-test_00378013.jpg';
                 }
                 
@@ -81,5 +77,4 @@ class StreamsRegenerate extends Command {
         return [
         ];
     }
-
 }

@@ -6,8 +6,8 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Auth;
 
-abstract class Controller extends BaseController {
+abstract class Controller extends BaseController
+{
 
-	use DispatchesCommands, ValidatesRequests;
-		
+    use DispatchesCommands, ValidatesRequests;
 }

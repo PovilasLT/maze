@@ -18,12 +18,9 @@ class UserCanVote
     {
         $user = Auth::user();
 
-        if($user->can_vote)
-        {
+        if ($user->can_vote) {
             return $next($request);
-        }
-        else
-        {
+        } else {
             return response('disabled');
         }
     }

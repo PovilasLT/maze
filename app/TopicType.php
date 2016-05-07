@@ -4,19 +4,20 @@ use Illuminate\Database\Eloquent\Model;
 use Auth;
 use Config;
 
-class TopicType extends Model {
+class TopicType extends Model
+{
 
-	protected $visible = [
-		'id',
-		'name',
-		'color',
-		'is_selflock',
-		'is_admin',
-		'is_ad'
-	];
+    protected $visible = [
+        'id',
+        'name',
+        'color',
+        'is_selflock',
+        'is_admin',
+        'is_ad'
+    ];
 
-	public function scopeAds($query) {
-		return $query->where('is_ad', '=', '1');
-	}
-
+    public function scopeAds($query)
+    {
+        return $query->where('is_ad', '=', '1');
+    }
 }

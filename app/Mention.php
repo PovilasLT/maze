@@ -8,40 +8,42 @@ use Auth;
 class Mention extends Model
 {
     protected $fillable = [
-    	'user_id',
-    	'object_id',
-    	'object_type',
+        'user_id',
+        'object_id',
+        'object_type',
     ];
 
-    public function user() {
-    	return $this->belongsTo('maze\User');
+    public function user()
+    {
+        return $this->belongsTo('maze\User');
     }
 
-    public function object() {
+    public function object()
+    {
         return $this->morphTo();
     }
 
-    public function notifications() {
+    public function notifications()
+    {
         return $this->morphMany('Notification', 'object');
     }
 
 
-    public function mentions() {
+    public function mentions()
+    {
         return $this->morphMany('Mention', 'object');
     }
 
-    public function getUrlAttribute() {
+    public function getUrlAttribute()
+    {
         return $this->mentioned_in->url;
     }
 
-    public function getNotificationAttribute() {
-
-        if($this->user_id == Auth::user()->id)
-        {
+    public function getNotificationAttribute()
+    {
+        if ($this->user_id == Auth::user()->id) {
             $username = 'tave';
-        }
-        else
-        {
+        } else {
             $username = '<a href="'.$this->user->url.'">'.e($this->user->username).'</a>';
         }
 
@@ -64,11 +66,13 @@ class Mention extends Model
         }
     }
 
-    public function getMentionedInAttribute() {
+    public function getMentionedInAttribute()
+    {
         return $this->object;
     }
 
-    public function getActivityAttribute() {
+    public function getActivityAttribute()
+    {
         return false;
     }
 }

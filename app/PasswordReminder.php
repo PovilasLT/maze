@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class PasswordReminder extends Model
 {
     protected $fillable = [
-    	'email',
-    	'token',
-    	'created_at',
-	];
+        'email',
+        'token',
+        'created_at',
+    ];
 }

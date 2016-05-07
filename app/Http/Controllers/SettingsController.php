@@ -20,38 +20,35 @@ use Hash;
 class SettingsController extends Controller
 {
 
-    public function userSettings() {
+    public function userSettings()
+    {
         $user = Auth::user();
         $settings_page = 'user';
         return view('settings.show', compact('user', 'settings_page'));
     }
 
-    public function tvSettings(Request $request) {
+    public function tvSettings(Request $request)
+    {
         $user = Auth::user();
         $settings_page = 'tv';
         $streamer = $user->streamer;
 
-        if($request->has('code'))
-        {
+        if ($request->has('code')) {
             $client = new Client(['base_uri' => 'https://api.twitch.tv/kraken/']);
             $response = $client->post('oauth2/token', [
-                'body' => 
+                'body' =>
                     'client_id='.urlencode(env('TWITCH_CLIENT_ID')).
                     '&client_secret='.urlencode(env('TWITCH_CLIENT_SECRET')).
-                    '&grant_type=authorization_code&redirect_uri=https://'.env('DOMAIN').'/nustatymai/tv&code='.$request->get('code')
-                    ,
+                    '&grant_type=authorization_code&redirect_uri=https://'.env('DOMAIN').'/nustatymai/tv&code='.$request->get('code'),
             ]);
             $token = json_decode($response->getBody())->access_token;
 
             $response = $client->get('user?oauth_token='.$token);
             $twitch_user = json_decode($response->getBody());
 
-            if($streamer)
-            {
-                $streamer->twitch = e($twitch_user->display_name); 
-            }
-            else
-            {
+            if ($streamer) {
+                $streamer->twitch = e($twitch_user->display_name);
+            } else {
                 $streamer = Streamer::create([
                     'user_id' => Auth::user()->id,
                     'twitch' => e($twitch_user->display_name),
@@ -63,13 +60,13 @@ class SettingsController extends Controller
             flash()->success('Twitch kanalas sėkmingai užregistruotas!');
 
             return redirect()->route('settings.tv');
-
         }
 
         return view('settings.show', compact('user', 'settings_page', 'streamer'));
     }
 
-    public function passwordSettings() {
+    public function passwordSettings()
+    {
         $user = Auth::user();
         $settings_page = 'password';
         return view('settings.show', compact('user', 'settings_page'));
@@ -79,7 +76,8 @@ class SettingsController extends Controller
      *  Bendri Vartotojo Nustatymai
      */
     
-    public function userSettingsSave(UpdateUserSettings $request) {
+    public function userSettingsSave(UpdateUserSettings $request)
+    {
         $settings = $request->input();
 
         $user = Auth::user();
@@ -90,29 +88,24 @@ class SettingsController extends Controller
             'username'
         ];
 
-        foreach($settings as $key => $setting)
-        {
-
-            if(!array_key_exists($key, $protected))
-            {
+        foreach ($settings as $key => $setting) {
+            if (!array_key_exists($key, $protected)) {
                 $_settings[$key] = $setting;
             }
             
             //processinam avatara
-            if($request->file('avatar'))
-            {
+            if ($request->file('avatar')) {
                 //isvalom direktorija.   
                 $files = Storage::disk('avatars')->files($user->id);
 
                 $filename = str_random(40);
 
-                if(!Storage::disk('public')->has('images/avatars/'.$user->id))
-                {
+                if (!Storage::disk('public')->has('images/avatars/'.$user->id)) {
                     Storage::disk('public')->makeDirectory('images/avatars/'.$user->id);
                 }
 
-                if($request->file('avatar')->getMimeType() != 'image/gif') {
-                    $saved = Image::make($request->file('avatar'))->fit(150,150)->encode('png')->encode('png', 100)->save(public_path('images/avatars/'.$user->id.'/'.$filename.'.png'));
+                if ($request->file('avatar')->getMimeType() != 'image/gif') {
+                    $saved = Image::make($request->file('avatar'))->fit(150, 150)->encode('png')->encode('png', 100)->save(public_path('images/avatars/'.$user->id.'/'.$filename.'.png'));
                     $ext = 'png';
                 } else {
                     $saved = Storage::disk('public')->put('images/avatars/'.$user->id.'/'.$filename.'.gif', file_get_contents($request->file('avatar')));
@@ -122,11 +115,10 @@ class SettingsController extends Controller
                 //jeigu nieko nepridirbo su failu
                 //istrinam pries tai buvusius failus
                 //ir nustatom nauja avatara
-                if($saved)
-                {
+                if ($saved) {
                     Storage::disk('avatars')->delete($files);
                     $user->image_url = $filename.'.'.$ext;
-                    if($ext != 'gif') {
+                    if ($ext != 'gif') {
                         event(new AvatarWasUploaded('public/images/avatars/'.$user->id.'/'.$filename.'.'.$ext));
                     }
                 }
@@ -145,7 +137,8 @@ class SettingsController extends Controller
      *  TV Nustatymai
      */
     
-    public function tvSettingsSave(UpdateTvSettings $request) {
+    public function tvSettingsSave(UpdateTvSettings $request)
+    {
         $streamer = Auth::user()->streamer;
         $streamer->update($request->all());
         flash()->success('Kanalo duomenys sėkmingai atnaujinti!');
@@ -156,22 +149,18 @@ class SettingsController extends Controller
     /**
      *  Slaptazodzio nustatymai
      */
-    public function passwordSettingsSave(UpdatePasswordSettings $request) {
+    public function passwordSettingsSave(UpdatePasswordSettings $request)
+    {
         $user = Auth::user();
-        if(Auth::check($user->password, $request->get('password')))
-        {
-
+        if (Auth::check($user->password, $request->get('password'))) {
             $user->password = Hash::make($request->get('npassword'));
             $user->save();
             
             flash()->success('Slaptažodis pakeistas!');
-        }
-        else
-        {
+        } else {
             flash()->error('Blogas dabartinis slaptažodis!');
         }
 
         return redirect()->back();
     }
-
 }

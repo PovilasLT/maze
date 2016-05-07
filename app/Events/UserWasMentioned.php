@@ -32,7 +32,6 @@ class UserWasMentioned extends Event
         ]);
 
         $this->notifiable = $mention;
-
     }
 
     /**

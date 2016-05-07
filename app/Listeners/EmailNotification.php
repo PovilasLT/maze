@@ -33,9 +33,9 @@ class EmailNotification
         $user = $event->user;
 
         //TODO: pakeisti i universalesni sprendima.
-        if($event->object instanceof Reply && $user->email_replies && !$user->is_online)  {
+        if ($event->object instanceof Reply && $user->email_replies && !$user->is_online) {
             $reply = $event->object;
-            if(($reply->user_id != $reply->topic->user_id) && $reply->topic->user->email_replies) {
+            if (($reply->user_id != $reply->topic->user_id) && $reply->topic->user->email_replies) {
                 $data = [
                     'user'      => $reply->topic->user->username,
                     'title'     => $reply->topic->title,
@@ -47,8 +47,7 @@ class EmailNotification
                 $topic = $reply->topic;
                 $topic_user = $reply->topic->user;
 
-                Mail::queue('emails.notifications.reply', $data, function($message) use($topic_user, $topic, $user)
-                {
+                Mail::queue('emails.notifications.reply', $data, function ($message) use ($topic_user, $topic,$user) {
                     $user->save();
                     $message->to($topic_user->email)->subject('Naujas pranešimas temoje '.utf8_urldecode($topic->title));
                 });

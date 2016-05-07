@@ -3,14 +3,12 @@
 namespace maze\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use maze\Http\Requests\UpdateUser;
 use maze\Http\Controllers\Controller;
-
 use maze\User;
 use Log;
-
 use Authorizer;
+
 //use LucaDegasperi\OAuth2Server\Authorizer;
 
 

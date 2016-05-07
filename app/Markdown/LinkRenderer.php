@@ -33,25 +33,22 @@ class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterfa
         //tikrinam ar URL yra twitch/yt
         $yt_id = YouTubeLink::id($inline->getUrl());
         $twitch_name = TwitchLink::channel($inline->getUrl());
-        if($yt_id)
-        {
+        if ($yt_id) {
             return $this->buildYouTube($inline, $htmlRenderer, e($yt_id));
-        }
-        elseif($twitch_name)
-        {
+        } elseif ($twitch_name) {
             return $this->buildTwitch($inline, $htmlRenderer, e($twitch_name));
-        }
-        else
-        {
+        } else {
             return $this->buildLink($inline, $htmlRenderer);
         }
     }
 
-    private function isExternalUrl($url) {
+    private function isExternalUrl($url)
+    {
         return parse_url($url, PHP_URL_HOST) !== $_SERVER['SERVER_NAME'];
     }
 
-    private function buildLink($inline, $htmlRenderer) {
+    private function buildLink($inline, $htmlRenderer)
+    {
         $attrs = [];
         foreach ($inline->getData('attributes', []) as $key => $value) {
             $attrs[$key] = $htmlRenderer->escape($value, true);
@@ -65,8 +62,7 @@ class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterfa
             $attrs['title'] = $htmlRenderer->escape($inline->data['title'], true);
         }
 
-        if($this->isExternalUrl($inline->getUrl()))
-        {
+        if ($this->isExternalUrl($inline->getUrl())) {
             $attrs['rel'] = 'nofollow';
             $attrs['target'] = '_blank';
         }
@@ -74,7 +70,8 @@ class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterfa
         return new HtmlElement('a', $attrs, $htmlRenderer->renderInlines($inline->children()));
     }
 
-    private function buildYouTube($inline, $htmlRenderer, $id) {
+    private function buildYouTube($inline, $htmlRenderer, $id)
+    {
         $attrs = [
             'src' => 'https://www.youtube.com/embed/'.$id,
             'frameborder' => 0,
@@ -88,7 +85,8 @@ class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterfa
         return $wrapped;
     }
 
-    private function buildTwitch($inline, $htmlRenderer, $channel) {
+    private function buildTwitch($inline, $htmlRenderer, $channel)
+    {
         $attrs = [
             'src' => 'https://player.twitch.tv/?channel='.$channel.'&!autoplay',
             'frameborder' => 0,

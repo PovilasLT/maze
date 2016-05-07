@@ -3,9 +3,10 @@
 use Illuminate\Database\Eloquent\Model;
 use \maze\Traits\Notifiable;
 
-class Follower extends Model {
+class Follower extends Model
+{
     
-	protected $fillable = [
+    protected $fillable = [
         'user_id',
         'follower_id'
     ];
@@ -18,11 +19,13 @@ class Follower extends Model {
         'id'
     ];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo('maze\User');
     }
 
-    public function follower() {
+    public function follower()
+    {
         return $this->belongsTo('maze\User', 'follower_id', 'id');
     }
 
@@ -35,5 +38,4 @@ class Follower extends Model {
     {
         return $query->limit(21)->get();
     }
-
 }

@@ -3,7 +3,6 @@
 namespace maze\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use maze\Http\Requests;
 use maze\Http\Controllers\Controller;
 use maze\Topic;
@@ -11,16 +10,11 @@ use maze\Http\Requests\CreateTopic;
 use maze\Http\Requests\UpdateTopic;
 use maze\Events\UserWasMentioned;
 use maze\Events\TopicWasCreated;
-
-
 use maze\Mentions\Mention;
 use Markdown;
 use maze\TopicType;
-
 use Auth;
 use Log;
-
-
 
 class ApiTopicsController extends Controller
 {
@@ -66,7 +60,7 @@ class ApiTopicsController extends Controller
         $token      = (string)$authorizer->getAccessToken();
 
         //Susitvarkom su Markdown
-        $data['body_original']  = $data['body']; 
+        $data['body_original']  = $data['body'];
         $data['body']           = $mention->parse($data['body']);
         $data['body']           = markdown($data['body']);
         $data['user_id']        = Auth::user()->id;
@@ -74,8 +68,7 @@ class ApiTopicsController extends Controller
         $topic = Topic::create($data);
         $user = Auth::user();
 
-        foreach($mention->users as $user)
-        {
+        foreach ($mention->users as $user) {
             event(new UserWasMentioned($topic, $user));
         }
 
@@ -93,14 +86,11 @@ class ApiTopicsController extends Controller
     public function show($id)
     {
         $topic = Topic::with('user')->with('replies.user')->with('user.roles')->with('node')->with('type')->find($id);
-        if(!$topic)
-        {
+        if (!$topic) {
             return response()->json([
                 'error' => 'Topic '.$id.' not found'
                 ]);
-        }
-        else 
-        {
+        } else {
             return response()->json($topic);
         }
     }

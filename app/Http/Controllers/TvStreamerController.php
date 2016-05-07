@@ -3,26 +3,26 @@
 namespace maze\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use maze\Http\Requests;
 use maze\Http\Controllers\Controller;
-
 use maze\Streamer;
 
 class TvStreamerController extends Controller
 {
-    public function show($twitch) {
+    public function show($twitch)
+    {
         $streamer = Streamer::where('twitch', $twitch)->firstOrFail();
         $related = Streamer::sorted()->where('id', '<>', $streamer->id)->where('game', $streamer->game)->take(4)->get();
         return view('streamer.show', compact('streamer', 'related'));
     }
 
-    public function all(Request $request) {
+    public function all(Request $request)
+    {
         $current_game = false;
         $streamers = Streamer::sorted();
         $sidebar = true;
 
-        if($request->has('zaidimas')) {
+        if ($request->has('zaidimas')) {
             $current_game = $request->get('zaidimas');
             $streamers->where('game', 'LIKE', '%'.e($current_game).'%');
         }

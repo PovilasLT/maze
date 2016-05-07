@@ -25,7 +25,8 @@ class DecrementWeight
      */
     public function handle($event)
     {
-        if(isset($event->topic))
-        $event->topic->decrement('weight', $event->weight);
+        if (isset($event->topic)) {
+            $event->topic->decrement('weight', $event->weight);
+        }
     }
 }

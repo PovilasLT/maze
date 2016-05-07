@@ -5,7 +5,8 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use maze\Reply;
 
-class CleanReplies extends Command {
+class CleanReplies extends Command
+{
 
     /**
      * The console command name.
@@ -38,10 +39,8 @@ class CleanReplies extends Command {
      */
     public function fire()
     {
-        foreach(Reply::all() as $reply)
-        {
-            if(!$reply->topic)
-            {
+        foreach (Reply::all() as $reply) {
+            if (!$reply->topic) {
                 $reply->delete();
             }
         }
@@ -68,5 +67,4 @@ class CleanReplies extends Command {
         return [
         ];
     }
-
 }

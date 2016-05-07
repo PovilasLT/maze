@@ -18,8 +18,7 @@ class ThrottleReply
     {
         $user = Auth::user();
         $diff = $user->reply_wait_time;
-        if($diff > 0 && !$user->can('manage_topics'))
-        {
+        if ($diff > 0 && !$user->can('manage_topics')) {
             flash()->warning('Norint rašyti pranešimą tu turi palaukti dar '.$diff. ' sekundes.');
             return redirect()->back()->withInput();
         }

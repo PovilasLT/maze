@@ -25,7 +25,8 @@ class IncrementWeight
      */
     public function handle($event)
     {
-        if(isset($event->topic))
-        $event->topic->increment('weight', $event->weight);
+        if (isset($event->topic)) {
+            $event->topic->increment('weight', $event->weight);
+        }
     }
 }

@@ -1,13 +1,13 @@
 <?php
 
 Route::post('/nodes/update', [
-	'as' => 'nodes.update',
-	'uses' => 'FrontPageNodesController@update'
+    'as' => 'nodes.update',
+    'uses' => 'FrontPageNodesController@update'
 ]);
 
 Route::get('/node/toggle/{id}', [
-	'as' => 'nodes.toggle',
-	'uses' => 'FrontPageNodesController@toggle'
+    'as' => 'nodes.toggle',
+    'uses' => 'FrontPageNodesController@toggle'
 ]);
 
 /**
@@ -15,18 +15,18 @@ Route::get('/node/toggle/{id}', [
  */
 
 Route::get('/nustatymai/vartotojas', [
-	'as'	=> 'settings.user',
-	'uses'	=> 'SettingsController@userSettings'
+    'as'    => 'settings.user',
+    'uses'    => 'SettingsController@userSettings'
 ]);
 
 Route::get('/nustatymai/tv', [
-	'as'	=> 'settings.tv',
-	'uses'	=> 'SettingsController@tvSettings'
+    'as'    => 'settings.tv',
+    'uses'    => 'SettingsController@tvSettings'
 ]);
 
 Route::get('/nustatymai/slaptazodis', [
-	'as'	=> 'settings.password',
-	'uses'	=> 'SettingsController@passwordSettings'
+    'as'    => 'settings.password',
+    'uses'    => 'SettingsController@passwordSettings'
 ]);
 
 /**
@@ -34,16 +34,16 @@ Route::get('/nustatymai/slaptazodis', [
  */
 
 Route::post('/nustatymai/vartotojas/issaugoti', [
-	'as'	=> 'settings.user.save',
-	'uses'	=> 'SettingsController@userSettingsSave'
+    'as'    => 'settings.user.save',
+    'uses'    => 'SettingsController@userSettingsSave'
 ]);
 
 Route::post('/nustatymai/tv/issaugoti', [
-	'as'	=> 'settings.tv.save',
-	'uses'	=> 'SettingsController@tvSettingsSave'
+    'as'    => 'settings.tv.save',
+    'uses'    => 'SettingsController@tvSettingsSave'
 ]);
 
 Route::post('/nustatymai/slaptazodis/issaugoti', [
-	'as'	=> 'settings.password.save',
-	'uses'	=> 'SettingsController@passwordSettingsSave'
+    'as'    => 'settings.password.save',
+    'uses'    => 'SettingsController@passwordSettingsSave'
 ]);

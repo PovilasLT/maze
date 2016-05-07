@@ -26,6 +26,5 @@ class ProcessMessage
      */
     public function handle(MessageWasSent $event)
     {
-        
     }
 }

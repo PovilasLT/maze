@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['before' => 'manage_topics'], function(){
+Route::group(['before' => 'manage_topics'], function () {
     Route::post('topics/recomend/{id}',  [
         'as' => 'topics.recomend',
         'uses' => 'TopicsController@recomend',
@@ -32,12 +32,12 @@ Route::group(['before' => 'manage_topics'], function(){
     ]);
 
     Route::post('topics/delete/{id}', [
-        'as'	=>	'topics.lock',
-        'uses'	=> 'TopicsController@lock'
+        'as'    =>    'topics.lock',
+        'uses'    => 'TopicsController@lock'
     ]);
 });
 
-Route::group(['before' => 'manage_users'], function(){
+Route::group(['before' => 'manage_users'], function () {
     Route::post('vartotojas/{slug}/{id}/blokuoti',  [
         'as' => 'user.ban',
         'uses' => 'UsersController@ban',
