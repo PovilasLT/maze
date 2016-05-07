@@ -2,7 +2,7 @@
 	@if(Auth::check() && (Auth::user()->can('manage_topics') || (Auth::user()->id == $topic->user_id && !$topic->is_blocked)))
 	<a href="{{ route('topic.edit', $topic->id) }}"><button type="button" class="btn btn-grey"><i class="fa fa-pencil"></i></button></a>
 	@if(!Auth::user()->can('manage_topics') && !$topic->is_blocked)
-	<a href="{{ route('topic.delete', $topic->id) }}"><button type="button" class="btn btn-grey"><i class="fa fa-trash"></i></button></a>
+	<a href="#" data-toggle="modal" data-target='#topic-confirm-delete-{{ $topic->id }}'><button type="button" class="btn btn-grey"><i class="fa fa-trash"></i></button></a>
 	@endif
 	@endif
 	@if(Auth::check() && Auth::user()->can('manage_topics'))
