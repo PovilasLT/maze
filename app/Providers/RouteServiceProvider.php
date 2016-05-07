@@ -49,6 +49,13 @@ class RouteServiceProvider extends ServiceProvider
             }
             abort(404);
         });
+        $router->bind('streamer-twitch', function ($value) {
+            $node = maze\Streamer::where('twitch', $value)->first();
+            if ($node) {
+                return $node;
+            }
+            abort(404);
+        });
 
         /**
          * ID Bindings
@@ -58,6 +65,7 @@ class RouteServiceProvider extends ServiceProvider
         $router->model('topic-id', 'maze\Topic');
         $router->model('reply-id', 'maze\Reply');
         $router->model('status-id', 'maze\Status');
+        $router->model('streamer-id', 'maze\Streamer');
         $router->model('statuscomment-id', 'maze\StatusComment');
         $router->model('notification-id', 'maze\Notification');
         $router->model('conversation-id', 'maze\Messenger\Conversation');
