@@ -5,160 +5,148 @@ use maze\Http\Requests\DeleteStatus;
 use maze\Http\Requests\CreateStatus;
 use maze\Http\Requests\UpdateStatus;
 use maze\Http\Requests\EditStatus;
-
 use maze\Http\Requests\CreateStatusComment;
 use maze\Http\Requests\UpdateStatusComment;
 use maze\Http\Requests\DeleteStatusComment;
 use maze\Http\Requests\EditStatusComment;
-
 use maze\Events\StatusWasCreated;
 use maze\Events\StatusWasDeleted;
-
 use maze\Events\StatusCommentWasCreated;
 use maze\Events\StatusCommentWasDeleted;
-
 use maze\Events\UserWasMentioned;
-
 use maze\Status;
 use maze\StatusComment;
-
 use Auth;
 use Markdown;
-
 use maze\Mentions\Mention;
-
 use maze\User;
 
-class StatusesController extends Controller {
+class StatusesController extends Controller
+{
 
-	public function __construct()
-	{
-		$this->middleware('loggedIn');
-	}
+    public function __construct()
+    {
+        $this->middleware('loggedIn');
+    }
 
-	public function show($id)
-	{
-		$status = Status::findOrFail($id);
-		$user = $status->user;
-		return view('status.show', compact('status', 'user'));
-	}
+    public function show($id)
+    {
+        $status = Status::findOrFail($id);
+        $user = $status->user;
+        return view('status.show', compact('status', 'user'));
+    }
 
-	public function create(CreateStatus $request) 
-	{
+    public function create(CreateStatus $request)
+    {
+        $mention = new Mention();
 
-		$mention = new Mention();
+        $status = Status::create([
+            'user_id'            => Auth::user()->id,
+            'body'                => markdown($mention->parse($request->input('body'))),
+            'body_original'        => $request->input('body'),
+        ]);
 
-		$status = Status::create([
-			'user_id' 			=> Auth::user()->id,
-			'body'    			=> markdown($mention->parse($request->input('body'))),
-			'body_original'		=> $request->input('body'),
-		]);
+        foreach ($mention->users as $user) {
+            event(new UserWasMentioned($status, $user));
+        }
 
-		foreach($mention->users as $user)
-		{
-			event(new UserWasMentioned($status, $user));
-		}
+        event(new StatusWasCreated($status, Auth::user()));
 
-		event(new StatusWasCreated($status, Auth::user()));
+        flash()->success('Būsena sėkmingai atnaujinta!');
+        return redirect()->route('user.profile', ['rodyti' => 'busenos-atnaujinimai']);
+    }
 
-		flash()->success('Būsena sėkmingai atnaujinta!');
-		return redirect()->route('user.profile', ['rodyti' => 'busenos-atnaujinimai']);
-	}
+    public function edit(EditStatus $request, $id)
+    {
+        $status = Status::findOrFail($id);
+        $user = $status->user;
+        return view('status.edit', compact('status', 'user'));
+    }
 
-	public function edit(EditStatus $request, $id)
-	{
-		$status = Status::findOrFail($id);
-		$user = $status->user;
-		return view('status.edit', compact('status', 'user'));
-	}
+    public function save(UpdateStatus $request)
+    {
+        $mention = new Mention();
 
-	public function save(UpdateStatus $request)
-	{
+        $status = Status::findOrFail($request->input('id'));
+        $status->body_original  = $request->input('body');
+        $status->edited_by        = Auth::user()->id;
+        $status->body            = markdown($mention->parse($request->input('body')));
+        $status->save();
 
-		$mention = new Mention();
+        flash()->success('Būsenos atnaujinimas sėkmingai išsaugotas');
 
-		$status = Status::findOrFail($request->input('id'));
-		$status->body_original  = $request->input('body');
-		$status->edited_by 		= Auth::user()->id;
-		$status->body 			= markdown($mention->parse($request->input('body')));
-		$status->save();
+        return redirect()->route('status.show', $status->id);
+    }
 
-		flash()->success('Būsenos atnaujinimas sėkmingai išsaugotas');
+    public function delete(DeleteStatus $request, $id)
+    {
+        $status = Status::findOrFail($id);
+        $user = $status->user;
+        //Ištrina būsenos atnaujinimą.
+        $status->delete();
 
-		return redirect()->route('status.show', $status->id);
-	}
+        event(new StatusWasDeleted($status, $status->user));
 
-	public function delete(DeleteStatus $request, $id)
-	{
-		$status = Status::findOrFail($id);
-		$user = $status->user;
-		//Ištrina būsenos atnaujinimą.
-		$status->delete();
+        flash()->success('Būsenos atnaujinimas sėkmingai ištrintas');
+        return redirect()->route('user.show', $user->slug);
+    }
 
-		event(new StatusWasDeleted($status, $status->user));
+    public function commentEdit(EditStatusComment $request, $id)
+    {
+        $comment = StatusComment::findOrFail($id);
+        $user = Auth::user();
 
-		flash()->success('Būsenos atnaujinimas sėkmingai ištrintas');
-		return redirect()->route('user.show', $user->slug);
-	}
+        return view('status.comment.edit', compact('comment', 'user'));
+    }
 
-	public function commentEdit(EditStatusComment $request, $id) {
-		$comment = StatusComment::findOrFail($id);
-		$user = Auth::user();
+    public function commentCreate(CreateStatusComment $request)
+    {
+        $data = $request->all();
+        $mention = new Mention();
 
-		return view('status.comment.edit', compact('comment', 'user'));
-	}
+        $data['user_id']        = Auth::user()->id;
+        $data['body_original']    = $data['body'];
+        $data['body']            = markdown($mention->parse($data['body']));
 
-	public function commentCreate(CreateStatusComment $request) {
+        $status_comment = StatusComment::create($data);
 
-		$data = $request->all();
-		$mention = new Mention();
+        foreach ($mention->users as $user) {
+            event(new UserWasMentioned($status_comment, $user));
+        }
 
-		$data['user_id'] 		= Auth::user()->id;
-		$data['body_original']	= $data['body'];
-		$data['body']			= markdown($mention->parse($data['body']));
+        event(new StatusCommentWasCreated($status_comment, Auth::user()));
 
-		$status_comment = StatusComment::create($data);
+        flash()->success('Komentaras sėkmingai sukurtas!');
 
-		foreach($mention->users as $user)
-		{
-			event(new UserWasMentioned($status_comment, $user));
-		}
+        return redirect()->route('status.show', $data['status_id']);
+    }
 
-		event(new StatusCommentWasCreated($status_comment, Auth::user()));
+    public function commentDelete(DeleteStatusComment $request, $id)
+    {
+        $comment = StatusComment::findOrFail($id);
+        $comment->delete($id);
 
-		flash()->success('Komentaras sėkmingai sukurtas!');
+        event(new StatusCommentWasDeleted($comment, $comment->user));
 
-		return redirect()->route('status.show', $data['status_id']);
+        flash()->success('Komentaras sėkmingai ištrintas!');
 
-	}
+        return redirect()->route('status.show', $comment->status->id);
+    }
 
-	public function commentDelete(DeleteStatusComment $request, $id) {
+    public function commentSave(UpdateStatusComment $request)
+    {
+        $data = $request->all();
+        $mention = new Mention();
 
-		$comment = StatusComment::findOrFail($id);
-		$comment->delete($id);
+        $comment = StatusComment::findOrFail($data['id']);
 
-		event(new StatusCommentWasDeleted($comment, $comment->user));
+        $comment->body_original = $data['body'];
+        $comment->body            = markdown($mention->parse($data['body']));
 
-		flash()->success('Komentaras sėkmingai ištrintas!');
+        $comment->save();
 
-		return redirect()->route('status.show', $comment->status->id);
-	}
+        flash()->success('Komentaras sėkmingai atnaujintas!');
 
-	public function commentSave(UpdateStatusComment $request) {
-
-		$data = $request->all();
-		$mention = new Mention();
-
-		$comment = StatusComment::findOrFail($data['id']);
-
-		$comment->body_original = $data['body'];
-		$comment->body 			= markdown($mention->parse($data['body']));
-
-		$comment->save();
-
-		flash()->success('Komentaras sėkmingai atnaujintas!');
-
-		return redirect()->route('status.show', $comment->status->id);
-	}
-
+        return redirect()->route('status.show', $comment->status->id);
+    }
 }

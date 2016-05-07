@@ -7,7 +7,6 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use maze\Notifications\Notifier;
 use maze\Mention;
-
 use Auth;
 
 class NotifyUser
@@ -36,18 +35,15 @@ class NotifyUser
      */
     public function handle($event)
     {
-        if(isset($event->notifiable))
-        {
+        if (isset($event->notifiable)) {
             $notifiable_base = class_basename($event->notifiable);
 
             //jeigu struktura turi containeri, notifinam containerio seimininka.
-            if(in_array($notifiable_base, $this->has_parent))
-            {
+            if (in_array($notifiable_base, $this->has_parent)) {
                 Notifier::notify($notifiable_base, $event->notifiable, $event->notifiable->parent_container->user);
             }
             //kitu atveju tiesiog notifikuojam strukturos savininka
-            else
-            {
+            else {
                 Notifier::notify($notifiable_base, $event->notifiable, $event->notifiable->user);
             }
         }

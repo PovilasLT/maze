@@ -5,7 +5,6 @@ namespace maze\Listeners;
 use maze\Events\ReplyWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-
 use maze\Action;
 use Auth;
 
@@ -32,14 +31,12 @@ class LogAction
         $event_name = class_basename($event);
 
         //paprastas event su notification
-        if(property_exists($event, 'notifiable') && isset($event->notifiable))
-        {
+        if (property_exists($event, 'notifiable') && isset($event->notifiable)) {
             $item_name = class_basename($event->notifiable);
             $item_id = $event->notifiable->id;
         }
         //vote
-        else
-        {
+        else {
             $item_name = class_basename($event->entity);
             $item_id = $event->entity->id;
         }
@@ -48,16 +45,11 @@ class LogAction
         $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
         $remote  = $_SERVER['REMOTE_ADDR'];
 
-        if(filter_var($client, FILTER_VALIDATE_IP))
-        {
+        if (filter_var($client, FILTER_VALIDATE_IP)) {
             $ip = $client;
-        }
-        elseif(filter_var($forward, FILTER_VALIDATE_IP))
-        {
+        } elseif (filter_var($forward, FILTER_VALIDATE_IP)) {
             $ip = $forward;
-        }
-        else
-        {
+        } else {
             $ip = $remote;
         }
 
@@ -68,6 +60,5 @@ class LogAction
             'item_id'   => $item_id,
             'ip'        => $ip
         ]);
-
     }
 }

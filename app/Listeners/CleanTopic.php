@@ -5,9 +5,7 @@ namespace maze\Listeners;
 use maze\Events\TopicWasDeleted;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-
 use maze\Events\ReplyWasDeleted;
-
 use maze\Reply;
 
 class CleanTopic
@@ -30,10 +28,9 @@ class CleanTopic
      */
     public function handle(TopicWasDeleted $event)
     {
-       foreach($event->topic->replies as $reply)
-       {
+        foreach ($event->topic->replies as $reply) {
             event(new ReplyWasDeleted($reply, $event->topic, $event->user));
             $reply->delete();
-       }
+        }
     }
 }

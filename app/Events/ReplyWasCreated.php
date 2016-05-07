@@ -5,12 +5,10 @@ namespace maze\Events;
 use maze\Events\Event;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-
 //models
 use maze\Reply;
 use maze\Topic;
 use maze\User;
-
 use Config;
 
 class ReplyWasCreated extends Event

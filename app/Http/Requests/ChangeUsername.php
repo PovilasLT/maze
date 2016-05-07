@@ -14,11 +14,9 @@ class ChangeUsername extends Request
      */
     public function authorize()
     {
-        if(Auth::check() && !Auth::user()->name_changes)
-        {
+        if (Auth::check() && !Auth::user()->name_changes) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }

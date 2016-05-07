@@ -17,12 +17,9 @@ class CreateNode extends Request
     {
         $nodeid = $this->input('parent_node');
         $this->parentNode = Node::find($nodeid);
-        if(Auth::check() && Auth::user()->can('manage_nodes'))
-        {
+        if (Auth::check() && Auth::user()->can('manage_nodes')) {
             return true;
-        }
-        else 
-        {
+        } else {
             return false;
         }
     }

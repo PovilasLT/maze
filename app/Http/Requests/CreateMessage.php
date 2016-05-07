@@ -17,12 +17,9 @@ class CreateMessage extends Request
     {
         //patikrinam ar zmogus dalyvauja pokalbyje i kuri bando atsakyti.
         $this->conversation = Conversation::findOrFail($this->input('conversation_id'));
-        if($this->conversation->users()->where('user_id', Auth::user()->id)->first())
-        {
+        if ($this->conversation->users()->where('user_id', Auth::user()->id)->first()) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }

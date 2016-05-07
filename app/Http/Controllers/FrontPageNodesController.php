@@ -3,10 +3,8 @@
 namespace maze\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use maze\Http\Requests;
 use maze\Http\Controllers\Controller;
-
 use maze\FrontPageNode;
 use Auth;
 
@@ -17,14 +15,14 @@ class FrontPageNodesController extends Controller
         $this->middleware('loggedIn');
     }
 
-    public function toggle($id) {
+    public function toggle($id)
+    {
         $user = Auth::user();
         $state = FrontPageNode::where('user_id', $user->id)->where('node_id', $id)->exists();
 
-        if($state) {
+        if ($state) {
             FrontPageNode::where('user_id', $user->id)->where('node_id', $id)->delete();
-        }
-        else {
+        } else {
             FrontPageNode::firstOrNew([
                 'user_id' => $user->id,
                 'node_id' => $id
@@ -33,18 +31,18 @@ class FrontPageNodesController extends Controller
         return redirect()->back();
     }
 
-    public function update(Request $request) {
+    public function update(Request $request)
+    {
         $node_id = $request->input('node_id');
         $state = $request->input('state');
         $user = Auth::user();
 
-        if($state == 'on') {
+        if ($state == 'on') {
             FrontPageNode::firstOrNew([
                 'user_id' => $user->id,
                 'node_id' => $node_id
             ])->save();
-        }
-        else {
+        } else {
             FrontPageNode::where('user_id', $user->id)->where('node_id', $node_id)->delete();
         }
     }

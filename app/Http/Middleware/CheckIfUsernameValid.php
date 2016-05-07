@@ -3,7 +3,6 @@
 namespace maze\Http\Middleware;
 
 use Closure;
-
 use Auth;
 use Validator;
 
@@ -18,10 +17,7 @@ class CheckIfUsernameValid
      */
     public function handle($request, Closure $next)
     {
-
-        if(Auth::check() && Auth::user()->name_changes == 0 && Auth::user()->created_at < new \DateTime('2016-01-06 18:00:00'))
-        {
-
+        if (Auth::check() && Auth::user()->name_changes == 0 && Auth::user()->created_at < new \DateTime('2016-01-06 18:00:00')) {
             $user = Auth::user();
 
             $user->update(['namechange_seen' => true]);
@@ -31,16 +27,12 @@ class CheckIfUsernameValid
                 'username' => 'required|alpha_dash'
             ]);
 
-            if($validator->fails())
-            {
-                if(!$request->is('slapyvardis/*'))
-                {
+            if ($validator->fails()) {
+                if (!$request->is('slapyvardis/*')) {
                     flash()->error('Tavo slapyvardis neatitinka naujų maze reikalavimų. Privalai jį pasikeisti!');
                     return redirect()->route('user.change.username');
                 }
-            }
-            elseif(!$user->namechange_seen)
-            {
+            } elseif (!$user->namechange_seen) {
                 flash()->info('Tavo slapyvardis atitinka naujus maze standartus. Tačiau, esant norui, slapyvardį nemokamai gali pasikeisti '.route('user.change.username'));
             }
         }

@@ -4,17 +4,13 @@ namespace maze\Http\Controllers;
 
 use maze\Http\Requests\UpdateReply;
 use maze\Http\Requests\CreateReply;
-
 use maze\Http\Controllers\Controller;
-
 use maze\Events\ReplyWasCreated;
 use maze\Events\UserWasMentioned;
-
 use maze\Topic;
 use maze\Reply;
 use maze\User;
 use maze\Mentions\Mention;
-
 use Authorizer;
 
 class ApiRepliesController extends Controller
@@ -41,7 +37,7 @@ class ApiRepliesController extends Controller
 
         //Susitvarkom su markdown ir data
         $data['user_id']        = $user->id;
-        $data['body_original']  = $data['body']; 
+        $data['body_original']  = $data['body'];
         $data['body']           = $mention->parse($data['body']);
         $data['body']           = markdown($data['body']);
 
@@ -50,8 +46,7 @@ class ApiRepliesController extends Controller
 
         flash()->success('Pranešimas sėkmingai išsaugotas!');
 
-        foreach($mention->users as $user)
-        {
+        foreach ($mention->users as $user) {
             event(new UserWasMentioned($reply, $user));
         }
         
@@ -93,7 +88,7 @@ class ApiRepliesController extends Controller
         $mention    = new Mention();
 
         $data                   = $request->all();
-        $reply->body_original   = $data['body']; 
+        $reply->body_original   = $data['body'];
         $data['body']           = $mention->parse($data['body']);
         $reply->body            = markdown($data['body']);
 
@@ -101,5 +96,4 @@ class ApiRepliesController extends Controller
 
         return redirect()->route('replies.show', [$id, 'access_token' => $request->input('access_token')]);
     }
-
 }

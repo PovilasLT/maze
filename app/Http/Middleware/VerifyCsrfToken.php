@@ -4,38 +4,39 @@ use Closure;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 use Illuminate\Session\TokenMismatchException;
 
-class VerifyCsrfToken extends BaseVerifier {
+class VerifyCsrfToken extends BaseVerifier
+{
 
-	/**
-	 * Handle an incoming request.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \Closure  $next
-	 * @return mixed
-	 */
-	public function handle($request, Closure $next)  
-	{
-	    if ($this->isReading($request) || $this->excludedRoutes($request) || $this->tokensMatch($request))
-	    {
-	        return $this->addCookieToResponse($request, $next($request));
-	    }
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
+    public function handle($request, Closure $next)
+    {
+        if ($this->isReading($request) || $this->excludedRoutes($request) || $this->tokensMatch($request)) {
+            return $this->addCookieToResponse($request, $next($request));
+        }
 
-	    throw new TokenMismatchException;
-	}
+        throw new TokenMismatchException;
+    }
 
-	protected function excludedRoutes($request)  
-	{
-	    $routes = [
-	            'markdown',
-	            'balsuoti/*',
-	            'nodes/*'
-	    ];
+    protected function excludedRoutes($request)
+    {
+        $routes = [
+                'markdown',
+                'balsuoti/*',
+                'nodes/*'
+        ];
 
-	    foreach($routes as $route)
-	        if ($request->is($route))
-	            return true;
+        foreach ($routes as $route) {
+            if ($request->is($route)) {
+                return true;
+            }
+        }
 
-	        return false;
-	}
-
+        return false;
+    }
 }

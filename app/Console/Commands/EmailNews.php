@@ -7,7 +7,8 @@ use maze\Topic;
 use maze\User;
 use Mail;
 
-class EmailNews extends Command {
+class EmailNews extends Command
+{
 
     /**
      * The console command name.
@@ -49,16 +50,14 @@ class EmailNews extends Command {
     {
         $topic = Topic::findOrFail($this->argument('topic_id'));
         
-        $users = User::where('email_news', 1)->chunk(200, function($users) use($topic) {
+        $users = User::where('email_news', 1)->chunk(200, function ($users) use ($topic) {
             $data = [
                 'title' => $topic->title,
                 'body'  => $topic->body
             ];
 
-            foreach($users as $user)
-            {
-                Mail::queue('emails.news', $data, function($message) use($user, $topic)
-                {
+            foreach ($users as $user) {
+                Mail::queue('emails.news', $data, function ($message) use ($user,$topic) {
                     $message->to($user->email)->subject('Maze Naujienos: '.utf8_urldecode($topic->title));
                 });
             }
@@ -85,5 +84,4 @@ class EmailNews extends Command {
         return [
         ];
     }
-
 }

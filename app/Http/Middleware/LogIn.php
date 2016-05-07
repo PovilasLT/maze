@@ -16,16 +16,12 @@ class LogIn
      */
     public function handle($request, Closure $next)
     {
-        if(!Auth::check())
-        {
+        if (!Auth::check()) {
             flash()->error('Norėdamas(-a) atlikti šį veiksmą privalai prisijungti!');
 
-            if($request->ajax())
-            {
+            if ($request->ajax()) {
                 return response('auth required');
-            }
-            else
-            {
+            } else {
                 session(['intended_url' => $request->url()]);
                 return redirect()->route('auth.login');
             }

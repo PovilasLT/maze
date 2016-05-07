@@ -3,10 +3,10 @@
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
-
 use maze\Streamer;
 
-class StreamsLoadAll extends Command {
+class StreamsLoadAll extends Command
+{
 
     /**
      * The console command name.
@@ -39,11 +39,8 @@ class StreamsLoadAll extends Command {
      */
     public function fire()
     {
-
-
-        $streamers = Streamer::sorted()->chunk(30, function($streamers) {
-            foreach($streamers as $streamer)
-            {
+        $streamers = Streamer::sorted()->chunk(30, function ($streamers) {
+            foreach ($streamers as $streamer) {
                 $streamer->fullLoad();
             }
         });
@@ -70,5 +67,4 @@ class StreamsLoadAll extends Command {
         return [
         ];
     }
-
 }

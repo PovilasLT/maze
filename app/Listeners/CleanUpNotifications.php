@@ -5,7 +5,6 @@ namespace maze\Listeners;
 use maze\Events\ReplyWasDeleted;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-
 use maze\Notification;
 use maze\Mention;
 
@@ -46,11 +45,9 @@ class CleanUpNotifications
         //jeigu strukturoje veikia paminejimu notificationai
         //istrinam notificationus
         //ir paminejimus
-        if(in_array($type, $this->mentionable))
-        {
+        if (in_array($type, $this->mentionable)) {
             Notification::where('object_type', 'mention')->where('object_id', $event->notifiable->id)->delete();
             Mention::where('object_type', $name)->where('object_id', $event->notifiable->id)->delete();
         }
-
     }
 }
