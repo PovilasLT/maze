@@ -2,13 +2,13 @@
 		<footer>
 			<div class="container">
 				<div class="row">
-					<div class="col-md-4">
+					<div class="col-md-2">
 						@include('panels.footer.statistics')
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-2">
 						@include('panels.footer.links')
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-offset-5 col-md-3">
 						@include('panels.footer.social')
 					</div>
 				</div>
