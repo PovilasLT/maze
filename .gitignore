@@ -5,6 +5,7 @@
 /public/js/*
 /public/build/*
 /public/images/avatars
+/public/images/servers
 redis.json
 .env
 _ide_helper.php
