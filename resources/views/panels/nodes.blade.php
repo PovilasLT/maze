@@ -6,7 +6,7 @@
         <i class="fa fa-pencil-square-o pull-right edit-front-page-nodes clickable-object"></i>
         @if(Auth::user()->can('manage_nodes'))
         <a href="{{ route('node.create') }}">
-          <i class="glyphicon glyphicon-plus pull-right"></i>
+          <i class="fa fa-plus pull-right"></i>
         </a>
         @endif
       @endif
