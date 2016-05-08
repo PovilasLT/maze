@@ -52,8 +52,10 @@ class Server extends Model
     			$logo = $type->default_logo;
     		else 
     			$logo = "no_logo.png";
+    		return "/images/servers/default/".$logo;
     	}
-    	return "/images/servers/".$logo;
+    	else
+    		return "/images/servers/".$logo;
     }
 
     public function getSlugAttribute($value)

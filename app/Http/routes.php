@@ -47,6 +47,7 @@ Route::group(['domain' => env('DOMAIN', 'maze.lt')], function () {
 	// Serverių sąrašas
 	require_once('Routes/server.routes.php');
 	require_once('Routes/server_comments.routes.php');
+	require_once('Routes/server_game.routes.php');
 
 });
 

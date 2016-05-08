@@ -236,3 +236,9 @@ Breadcrumbs::register('server_comment.edit', function($breadcrumbs, $comment)
     $breadcrumbs->push($comment->server->name, route('server.show', $comment->server->id));
     $breadcrumbs->push('Komentaro redagavimas', route('server.comment.edit'));
 });
+
+
+Breadcrumbs::register('servergame.create', function($breadcrumbs)
+{
+    $breadcrumbs->push('Serverių Žaidimai', route('servergame.create'));
+});

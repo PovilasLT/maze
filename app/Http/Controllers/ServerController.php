@@ -120,7 +120,7 @@ class ServerController extends Controller
     public function show($slug)
     {
         $server = Server::where('slug', $slug)->firstOrFail();
-        var_dump($server->votes);
+        //var_dump($server->votes);
         return view('server.show', compact('server'));
     }
 

@@ -107,3 +107,7 @@
 	<div class="reply-form-fix"></div>
 @stop
 
+
+@section('sidebar')
+	@include('includes.server_sidebar')
+@stop

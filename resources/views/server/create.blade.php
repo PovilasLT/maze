@@ -21,5 +21,5 @@
 @stop
 
 @section('sidebar')
-	@include('includes.sidebar')
+	@include('includes.server_sidebar')
 @stop
