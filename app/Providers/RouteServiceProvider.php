@@ -28,29 +28,29 @@ class RouteServiceProvider extends ServiceProvider
         /**
          * Misc. Bindings.
          */
-        $router->bind('user-slug', 'maze\User', function ($value) {
-            $user = maze\User::where('slug', $value)->first();
+        $router->bind('user', 'maze\User', function ($value) {
+            $user = \maze\User::where('slug', $value)->first();
             if ($user) {
                 return $user;
             }
             abort(404);
         });
-        $router->bind('topic-slug', function ($value) {
-            $topic = maze\Topic::where('slug', $value)->first();
+        $router->bind('topic', function ($value) {
+            $topic = \maze\Topic::where('slug', $value)->first();
             if ($topic) {
                 return $topic;
             }
             abort(404);
         });
-        $router->bind('node-slug', function ($value) {
-            $node = maze\Node::where('slug', $value)->first();
+        $router->bind('node', function ($value) {
+            $node = \maze\Node::where('slug', $value)->first();
             if ($node) {
                 return $node;
             }
             abort(404);
         });
-        $router->bind('streamer-twitch', function ($value) {
-            $node = maze\Streamer::where('twitch', $value)->first();
+        $router->bind('streamer', function ($value) {
+            $node = \maze\Streamer::where('twitch', $value)->first();
             if ($node) {
                 return $node;
             }
@@ -60,16 +60,13 @@ class RouteServiceProvider extends ServiceProvider
         /**
          * ID Bindings
          */
-        $router->model('node-id', 'maze\Node');
-        $router->model('user-id', 'maze\User');
-        $router->model('topic-id', 'maze\Topic');
-        $router->model('reply-id', 'maze\Reply');
-        $router->model('status-id', 'maze\Status');
-        $router->model('streamer-id', 'maze\Streamer');
-        $router->model('statuscomment-id', 'maze\StatusComment');
-        $router->model('notification-id', 'maze\Notification');
-        $router->model('conversation-id', 'maze\Messenger\Conversation');
-        $router->model('message-id', 'maze\Messenger\Message');
+        $router->model('reply', 'maze\Reply');
+        $router->model('status', 'maze\Status');
+        $router->model('streamer', 'maze\Streamer');
+        $router->model('statuscomment', 'maze\StatusComment');
+        $router->model('notification', 'maze\Notification');
+        $router->model('conversation', 'maze\Messenger\Conversation');
+        $router->model('message', 'maze\Messenger\Message');
     }
 
     /**
