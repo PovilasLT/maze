@@ -220,4 +220,69 @@ class Topic extends Model
     {
         return 'Sukūrė temą <a href="' . $this->url . '" alt="' . e($this->title) . '" title="' . e($this->title) . '">' . e($this->title) . '</a>';
     }
+
+    /**
+     * Veiksmai
+     */
+    public function lock()
+    {    
+        $this->is_blocked = 1;
+        $this->save();
+
+        return $this;
+    }
+    public function unlock()
+    {
+        $this->is_blocked = 0;
+        $this->save();
+
+        return $this;
+    }
+    public function sink()
+    {
+        $this->order = -1;
+        $this->pin_local = -1;
+        $this->save();
+
+        return $this;
+    }
+    public function unsink()
+    {
+        $this->order = 0;
+        $this->pin_local = 0;
+        $this->save();
+
+        return $this;
+    }
+    public function unpin()
+    {
+        $this->pin_local = 0;
+        $this->order = 0;
+        $this->save();
+
+        return $this;
+    }
+    public function pinLocal()
+    {
+        $this->pin_local = 1;
+        $this->save();
+
+        return $this;
+    }
+    public function pinGlobal()
+    {
+        $this->order = 1;
+        $this->save();
+
+        return $this;
+    }
+
+    public function bump()
+    {
+        $this->weight = $this->weight + 1000;
+        $this->touch();
+        $this->save();
+
+        return $this;
+    }
 }
