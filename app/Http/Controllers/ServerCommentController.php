@@ -15,25 +15,6 @@ use Auth;
 
 class ServerCommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -66,17 +47,6 @@ class ServerCommentController extends Controller
         
         //redirectina tiesiai i ten, kur yra pranesimas
         return redirect()->route('server.show', [$server->slug, '#komentaras-'.$comment->id]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**

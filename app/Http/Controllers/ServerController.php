@@ -33,8 +33,6 @@ class ServerController extends Controller
         $tab = $request->input('rodyti');
         $game = $request->input('zaidimas');
         $query = Server::select();
-        //var_dump($query);
-        //exit;
 
         // Administracija mato ir nepatikrintus
         if(Auth::user()->can('manage_servers'))
@@ -60,9 +58,6 @@ class ServerController extends Controller
             $servergame = ServerGame::where('slug', '=', $game)->firstOrFail();
             $query = $query->games($servergame);
         }
-
-
-       // var_dump($query->get());
         $servers = $query->paginate(20);
         return view('server.list', compact('tab', 'servers', 'tab', 'game'));
     }
@@ -120,7 +115,6 @@ class ServerController extends Controller
     public function show($slug)
     {
         $server = Server::where('slug', $slug)->firstOrFail();
-        //var_dump($server->votes);
         return view('server.show', compact('server'));
     }
 
