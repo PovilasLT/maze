@@ -37,7 +37,9 @@ class Authenticate
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
-                return redirect()->guest('auth/login');
+                flash()->error('Norėdamas(-a) atlikti šį veiksmą privalai prisijungti!');
+                session(['intended_url' => $request->url()]);
+                return redirect()->route('auth.login');
             }
         }
 
