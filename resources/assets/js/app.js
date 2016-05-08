@@ -43,7 +43,7 @@ var App = Backbone.View.extend({
 	 */
 	initialize: function() {
 		this.pjax = new Pjax({ 
-			elements: ['a'],
+			elements: ['a:not(.external-uri)'],
 			selectors: ["title", "#the-content"]
 		});
 		this._createElements();

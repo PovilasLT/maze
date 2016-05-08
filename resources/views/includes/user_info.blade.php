@@ -19,8 +19,8 @@
 		<a href="{{ route('auth.logout') }}" data-toggle="tooltip" title="Atsijungti"><i class="fa fa-sign-out fa-lg fa-fw"></i></a>
 	@else
 		<div class="logged-out-wrapper">
-			<a href="{{ route('auth.login') }}"><button type="button" class="btn btn-bigger btn-primary full-width"><i class="fa fa-sign-in"></i>Prisijungti</button></a>
-			<a href="{{ route('auth.register') }}"><button type="button" class="btn btn-bigger btn-info full-width"><i class="fa fa-user-plus"></i>Registruotis</button></a>
+			<a href="{{ route('auth.login') }}" class="btn btn-bigger btn-primary full-width external-uri"><i class="fa fa-sign-in"></i>Prisijungti</a>
+			<a href="{{ route('auth.register') }}" class="btn btn-bigger btn-info full-width external-uri"><i class="fa fa-user-plus"></i>Registruotis</a>
 		</div>
 	@endif
 </div>
