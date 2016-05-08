@@ -41,7 +41,7 @@ class EmailNotification
                     'title'     => $reply->topic->title,
                     'content'   => $reply->body,
                     'slug'      => $reply->topic->slug,
-                    'id'        => $reply->topic->id
+                    'id'        => $reply->id
                 ];
 
                 $topic = $reply->topic;
