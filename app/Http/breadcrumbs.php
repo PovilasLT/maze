@@ -57,12 +57,12 @@ Breadcrumbs::register('node.show', function ($breadcrumbs, $node) {
 //Tema
 Breadcrumbs::register('topic.show', function ($breadcrumbs, $topic) {
     $breadcrumbs->parent('node.show', $topic->node);
-    $breadcrumbs->push($topic->title, route('topic.show', $topic->id));
+    $breadcrumbs->push($topic->title, route('topic.show', $topic->slug));
 });
 
 Breadcrumbs::register('topic.edit', function ($breadcrumbs, $topic) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Temos redagavimas', route('topic.edit', [$topic->id]));
+    $breadcrumbs->push('Temos redagavimas', route('topic.edit', [$topic->slug]));
 });
 
 Breadcrumbs::register('topic.create', function ($breadcrumbs) {

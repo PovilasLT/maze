@@ -5,7 +5,7 @@ use Auth;
 
 use maze\TopicType;
 
-class CreateTopic extends Request {
+class TopicRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -14,20 +14,15 @@ class CreateTopic extends Request {
 	 */
 	public function authorize()
 	{
-		if(Auth::check())
-		{
+		$topic = $this->route('topic');
+		if($topic) {
+			// resource owner or can manage_topics
+			return ($this->user()->id == $topic->user_id) || $this->user()->can('manage_topics');
+		} else {
 			return true;
 		}
-		else {
-			return false;
-		}
-	}
+ 	}
 
-	/**
-	 * Get the validation rules that apply to the request.
-	 *
-	 * @return array
-	 */
 	public function rules()
 	{
 		$user = Auth::user();
@@ -48,10 +43,6 @@ class CreateTopic extends Request {
 				'node_id' => 'required|numeric',
 				'type_id' => 'required|in:'.TopicType::where('is_admin', '=', '0')->get()->implode('id', ',')
 	    	];
-	    	if($user->topic_count < 10)
-	    	{
-	    		$rules['g-recaptcha-response'] = 'required|recaptcha';
-	    	}
 	    }
     	return $rules;
 	}
