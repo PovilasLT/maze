@@ -44,6 +44,10 @@ Route::group(['domain' => env('DOMAIN', 'maze.lt')], function () {
 	//Senų route 301 redirectai.
 	require_once('Routes/legacy.routes.php');
 
+	// Serverių sąrašas
+	require_once('Routes/server.routes.php');
+	require_once('Routes/server_comments.routes.php');
+
 });
 
 Route::group(['domain' => 'tv.'.env('DOMAIN', 'maze.lt')], function () {

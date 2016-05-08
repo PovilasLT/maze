@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use maze\Reply;
 use maze\Vote;
 use maze\Topic;
+use maze\Server;
+use maze\ServerComment;
 
 use maze\Events\UpVoted;
 use maze\Events\DownVoted;
@@ -32,10 +34,20 @@ class VotesController extends Controller {
 			$type = 'Topic';
 			$_votable = Topic::findOrFail($id);
 		}
-		else
+		else if($type == 'pranesimas')
 		{
 			$type = 'Reply';
 			$_votable = Reply::findOrFail($id);
+		}
+		else if($type == 'serveris')
+		{
+			$type = 'Server';
+			$_votable = Server::findOrFail($id);
+		}
+		else if($type == 'serverio-komentaras')
+		{
+			$type = 'ServerComment';
+			$_votable = ServerComment::findOrFail($id);
 		}
 
 		$_vote = Vote::where('votable_type', $type)

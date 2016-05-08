@@ -1,5 +1,7 @@
 <?php
 
+use maze\ServerGame;
+
 //Pagrindinis
 Breadcrumbs::register('home', function($breadcrumbs)
 {
@@ -197,4 +199,40 @@ Breadcrumbs::register('streamer.show', function($breadcrumbs, $streamer)
 {
     $breadcrumbs->parent('tv.index');
     $breadcrumbs->push(e($streamer->twitch).' Streamas', route('streamer.show', [$streamer->twitch]));
+});
+
+// SERVERIAI
+
+Breadcrumbs::register('server.create', function($breadcrumbs)
+{
+    $breadcrumbs->parent('server.list', '');
+    $breadcrumbs->push('Serverio kūrimas', route('server.create'));
+});
+
+Breadcrumbs::register('server.edit', function($breadcrumbs, $server)
+{
+    $breadcrumbs->parent('server.list', '');
+    $breadcrumbs->push($server->name, route('server.show', $server->id));
+    $breadcrumbs->push('Serverio redagavimas', route('server.edit'));
+});
+
+Breadcrumbs::register('server.list', function($breadcrumbs, $game)
+{
+    $breadcrumbs->push('Serveriai', route('server.list'));
+    if($game)
+        $breadcrumbs->push(ServerGame::where('slug', $game)->firstOrFail()->name);
+});
+
+Breadcrumbs::register('server.show', function($breadcrumbs, $server)
+{
+    $breadcrumbs->parent('server.list', "");
+    $breadcrumbs->push($server->game->name, route('server.list', ['zaidimas' => $server->game->slug]));
+    $breadcrumbs->push($server->name, route('server.show'));
+});
+
+Breadcrumbs::register('server_comment.edit', function($breadcrumbs, $comment)
+{
+    $breadcrumbs->parent('server.list', '');
+    $breadcrumbs->push($comment->server->name, route('server.show', $comment->server->id));
+    $breadcrumbs->push('Komentaro redagavimas', route('server.comment.edit'));
 });
