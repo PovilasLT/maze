@@ -12,7 +12,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Atšaukti</button>
-        <a href="{{ route('reply.answer', $reply->id) }}" class='btn btn-success'>Patvirtinti</a>
+        <a href="{{ route('reply.answer', $reply->id) }}" class="btn btn-success external-uri">Patvirtinti</a>
       </div>
     </div>
   </div>
