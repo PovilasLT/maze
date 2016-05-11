@@ -35,8 +35,8 @@ class UserWasNotified extends Event implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        //return ['notifications']; // PRIES PUSHINANT REIKIA ATKOMENTUOT SITA
-        return [];
+        return ['notifications']; // PRIES PUSHINANT REIKIA ATKOMENTUOT SITA
+        //return [];
     }
 
     public function broadcastWith()
