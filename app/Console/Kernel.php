@@ -21,6 +21,8 @@ class Kernel extends ConsoleKernel {
 		'maze\Console\Commands\StreamsRegenerate',
 		'maze\Console\Commands\StreamsLoad',
 		'maze\Console\Commands\StreamsLoadAll',
+		'maze\Console\Commands\CleanNotifications',
+		'maze\Console\Commands\CleanMentions',
 	];
 
 	/**
@@ -34,6 +36,8 @@ class Kernel extends ConsoleKernel {
 		$schedule->command('topics:decay')->hourly();
 		$schedule->command('streams:update')->everyMinute();
 		$schedule->command('streams:regenerateimage')->weekly();
+		$schedule->command('notifications:clean')->hourly();
+		$schedule->command('mentions:clean')->hourly();
 	}
 
 }
