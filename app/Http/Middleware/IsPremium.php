@@ -24,7 +24,7 @@ class IsPremium
      */
     public function handle($request, Closure $next)
     {
-        if (!Auth::check() || in_array(Auth::user()->roles()->first()->name, $this->premium_roles)) {
+        if (!in_array(Auth::user()->roles()->first()->name, $this->premium_roles)) {
             flash()->error('Neleidžiamas veiksmas!');
             return redirect()->back();
         }

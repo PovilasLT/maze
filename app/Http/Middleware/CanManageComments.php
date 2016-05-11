@@ -16,7 +16,7 @@ class CanManageComments
      */
     public function handle($request, Closure $next)
     {
-        if (!Auth::check() || !Auth::user()->can('manage_comments')) {
+        if (!Auth::user()->can('manage_comments')) {
             flash()->error('Neleidžiamas veiksmas!');
             return redirect()->back();
         }

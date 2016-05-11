@@ -16,7 +16,7 @@ class CanManageTopics
      */
     public function handle($request, Closure $next)
     {
-        if (!Auth::check() || !Auth::user()->can('manage_topics')) {
+        if (!Auth::user()->can('manage_topics')) {
             flash()->error('Neleidžiamas veiksmas!');
             return redirect()->back();
         }

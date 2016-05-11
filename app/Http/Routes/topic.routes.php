@@ -36,7 +36,7 @@ Route::group(['prefix' => '/tema'], function () {
     /**
      * Prisijungusiems Admin ir Mod
      */
-    Route::group(['middleware' => ['auth', 'staff']], function() {
+    Route::group(['middleware' => ['auth', 'IsMod']], function() {
             Route::get('/{topic}/pakelti', [
                 'as'    => 'topic.bump',
                 'uses'    => 'TopicsController@bump'
