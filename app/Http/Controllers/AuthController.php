@@ -74,7 +74,9 @@ class AuthController extends Controller
 
         event(new UserWasCreated($user));
 
-        flash()->success('Tu sėkmingai užsiregistravai! Dabar gali prisijungti!');
+        Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')], true);
+
+        flash()->success('Tu sėkmingai užsiregistravai!');
         return redirect('/');
     }
 
