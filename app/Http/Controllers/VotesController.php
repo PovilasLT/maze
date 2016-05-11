@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use maze\Reply;
 use maze\Vote;
 use maze\Topic;
-use maze\Server;
+use maze\GameServer;
 use maze\ServerComment;
 
 use maze\Events\UpVoted;
@@ -41,8 +41,8 @@ class VotesController extends Controller {
 		}
 		else if($type == 'serveris')
 		{
-			$type = 'Server';
-			$_votable = Server::findOrFail($id);
+			$type = 'GameServer';
+			$_votable = GameServer::findOrFail($id);
 		}
 		else if($type == 'serverio-komentaras')
 		{

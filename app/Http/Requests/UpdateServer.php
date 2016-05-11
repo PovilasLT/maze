@@ -4,7 +4,7 @@ namespace maze\Http\Requests;
 
 use maze\Http\Requests\Request;
 use Auth;
-use maze\Server;
+use maze\GameServer;
 use maze\ServerGame;
 
 class UpdateServer extends Request
@@ -16,7 +16,7 @@ class UpdateServer extends Request
      */
     public function authorize()
     {
-        $this->gameserver = Server::where('slug', $this->route('slug'))->firstOrFail();
+        $this->gameserver = GameServer::where('slug', $this->route('slug'))->firstOrFail();
         
         //patikrinam ar useris turi teise redaguoti serverį.
         if(Auth::check() && (Auth::user()->id == $this->gameserver->user_id) || Auth::user()->can('manage_servers') )

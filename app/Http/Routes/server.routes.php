@@ -40,7 +40,19 @@ Route::get('serveriai/{slug}/rakinti', [
 	'uses'	=> 'ServerController@lock'
 ]);
 
+Route::get('serveriai/{slug}/patvirtinti', [
+	'as'	=> 'server.confirm',
+	'uses'	=> 'ServerController@confirm'
+]);
+
+Route::post('serveriai/{slug}/atmesti', [
+	'as'	=> 'server.reject',
+	'uses'	=> 'ServerController@reject'
+]);
+
+
 ?>
+
 
 
 

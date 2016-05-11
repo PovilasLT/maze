@@ -49,6 +49,11 @@ class Notification extends Model {
 		return $this->belongsTo('StatusComment', 'object_id', 'id')->where('object_type', 'StatusComment');
 	}
 
+	public function gameserver()
+	{
+		return $this->belongsTo('GameServer', 'object_id', 'id')->where('object_type', 'GameServer');
+	}
+
 	public function object() {
 		return $this->morphTo();
 	}

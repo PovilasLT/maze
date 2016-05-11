@@ -93,7 +93,33 @@ class EventServiceProvider extends ServiceProvider {
 		'maze\Events\NodeWasCreated' => [
 			'maze\Listeners\AddFrontPageNode',
 			'maze\Listeners\LogAction'
-		]
+		],
+		'maze\Events\ServerWasDeleted'	=> [
+			'maze\Listeners\NotifyUser',
+			'maze\Listeners\CleanUpNotifications',
+			'maze\Listeners\LogAction'
+		],
+		'maze\Events\ServerWasCreated'	=> [
+			'maze\Listeners\NotifyUser',
+			'maze\Listeners\LogAction'
+		],
+		'maze\Events\ServerWasRejected' => [
+			'maze\Listeners\NotifyUser',
+			'maze\Listeners\LogAction'
+		],
+		'maze\Events\ServerWasApproved' => [
+			'maze\Listeners\NotifyUser',
+			'maze\Listeners\LogAction'
+		],
+		'maze\Events\ServerCommentWasCreated' => [
+			'maze\Listeners\NotifyUser',
+			'maze\Listeners\LogAction'
+		],
+		'maze\Events\ServerCommentWasDeleted' => [
+			'maze\Listeners\NotifyUser',
+			'maze\Listeners\CleanUpNotifications',
+			'maze\Listeners\LogAction'
+		],
 	];
 
 	/**

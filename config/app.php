@@ -267,6 +267,8 @@ return [
 		'Notification'	=> 'maze\Notification',
 		'Vote'			=> 'maze\Vote',
 		'Streamer' 		=> 'maze\Streamer',
+		'GameServer'	=> 'maze\GameServer',
+		'ServerComment'	=> 'maze\ServerComment',
 
 		//3rd party
 		'Flash' 		=> 'Laracasts\Flash\Flash',

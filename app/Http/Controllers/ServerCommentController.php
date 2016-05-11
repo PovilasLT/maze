@@ -7,8 +7,11 @@ use maze\Http\Requests\CreateServerComment;
 use maze\Http\Requests\UpdateServerComment;
 use maze\Http\Requests\DeleteServerComment;
 use maze\Http\Requests;
+use maze\Events\ServerCommentWasCreated;
+use maze\Events\ServerCommentWasDeleted;
+use maze\Events\UserWasMentioned;
 use maze\Http\Controllers\Controller;
-use maze\Server;
+use maze\GameServer;
 use maze\ServerComment;
 use maze\Mentions\Mention;
 use Auth;
@@ -33,7 +36,7 @@ class ServerCommentController extends Controller
         $data['body']           = $mention->parse($data['body']);
         $data['body']           = markdown($data['body']);
 
-        $server = Server::findOrFail($data['server_id']);
+        $server = GameServer::findOrFail($data['server_id']);
         $comment = ServerComment::create($data);
 
         flash()->success('Komentaras sėkmingai išsaugotas!');
@@ -43,6 +46,7 @@ class ServerCommentController extends Controller
             event(new UserWasMentioned($comment, $user));
         }
         
+        event(new ServerCommentWasCreated($comment, $server, Auth::user()));
         
         
         //redirectina tiesiai i ten, kur yra pranesimas
@@ -96,6 +100,8 @@ class ServerCommentController extends Controller
         $server = $comment->server;
 
         $user = $comment->user;
+
+        event(new ServerCommentWasDeleted($comment, $server, $user));
 
         $comment->delete();
 

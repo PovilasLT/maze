@@ -17,7 +17,7 @@ class ServerComment extends Model
 	];
 
     public function server() {
-    	return $this->belongsTo('maze\Server');
+    	return $this->belongsTo('maze\GameServer');
     }
 
     public function user() {
@@ -43,4 +43,17 @@ class ServerComment extends Model
 			return false;
 		}
 	}
+
+	public function getUrlAttribute() {
+		return $this->server->url.'#komentaras-'.$this->id;
+	}
+
+	public function getNotificationAttribute() {
+		return 'Parašė <a href="'.$this->url.'">atsakymą</a> į serverio temą <a href="' . $this->server->url . '" alt="' . e($this->server->name) . '" title="' . e($this->server->name) . '">' . e($this->server->name) . '</a>';
+	}
+
+	public function getActivityAttribute() {
+		return 'Parašė <a href="'.$this->url.'">atsakymą</a> į serverio temą <a href="' . $this->server->url . '" alt="' . e($this->server->name) . '" title="' . e($this->server->name) . '">' . e($this->server->name) . '</a>';
+	}
+
 }

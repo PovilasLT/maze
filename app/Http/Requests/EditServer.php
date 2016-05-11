@@ -4,7 +4,7 @@ namespace maze\Http\Requests;
 
 use maze\Http\Requests\Request;
 use Auth;
-use maze\Server;
+use maze\GameServer;
 
 class EditServer extends Request
 {
@@ -16,7 +16,7 @@ class EditServer extends Request
     public function authorize()
     {
         $user = Auth::user();
-        $this->gameserver = Server::where('slug', $this->route('slug'))->firstOrFail();
+        $this->gameserver = GameServer::where('slug', $this->route('slug'))->firstOrFail();
         if($user && $this->gameserver && ($user->id == $this->gameserver->user->id || $user->can('manage_servers')))
         {
             return true;

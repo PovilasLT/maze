@@ -3,7 +3,7 @@
 namespace maze\Http\Requests;
 
 use maze\Http\Requests\Request;
-use maze\Server;
+use maze\GameServer;
 use Auth;
 
 class DeleteServer extends Request
@@ -16,7 +16,7 @@ class DeleteServer extends Request
     public function authorize()
     {
         $user = Auth::user();
-        $gameserver = Server::where('slug', $this->route('slug'))->firstOrFail();
+        $gameserver = GameServer::where('slug', $this->route('slug'))->firstOrFail();
         $this->gameserver = $gameserver;
         if($user && ($gameserver->user_id == $user->id || $user->can('manage_servers')))
         {

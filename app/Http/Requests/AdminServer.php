@@ -4,7 +4,7 @@ namespace maze\Http\Requests;
 
 use maze\Http\Requests\Request;
 use Auth;
-use maze\Server;
+use maze\GameServer;
 
 class AdminServer extends Request
 {
@@ -17,7 +17,7 @@ class AdminServer extends Request
     {
         if(Auth::check() && Auth::user()->can('manage_servers'))
         {
-            $this->gameserver = Server::where('slug', $this->route('slug'))->firstOrFail();
+            $this->gameserver = GameServer::where('slug', $this->route('slug'))->firstOrFail();
             return true;
         }
         else

@@ -80,6 +80,7 @@
 			@include('server.controls')
 		</div>
 		@include('server.modals.delete')
+		@include('server.modals.reject')
 	</div>
 
 

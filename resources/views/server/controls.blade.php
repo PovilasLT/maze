@@ -14,6 +14,10 @@
 					@endif
 				</button>
 			</a>
+			@if(!$server->is_confirmed)
+				<a href="{{ route('server.confirm', $server->slug) }}"><button class='btn btn-grey'><i class='fa fa-check'></i></button></a>
+				<a href="#" data-toggle="modal" data-target='#server-confirm-rejection-{{ $server->id }}'><button type="button" class="btn btn-grey"><i class="fa fa-remove"></i></button>
+			@endif
 		@endif
 	@endif
 </div>

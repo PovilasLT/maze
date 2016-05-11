@@ -3,7 +3,7 @@
 namespace maze\Http\Requests;
 
 use maze\Http\Requests\Request;
-use maze\Server;
+use maze\GameServer;
 use Auth;
 
 class CreateServerComment extends Request
@@ -15,7 +15,7 @@ class CreateServerComment extends Request
      */
     public function authorize()
     {
-        $server = Server::findOrFail($this->route('id'));
+        $server = GameServer::findOrFail($this->route('id'));
         $this->gameserver = $server;
         if(!$server->is_blocked)
         {

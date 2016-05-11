@@ -4,15 +4,23 @@ namespace maze\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use maze\Http\Requests\ShowServer;
 use maze\Http\Requests\CreateServer;
 use maze\Http\Requests\DeleteServer;
 use maze\Http\Requests\AdminServer;
 use maze\Http\Requests\EditServer;
 use maze\Http\Requests\UpdateServer;
+use maze\Http\Requests\RejectServer;
 use maze\Http\Controllers\Controller;
 
+use maze\Events\ServerWasRejected;
+use maze\Events\ServerWasApproved;
+use maze\Events\ServerWasDeleted;
+use maze\Events\ServerWasCreated;
+use maze\Events\UserWasMentioned;
+
 use maze\ServerGame;
-use maze\Server;
+use maze\GameServer;
 use maze\User;
 
 use maze\Mentions\Mention;
@@ -32,12 +40,13 @@ class ServerController extends Controller
     {
         $tab = $request->input('rodyti');
         $game = $request->input('zaidimas');
-        $query = Server::select();
+        $query = GameServer::select();
 
         // Administracija mato ir nepatikrintus
         if(Auth::user()->can('manage_servers'))
         {
-            //$query = Server::get();
+            $query = GameServer::where('is_waiting_confirmation', '=', '1')->orWhere('is_confirmed', '=', '1');
+            flash()->info('Yra '.GameServer::waitingConfirmation()->count().' nepatvirtinti(-ų) serveriai(-ų)!');
         }
         else
         {
@@ -52,6 +61,16 @@ class ServerController extends Controller
         {
             $query = $query->popular();
         }
+        else if($tab == 'mano')
+        {
+            $query = GameServer::ofUser(Auth::user());
+        }
+        else if($tab == 'nepatvirtinti' && Auth::user()->can('manage_servers'))
+        {
+            $query = $query->waitingConfirmation();
+        }
+        else
+            redirect()->route('server.list');
 
         if($game)
         {
@@ -59,7 +78,7 @@ class ServerController extends Controller
             $query = $query->games($servergame);
         }
         $servers = $query->paginate(20);
-        return view('server.list', compact('tab', 'servers', 'tab', 'game'));
+        return view('server.list', compact('tab', 'servers', 'tab', 'game', 'unconfirmed_count', 'confirmation'));
     }
 
     /**
@@ -90,8 +109,9 @@ class ServerController extends Controller
         $data['body']           = markdown($data['body']);
         $data['user_id']        = $user->id;
         $data['is_confirmed']   = 0;
+        $data['is_waiting_confirmation'] = 1;
 
-        $server = Server::create($data);
+        $server = GameServer::create($data);
         if($request->file('logo') && $request->file('logo')->getMimeType() != 'image/gif')
         {
             $fname = $server->id.'-'.str_random(40).'.png';
@@ -102,6 +122,13 @@ class ServerController extends Controller
                 $server->save();
             }
         }
+
+        foreach($mention->users as $user)
+        {
+            event(new UserWasMentioned($server, $user));
+        }
+
+        event(new ServerWasCreated($server, $user));
         
         return redirect()->route('server.show', $server->slug);
     }
@@ -112,9 +139,9 @@ class ServerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show(ShowServer $request, $slug)
     {
-        $server = Server::where('slug', $slug)->firstOrFail();
+        $server = GameServer::where('slug', $slug)->firstOrFail();
         return view('server.show', compact('server'));
     }
 
@@ -152,6 +179,10 @@ class ServerController extends Controller
         $server->website        = $data['website'];
         $server->port           = $data['port'];
 
+        // Jei serveris nepatvirtintas, vėl grįžta į eilę
+        if(!$server->is_confirmed)
+            $server->is_waiting_confirmation = 1;
+
         // Jei naujas logo, do shit
         if($request->hasFile('logo'))
         {
@@ -183,14 +214,17 @@ class ServerController extends Controller
     {
         $server = $request->gameserver;
        
+        event(new ServerWasDeleted($server, Auth::user()));
+
         $server->delete();
+
         flash()->success('Serveris ištrintas');
         return redirect()->route('server.list');
     }
 
     public function lock(AdminServer $request, $id)
     {
-        $server = Server::where('id', $id)->firstOrFail();
+        $server = GameServer::where('id', $id)->firstOrFail();
         if($server->is_blocked)
         {
             flash()->success('Serveris atrakintas');
@@ -203,5 +237,33 @@ class ServerController extends Controller
         }
         $server->save();
         return redirect()->route('server.show', [$server->slug]);
+    }
+
+    public function confirm(AdminServer $request, $slug)
+    {
+        $request->gameserver->is_waiting_confirmation = 0;
+        $request->gameserver->is_confirmed = 1;
+        $request->gameserver->save();
+
+        event(new ServerWasApproved($request->gameserver));
+
+        flash()->success('Serveris sėkmingai patvirtintas ir pridėtas prie visų.');
+        return redirect()->route('server.list');
+    }
+
+    public function reject(RejectServer $request, $slug)
+    {
+        $data = $request->all();
+
+        $data['user_id'] = $request->gameserver->user->id;
+        $data['admin_id'] = Auth::user()->id;
+
+        $request->gameserver->is_waiting_confirmation = 0;
+        $request->gameserver->save();
+
+        event(new ServerWasRejected($request->gameserver));
+
+        flash()->error('Serveris atmestas, įkėlėjas bus informuotas');
+        return redirect()->route('server.list');
     }
 }

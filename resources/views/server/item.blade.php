@@ -1,4 +1,4 @@
-<div class="topic-item topic-item-container media">
+<div class="server-item topic-server-container media @if(!$server->is_confirmed) server-unconfirmed @endif">
 	<div class="votes @if(Auth::check() && !Auth::user()->can_vote) votes-disabled @endif pull-left" id="votes-{{ $server->id }}">
 		<div class="upvote-container vote-action" type="serveris" vote="upvote" id="{{ $server->id }}">
 			@if(!$server->voted('up'))

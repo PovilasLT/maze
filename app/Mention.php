@@ -58,6 +58,12 @@ class Mention extends Model
             case 'StatusComment':
                     return 'Paminėjo '.$username.' <a href="'.$this->mentioned_in->status->url.'">būsenos atnaujinimo</a> <a href="'.$this->url.'">komentare</a>.';
                 break;
+            case 'GameServer':
+                    return 'Paminėjo '.$username.' <a href="'.$this->url.'">serverio temoje'.e($this->mentioned_in->title).'</a>';
+                break;
+            case 'ServerComment':
+                    return 'Paminėjo '.$username.' savo <a href="'.$this->url.'">pranešime</a>, serverio temoje <a href="'. $this->mentioned_in->server->url.'">'.e($this->mentioned_in->server->name).'</a>.';
+                break;
             default:
                     return false;
                 break;

@@ -13,9 +13,14 @@
 @stop
 
 @section('content')
+
 	<ul class="nav nav-tabs">
 	  <li role="presentation"@if($tab == 'naujausi' || !$tab) class="active" @endif><a href="?rodyti=naujausi&zaidimas={{$game}}">Naujausi</a></li>
 	  <li role="presentation"@if($tab == 'populiariausi') class="active" @endif><a href="?rodyti=populiariausi&zaidimas={{$game}}">Populiariausi</a></li>
+	  <li role="presentation"@if($tab == 'mano') class="active" @endif><a href="?rodyti=mano&zaidimas={{$game}}">Mano</a></li>
+	  @if(Auth::user()->can('manage_servers'))
+	  <li role="presentation"@if($tab == 'nepatvirtinti') class="active" @endif><a href="?rodyti=nepatvirtinti&zaidimas={{$game}}">Nepatvirtinti</a></li>
+	  @endif
 	</ul>
 	@foreach($servers as $server)
 		@include('server.item')

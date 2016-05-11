@@ -18,7 +18,7 @@ class ServerGame extends Model
 	];
 
  	public function servers() {
- 		return $this->hasMany('maze\Server');
+ 		return $this->hasMany('maze\GameServer');
  	}
 
  	public function getSlugAttribute($value)
