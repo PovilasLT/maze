@@ -1,7 +1,7 @@
 <div class="col-lg-12 navbar-user-info">
 	@if(Auth::check())
 		<a href="{{ route('user.profile') }}"><img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->username }} Profilis" class="avatar"></a>
-		<span class="user-notifications-icon like-link" data-toggle="tooltip" title="Pranešimai"><i class="fa fa-lg fa-fw fa-globe notifications"></i>
+		<span class="user-notifications-icon like-link notifications" data-toggle="tooltip" title="Pranešimai"><i class="fa fa-lg fa-fw fa-globe"></i>
 			@if($notification_count = Auth::user()->notification_count)
 				<span>{{ $notification_count }}</span>
 			@else
