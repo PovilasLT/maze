@@ -1,5 +1,5 @@
 <?php
-
+Route::pattern('main', '(www.'.env('DOMAIN', 'maze.lt').'|'.env('DOMAIN', 'maze.lt').')');
 Route::group(['domain' => env('DOMAIN', 'maze.lt')], function () {
 
     //API
