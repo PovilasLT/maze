@@ -25,26 +25,25 @@ class TopicRequest extends Request
 
     public function rules()
     {
-        $user = Auth::user();
-        if ($user->can('manage_topics')) {
-            $rules = [
-                'title'   => 'required|min:10',
-                'body'    => 'required|min:10',
-                'node_id' => 'required|numeric',
-                'type_id' => 'required|in:'.TopicType::get()->implode('id', ',')
-            ];
-        } else {
-            $rules = [
-                'title'   => 'required|min:10',
-                'body'    => 'required|min:10',
-                'node_id' => 'required|numeric',
-                'type_id' => 'required|in:'.TopicType::where('is_admin', '=', '0')->get()->implode('id', ',')
-            ];
+        $rules = [];
+        if($this->isMethod('post')) {
+            $user = Auth::user();
+            if ($user->can('manage_topics')) {
+                $rules = [
+                    'title'   => 'required|min:10',
+                    'body'    => 'required|min:10',
+                    'node_id' => 'required|numeric',
+                    'type_id' => 'required|in:'.TopicType::get()->implode('id', ',')
+                ];
+            } else {
+                $rules = [
+                    'title'   => 'required|min:10',
+                    'body'    => 'required|min:10',
+                    'node_id' => 'required|numeric',
+                    'type_id' => 'required|in:'.TopicType::where('is_admin', '=', '0')->get()->implode('id', ',')
+                ];
+            }
         }
-
-        if ($this->is('*/istrinti')) {
-            $rules = [];
-        } 
 
         return $rules;
     }
