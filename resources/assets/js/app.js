@@ -126,6 +126,7 @@ var App = Backbone.View.extend({
 		this.views = {};
 		this.views.topics = [];
 		this.views.statuses = [];
+		$('[data-toggle="tooltip"]').tooltip('destroy');
 	},
 	_notificationMarkAsRead: function() {
 		Notifications.markAsRead();
