@@ -17,6 +17,9 @@ var NotificationsPopover = Backbone.View.extend({
 				return self.$el.html();
 			},
 			html: true,
+			title: function() {
+				return null;
+			},
 			placement: "bottom"
 		});
 
