@@ -27,6 +27,11 @@ class Streamer extends Model
     {
         return $this->belongsTo('maze\User');
     }
+
+    public function channel()
+    {
+        return $this->hasOne(maze\Channel::class);
+    }
     
     public function scopeSorted($query)
     {
