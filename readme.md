@@ -12,18 +12,30 @@ Pranešti apie klaidas ir iškelti pasiūlymus galite [issues](https://github.co
 
 Jeigu norite prisidėti prie platformos tobulinimo, mes priimame pull request'us. Nepamirškite užtaginti problemą, prie kurios darbuojatės :)
 
-## Paleidimas Lokalioje Aplinkoje (localhost arba VM)
+[Kaip sukurti Pull Requestą naudojant Windows?](https://github.com/blog/1969-create-pull-requests-in-github-for-windows)
 
-Soon™
+## Instaliacija
+
+### Priklausomybės
+
+[Node.JS](https://nodejs.org/en/) - _node_ ir _npm_. 
+
+### Paleidimas
+
+`php artisan migrate`  - sukurs duomenų bazės lenteles.
+`npm install` - įrašys visas Node.js priklausomybes.  
+`gulp` - sukompiliuos visus reikalingus _CSS_ ir _JS_ failus.
+
+## Darbas su JS ir CSS
+
+Kad nereikėtų kiekvieną kartą kompiliuoti _CSS_ ir _JS_ failų, galima naudoti komandą `gulp watch`.  
+Paleidus komandą, gulp pradės stebėti jūsų failus ir po kiekvieno išsaugojimo viską sukompiliuos.
 
 ## To-Do
 
 * Localhost ir VM paleidimo instrukcijos.
 * Automatizuoti testai.
-* Front-End spagečių sutvarkymas.
-* Geresnis notification/event serveris.
 
-## Naudojamos Technologijos
+***
 
-* jQuery
 * [Laravel 5.1](https://github.com/laravel/laravel/tree/5.1)
