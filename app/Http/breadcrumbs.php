@@ -169,3 +169,9 @@ Breadcrumbs::register('streamer.show', function ($breadcrumbs, $streamer) {
     $breadcrumbs->parent('tv.index');
     $breadcrumbs->push(e($streamer->twitch).' Streamas', route('streamer.show', [$streamer->twitch]));
 });
+
+// Twitch
+
+Breadcrumbs::register('twitch.pages.index', function ($breadcrumbs) {
+    $breadcrumbs->push('Twitch', route('twitch.pages.index'));
+});
