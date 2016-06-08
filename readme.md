@@ -22,7 +22,7 @@ Jeigu norite prisidėti prie platformos tobulinimo, mes priimame pull request'us
 
 ### Paleidimas
 
-`php artisan migrate`  - sukurs duomenų bazės lenteles.
+`php artisan migrate`  - sukurs duomenų bazės lenteles.  
 `npm install` - įrašys visas Node.js priklausomybes.  
 `gulp` - sukompiliuos visus reikalingus _CSS_ ir _JS_ failus.
 
