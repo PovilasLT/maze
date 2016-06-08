@@ -29,37 +29,24 @@ class RouteServiceProvider extends ServiceProvider
          * Misc. Bindings.
          */
         $router->bind('user', 'maze\User', function ($value) {
-            $user = \maze\User::where('slug', $value)->first();
-            if ($user) {
-                return $user;
-            }
-            abort(404);
+            return \maze\User::where('slug', $value)->firstOrFail();
         });
         $router->bind('topic', function ($value) {
-            $topic = \maze\Topic::where('slug', $value)->first();
-            if ($topic) {
-                return $topic;
-            }
-            abort(404);
+            return \maze\Topic::where('slug', $value)->firstOrFail();
         });
         $router->bind('node', function ($value) {
-            $node = \maze\Node::where('slug', $value)->first();
-            if ($node) {
-                return $node;
-            }
-            abort(404);
+            return \maze\Node::where('slug', $value)->firstOrFail();
         });
         $router->bind('streamer', function ($value) {
-            $node = \maze\Streamer::where('twitch', $value)->first();
-            if ($node) {
-                return $node;
-            }
-            abort(404);
+            return \maze\Streamer::where('twitch', $value)->firstOrFail();
         });
-
+        $router->bind('channel', function($value) {
+            return \maze\Channel::where('secret', $value)->firstOrFail();
+        });
         /**
          * ID Bindings
          */
+        $router->model('channel_id', 'maze\Channel');
         $router->model('reply', 'maze\Reply');
         $router->model('status', 'maze\Status');
         $router->model('streamer', 'maze\Streamer');
