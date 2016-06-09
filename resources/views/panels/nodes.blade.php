@@ -20,14 +20,14 @@
       @if(isset($node) && $node->id == $parent->id) active-node @endif
       ">
         <i class="fa fa-plus parent-icon" id="{{ $parent->id }}"></i>
-        <a href="{{ route('node.show', $parent->slug) }}">
+        <a href="{{ route('node.show', $parent->slug) }}" data-toggle="tooltip" title="{{ $parent->description }}">
           {{ $parent->name }}
         </a>
       </li>
       <ul class="child-node-list parent-node-collection-{{ $parent->id }}">
         @foreach($parent->children as $child)
           <li @if(isset($node) && $node->id == $child->id) class="active-node" @endif >
-            <a href="{{ route('node.show', $child->slug) }}">{{ $child->name }}</a>
+            <a href="{{ route('node.show', $child->slug) }}" data-toggle="tooltip" title="{{ $child->description }}">{{ $child->name }}</a>
             @if(Auth::check())
             <input @if(isset($front_page_nodes) && $front_page_nodes && in_array($child->id, $front_page_nodes)) checked @endif type="checkbox" data-node="{{ $child->id }}" class="toggle-front-page-node pull-left hidden">
             @endif
