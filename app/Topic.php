@@ -199,12 +199,31 @@ class Topic extends Model
     public function nodePath()
     {
         $parent = $this->node->parent;
-        $parent = '<a href="'.route('node.show', $parent->slug).'">'.$parent->name.'</a>';
+        if($parent) {
+            $parent = '<a href="'.route('node.show', $parent->slug).'">'.$parent->name.'</a> &raquo ';
+        } else {
+            $parent = '';
+        }
+
         $node = $this->node;
         $node = '<a href="'.route('node.show', $node->slug).'">'.$node->name.'</a>';
-        return $parent.' &raquo '.$node;
+        
+        return $parent.$node;
     }
 
+    public function getNodeTitleAttribute()
+    {
+        $parent = $this->node->parent;
+        if($parent) {
+            $parent = $parent->name.' » ';
+        } else {
+            $parent = '';
+        }
+
+        $node = $this->node->name;
+        
+        return $parent.$node;
+    }
 
     public function getUrlAttribute()
     {

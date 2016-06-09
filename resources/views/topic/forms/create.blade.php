@@ -6,7 +6,7 @@
 				<label for="node">Diskusijų Skiltis</label>
 				<select name="node_id" id="node" class="form-control" required="required">
 				@foreach($nodes as $node)
-					<option value="" disabled>{{ $node->name }}</option>
+					<option value="{{ $node->id }}">{{ $node->name }}</option>
 					@foreach($node->children as $child)
 					@if(($child->id != 15) || ($child->id == 15 && Auth::user()->can('manage_topics')))
 						@if((old('node_id') == $child->id) || $node_id == $child->id)

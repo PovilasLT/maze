@@ -60,14 +60,9 @@ class NodesController extends Controller
         $sort = $request->input('rodyti');
 
         $node = Node::where('slug', $slug)->firstOrFail();
-        if ($node->parent_node) {
-            $topics = $node->topics()->withReplies();
-            $expandable = $node->parent_node;
-        } else {
-            $nodes = Node::where('parent_node', $node->id)->lists('id')->all();
-            $topics = Topic::whereIn('node_id', $nodes)->withReplies();
-            $expandable = $node->id;
-        }
+
+        $topics = $node->topics()->withReplies();
+        $expandable = $node->parent_node;
 
         if ($sort == 'populiariausi' || !$sort) {
             $topics = $topics->pinnedLocal()->popular()->withReplies();

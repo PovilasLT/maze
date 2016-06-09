@@ -6,7 +6,7 @@
 @stop
 
 @section('title')
-{{ $topic->title . ' » ' . $topic->node->parent->name . ' » ' . $topic->node->name . ' | ' }} 
+{{ $topic->title . ' » ' . $topic->node_title . ' | ' }} 
 @stop
 
 @section('description')
