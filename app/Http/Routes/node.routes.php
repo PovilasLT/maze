@@ -11,7 +11,7 @@ Route::post('/skiltis/irasyti', [
     'uses'    => 'NodesController@store'
 ]);
 
-Route::get('/skiltis/{slug}', [
+Route::get('/skiltis/{node}', [
     'as'    => 'node.show',
     'uses'    => 'NodesController@show'
 ]);

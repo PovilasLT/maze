@@ -5,14 +5,14 @@ use maze\Http\Requests\CreateNode;
 use maze\Http\Controllers\Controller;
 use maze\Events\NodeWasCreated;
 use Illuminate\Http\Request;
+use maze\Stats\NodeStats;
 use maze\Node;
 use maze\Topic;
 use Auth;
 
 class NodesController extends Controller
 {
-
-
+    
     public function create()
     {
         $nodes = Node::parents();
@@ -55,11 +55,11 @@ class NodesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show(Request $request, $slug)
+    public function show(Request $request, Node $node)
     {
         $sort = $request->input('rodyti');
 
-        $node = Node::where('slug', $slug)->firstOrFail();
+        $stats = new NodeStats($node);
 
         $topics = $node->topics()->withReplies();
         $expandable = $node->parent_node;
@@ -76,7 +76,7 @@ class NodesController extends Controller
 
         $topics = $topics->paginate(20);
         
-        return view('node.show', compact('node', 'topics', 'sort', 'expandable'));
+        return view('node.show', compact('node', 'topics', 'sort', 'expandable', 'stats'));
     }
 
     /**
