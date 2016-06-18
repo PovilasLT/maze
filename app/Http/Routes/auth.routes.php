@@ -10,6 +10,16 @@ Route::get('/prisijungti', [
     'uses'    => 'AuthController@login'
 ]);
 
+Route::get('/prisijungti/steam', [
+    'as'    => 'auth.login.steam',
+    'uses'    => 'AuthController@steamLogin'
+]);
+
+Route::post('/prisijungti/steam/sukurti', [
+    'as'    => 'auth.login.steam.post',
+    'uses'    => 'AuthController@postSteamLogin'
+]);
+
 Route::get('/atsijungti', [
     'as'    => 'auth.logout',
     'uses'    => 'AuthController@logout'

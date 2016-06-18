@@ -88,6 +88,10 @@ class SettingsController extends Controller
             'username'
         ];
 
+        if ($request->has('steam') && Auth::user()->type == 'steam') {
+            return abort(404);
+        }
+
         foreach ($settings as $key => $setting) {
             if (!array_key_exists($key, $protected)) {
                 $_settings[$key] = $setting;

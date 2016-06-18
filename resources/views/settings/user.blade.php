@@ -55,11 +55,13 @@
 						<p class="help-block">Vartotojo vardas.</p>
 					</div>
 
+                    @if ($user->type != 'steam')
 					<div class="form-group col-sm-6">
 						<label for="">Steam</label>
 						<input type="text" class="form-control" id="" name="steam" value="{{ $user->getOriginal('steam') }}">
 						<p class="help-block">Tiesioginė nuoroda į profilį.</p>
 					</div>
+					@endif
 
 					<div class="form-group col-sm-6">
 						<label for="">Twitch</label>

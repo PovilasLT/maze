@@ -347,6 +347,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
             case 'twitter':
                 return 'http://twitter.com/'.$this->getOriginal($field);
             case 'steam':
+                if ($this->type == 'steam') {
+                    return 'http://steamcommunity.com/profiles/' . $this->getOriginal($field);
+                }
+
                 return $this->getOriginal($field);
             case 'youtube':
                 return $this->getOriginal($field);
